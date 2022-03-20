@@ -1,0 +1,6 @@
+
+]
+java:S4684"@Replace this persistent entity with a simple POJO or DTO object.(ÌİÎÑ8¿õµ°ú/
+\
+java:S4684#"@Replace this persistent entity with a simple POJO or DTO object.(Æş8Áõµ°ú/
+{	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(²¿‚¥úÿÿÿÿ8Âõµ°ú/
