@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+
 # CSIT314 Front End
 
 [toc]
@@ -30,13 +31,18 @@ git pull git@github.com:ZHIFA-CHIU/CSIT314-Project.git
 git checkout front_end
 ~~~
 
+```bash
+# download all dependencies
+npm install
+```
+
 ~~~bash
 # start react project
 npm start
 ~~~
 
 Open your browser, enter `http://localhost:3000/`, you should see a message `Roadside Assitant Service`.
-=======
+
 # CSIT314-Project
 Welcome to CSIT314 project repo for RoadSideAssistance Application
 
