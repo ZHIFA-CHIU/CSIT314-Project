@@ -91,7 +91,7 @@ public class Customer {
     }
 
     public boolean validateCustomer() {
-        if (name == "" || email == "" || dob.isBefore(LocalDate.of(1920, Month.JANUARY, 1))) {
+        if (name.equals("") || email.equals("") || dob.isBefore(LocalDate.of(1920, Month.JANUARY, 1))) {
             return false;
         }
         return true;
