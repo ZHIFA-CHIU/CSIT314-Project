@@ -4,6 +4,7 @@ on:
   push:
     branches: [ cdpipeline_implementatoin ]
   workflow_dispatch:
+
 jobs:
   deploy_code:
     runs-on: ubuntu-latest
@@ -11,7 +12,7 @@ jobs:
       - name: Run Ansible playbook
         uses: dawidd6/action-ansible-playbook@v2.5.0
         with:
-          playbook: ansible/deploy-playbook.yml # path to your Ansible playbook
+          playbook: deploy-playbook.yml # path to your Ansible playbook
           directory: ./
           key: ${{ secrets.ansible_key }} # the ssh private key for ansible to use to connect to the servers, stored as "ansible_ssh_private_key" in the GitHub secrets
           inventory: ${{ secrets.ansible_playbook }} # the ansible inventory to use, stored as "ansible_inventory" in the GitHub secrets
