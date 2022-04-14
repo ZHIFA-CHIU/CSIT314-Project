@@ -1,27 +1,28 @@
-package com.csit314.roadSideAssistance.Customer;
+package com.csit314.roadSideAssistance.CustomerEx;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
-public class CustomerService {
+public class CustomerExService {
 
-    private final CustomerRepository customerRepository;
+    private final CustomerExRepository customerRepository;
 
     @Autowired
-    public CustomerService(CustomerRepository customerRepository) {
+    public CustomerExService(CustomerExRepository customerRepository) {
         this.customerRepository = customerRepository;
     }
 
-    public List<Customer> getCustomer() {
+    public List<CustomerEx> getCustomer() {
         return customerRepository.findAll();
     }
 
-    public void registerCustomer(Customer customer) {
-        Optional<Customer> foundCustomer = customerRepository.findCustomerByEmail(customer.getEmail());
+    public void registerCustomer(CustomerEx customer) {
+        Optional<CustomerEx> foundCustomer = customerRepository.findCustomerByEmail(customer.getEmail());
 
         if (foundCustomer.isPresent()) {
             throw new IllegalStateException("User already exists");
@@ -29,19 +30,19 @@ public class CustomerService {
         customerRepository.save(customer);
     }
 
-    public void deleteCustomer(Long customerId){
-        boolean customerExists = customerRepository.existsById(customerId);
+    public void deleteCustomer(UUID customerId){
+        boolean customerExists = customerRepository.existsByUuid(customerId);
         if(!customerExists) {
             throw new IllegalStateException("customer with id " + customerId + " does not exist");
         }
-        customerRepository.deleteById(customerId);
+        customerRepository.deleteByUuid(customerId);
     }
 
-    public void updateCustomer(Customer customer){
+    public void updateCustomer(CustomerEx customer){
         //checking customer exists
-        boolean customerExists = customerRepository.existsById(customer.getId());
+        boolean customerExists = customerRepository.existsByUuid(customer.getUuid());
         if(!customerExists) {
-            throw new IllegalStateException("customer with id " + customer.getId() + " does not exist");
+            throw new IllegalStateException("customer with id " + customer.getUuid() + " does not exist");
         }
 
         //checking customer is valid

@@ -1,11 +1,11 @@
 import axios from 'axios'
 
-const CUSTOMERS_REST_API_URL = 'http://localhost:8080/api/v1/customer';
+const CUSTOMERS_REST_API_URL = 'http://localhost:8080/api/v1/customerEx';
 
 /**
  * Service class used to get interact with customer controller
  */
-class CustomerService {
+class CustomerExService {
     /**
      * Gets list of customers
      * @returns axios response
@@ -24,4 +24,4 @@ class CustomerService {
     }
 }
 
-export default new CustomerService();
+export default new CustomerExService();

@@ -1,54 +1,44 @@
-package com.csit314.roadSideAssistance.Customer;
+package com.csit314.roadSideAssistance.CustomerEx;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.Month;
 import java.time.Period;
+import java.util.UUID;
 
 @Entity
 @Table
-public class Customer {
+public class CustomerEx {
     @Id
-    @SequenceGenerator(
-            name = "customer_sequence",
-            sequenceName = "customer_sequence",
-            allocationSize = 1
-    )
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "student_sequence"
-    )
-    private Long id;
+    private UUID uuid = UUID.randomUUID();
     private String name;
     private String email;
     private LocalDate dob;
     @Transient
     private int age;
 
-    public Customer() {
+    public CustomerEx() {
     }
 
-    ;
-
-    public Customer(Long id, String name, String email, LocalDate dob) {
-        this.id = id;
+    public CustomerEx(UUID id, String name, String email, LocalDate dob) {
+        this.uuid = id;
         this.name = name;
         this.email = email;
         this.dob = dob;
     }
 
-    public Customer(String name, String email, LocalDate dob) {
+    public CustomerEx(String name, String email, LocalDate dob) {
         this.name = name;
         this.email = email;
         this.dob = dob;
     }
 
-    public Long getId() {
-        return id;
+    public UUID getUuid() {
+        return uuid;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setUuid(UUID id) {
+        this.uuid = id;
     }
 
     public String getName() {
@@ -82,7 +72,7 @@ public class Customer {
     @Override
     public String toString() {
         return "Customer{" +
-                "id=" + id +
+                "id=" + uuid +
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
                 ", dob=" + dob +
@@ -91,9 +81,6 @@ public class Customer {
     }
 
     public boolean validateCustomer() {
-        if (name.equals("") || email.equals("") || dob.isBefore(LocalDate.of(1920, Month.JANUARY, 1))) {
-            return false;
-        }
-        return true;
+        return !name.equals("") && !email.equals("") && !dob.isBefore(LocalDate.of(1920, Month.JANUARY, 1));
     }
 }

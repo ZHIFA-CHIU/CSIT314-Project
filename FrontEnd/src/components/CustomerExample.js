@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import CustomerService from "../services/customerService";
+import CustomerService from "../services/customerExService";
 import {Button, Paper, Typography} from "@mui/material";
 
 /**
@@ -42,7 +42,7 @@ const CustomerExample = () => {
                 <div>Age: {customer.age}</div>
                 <div>Email: {customer.email}</div>
                 <Button onClick={() => {
-                    deleteCustomer(customer.id);
+                    deleteCustomer(customer.uuid);
                     getCustomers();
                 }}>Delete customer
                 </Button>

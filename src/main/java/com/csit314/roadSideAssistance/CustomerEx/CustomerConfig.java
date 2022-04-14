@@ -1,4 +1,4 @@
-package com.csit314.roadSideAssistance.Customer;
+package com.csit314.roadSideAssistance.CustomerEx;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
@@ -12,14 +12,14 @@ import java.util.List;
 public class CustomerConfig {
 
     @Bean
-    CommandLineRunner commandLineRunner(CustomerRepository repository) {
+    CommandLineRunner commandLineRunner(CustomerExRepository repository) {
         return args -> {
-            Customer bob = new Customer(
+            CustomerEx bob = new CustomerEx(
                     "Bob",
                     "bob@gmail.com",
                     LocalDate.of(2000, Month.JANUARY, 5)
             );
-            Customer jim = new Customer(
+            CustomerEx jim = new CustomerEx(
                     "Jim",
                     "jim@gmail.com",
                     LocalDate.of(2000, Month.FEBRUARY, 6)
