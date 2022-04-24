@@ -1,8 +1,9 @@
 import React from 'react';
-import { NavLink} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import "./Home.css"
 
 const Home = () => {
+    const navigate = useNavigate();
     return (
         <div className='home'>
             <div className='header'>
@@ -18,16 +19,12 @@ const Home = () => {
                 <img className='ui centered large image' src='https://uowplaybook.s3-ap-southeast-2.amazonaws.com/logo/logo-secondary-negative.png' />
             </div>
             <div className='ui center aligned container button-container'>
-                <NavLink to={"/login"}>
-                    <button className='huge ui primary button'>
-                        Sign In
-                    </button>
-                </NavLink>
+                <button className='huge ui primary button' onClick={() => navigate("/login")}>
+                    Log In
+                </button>
             </div>
             <div className='ui container signup center aligned'>
-                <NavLink to={"/signup"}>
-                    <p>Do not have an account? Sign up </p>
-                </NavLink>
+                    <p className='signup' onClick={() => navigate("/signup")}>Do not have an account? Sign up now </p>
             </div>
         </div>
     );

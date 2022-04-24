@@ -1,3 +1,7 @@
 .button-container {
     margin: 20px;
 }
+
+.signup:hover {
+    color: blue;
+}
