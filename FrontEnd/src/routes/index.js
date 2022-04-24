@@ -2,6 +2,7 @@ import { Navigate } from "react-router-dom";
 import Home from "../components/Home/Home";
 import Login from "../components/Login";
 import Signup from "../components/Signup";
+import CreateAccountTechnician from "../components/CreateAccountTechnician";
 
 export default [
     {
@@ -15,6 +16,10 @@ export default [
     {
         path: "signup",
         element: <Signup />
+    },
+    {
+        path: "CreateAccountTechnician",
+        element: <CreateAccountTechnician />
     },
     {
         path: "/",

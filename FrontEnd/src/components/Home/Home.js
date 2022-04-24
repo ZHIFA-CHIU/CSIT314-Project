@@ -25,7 +25,9 @@ const Home = () => {
             </div>
             <div className='ui container signup center aligned'>
                     <p className='signup' onClick={() => navigate("/signup")}>Do not have an account? Sign up now </p>
+                    <p className='CreateAccountTechnician' onClick={() => navigate("/CreateAccountTechnician")}>Technician? Sign up now </p>
             </div>
+            nav.Navigation();
         </div>
     );
 }
