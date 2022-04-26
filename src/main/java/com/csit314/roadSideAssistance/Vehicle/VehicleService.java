@@ -6,42 +6,43 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 @Service
 public class VehicleService {
 
-    private final VehicleRepository vehicleRepo;
+    private final VehicleRepository vehicleRepository;
 
     @Autowired
-    public VehicleService(VehicleRepository vehicleRepo) {
-        this.VehicleRepository = vehicleRepo;
+    public VehicleService(VehicleRepository vehicleRepository) {
+        this.vehicleRepository = vehicleRepository;
     }
 
     public List<Vehicle> getVehicle() {
-        return vehicleRepo.findAll();
+        return vehicleRepository.findAll();
     }
 
     public void registerVehicle(Vehicle vehicle) {
-        Optional<Vehicle> foundVehicle = vehicleRepo.findVehicleByRego(vehicle.getRego());
+        Optional<Vehicle> foundVehicle = vehicleRepository.findVehicleByRego(vehicle.getRego());
 
         if (foundVehicle.isPresent()) {
             throw new IllegalStateException("Vehicle already linked to another user");
         }
-        vehicleRepo.save(vehicle);
+        vehicleRepository.save(vehicle);
     }
 
     public void deleteVehicle(String registeredState, String registeredPlate){
-        boolean vehicleExists = vehicleRepo.existsByRego(registeredState, registeredPlate);
+        String registeredStateAndPlate;
+        registeredStateAndPlate = registeredState + " " + registeredPlate;
+        boolean vehicleExists = vehicleRepository.existsByRego(registeredStateAndPlate);
         if(!vehicleExists) {
             throw new IllegalStateException("Vehicle with registration " + registeredPlate + " does not exist in " + registeredState);
         }
-        vehicleRepo.deleteByRego(registeredState, registeredPlate);
+        vehicleRepository.deleteByRego(registeredStateAndPlate);
     }
 
     public void updateVehicle(Vehicle vehicle){
         //checking vehicle exists
-        boolean vehicleExists = vehicleRepo.existsByRego(vehicle.getRego());
+        boolean vehicleExists = vehicleRepository.existsByRego(vehicle.getRego());
         if(!vehicleExists) {
             throw new IllegalStateException("vehicle with registration " + vehicle.getRego() + " does not exist");
         }
@@ -53,7 +54,7 @@ public class VehicleService {
         }
 
         //updating customer
-        vehicleRego.save(vehicle);
+        vehicleRepository.save(vehicle);
     }
 
 }

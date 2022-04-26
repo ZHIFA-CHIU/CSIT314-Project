@@ -12,11 +12,11 @@ import java.util.List;
 @RequestMapping(path = "api/v1/Vehicle")
 public class VehicleController {
 
-    private final vehicleService vehicleservice;
-
+    private final VehicleService vehicleService;
     @Autowired
-    public VehicleController(vehicleService vehicleservice) {
-        this.vehicleService = vehicleservice;
+    public VehicleController(VehicleService vehicleService, VehicleService vehicleService1) {
+        this.vehicleService = vehicleService;
+
     }
 
     @GetMapping

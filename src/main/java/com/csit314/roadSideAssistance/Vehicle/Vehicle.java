@@ -109,6 +109,20 @@ public class Vehicle {
     }
 
     public String getRego() {
+
+        String state =  getRegisteredState();
+        String plate = getRegistrationPlate();
+        String rego = state + " " + plate;
         return rego;
+    }
+
+    public boolean validateVehicle() {
+        String state =  getRegisteredState();
+        String plate = getRegistrationPlate();
+        if(state.trim().isEmpty())
+            return false;
+        if(plate.trim().isEmpty())
+            return false;
+        else return true;
     }
 }
