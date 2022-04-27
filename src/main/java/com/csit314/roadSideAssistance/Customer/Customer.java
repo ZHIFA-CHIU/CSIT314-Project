@@ -1,40 +1,56 @@
 package com.csit314.roadSideAssistance.Customer;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
+import java.security.SecureRandom;
 import java.time.LocalDate;
 import java.time.Month;
 import java.time.Period;
+import java.util.UUID;
 
 @Entity
 @Table
 public class Customer {
     @Id
-    @SequenceGenerator(
-            name = "customer_sequence",
-            sequenceName = "customer_sequence",
-            allocationSize = 1
+    @GeneratedValue(generator = "uuidGen")
+    @GenericGenerator(
+            name = "uuidGen",
+            strategy = "org.hibernate.id.UUIDGenerator"
     )
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "student_sequence"
-    )
-    private Long id;
+    @Column(name = "id", updatable = false, nullable = false)
+    private UUID id;
+
     private String name;
+    
+    @Column(unique=true)
     private String email;
+
     private LocalDate dob;
+
+    @Column(unique=true)
+    private String phoneNumber;
+
     @Transient
     private int age;
+
+    private String password; //SHA512 salted hashed password
+
+    private String salt; //randomly generated salt for customer
 
     public Customer() {
     }
 
-    ;
-
-    public Customer(Long id, String name, String email, LocalDate dob) {
-        this.id = id;
+    public Customer(String name, String email, LocalDate dob, String phoneNumber) throws customException {
         this.name = name;
         this.email = email;
         this.dob = dob;
+        this.phoneNumber = phoneNumber;
+        if(getAge() < 16) {
+            //System.out.println("Error age < 16");
+            throw new customException("Error age < 16");
+        }
+        
     }
 
     public Customer(String name, String email, LocalDate dob) {
@@ -43,12 +59,8 @@ public class Customer {
         this.dob = dob;
     }
 
-    public Long getId() {
+    public UUID getId() {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -75,8 +87,41 @@ public class Customer {
         this.dob = dob;
     }
 
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
     public int getAge() {
-        return Period.between(this.dob, LocalDate.now()).getYears();
+        if ((dob != null)) {
+            return Period.between(dob, LocalDate.now()).getYears();
+        }
+        return 0; // dob == null
+    }
+
+    private void generateSalt() {
+        SecureRandom random = new SecureRandom();
+        byte[] salt = new byte[16];
+        random.nextBytes(salt);
+        this.salt = new String(salt);
+    }
+
+    public void setPassword(String password) {
+        if(salt == null) {
+            generateSalt();
+        } else {
+            this.password = password;
+        }
+    }
+
+    public boolean checkPassword(String password) {
+        if(this.password == password) {
+            return true;
+        }
+        return false;
     }
 
     @Override

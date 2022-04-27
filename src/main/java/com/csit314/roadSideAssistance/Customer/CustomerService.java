@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class CustomerService {
@@ -29,7 +30,7 @@ public class CustomerService {
         customerRepository.save(customer);
     }
 
-    public void deleteCustomer(Long customerId){
+    public void deleteCustomer(UUID customerId){
         boolean customerExists = customerRepository.existsById(customerId);
         if(!customerExists) {
             throw new IllegalStateException("customer with id " + customerId + " does not exist");
