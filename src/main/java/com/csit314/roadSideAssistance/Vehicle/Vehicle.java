@@ -1,22 +1,27 @@
 package com.csit314.roadSideAssistance.Vehicle;
 
+import lombok.Data;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.Year;
 
-
+//Contains backend vehicle class
 @Entity
+@Data
 @Table
+@IdClass(VehicleIDUsingEmbeddable.class)
 public class Vehicle {
     @Id
     private String registrationPlate;
+    @Id
     private String registeredState;
     private Year manufacturedYear;
     private String manufacturer;
     private String model;
     private String colour;
     private double weight;
-    private String rego;
+    private String rego; //Combines plate and state - exists because repo class was throwing errors when I tried to send it 2 strings at once
 
     public Vehicle() {
     }
@@ -59,9 +64,14 @@ public class Vehicle {
     public double getWeight() {
         return weight;
     }
+    public String getRego() {
+
+        String state =  getRegisteredState();
+        String plate = getRegistrationPlate();
+        String rego = state + " " + plate;
+        return rego;
+    }
     //Setters
-
-
     public void setRegistrationPlate(String registrationPlate) {
         this.registrationPlate = registrationPlate;
     }
@@ -89,7 +99,10 @@ public class Vehicle {
     public void setWeight(double weight) {
         this.weight = weight;
     }
-
+    public void setRego(String rego) {
+        rego = getRegisteredState() + " " + getRegistrationPlate();
+        this.rego = rego;
+    }
     @Override
     public String toString() {
         return "Vehicle{" +
@@ -102,20 +115,7 @@ public class Vehicle {
                 ", weight=" + weight +
                 '}';
     }
-
-    public void setRego(String rego) {
-        rego = getRegisteredState() + " " + getRegistrationPlate();
-        this.rego = rego;
-    }
-
-    public String getRego() {
-
-        String state =  getRegisteredState();
-        String plate = getRegistrationPlate();
-        String rego = state + " " + plate;
-        return rego;
-    }
-
+    //Validates Vehicle to ensure rego is not null
     public boolean validateVehicle() {
         String state =  getRegisteredState();
         String plate = getRegistrationPlate();
