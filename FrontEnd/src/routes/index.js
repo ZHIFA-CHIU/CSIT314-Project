@@ -1,7 +1,7 @@
 import { Navigate } from "react-router-dom";
 import Home from "../components/Home/Home";
 import Login from "../components/Login";
-import Signup from "../components/Signup";
+import CreateAccountCustomer from "../components/Signup/CreateAccountCustomer";
 
 export default [
     {
@@ -13,8 +13,8 @@ export default [
         element: <Login />
     },
     {
-        path: "signup",
-        element: <Signup />
+        path: "CreateAccountCustomer",
+        element: <CreateAccountCustomer />
     },
     {
         path: "/",
