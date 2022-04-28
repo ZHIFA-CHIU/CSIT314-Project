@@ -24,7 +24,7 @@ const Home = () => {
                 </button>
             </div>
             <div className='ui container signup center aligned'>
-                    <p className='signup' onClick={() => navigate("/signup")}>Do not have an account? Sign up now </p>
+                    <p className='signup' onClick={() => navigate("/CreateAccountCustomer")}>Do not have an account? Sign up now </p>
             </div>
         </div>
     );
