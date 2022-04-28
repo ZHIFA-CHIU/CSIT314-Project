@@ -1,67 +1,41 @@
 package com.csit314.roadSideAssistance.CustomerEx;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.Month;
 import java.time.Period;
 import java.util.UUID;
 
+/**
+ * CustomerEx model to demonstrate basic spring functionality
+ */
+@Getter
+@Setter
+@AllArgsConstructor
 @Entity
 @Table
-public class CustomerEx {
+public class
+CustomerEx {
     @Id
-    private UUID uuid = UUID.randomUUID();
+    @GeneratedValue(generator = "uuidGen")
+    @GenericGenerator(name = "uuidGen", strategy = "org.hibernate.id.UUIDGenerator")
+    @Column(name = "uuid", updatable = false, nullable = false)
+    private UUID uuid;
     private String name;
     private String email;
     private LocalDate dob;
-    @Transient
-    private int age;
 
     public CustomerEx() {
-    }
-
-    public CustomerEx(UUID id, String name, String email, LocalDate dob) {
-        this.uuid = id;
-        this.name = name;
-        this.email = email;
-        this.dob = dob;
     }
 
     public CustomerEx(String name, String email, LocalDate dob) {
         this.name = name;
         this.email = email;
-        this.dob = dob;
-    }
-
-    public UUID getUuid() {
-        return uuid;
-    }
-
-    public void setUuid(UUID id) {
-        this.uuid = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public LocalDate getDob() {
-        return dob;
-    }
-
-    public void setDob(LocalDate dob) {
         this.dob = dob;
     }
 
@@ -76,7 +50,7 @@ public class CustomerEx {
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
                 ", dob=" + dob +
-                ", age=" + age +
+                ", age=" + getAge() +
                 '}';
     }
 

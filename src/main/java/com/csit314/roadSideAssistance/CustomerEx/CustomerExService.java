@@ -7,6 +7,9 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+/**
+ * Customer service example, handling all of the backend logic
+ */
 @Service
 public class CustomerExService {
 

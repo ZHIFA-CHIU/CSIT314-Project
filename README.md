@@ -6,7 +6,7 @@ Welcome to CSIT314 project repo for RoadSideAssistance Application
 
 You will need to install
 
-- Docker
+- MySQL server and workbench
 - Node.js
 - JDK17
 
@@ -32,7 +32,7 @@ Run the createTables.sql file
 
 ##### summary
 You will now be able to run the spring boot backend, this has been configured to validate against the database.
-This means that you will commonly run into errors where the back / front end dosn't explicitly line up. 
+This means that you will commonly run into errors where the back / front end doesn't explicitly line up. 
 Please update the models and DB where appropriate.
 
 ### Running the backend
