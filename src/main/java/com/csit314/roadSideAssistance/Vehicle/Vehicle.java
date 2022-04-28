@@ -5,8 +5,11 @@ import lombok.Data;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.Year;
-
-//Contains backend vehicle class
+/**
+ * Contains vehicle backend class
+ *
+ *
+ */
 @Entity
 @Data
 @Table
