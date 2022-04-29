@@ -13,8 +13,19 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-
+    
+    env:
+      DB_DATABASE: roadSideAssistance
+      DB_USER: user
+      DB_PASSWORD: 'password'
+      DB_HOST: localhost
+      
+      
     steps:
+    - run: |
+        sudo /etc/init.d/mysql start
+        mysql -e 'CREATE DATABASE roadSideAssistance;' -uuser -ppassword
+        mysql -e 'SHOW DATABASES;' -uuser -ppassword
     - uses: actions/checkout@v3
     - name: Set up JDK 17
       uses: actions/setup-java@v3
