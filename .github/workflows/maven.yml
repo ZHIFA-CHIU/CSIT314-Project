@@ -24,7 +24,10 @@ jobs:
     steps:
     - run: |
         sudo /etc/init.d/mysql start
-        mysql -e 'CREATE DATABASE roadSideAssistance;' -uuser -ppassword
+        mysql -e 'CREATE DATABASE roadSideAssistance;' -uroot
+        mysql -e 'CREATE USER 'user'@'172.17.0.1' IDENTIFIED BY 'password';'
+        mysql -e 'GRANT ALL PRIVILEGES ON *.* TO 'user'@'172.17.0.1' WITH GRANT OPTION;'  
+        mysql -e flush privileges;  
         mysql -e 'SHOW DATABASES;' -uuser -ppassword
     - uses: actions/checkout@v3
     - name: Set up JDK 17
