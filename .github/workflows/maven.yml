@@ -16,19 +16,17 @@ jobs:
     
     env:
       DB_DATABASE: roadSideAssistance
-      DB_USER: user
-      DB_PASSWORD: 'password'
+      DB_USER: root
+      DB_PASSWORD: 'root'
       DB_HOST: localhost
       
       
     steps:
     - run: |
         sudo /etc/init.d/mysql start
-        mysql -e 'CREATE DATABASE roadSideAssistance;' -uroot
-        mysql -e 'CREATE USER 'user'@'172.17.0.1' IDENTIFIED BY 'password';'
-        mysql -e 'GRANT ALL PRIVILEGES ON *.* TO 'user'@'172.17.0.1' WITH GRANT OPTION;'  
-        mysql -e flush privileges;  
-        mysql -e 'SHOW DATABASES;' -uuser -ppassword
+        mysql -e 'CREATE DATABASE roadSideAssistance;' -uroot -proot
+        mysql -e 'SHOW DATABASES;' -uroot -proot
+        mysql -e "CREATE USER 'user'@'localhost' IDENTIFIED BY 'password';GRANT ALL PRIVILEGES ON *.* TO 'user'@'localhost' WITH GRANT OPTION;flush privileges;" -uroot -proot
     - uses: actions/checkout@v3
     - name: Set up JDK 17
       uses: actions/setup-java@v3
