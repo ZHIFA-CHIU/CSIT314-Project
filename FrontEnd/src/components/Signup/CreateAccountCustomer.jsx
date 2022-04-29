@@ -17,7 +17,7 @@ const CreateAccountCustomer = () => {
    const [address, setAddress] = useState();
    const [memType, setMemType] = useState('payOnDemand');
    const [cNum, setCNum] = useState();
-   const [expirey, setExpirey] = useState();
+   const [expiry, setExpiry] = useState();
    const [cvv, setCvv] = useState();
 
    const [nameErr, setNameErr] = useState([false, ""]);
@@ -27,7 +27,7 @@ const CreateAccountCustomer = () => {
    const [dobErr, setDobErr] = useState([false, ""]);
    const [addressErr, setAddressErr] = useState([false, ""]);
    const [cNumErr, setCNumErr] = useState([false, ""]);
-   const [expireyErr, setExpireyErr] = useState([false, ""]);
+   const [expiryErr, setExpiryErr] = useState([false, ""]);
    const [cvvErr, setCvvErr] = useState([false, ""]);
 
    /**validate user input function */
@@ -62,8 +62,8 @@ const CreateAccountCustomer = () => {
          return false;
       }
 
-      if (expirey.length != 5) {
-         setExpireyErr = ([true, "Card expirey is invalid"]);
+      if (expiry.length != 5) {
+         setExpiryErr = ([true, "Card expiry is invalid"]);
          return false;
       }
 
@@ -79,7 +79,7 @@ const CreateAccountCustomer = () => {
    /**function creates account object and navigates to home page*/
    const handleSubmit = (e) => {
       if (validateInput()) {
-         const account = { name, email, pword, pNum, dob, address, memType, cNum, expirey, cvv };
+         const account = { name, email, pword, pNum, dob, address, memType, cNum, expiry, cvv };
          navigate('/home');
       }
    }
