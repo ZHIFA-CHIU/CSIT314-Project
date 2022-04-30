@@ -42,7 +42,11 @@ public class Vehicle {
         this.model = model;
         this.colour = colour;
         this.weight = weight;
-        this.rego = registeredState + " " + registrationPlate;
+        rego = registeredState + " " + registrationPlate;
+    }
+
+    public String getRego() { //Lombak getter was returning null so I added this method
+        return (registeredState + " " + registrationPlate);
     }
 
     @Override
@@ -64,6 +68,12 @@ public class Vehicle {
         if(state.trim().isEmpty())
             return false;
         if(plate.trim().isEmpty())
+            return false;
+        if(plate.length() > 7)
+            return false;
+        if(plate.contains("[!@#$%&*()_+=|<>?{}\\\\[\\\\]~-]"))
+            return false;
+        if(plate.toUpperCase() != plate)
             return false;
         else return true;
     }
