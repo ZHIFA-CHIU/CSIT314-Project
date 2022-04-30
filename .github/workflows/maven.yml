@@ -56,8 +56,12 @@ jobs:
       #    mysql password: password # Required if "mysql user" exists. The password for the "mysql user"
       #   # ... some steps after set-up MySQL ...
 
-      - name: Build
-        run: mvn --batch-mode -DskipTests package
+      - name: Build with Maven
+        run: mvn -B package --file pom.xml
+
+
+      #- name: Build
+      #  run: mvn --batch-mode -DskipTests package
 
       - name: Test
         run: mvn --batch-mode -Dmaven.test.failure.ignore=true test
