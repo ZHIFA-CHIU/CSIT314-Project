@@ -46,7 +46,7 @@ public class CustomerService {
         }
 
         //checking customer is valid
-        boolean validCustomer = customer.validateCustomer();
+        boolean validCustomer = customer.validateUser();
         if(!validCustomer) {
             throw new IllegalStateException("Customer is invalid");
         }

@@ -16,13 +16,17 @@ public class CustomerConfig {
         return args -> {
             Customer bob = new Customer(
                     "Bob",
+                    "Jones",
                     "bob@gmail.com",
-                    LocalDate.of(2000, Month.JANUARY, 5)
+                    LocalDate.of(2000, Month.JANUARY, 5),
+                    "04948181271"
             );
             Customer jim = new Customer(
                     "Jim",
+                    "jilly",
                     "jim@gmail.com",
-                    LocalDate.of(2000, Month.FEBRUARY, 6)
+                    LocalDate.of(2000, Month.FEBRUARY, 6),
+                    "0291817391"
             );
 
             repository.saveAll(

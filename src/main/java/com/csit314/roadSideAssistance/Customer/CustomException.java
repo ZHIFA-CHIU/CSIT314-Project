@@ -1,8 +1,8 @@
 package com.csit314.roadSideAssistance.Customer;
 
-public class customException extends Exception
+public class CustomException extends Exception
 {
-    public customException(String message)
+    public CustomException(String message)
     {
         super(message);
     }
