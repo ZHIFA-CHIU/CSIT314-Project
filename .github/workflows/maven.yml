@@ -10,7 +10,14 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest # is Ubuntu environment
-
+    services:
+      mysql:
+        image: mysql:5.7
+        env:
+          MYSQL_ROOT_PASSWORD: password
+        ports:
+          - 32574:3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
     # ... some other config ...
 
     steps:
@@ -25,8 +32,15 @@ jobs:
           java-version: '17'
           distribution: 'adopt'
 
-      - name: Shutdown Ubuntu MySQL (SUDO)
-        run: sudo service mysql stop # Shutdown the Default MySQL, "sudo" is necessary, please not remove it
+
+
+      - name: Verify MySQL connection from host
+        run: |
+          sudo apt-get install -y mysql-client
+          mysql --host 127.0.0.1 --port 32574 -uroot -ppassword -e "SHOW DATABASES"
+
+      #- name: Shutdown Ubuntu MySQL (SUDO)
+      #  run: sudo  # Shutdown the Default MySQL, "sudo" is necessary, please not remove it
 
       # ... Set-up MySQL configuration, see Usage
       #- name: Set up MySQL
@@ -38,11 +52,11 @@ jobs:
       #    mysql password: password # Required if "mysql user" exists. The password for the "mysql user"
       #   # ... some steps after set-up MySQL ...
 
-      - name: Build
-        run: mvn --batch-mode -DskipTests package
+      #- name: Build
+      #  run: mvn --batch-mode -DskipTests package
 
-      - name: Test
-        run: mvn --batch-mode -Dmaven.test.failure.ignore=true test
+      #- name: Test
+      #  run: mvn --batch-mode -Dmaven.test.failure.ignore=true test
 
       #- name: Report
       #  uses: dorny/test-reporter@v1
