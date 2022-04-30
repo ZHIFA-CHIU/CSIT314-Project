@@ -1,6 +1,8 @@
 package com.csit314.roadSideAssistance.Vehicle;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -10,6 +12,8 @@ import java.time.Year;
  *
  *
  */
+@Setter
+@Getter
 @Entity
 @Data
 @Table
@@ -38,74 +42,9 @@ public class Vehicle {
         this.model = model;
         this.colour = colour;
         this.weight = weight;
-    }
-    //Getters
-    public String getRegistrationPlate() {
-        return registrationPlate;
+        this.rego = registeredState + " " + registrationPlate;
     }
 
-    public String getRegisteredState() {
-        return registeredState;
-    }
-
-    public Year getManufacturedYear() {
-        return manufacturedYear;
-    }
-
-    public String getManufacturer() {
-        return manufacturer;
-    }
-
-    public String getModel() {
-        return model;
-    }
-
-    public String getColour() {
-        return colour;
-    }
-
-    public double getWeight() {
-        return weight;
-    }
-    public String getRego() {
-
-        String state =  getRegisteredState();
-        String plate = getRegistrationPlate();
-        String rego = state + " " + plate;
-        return rego;
-    }
-    //Setters
-    public void setRegistrationPlate(String registrationPlate) {
-        this.registrationPlate = registrationPlate;
-    }
-
-    public void setRegisteredState(String registeredState) {
-        this.registeredState = registeredState;
-    }
-
-    public void setManufacturedYear(Year manufacturedYear) {
-        this.manufacturedYear = manufacturedYear;
-    }
-
-    public void setManufacturer(String manufacturer) {
-        this.manufacturer = manufacturer;
-    }
-
-    public void setModel(String model) {
-        this.model = model;
-    }
-
-    public void setColour(String colour) {
-        this.colour = colour;
-    }
-
-    public void setWeight(double weight) {
-        this.weight = weight;
-    }
-    public void setRego(String rego) {
-        rego = getRegisteredState() + " " + getRegistrationPlate();
-        this.rego = rego;
-    }
     @Override
     public String toString() {
         return "Vehicle{" +
