@@ -16,7 +16,7 @@ jobs:
         env:
           MYSQL_ROOT_PASSWORD: password
         ports:
-          - 32574:3306
+          - 3306:3306
         options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
     # ... some other config ...
 
@@ -38,6 +38,10 @@ jobs:
         run: |
           sudo apt-get install -y mysql-client
           mysql --host 127.0.0.1 --port 32574 -uroot -ppassword -e "SHOW DATABASES"
+
+      - name: Create RoadsideAssistance Database
+        run: |
+          mysql --host 127.0.0.1 --port 32574 -uroot -ppassword -e "CREATE DATABASE roadSideAssistance"  
 
       #- name: Shutdown Ubuntu MySQL (SUDO)
       #  run: sudo  # Shutdown the Default MySQL, "sudo" is necessary, please not remove it
