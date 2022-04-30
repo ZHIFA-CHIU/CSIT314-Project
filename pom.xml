@@ -43,7 +43,7 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-    <!--build>
+    <build>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
@@ -51,14 +51,9 @@
                 <configuration>
                     <excludes>
                         <start-class>com.csit314.roadSideAssistance.RoadSideAssistanceApplication</start-class>
-                        <exclude>
-                            <groupId>org.projectlombok</groupId>
-                            <artifactId>lombok</artifactId>
-                        </exclude>
                     </excludes>
                 </configuration>
             </plugin>
         </plugins>
-    </build-->
-
+    </build>
 </project>
