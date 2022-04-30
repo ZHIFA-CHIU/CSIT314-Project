@@ -37,11 +37,11 @@ jobs:
       - name: Verify MySQL connection from host
         run: |
           sudo apt-get install -y mysql-client
-          mysql --host 127.0.0.1 --port 32574 -uroot -ppassword -e "SHOW DATABASES"
+          mysql --host 127.0.0.1 --port 3306 -uroot -ppassword -e "SHOW DATABASES"
 
       - name: Create RoadsideAssistance Database
         run: |
-          mysql --host 127.0.0.1 --port 32574 -uroot -ppassword -e "CREATE DATABASE roadSideAssistance"  
+          mysql --host 127.0.0.1 --port 3306 -uroot -ppassword -e "CREATE DATABASE roadSideAssistance"  
 
       #- name: Shutdown Ubuntu MySQL (SUDO)
       #  run: sudo  # Shutdown the Default MySQL, "sudo" is necessary, please not remove it
