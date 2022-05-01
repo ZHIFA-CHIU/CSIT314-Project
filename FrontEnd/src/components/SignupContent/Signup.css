@@ -1,0 +1,32 @@
+#contents{
+    width: 100%;
+    
+}
+
+#body{
+    width: 60%;
+    margin: 0 auto;
+    margin-top: 30px;;
+}
+
+h1{
+    text-align: center;
+    margin-top: 5px;
+}
+
+p{
+    margin-bottom: 5px;
+    margin-top: 10px;
+    
+}
+button{
+    margin: 0 auto;
+}
+
+#link{
+    text-align: center;
+}
+
+#login{
+    color: blue;
+}
