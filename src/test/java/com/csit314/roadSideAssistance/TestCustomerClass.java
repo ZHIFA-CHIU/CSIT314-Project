@@ -13,11 +13,12 @@ import java.time.Month;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
-class CustomerTestClass {
+class TestCustomerClass {
 
-    @Test
-    void contextLoads() {
-    }
+    public TestCustomerClass() {}
+    //@Test
+    //void contextLoads() {
+    //}
 
     //customer tests
     @Test
