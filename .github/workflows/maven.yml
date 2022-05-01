@@ -2,9 +2,7 @@ name: Java CI with Maven
 
 on:
   push:
-    branches: [ updatedCustomerAccount ]
   pull_request:
-    branches: [ updatedCustomerAccount ]
 
 
 jobs:
