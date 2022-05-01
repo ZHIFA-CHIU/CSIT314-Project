@@ -1,9 +1,12 @@
 import React from 'react'
+import Banner from '../../components/Banner'
+import SignupContent from '../../components/SignupContent'
 
-export default function Signup() {
-  return (
-    <div>
-        <h1>This is a sign up page</h1>
-    </div>
-  )
+export default function Sinup() {
+    return (
+        <div className='signup-page'>
+            <Banner />
+            <SignupContent />
+        </div>
+    )
 }

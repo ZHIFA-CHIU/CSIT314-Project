@@ -18,6 +18,9 @@ export default function HomeContent() {
                 <div className='technician signup'>
                     <Button onClick={() => navigate("/createAccountTechnician")} variant={"outlined"}>Sign Up Technician</Button>
                 </div>
+                <div className='add vehicle'>
+                    <Button onClick={() => navigate("/addVehicle")} variant={"outlined"}>Add Vehicle</Button>
+                </div>
             </div>
         </div>
     )
