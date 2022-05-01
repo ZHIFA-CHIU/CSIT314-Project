@@ -48,11 +48,11 @@ class VehicleTest {
     void testVehicleColour() {
         Vehicle test = new Vehicle("AB12CD", "NSW", Year.of(2000),
                 "Toyota",  "Corolla",  "Blue",  2000.2);
-        assertEquals(test.getColour(), "Red", "Checking Colour");
+        assertEquals(test.getColour(), "Blue", "Checking Colour");
     }
 
     @Test
-    @DisplayName("Simple test of vehicle colour method")
+    @DisplayName("Simple test of vehicle year method")
     void testVehicleYear() {
         Vehicle test = new Vehicle("AB12CD", "NSW", Year.of(2000),
                 "Toyota",  "Corolla",  "Blue",  2000.2);
@@ -68,11 +68,11 @@ class VehicleTest {
     }
 
     @Test
-    @DisplayName("Simple test of vehicle make")
+    @DisplayName("Simple test of vehicle Model")
     void testVehicleModel() {
         Vehicle test = new Vehicle("AB12CD", "NSW", Year.of(2000),
                 "Toyota",  "Corolla",  "Blue",  2000.2);
-        assertEquals(test.getManufacturer(), "Toyota", "Checking Make");
+        assertEquals(test.getModel(), "Corolla", "Checking Model");
     }
 
     @Test

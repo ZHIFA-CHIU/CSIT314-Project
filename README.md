@@ -8,11 +8,24 @@ Welcome to CSIT314 project repo for RoadSideAssistance Application
 You will need to install
 - Docker
 - Node.js
-- JDK17
+- JDK18
 
 Recommended
 - Intellij
 - Postman
+
+## Maven install commands
+## install dependencies
+mvn clean install
+
+## Build
+mvn -B package --file pom.xml
+
+## Test
+mvn --batch-mode -Dmaven.test.failure.ignore=true test
+
+## Run
+mvn run
 
 ## Running Backend and Frontend
 
