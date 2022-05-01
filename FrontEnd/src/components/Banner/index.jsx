@@ -6,7 +6,7 @@ export default function Banner() {
     <AppBar position='static' >
       <Toolbar>
         <Typography align='center' sx={{ flexGrow: 1 }}>
-          Roadside Assitant Service
+          Roadside Assistant Service
         </Typography>
       </Toolbar>
     </AppBar>
