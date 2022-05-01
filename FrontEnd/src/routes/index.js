@@ -1,7 +1,7 @@
 import { Navigate } from "react-router-dom";
-import Home from "../components/Home/Home";
-import Login from "../components/Login";
-import Signup from "../components/Signup";
+import Home from "../pages/Home/Home"
+import Signup from "../pages/Signup"
+import Login from "../pages/Login";
 
 export default [
     {
