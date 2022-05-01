@@ -11,13 +11,15 @@ import java.time.LocalDate;
 import java.time.Month;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest
-class CustomerTestClass {
+class TestCustomerClass {
 
-    @Test
-    void contextLoads() {
-    }
+    public TestCustomerClass() {}
+    //@Test
+    //void contextLoads() {
+    //}
 
     //customer tests
     @Test
@@ -38,6 +40,26 @@ class CustomerTestClass {
             Customer c = new Customer("Bob", "Jones", "bobsemail@gmail.com", LocalDate.now().minusYears(15)
                     , "0451872930", "password");
         });
+    }
+
+    @Test
+    @DisplayName("Testing customer password authentication")
+    void testCustomerPassword() throws CustomException {
+        Customer c = new Customer("Bob", "Jones", "bobsemail@gmail.com", LocalDate.of(2001, Month.JANUARY, 8)
+                , "0451872930", "password");
+
+        assertTrue(c.checkPassword("password"));
+    }
+
+    @Test
+    @DisplayName("Testing customer update password authentication")
+    void updateCustomerPassword() throws CustomException {
+        Customer c = new Customer("Bob", "Jones", "bobsemail@gmail.com", LocalDate.of(2001, Month.JANUARY, 8)
+                , "0451872930", "password");
+
+        assertTrue(c.checkPassword("password"));
+        c.setPassword("bail7198kxvckn");
+        assertTrue(c.checkPassword("bail7198kxvckn"));
     }
 
 }

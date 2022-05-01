@@ -19,9 +19,7 @@ public class Customer extends User {
     }
 
     public Customer(String firstName, String lastName, String email, LocalDate dob, String phoneNumber, String password) throws CustomException {
-        super(firstName, lastName, email, dob, phoneNumber);
-
-        this.setPassword(password);
+        super(firstName, lastName, email, dob, phoneNumber, password);
 
         if(getAge() < 16) {
             //System.out.println("Error age < 16");
@@ -30,10 +28,6 @@ public class Customer extends User {
             throw new CustomException("Customer fails to meet consistency constraints");
         }
         
-    }
-
-    public Customer(String firstName, String lastName, String email, LocalDate dob, String phoneNumber) {
-        super(firstName, lastName, email, dob, phoneNumber);
     }
 
     @Override

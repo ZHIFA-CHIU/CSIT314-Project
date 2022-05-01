@@ -44,9 +44,7 @@ public class Technician extends User {
     }
 
     public Technician(String firstName, String lastName, String email, LocalDate dob, String phoneNumber, String password) throws TechnicianException {
-        super(firstName, lastName, email, dob, phoneNumber);
-
-        super.setPassword(password);
+        super(firstName, lastName, email, dob, phoneNumber, password);
 
         if(!validateUser()) {
             throw new TechnicianException("Technician fails to meet consistency constraints");

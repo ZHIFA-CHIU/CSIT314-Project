@@ -35,9 +35,19 @@ abstract public class User implements Password {
     private String State;
 
     private String salt;
+    @Column(name="Password")
     private String password; //SHA-512 encrypted password
 
     public User() {}
+
+    public User(String firstName, String lastName, String email, LocalDate dob, String phoneNumber, String password) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.dob = dob;
+        this.phoneNumber = phoneNumber;
+        setPassword(password);
+    }
 
     public User(String firstName, String lastName, String email, LocalDate dob, String phoneNumber) {
         this.firstName = firstName;
@@ -157,13 +167,14 @@ abstract public class User implements Password {
     public void setPassword(String password) {
         if(salt == null) {
             generateSalt();
-        } else {
-            this.password = hashPassword(salt+password);
         }
+        this.password = hashPassword(salt+password);
+        assert(this.password != null);
     }
 
     public boolean checkPassword(String password) {
-        if(hashPassword(salt+this.password) == password) {
+        System.out.println("Input password: " + password + " salt: " + salt + " hashedPassword: " + hashPassword(salt+password) + " stored password: "  + this.password);
+        if(hashPassword(salt+password).equals(this.password)) {
             return true;
         }
         return false;

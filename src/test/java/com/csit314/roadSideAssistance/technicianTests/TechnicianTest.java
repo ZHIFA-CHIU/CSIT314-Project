@@ -1,5 +1,7 @@
 package com.csit314.roadSideAssistance.technicianTests;
 
+import com.csit314.roadSideAssistance.Customer.CustomException;
+import com.csit314.roadSideAssistance.Customer.Customer;
 import com.csit314.roadSideAssistance.Technician.Technician;
 import com.csit314.roadSideAssistance.Technician.TechnicianException;
 import org.junit.jupiter.api.Assertions;
@@ -56,5 +58,25 @@ class TechnicianTest {
         technician.addToAvgRating(4);
 
         assertEquals(technician.getAvgRating(), 3.75, "Checking Avg Rating");
+    }
+
+    @Test
+    @DisplayName("Testing technician password authentication")
+    void testCustomerPassword() throws TechnicianException {
+        Technician t = new Technician("Jay", "Smith", "jaysmith@mail.com",
+                LocalDate.of(1990, Month.FEBRUARY, 12), "01234567890", "password");
+
+        assertTrue(t.checkPassword("password"));
+    }
+
+    @Test
+    @DisplayName("Testing technician update password authentication")
+    void updateCustomerPassword() throws TechnicianException {
+        Technician t = new Technician("Jay", "Smith", "jaysmith@mail.com",
+                LocalDate.of(1990, Month.FEBRUARY, 12), "01234567890", "password");
+
+        assertTrue(t.checkPassword("password"));
+        t.setPassword("bail7198kxvckn");
+        assertTrue(t.checkPassword("bail7198kxvckn"));
     }
 }

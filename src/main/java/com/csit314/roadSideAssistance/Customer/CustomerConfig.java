@@ -19,19 +19,21 @@ public class CustomerConfig {
                     "Jones",
                     "bob@gmail.com",
                     LocalDate.of(2000, Month.JANUARY, 5),
-                    "04948181271"
+                    "04948181271",
+                    "abc123"
             );
             Customer jim = new Customer(
                     "Jim",
                     "jilly",
                     "jim@gmail.com",
                     LocalDate.of(2000, Month.FEBRUARY, 6),
-                    "0291817391"
+                    "0291817391",
+                    "abc123"
             );
 
-            repository.saveAll(
-                    List.of(bob, jim)
-            );
+            //repository.saveAll(
+            //        List.of(bob, jim)
+            //);
         };
     }
 }
