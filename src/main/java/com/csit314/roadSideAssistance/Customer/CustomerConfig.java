@@ -29,9 +29,9 @@ public class CustomerConfig {
                     "0291817391"
             );
 
-            repository.saveAll(
-                    List.of(bob, jim)
-            );
+            //repository.saveAll(
+            //        List.of(bob, jim)
+            //);
         };
     }
 }

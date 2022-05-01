@@ -15,9 +15,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @SpringBootTest
 class RoadSideAssistanceApplicationTests {
 
-	@Test
-	void contextLoads() {
-	}
+    public RoadSideAssistanceApplicationTests() {}
+
+	//@Test
+	//void contextLoads() {
+	//}
 	//customer tests
 	/*
 	@Test
