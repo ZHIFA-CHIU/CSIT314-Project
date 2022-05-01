@@ -1,0 +1,12 @@
+.buttons {
+    display: flex;
+    justify-content: center;
+}
+
+.login {
+    margin-right: 5px;
+}
+
+.signup {
+    margin-left: 5px;
+}
