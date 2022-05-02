@@ -1,7 +1,9 @@
 import React from 'react'
+import { AppBar, Toolbar, Typography } from '@mui/material'
 import {useForm} from 'react-hook-form'
 
 import  "./vehicle.css"
+import Banner from "../../components/Banner";
 export default function AddVehicle() {
     const {
         register,
@@ -24,11 +26,26 @@ export default function AddVehicle() {
     // console.log(errors);
     return (
         <div>
-            <div className='ui left aligned container button-container'>
-                <button className='medium ui primary button' onClick={() => goBackPage()}>
-                    Back
-                </button>
-            </div>
+            <AppBar position='static' >
+                <Toolbar>
+                    <button className='medium ui primary button' onClick={() => goBackPage()}>
+                        Back
+                    </button>
+                    <Typography align='center' sx={{ flexGrow: 1 }}>
+                        Roadside Assistant Service
+                    </Typography>
+                    <button className='medium ui primary button' onClick={() => goBackPage()}>
+                        Done
+                    </button>
+                </Toolbar>
+            </AppBar>
+            {/*<div className='header' style={{background:"white"}}>*/}
+            {/*    <button className='medium ui primary button' onClick={() => goBackPage()}>*/}
+            {/*        Back*/}
+            {/*    </button>*/}
+            {/*</div>*/}
+
+
             <h1>Please Add Vehicle</h1>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <input type="text" placeholder="Manufacture"
