@@ -25,6 +25,7 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
+        cache-dependency-path: "./CSIT314-Project/FrontEnd"
         cache: 'npm'
     - run: npm ci
     - run: CI=true npm test
