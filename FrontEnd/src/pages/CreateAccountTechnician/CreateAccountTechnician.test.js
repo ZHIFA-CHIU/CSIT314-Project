@@ -8,6 +8,8 @@ test('renders log in link', async () => {
 
     const inputNode1 = screen.getByLabelText('BSB')
 
+    expect(inputNode1)
+
 });
 
 /*test("", () =>{

@@ -5,9 +5,7 @@ name: Node.js CI
 
 on:
   push:
-    branches: [ 280-frontend-ci ]
   pull_request:
-    branches: [ 280-frontend-ci ]
 
 defaults:
   run:
