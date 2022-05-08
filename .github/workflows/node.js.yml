@@ -9,11 +9,15 @@ on:
   pull_request:
     branches: [ 280-frontend-ci ]
 
+defaults:
+  run:
+    working-directory: FrontEnd
+
 jobs:
   build:
 
     runs-on: ubuntu-latest
-      working-directory: FrontEnd
+
     strategy:
       matrix:
         node-version: [16.x]
