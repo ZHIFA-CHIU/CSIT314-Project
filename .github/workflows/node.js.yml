@@ -32,6 +32,6 @@ jobs:
         cache-dependency-path: "FrontEnd/package-lock.json"
         cache: 'npm'
     - run: npm ci
-    - run: CI=true npm test --passWithNoTests
     - run: react-scripts test --passWithNoTests
+    - run: CI=true npm test --passWithNoTests
     - run: npm run build --if-present
