@@ -3,7 +3,7 @@
 Welcome to CSIT314 project repo for RoadSideAssistance Application
 
 ![Java CI with Maven](https://github.com/ZHIFA-CHIU/CSIT314-Project/actions/workflows/maven.yml/badge.svg)
-
+[![Node.js CI](https://github.com/ZHIFA-CHIU/CSIT314-Project/actions/workflows/node.js.yml/badge.svg)](https://github.com/ZHIFA-CHIU/CSIT314-Project/actions/workflows/node.js.yml)
 ## Requirements
 You will need to install
 - Docker
