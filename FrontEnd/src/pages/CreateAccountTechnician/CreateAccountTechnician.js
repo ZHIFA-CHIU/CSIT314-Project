@@ -8,7 +8,7 @@ const CreateAccountTechnician = () => {
       <div className='CreateAccountTechnician ui center aligned container' style={{minWidth:"500px", maxWidth:"700px"}}>
          <div className='header' style={{background:"gray"}}>
             <h1>
-               Roadside Assitant Service
+               Roadside Assistant Service
             </h1>
          </div>
          <div >
@@ -16,7 +16,7 @@ const CreateAccountTechnician = () => {
                Please enter your details
             </h1>
          </div>
-         
+         <label>Potato</label>
          <div style={{textAlign:"left"}}>
             <p>Name</p>
             <TextField id="outlined-basic" label="Name" variant="outlined" style={{width:"100%"}}/>
@@ -72,8 +72,8 @@ const CreateAccountTechnician = () => {
             </p>
             
             <div style={{display:"inline-block"}}>
-               <p>BSB</p>
-               <TextField id="outlined-basic" label="Outlined" variant="outlined" />
+               <label for="BSB">BSB</label>
+               <TextField id="BSB" label="Outlined" variant="outlined" />
             </div>
             <div style={{display:"inline-block", float:"right"}}>
                <p>Account Number</p>
