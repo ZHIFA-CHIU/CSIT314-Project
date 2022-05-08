@@ -9,9 +9,6 @@ on:
   pull_request:
     branches: [ 280-frontend-ci ]
 
-defaults:
-  run:
-    working-directory: FrontEnd
 
 jobs:
   build:
