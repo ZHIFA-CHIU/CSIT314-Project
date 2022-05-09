@@ -1,0 +1,24 @@
+#container{
+    width: 80%;
+    height: 90vh;
+    margin: 0 auto;
+    margin-top: 40px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.button{
+    flex-grow: 1;
+    margin-top: 20px;
+
+    border: 2px solid black;
+}
+
+.button:hover{
+    cursor: pointer;
+}
+
+h1{
+    padding-top: 40px;
+}
