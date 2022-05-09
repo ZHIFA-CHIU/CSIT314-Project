@@ -6,26 +6,26 @@ package com.csit314.roadSideAssistance.Technician;
 * Other comments require other classes such as Job and BankAccount
 * */
 
+import com.csit314.roadSideAssistance.BankAccount.BankAccount;
 import com.csit314.roadSideAssistance.Customer.CustomException;
 import com.csit314.roadSideAssistance.User.User;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.LocalDate;
 
 /**
  * Technician model
  *
  * @author      Jack_Is_2048
- * @version     1.1
- * @since       1.1
+ * @version     0.1
+ * @since       0.1
  */
 @Getter
 @Setter
 @Entity
-@Table
+@Table(name = "Technician")
 public class Technician extends User {
     private boolean availableStatus,
                     lightVehicleQualification,
@@ -33,7 +33,10 @@ public class Technician extends User {
 
     private double avgRating;
 
-//    private BankAccount bankAccount;
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "BankAccount_id")
+    private BankAccount bankAccount;
+
 //    private List<Job> jobsAssigned;
 
     public Technician() {
