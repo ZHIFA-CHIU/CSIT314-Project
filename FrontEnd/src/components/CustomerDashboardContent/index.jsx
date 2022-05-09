@@ -8,32 +8,32 @@ const CustomerDashboard = () => {
    const navigate = useNavigate();
 
    const navRequestRepair = (e) => {
-      navigate('/home');
+      //navigate('/');
    }
 
    const navManageSubcript = (e) => {
-      navigate('/home');
+      //navigate('/');
    }
 
    const navMyVehicles = (e) => {
-      navigate('/home');
+      //navigate('/');
    }
 
    const navServiceHistory = (e) => {
-      navigate('/home');
+     //navigate('/');
    }
 
    const navUpdateDetails = (e) => {
-      navigate('/home');
+      //navigate('/');
    }
 
    const navUpdatePayDetails = (e) => {
-      navigate('/home');
+      //navigate('/');
    }
 
    return (
       <div id='container'>
-         <Button variant="outlined" size='large' style={{ height: "13.5%"}} onClick={navManageSubcript}>Request a Repair</Button><br />
+         <Button variant="outlined" size='large' style={{ height: "13.5%"}} onClick={navRequestRepair}>Request a Repair</Button><br />
 
          <Button variant="outlined" size='large' style={{ height: "13.5%"}} onClick={navManageSubcript}>Manage Subscription</Button><br />
 
