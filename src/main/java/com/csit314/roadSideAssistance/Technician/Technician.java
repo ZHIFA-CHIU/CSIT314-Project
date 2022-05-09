@@ -41,9 +41,6 @@ public class Technician extends User {
 
     public Technician() {
         super();
-//        Maybe no initl of vars below?
-//        bankAccount = new BankAccount();
-//        jobsAssigned = new ArrayList<Job>();
     }
 
     public Technician(String firstName, String lastName, String email, LocalDate dob, String phoneNumber, String password) throws TechnicianException {
@@ -52,8 +49,6 @@ public class Technician extends User {
         if(!validateUser()) {
             throw new TechnicianException("Technician fails to meet consistency constraints");
         }
-//        bankAccount = new BankAccount();
-//        jobsAssigned = new ArrayList<Job>();
     }
 
     public Technician(String firstName, String lastName, String email, LocalDate dob, String phoneNumber) {
@@ -68,8 +63,6 @@ public class Technician extends User {
 //              passwordHash, firstName, lastName,
 //              dateOfBirth, address, suburb,
 //              postcode, state);
-//        bankAccount = new BankAccount();
-//        jobsAssigned = new ArrayList<Job>();
     }*/
 
     public void addToAvgRating(double rating) {
@@ -84,6 +77,7 @@ public class Technician extends User {
                 ", lightVehicleQualification=" + lightVehicleQualification +
                 ", heavyVehicleQualification=" + heavyVehicleQualification +
                 ", avgRating=" + avgRating +
+                ", bankAccount=" + bankAccount +
                 "} " + super.toString();
     }
 }

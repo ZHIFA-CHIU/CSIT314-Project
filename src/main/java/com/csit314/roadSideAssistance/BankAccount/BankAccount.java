@@ -1,8 +1,9 @@
 package com.csit314.roadSideAssistance.BankAccount;
 
-import com.csit314.roadSideAssistance.Technician.Technician;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.util.UUID;
@@ -21,6 +22,11 @@ import java.util.UUID;
 public class BankAccount {
     @Id
     @GeneratedValue(generator = "uuidGen")
+    @GenericGenerator(
+            name = "uuidGen",
+            strategy = "org.hibernate.id.UUIDGenerator"
+    )
+    @Type(type = "uuid-char")
     @Column(name = "id")
     private UUID id;
 
