@@ -16,7 +16,7 @@ const CreateAccountTechnician = () => {
                Please enter your details
             </h1>
          </div>
-         <label>Potato</label>
+
          <div style={{textAlign:"left"}}>
             <p>Name</p>
             <TextField id="outlined-basic" label="Name" variant="outlined" style={{width:"100%"}}/>
