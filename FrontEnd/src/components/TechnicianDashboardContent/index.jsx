@@ -11,10 +11,6 @@ const TechnicianDashboard = () => {
         //navigate('/');
     }
 
-    const navUpdateVehicle = (e) => {
-        //navigate('/');
-    }
-
     const navRepairHistory = (e) => {
         //navigate('/');
     }
@@ -29,15 +25,13 @@ const TechnicianDashboard = () => {
 
     return (
         <div id='container'>
-            <Button variant="outlined" size='large' style={{ height: "16.2%"}} onClick={navLookForRepair}>Look for Repairs</Button><br />
+            <Button variant="outlined" size='large' style={{ height: "20.25%"}} onClick={navLookForRepair}>Look for Repairs</Button><br />
 
-            <Button variant="outlined" size='large' style={{ height: "16.2%"}} onClick={navUpdateVehicle}>Update Vehicle</Button><br />
+            <Button variant="outlined" size="large" style={{ height: "20.25%"}} onClick={navRepairHistory}>Repair History</Button><br />
 
-            <Button variant="outlined" size="large" style={{ height: "16.2%"}} onClick={navRepairHistory}>Repair History</Button><br />
+            <Button variant="outlined" size='large' style={{ height: "20.25%"}} onClick={navUpdateDetails}>Update My Details</Button><br />
 
-            <Button variant="outlined" size='large' style={{ height: "16.2%"}} onClick={navUpdateDetails}>Update My Details</Button><br />
-
-            <Button variant="outlined" size='large' style={{ height: "16.2%"}} onClick={navUpdatePayDetails}>Update Payment Details</Button><br />
+            <Button variant="outlined" size='large' style={{ height: "20.25%"}} onClick={navUpdatePayDetails}>Update Payment Details</Button><br />
         </div>
     );
 }
