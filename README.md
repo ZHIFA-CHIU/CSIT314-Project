@@ -67,7 +67,7 @@ http://localhost:3000/
 ```
 The backend API can be accessed via
 ```
-http://localhost:8080//api/v1/<insertControllerEndpoint>
+http://localhost:8080/api/v1/<insertControllerEndpoint>
 ```
 
 

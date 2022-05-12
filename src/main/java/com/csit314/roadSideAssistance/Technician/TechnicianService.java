@@ -62,4 +62,14 @@ public class TechnicianService {
 
         technicianRepository.save(technician);
     }
+
+    public Technician getById(UUID technicianId){
+        Optional<Technician> technician = technicianRepository.findById(technicianId);
+        if(technician.isPresent()){
+            return technician.get();
+        }
+        else{
+            throw new IllegalStateException(String.format("Technician with id %s does not exist", technicianId));
+        }
+    }
 }

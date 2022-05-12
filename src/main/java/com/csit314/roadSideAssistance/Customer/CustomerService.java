@@ -54,4 +54,14 @@ public class CustomerService {
         //updating customer
         customerRepository.save(customer);
     }
+
+    public Customer getById(UUID customerID){
+        Optional<Customer> customer = customerRepository.findById(customerID);
+        if(customer.isPresent()){
+            return customer.get();
+        }
+        else{
+            throw new IllegalStateException(String.format("Customer with id %s does not exist", customerID));
+        }
+    }
 }
