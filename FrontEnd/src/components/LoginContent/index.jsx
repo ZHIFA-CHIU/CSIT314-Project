@@ -2,11 +2,13 @@ import React from 'react'
 import { Box, Button, Link, TextField, Typography } from '@mui/material'
 import { loginRequest } from '../../api';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 
 
 
 export default function LoginContent() {
+    const navigate = useNavigate();
     // username
     const [email, setEmail] = useState("");
     // password
@@ -70,14 +72,25 @@ export default function LoginContent() {
         // send log in request
         // if (validateUsername() && validatePwd())
         loginRequest(email, password).then(
-            response => console.log(response.data)
-            /**
-             * TODO: if ture rediret users to dashboard
-             * else stay in the login page
-             */
-            ).catch(
-                error => alert(error)
-                )
+            response => {
+                // console.log(response.data);
+                // let obj = JSON.parse(response.data);
+                // console.log(obj);
+                let tmp = JSON.stringify(response.data);
+                let obj = JSON.parse(tmp);
+                // console.log(obj["customer-id"]);
+                if (obj.login)
+                    navigate("/CustomerDashboard", { state: { id: obj["customer-id"] } })
+                else
+                    alert("Login failed")
+            }
+        ).catch(
+            error => {
+                alert(error);
+                navigate("/login");
+            }
+
+        )
     }
 
     return (
