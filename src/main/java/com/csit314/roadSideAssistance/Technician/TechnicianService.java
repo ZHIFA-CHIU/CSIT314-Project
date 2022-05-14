@@ -34,7 +34,7 @@ public class TechnicianService {
         return technicianRepository.findAll();
     }
 
-    public void registerTechnician(Technician technician) throws TechnicianException {
+    public boolean registerTechnician(Technician technician) throws TechnicianException {
         Optional<Technician> technicianOptional = technicianRepository.findTechnicianByEmailOrPhoneNumber(technician.getEmail(), technician.getPhoneNumber());
 
         if (technicianOptional.isPresent()) {
@@ -42,6 +42,7 @@ public class TechnicianService {
         }
 
         technicianRepository.save(technician);
+        return true;
     }
 
     public void deleteTechnician(Long technicianId) throws TechnicianException {

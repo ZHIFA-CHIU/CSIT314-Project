@@ -43,8 +43,8 @@ public class TechnicianController {
     }
 
     @PostMapping
-    public void registerTechnician(@RequestBody Technician technician) throws TechnicianException {
-        technicianService.registerTechnician(technician);
+    public boolean registerTechnician(@RequestBody Technician technician) throws TechnicianException {
+        return technicianService.registerTechnician(technician);
     }
 
     @DeleteMapping(path = "{technicianId}")
