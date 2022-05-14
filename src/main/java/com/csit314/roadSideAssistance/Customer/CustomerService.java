@@ -1,5 +1,9 @@
 package com.csit314.roadSideAssistance.Customer;
 
+import com.csit314.roadSideAssistance.Technician.Technician;
+import com.csit314.roadSideAssistance.Technician.TechnicianException;
+import com.csit314.roadSideAssistance.Vehicle.Vehicle;
+import com.csit314.roadSideAssistance.Vehicle.VehicleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,9 +16,12 @@ public class CustomerService {
 
     private final CustomerRepository customerRepository;
 
+    private final VehicleRepository vehicleRepository;
+
     @Autowired
-    public CustomerService(CustomerRepository customerRepository) {
+    public CustomerService(CustomerRepository customerRepository, VehicleRepository vehicleRepository) {
         this.customerRepository = customerRepository;
+        this.vehicleRepository = vehicleRepository;
     }
 
     public List<Customer> getCustomer() {
@@ -83,5 +90,17 @@ public class CustomerService {
                     "}";
         }
         return json;
+    }
+
+    public boolean addVehicle(Long customerId, Vehicle vehicle) throws CustomException {
+        Optional<Customer> customerOptional = customerRepository.findById(customerId);
+        if (!customerOptional.isPresent()) {
+            throw new CustomException("Customer with id " + customerId + " does not exist");
+        }
+
+        vehicle.setCustomer(customerOptional.get());
+        vehicleRepository.save(vehicle);
+
+        return true;
     }
 }

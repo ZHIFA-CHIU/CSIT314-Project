@@ -6,7 +6,6 @@ import com.csit314.roadSideAssistance.Customer.CustomerService;
 import com.csit314.roadSideAssistance.Job.Job;
 import com.csit314.roadSideAssistance.Job.JobRepository;
 import com.csit314.roadSideAssistance.Job.JobService;
-import com.csit314.roadSideAssistance.Job.RepairCategory;
 import com.csit314.roadSideAssistance.Technician.TechnicianService;
 import org.junit.jupiter.api.*;
 import org.mockito.ArgumentCaptor;
@@ -64,7 +63,7 @@ class JobServiceTest {
     @DisplayName("Can request a job")
     void canRequestJob() throws CustomException, NoSuchAlgorithmException {
         //given
-        Job job = new Job(RepairCategory.OTHER, "testing information", 45.0, 95.0);
+        Job job = new Job("OTHER", "testing information", 45.0, 95.0);
         Customer customer = new Customer("Jay", "Smith", "jaysmith@mail.com",
                 LocalDate.of(1990, Month.FEBRUARY, 12), "01234567890",
                 "password", "1 main street", "Wollongong",

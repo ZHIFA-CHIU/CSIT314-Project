@@ -1,4 +1,5 @@
 package com.csit314.roadSideAssistance.Vehicle;
+import com.csit314.roadSideAssistance.Customer.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -13,21 +14,26 @@ public class VehicleService {
 
     private final VehicleRepository vehicleRepository;
 
+    private final CustomerService customerService;
+
     @Autowired
-    public VehicleService(VehicleRepository vehicleRepository) {
+    public VehicleService(VehicleRepository vehicleRepository, CustomerService customerService) {
         this.vehicleRepository = vehicleRepository;
+        this.customerService = customerService;
     }
 
     public List<Vehicle> getVehicle() {
         return vehicleRepository.findAll();
     }
 
-    public void registerVehicle(Vehicle vehicle) {
+    public void registerVehicle(Vehicle vehicle, Long customerID) {
         Optional<Vehicle> foundVehicle = vehicleRepository.findVehicleByRego(vehicle.getRego());
 
         if (foundVehicle.isPresent()) {
             throw new IllegalStateException("Vehicle already linked to another user");
         }
+        vehicle.setCustomer(customerService.getById(customerID));
+
         vehicleRepository.save(vehicle);
     }
 
