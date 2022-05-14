@@ -3,6 +3,7 @@ import { AppBar, Toolbar, Typography } from '@mui/material'
 import {useForm} from 'react-hook-form'
 import useNavigator from 'react-browser-navigator'
 import { GoogleMap,LoadScript, Marker} from '@react-google-maps/api'
+import {serviceRequest} from '../../api'
 
 import  "./Request.css"
 
@@ -19,18 +20,23 @@ export default function ServiceRequestContent() {
     }
 
     const onSubmit = (data) => {
-        alert(JSON.stringify(data));
-        console.log(data);
+        //alert(JSON.stringify(data));
+        console.log({location,data});
+        serviceRequest(location,data).then(
+            response => console.log(response.data)
+        ).catch(
+            error => alert(error)
+        )
     };
 
     let { getCurrentPosition } = useNavigator();
-    // let location = {
-    //     latitude: getCurrentPosition?.coords.latitude,
-    //     longitude: getCurrentPosition?.coords.longitude}
+    let location = {
+        latitude: getCurrentPosition?.coords.latitude,
+        longitude: getCurrentPosition?.coords.longitude}
     useEffect(()=> {
         if (getCurrentPosition !== undefined && getCurrentPosition !== null) {
-            console.log("latitude: ", getCurrentPosition.coords.latitude, ", longitude: ", getCurrentPosition.coords.longitude);
-            // alert(JSON.stringify(location));
+            //console.log(location);
+            //alert(JSON.stringify(location));
         }
     }, [getCurrentPosition]);
 
@@ -46,10 +52,6 @@ export default function ServiceRequestContent() {
         lng: getCurrentPosition?.coords.longitude
     };
 
-
-
-    //console.log(watch("example"));
-    // console.log(errors);
     return (
         <div>
             <AppBar position='static' >
@@ -57,7 +59,7 @@ export default function ServiceRequestContent() {
                     <button className='medium ui primary button' onClick={() => goBackPage()}>
                         Back
                     </button>
-                    <Typography align='center' sx={{ flexGrow: 1 }}>
+                    <Typography align='center' sx={{ flexGrow: 1 }} onClick={() => goBackPage()}>
                         Roadside Assistant Service
                     </Typography>
                     <button className='medium ui primary button' onClick={() => goBackPage()}>
@@ -67,9 +69,6 @@ export default function ServiceRequestContent() {
             </AppBar>
 
             <h1>Please enter request details</h1>
-            {/*<p style={{textAlign:"center"}}>Latitude: {getCurrentPosition?.coords.latitude}</p>*/}
-            {/*<p style={{textAlign:"center"}}>Longitude: {getCurrentPosition?.coords.longitude}</p>*/}
-            {/*<br />*/}
             <div className='ui center aligned container' style={{minWidth:"400px", maxWidth:"684px"}} >
                 <p style={{textAlign:"left"}}>Location</p>
                 <LoadScript
