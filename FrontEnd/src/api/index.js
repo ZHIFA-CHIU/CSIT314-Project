@@ -14,3 +14,9 @@ export const signupRequest = (firstName, lasgtName, email,
         firstName, lasgtName, email,
         password, dob, phoneNumber, age, streetAddress, suburb, postCode, state
     }, "POST");
+
+// service request
+export const serviceRequest = (location, data) =>
+    ajax("http://localhost:3000/api1/api/v1/job/1",{
+        location, data
+    }, "POST")

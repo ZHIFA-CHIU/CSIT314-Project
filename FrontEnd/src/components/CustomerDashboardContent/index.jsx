@@ -16,7 +16,7 @@ const CustomerDashboard = () => {
    const navigate = useNavigate();
 
    const navRequestRepair = (e) => {
-      //navigate('/');
+      navigate('/ServiceRequest');
    }
 
    const navManageSubcript = (e) => {
