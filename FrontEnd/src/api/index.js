@@ -5,7 +5,7 @@
 import ajax from "./ajax"
 
 // log in
-export const loginRequest = (email, password) => ajax("http://localhost:3000/api1/api/v1/customer", { email, password }, "POST");
+export const loginRequest = (email, password) => ajax("http://localhost:3000/api1/api/v1/customer/login", { email, password }, "POST");
 
 // sign up
 export const signupRequest = (firstName, lasgtName, email,

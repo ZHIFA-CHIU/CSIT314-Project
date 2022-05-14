@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import { TextField, Button, Link } from '@material-ui/core';
 import "./Signup.css";
 import { signupRequest } from '../../api';
+import { useNavigate } from 'react-router-dom';
 
 
 const CreateAccountCustomer = () => {
+    const navigate = useNavigate();
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
@@ -34,13 +36,18 @@ const CreateAccountCustomer = () => {
         signupRequest(
             firstName, lastName, email, password, dob, phoneNumber, age, streetAddress, suburb, postCode, state
         ).then(
-            response => console.log(response)
-            /**
-             * TODO: If true redirect users to login page
-             * else stay in the home page
-             */
+            response => {
+                // console.log(response.data);
+                let obj = JSON.parse(JSON.stringify(response.data));
+                if (obj)
+                    navigate("/login")
+            }
+
         ).catch(
-            error => alert(error)
+            error => {
+                alert("Account already exists");
+                navigate("/signup");
+            }
         );
     }
 
