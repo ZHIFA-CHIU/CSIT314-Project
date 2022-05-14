@@ -69,7 +69,15 @@ export default function LoginContent() {
         // console.log(username, password);
         // send log in request
         // if (validateUsername() && validatePwd())
-        loginRequest(email, password).then(response => console.log(response.data)).catch(error => console.log(error))
+        loginRequest(email, password).then(
+            response => console.log(response.data)
+            /**
+             * TODO: if ture rediret users to dashboard
+             * else stay in the login page
+             */
+            ).catch(
+                error => alert(error)
+                )
     }
 
     return (

@@ -35,8 +35,12 @@ const CreateAccountCustomer = () => {
             firstName, lastName, email, password, dob, phoneNumber, age, streetAddress, suburb, postCode, state
         ).then(
             response => console.log(response)
+            /**
+             * TODO: If true redirect users to login page
+             * else stay in the home page
+             */
         ).catch(
-            error => console.log(error)
+            error => alert(error)
         );
     }
 
