@@ -29,8 +29,8 @@ public class CustomerController {
     }
 
     @PostMapping
-    public void registerCustomer(@RequestBody Customer customer) {
-        customerService.registerCustomer(customer);
+    public boolean registerCustomer(@RequestBody Customer customer) {
+        return customerService.registerCustomer(customer);
     }
 
     @DeleteMapping(path = "{customerId}")

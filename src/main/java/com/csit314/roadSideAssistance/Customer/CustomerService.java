@@ -21,13 +21,14 @@ public class CustomerService {
         return customerRepository.findAll();
     }
 
-    public void registerCustomer(Customer customer) {
+    public boolean registerCustomer(Customer customer) {
         Optional<Customer> foundCustomer = customerRepository.findCustomerByEmail(customer.getEmail());
 
         if (foundCustomer.isPresent()) {
             throw new IllegalStateException("User already exists");
         }
         customerRepository.save(customer);
+        return true;
     }
 
     public void deleteCustomer(Long customerId){
