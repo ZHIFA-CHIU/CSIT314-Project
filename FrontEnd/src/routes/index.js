@@ -4,6 +4,8 @@ import Login from "../pages/Login";
 import Signup from "../pages/Signup";
 import CreateAccountTechnician from "../pages/CreateAccountTechnician/CreateAccountTechnician";
 import ServiceRequest from "../pages/ServiceRequest";
+import CustomerDashboard from "../pages/CustomerDashboard";
+import TechnicianDashboard from "../pages/TechnicianDashboard";
 
 export default [
     {
@@ -25,6 +27,14 @@ export default [
     {
         path: "ServiceRequest",
         element: <ServiceRequest />
+    },
+    {
+        path: "/CustomerDashboard",
+        element: <CustomerDashboard />
+    },
+    {
+        path: "TechnicianDashboard",
+        element: <TechnicianDashboard />
     },
     {
         path: "/",

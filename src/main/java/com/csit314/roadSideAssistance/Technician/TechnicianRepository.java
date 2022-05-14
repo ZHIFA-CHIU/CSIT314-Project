@@ -11,11 +11,13 @@ import java.util.UUID;
  * Contains method to find technician(s) by email or phone number
  *
  * @author      Jack_Is_2048
- * @version     1.1
- * @since       1.1
+ * @version     0.1
+ * @since       0.1
  */
 @Repository
-public interface TechnicianRepository extends JpaRepository<Technician, UUID> {
+public interface TechnicianRepository extends JpaRepository<Technician, Long> {
     // Used to check whether a technician exists either by email or phone
     Optional<Technician> findTechnicianByEmailOrPhoneNumber(String email, String phoneNumber);
+
+    Optional<Technician> findTechnicianByEmail(String email);
 }

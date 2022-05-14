@@ -1,32 +1,14 @@
-#contents{
-    width: 100%;
-    
+.signup {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-#body{
-    width: 60%;
-    margin: 0 auto;
-    margin-top: 30px;;
-}
-
-h1{
-    text-align: center;
-    margin-top: 5px;
-}
-
-p{
-    margin-bottom: 5px;
-    margin-top: 10px;
-    
-}
-button{
-    margin: 0 auto;
-}
-
-#link{
-    text-align: center;
-}
-
-#login{
-    color: blue;
+.signup-form {
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
 }

@@ -1,5 +1,7 @@
 package com.csit314.roadSideAssistance.Technician;
 
+import com.csit314.roadSideAssistance.BankAccount.BankAccount;
+import com.csit314.roadSideAssistance.Customer.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,8 +17,8 @@ import java.util.UUID;
  *      Put
  *
  * @author      Jack_Is_2048
- * @version     1.1
- * @since       1.1
+ * @version     0.1
+ * @since       0.1
  */
 @CrossOrigin(origins = "http://localhost:3000/")
 @RestController
@@ -35,18 +37,36 @@ public class TechnicianController {
         return technicianService.getTechnician();
     }
 
+    @PostMapping(path = "/login")
+    public String loginTechnician(@RequestBody Technician technician) {
+        return technicianService.checkPassword(technician);
+    }
+
     @PostMapping
-    public void registerTechnician(@RequestBody Technician technician) throws TechnicianException {
-        technicianService.registerTechnician(technician);
+    public boolean registerTechnician(@RequestBody Technician technician) throws TechnicianException {
+        return technicianService.registerTechnician(technician);
     }
 
     @DeleteMapping(path = "{technicianId}")
-    public void deleteTechnician(@PathVariable("technicianId") UUID technicianId) throws TechnicianException {
+    public void deleteTechnician(@PathVariable("technicianId") Long technicianId) throws TechnicianException {
         technicianService.deleteTechnician(technicianId);
     }
 
     @PutMapping
     public void updateTechnician(@RequestBody Technician technician) throws TechnicianException {
         technicianService.updateTechnician(technician);
+    }
+
+    // -- Bank Account endpoints --
+
+    @PutMapping(path = "/addBankAccount/{technicianId}")
+    public boolean addBankAccount(@PathVariable("technicianId") Long technicianId, @RequestBody BankAccount bankAccount) throws TechnicianException {
+        return technicianService.addBankAccount(technicianId, bankAccount);
+
+    }
+
+    @DeleteMapping(path = "/deleteBankAccount")
+    public void deleteBankAccount(@PathVariable("technicianId") Long technicianId) throws TechnicianException {
+        technicianService.deleteBankAccount(technicianId);
     }
 }
