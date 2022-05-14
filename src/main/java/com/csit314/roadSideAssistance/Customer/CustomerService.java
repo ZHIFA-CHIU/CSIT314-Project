@@ -57,8 +57,9 @@ public class CustomerService {
 
     public String checkPassword(Customer customer) {
         Optional<Customer> c = customerRepository.findCustomerByEmail(customer.getEmail());
+
         String json;
-        if(c.get().checkPassword(customer.getPassword())) {
+        if(c.isPresent() && c.get().checkPassword(customer.getPassword())) {
             json = "{\n" +
                     "login: true\n" +
                     "customer-id:" + c.get().getId() + "\n" +
@@ -66,7 +67,7 @@ public class CustomerService {
         }
         else {
             json = "{\n" +
-                    "login: true\n" +
+                    "login: false\n" +
                     "customer-id:" + -1 + "\n" +
                     "}";
         }
