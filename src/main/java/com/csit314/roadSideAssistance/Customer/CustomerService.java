@@ -55,9 +55,22 @@ public class CustomerService {
         customerRepository.save(customer);
     }
 
-    public boolean checkPassword(Customer customer) {
+    public String checkPassword(Customer customer) {
         Optional<Customer> c = customerRepository.findCustomerByEmail(customer.getEmail());
-        return c.get().checkPassword(customer.getPassword());
+        String json;
+        if(c.get().checkPassword(customer.getPassword())) {
+            json = "{\n" +
+                    "login: true\n" +
+                    "customer-id:" + c.get().getId() + "\n" +
+                    "}";
+        }
+        else {
+            json = "{\n" +
+                    "login: true\n" +
+                    "customer-id:" + -1 + "\n" +
+                    "}";
+        }
+        return json;
     }
 
     public Customer getById(Long customerID){

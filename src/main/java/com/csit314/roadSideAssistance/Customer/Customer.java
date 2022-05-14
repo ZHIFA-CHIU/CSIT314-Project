@@ -14,6 +14,7 @@ import java.util.Set;
 @Table
 public class Customer extends User {
 
+    boolean hasMembership;
     public Customer() {
         super();
     }
@@ -28,6 +29,14 @@ public class Customer extends User {
             throw new CustomException("Customer fails to meet consistency constraints");
         }
         
+    }
+
+    public void setHasMembership(boolean b) {
+        hasMembership = b;
+    }
+
+    public boolean getHasMembership() {
+        return hasMembership;
     }
 
     @JsonIgnore
