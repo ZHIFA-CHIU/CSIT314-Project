@@ -24,13 +24,13 @@ export default function ServiceRequestContent() {
     };
 
     let { getCurrentPosition } = useNavigator();
-    let location = {
-        latitude: getCurrentPosition?.coords.latitude,
-        longitude: getCurrentPosition?.coords.longitude}
+    // let location = {
+    //     latitude: getCurrentPosition?.coords.latitude,
+    //     longitude: getCurrentPosition?.coords.longitude}
     useEffect(()=> {
         if (getCurrentPosition !== undefined && getCurrentPosition !== null) {
             console.log("latitude: ", getCurrentPosition.coords.latitude, ", longitude: ", getCurrentPosition.coords.longitude);
-            alert(JSON.stringify(location));
+            // alert(JSON.stringify(location));
         }
     }, [getCurrentPosition]);
 
@@ -67,9 +67,9 @@ export default function ServiceRequestContent() {
             </AppBar>
 
             <h1>Please enter request details</h1>
-            <p style={{textAlign:"center"}}>Latitude: {getCurrentPosition?.coords.latitude}</p>
-            <p style={{textAlign:"center"}}>Longitude: {getCurrentPosition?.coords.longitude}</p>
-            <br />
+            {/*<p style={{textAlign:"center"}}>Latitude: {getCurrentPosition?.coords.latitude}</p>*/}
+            {/*<p style={{textAlign:"center"}}>Longitude: {getCurrentPosition?.coords.longitude}</p>*/}
+            {/*<br />*/}
             <div className='ui center aligned container' style={{minWidth:"400px", maxWidth:"684px"}} >
                 <p style={{textAlign:"left"}}>Location</p>
                 <LoadScript
@@ -92,11 +92,11 @@ export default function ServiceRequestContent() {
                     <select {...register("failure_type")}>
                         <option value="brakes fail">Brakes fail</option>
                         <option value="tires">Tires</option>
-                        <option value="steering">Suspension/steering</option>
+                        <option value="steering">Suspension/ Steering</option>
                         <option value="lights">Lights</option>
                         <option value="engine_transmission">Engine and Transmission Problems</option>
                         <option value="battery">Battery</option>
-                        <option value="Other">Other/I don't know</option>
+                        <option value="Other">Other/ I don't know</option>
                     </select>
                     <p style={{textAlign:"left"}}>Select vehicle</p>
                     <select {...register("vehicle")}>
