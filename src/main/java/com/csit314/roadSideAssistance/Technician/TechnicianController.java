@@ -1,5 +1,6 @@
 package com.csit314.roadSideAssistance.Technician;
 
+import com.csit314.roadSideAssistance.BankAccount.BankAccount;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,8 +16,8 @@ import java.util.UUID;
  *      Put
  *
  * @author      Jack_Is_2048
- * @version     1.1
- * @since       1.1
+ * @version     0.1
+ * @since       0.1
  */
 @CrossOrigin(origins = "http://localhost:3000/")
 @RestController
@@ -48,5 +49,17 @@ public class TechnicianController {
     @PutMapping
     public void updateTechnician(@RequestBody Technician technician) throws TechnicianException {
         technicianService.updateTechnician(technician);
+    }
+
+    // -- Bank Account endpoints --
+
+    @PutMapping(path = "/addBankAccount/{technicianId}")
+    public void addBankAccount(@PathVariable("technicianId") UUID technicianId, @RequestBody BankAccount bankAccount) throws TechnicianException {
+        technicianService.addBankAccount(technicianId, bankAccount);
+    }
+
+    @DeleteMapping(path = "/deleteBankAccount")
+    public void deleteBankAccount(@PathVariable("technicianId") UUID technicianId) throws TechnicianException {
+        technicianService.deleteBankAccount(technicianId);
     }
 }
