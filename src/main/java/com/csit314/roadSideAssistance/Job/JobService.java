@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
+
 
 /**
  * Service class for job method, containing all logical processing
@@ -32,7 +32,7 @@ public class JobService {
         return jobRepository.findAll();
     }
 
-    public void requestJob(Job job, UUID customerID) {
+    public void registerJob(Job job, Long customerID) {
         job.setCustomer(customerService.getById(customerID));
         if (!job.validateJob()) {
             throw new IllegalStateException("Job is invalid");
@@ -40,7 +40,7 @@ public class JobService {
         jobRepository.save(job);
     }
 
-    public void deleteJob(UUID jobId) {
+    public void deleteJob(Long jobId) {
         if (!jobRepository.existsById(jobId)) {
             throw new IllegalStateException(String.format("Job with id %s does not exist", jobId));
         }
@@ -59,7 +59,7 @@ public class JobService {
         jobRepository.save(job);
     }
 
-    public Job getJob(UUID customerId, LocalDateTime startTime) {
+    public Job getJob(Long customerId, LocalDateTime startTime) {
         Optional<Job> job = jobRepository.findJobByCustomerIdAndStartTime(customerId, startTime);
         if (!job.isPresent()) {
             throw new IllegalStateException(String.format("Job could not be found with customerID '%s' and start time '%s'", customerId, startTime));
@@ -67,7 +67,7 @@ public class JobService {
         return job.get();
     }
 
-    public void addTechnician(UUID jobId, UUID technicianId) {
+    public void addTechnician(Long jobId, Long technicianId) {
         Technician technician = technicianService.getById(technicianId);
         Optional<Job> job = jobRepository.findById(jobId);
         if (job.isPresent()) {

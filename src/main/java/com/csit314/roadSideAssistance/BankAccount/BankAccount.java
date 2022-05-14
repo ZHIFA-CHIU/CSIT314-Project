@@ -21,14 +21,9 @@ import java.util.UUID;
 @Table(name = "BankAccount")
 public class BankAccount {
     @Id
-    @GeneratedValue(generator = "uuidGen")
-    @GenericGenerator(
-            name = "uuidGen",
-            strategy = "org.hibernate.id.UUIDGenerator"
-    )
-    @Type(type = "uuid-char")
-    @Column(name = "id")
-    private UUID id;
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
+    @Column(name = "id", updatable = false, nullable = false)
+    private Long id;
 
     private String accountName,
                    BSB,

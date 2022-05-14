@@ -15,6 +15,6 @@ import java.util.UUID;
  * @since       0.1
  */
 @Repository
-public interface BankAccountRepository extends JpaRepository<BankAccount, UUID> {
+public interface BankAccountRepository extends JpaRepository<BankAccount, Long> {
     // TODO: Add any queries
 }

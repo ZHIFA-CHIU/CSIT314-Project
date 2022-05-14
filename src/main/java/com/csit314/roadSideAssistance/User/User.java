@@ -8,6 +8,9 @@ import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.time.LocalDate;
 import java.time.Month;
@@ -20,14 +23,9 @@ import java.util.UUID;
 @NoArgsConstructor
 abstract public class User implements Password {
     @Id
-    @GeneratedValue(generator = "uuidGen")
-    @GenericGenerator(
-            name = "uuidGen",
-            strategy = "org.hibernate.id.UUIDGenerator"
-    )
-    @Type(type = "uuid-char")
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     @Column(name = "id", updatable = false, nullable = false)
-    private UUID id;
+    private Long id;
     private String firstName;
     private String lastName;
     @Column(unique = true)
@@ -42,12 +40,11 @@ abstract public class User implements Password {
     private String postCode;
     private String State;
 
-    private String salt;
     @Column(name = "Password")
     private String password; //SHA-512 encrypted password
 
 
-    public User(String firstName, String lastName, String email, LocalDate dob, String phoneNumber, String password) {
+    public User(String firstName, String lastName, String email, LocalDate dob, String phoneNumber, String password) throws NoSuchAlgorithmException {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -81,30 +78,19 @@ abstract public class User implements Password {
         return true;
     }
 
-    public String hashPassword(String password) {
+    public String hashPassword(String password) throws NoSuchAlgorithmException {
         //hashed password to be implemented here
         return password;
     }
 
-    public void generateSalt() {
-        //generate random salt
-        SecureRandom random = new SecureRandom();
-        byte[] salt = new byte[16];
-        random.nextBytes(salt);
-        this.salt = new String(salt);
-    }
-
-    public void setPassword(String password) {
-        if (salt == null) {
-            generateSalt();
-        }
-        this.password = hashPassword(salt + password);
+    public void setPassword(String password) throws NoSuchAlgorithmException {
+        this.password = hashPassword(password);
         assert (this.password != null);
     }
 
     public boolean checkPassword(String password) {
-        System.out.println("Input password: " + password + " salt: " + salt + " hashedPassword: " + hashPassword(salt + password) + " stored password: " + this.password);
-        if (hashPassword(salt + password).equals(this.password)) {
+//        System.out.println("Input password: " + password + " salt: " + salt + " hashedPassword: " + hashPassword(salt + password) + " stored password: " + this.password);
+        if (password.equals(this.password)) {
             return true;
         }
         return false;

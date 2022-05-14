@@ -9,6 +9,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.security.NoSuchAlgorithmException;
 import java.time.LocalDate;
 import java.time.Month;
 
@@ -29,7 +30,7 @@ class TechnicianTest {
 
     @Test
     @DisplayName("Simple Test of Technician Creation")
-    void testCreateTechnician() throws TechnicianException {
+    void testCreateTechnician() throws TechnicianException, NoSuchAlgorithmException {
         Technician technician = new Technician("Jay", "Smith", "jaysmith@mail.com",
                 LocalDate.of(1990, Month.FEBRUARY, 12), "01234567890", "password");
 
@@ -48,7 +49,7 @@ class TechnicianTest {
 
     @Test
     @DisplayName("Testing Technician adding to Avg Rating")
-    void addToAvgRating() throws TechnicianException {
+    void addToAvgRating() throws TechnicianException, NoSuchAlgorithmException {
         Technician technician = new Technician("Jay", "Smith", "jaysmith@mail.com",
                 LocalDate.of(1990, Month.FEBRUARY, 12), "01234567890", "password");
 
@@ -62,7 +63,7 @@ class TechnicianTest {
 
     @Test
     @DisplayName("Testing technician password authentication")
-    void testCustomerPassword() throws TechnicianException {
+    void testCustomerPassword() throws TechnicianException, NoSuchAlgorithmException {
         Technician t = new Technician("Jay", "Smith", "jaysmith@mail.com",
                 LocalDate.of(1990, Month.FEBRUARY, 12), "01234567890", "password");
 
@@ -71,7 +72,7 @@ class TechnicianTest {
 
     @Test
     @DisplayName("Testing technician update password authentication")
-    void updateCustomerPassword() throws TechnicianException {
+    void updateCustomerPassword() throws TechnicianException, NoSuchAlgorithmException {
         Technician t = new Technician("Jay", "Smith", "jaysmith@mail.com",
                 LocalDate.of(1990, Month.FEBRUARY, 12), "01234567890", "password");
 

@@ -13,8 +13,8 @@ import java.util.UUID;
  * Repository for Job Model
  */
 @Repository
-public interface JobRepository extends JpaRepository<Job, UUID> {
+public interface JobRepository extends JpaRepository<Job, Long> {
 
     @Query(value = "SELECT j FROM Job j JOIN j.customer c WHERE c.id = :customerId AND j.startTime = :startTime")
-    Optional<Job> findJobByCustomerIdAndStartTime(@Param("customerId") UUID customerID, @Param("startTime") LocalDateTime startTime);
+    Optional<Job> findJobByCustomerIdAndStartTime(@Param("customerId") Long customerID, @Param("startTime") LocalDateTime startTime);
 }

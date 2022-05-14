@@ -42,7 +42,7 @@ public class TechnicianController {
     }
 
     @DeleteMapping(path = "{technicianId}")
-    public void deleteTechnician(@PathVariable("technicianId") UUID technicianId) throws TechnicianException {
+    public void deleteTechnician(@PathVariable("technicianId") Long technicianId) throws TechnicianException {
         technicianService.deleteTechnician(technicianId);
     }
 
@@ -54,12 +54,12 @@ public class TechnicianController {
     // -- Bank Account endpoints --
 
     @PutMapping(path = "/addBankAccount/{technicianId}")
-    public void addBankAccount(@PathVariable("technicianId") UUID technicianId, @RequestBody BankAccount bankAccount) throws TechnicianException {
+    public void addBankAccount(@PathVariable("technicianId") Long technicianId, @RequestBody BankAccount bankAccount) throws TechnicianException {
         technicianService.addBankAccount(technicianId, bankAccount);
     }
 
     @DeleteMapping(path = "/deleteBankAccount")
-    public void deleteBankAccount(@PathVariable("technicianId") UUID technicianId) throws TechnicianException {
+    public void deleteBankAccount(@PathVariable("technicianId") Long technicianId) throws TechnicianException {
         technicianService.deleteBankAccount(technicianId);
     }
 }

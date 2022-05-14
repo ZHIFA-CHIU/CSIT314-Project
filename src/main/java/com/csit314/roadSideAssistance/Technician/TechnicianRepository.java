@@ -15,7 +15,7 @@ import java.util.UUID;
  * @since       0.1
  */
 @Repository
-public interface TechnicianRepository extends JpaRepository<Technician, UUID> {
+public interface TechnicianRepository extends JpaRepository<Technician, Long> {
     // Used to check whether a technician exists either by email or phone
     Optional<Technician> findTechnicianByEmailOrPhoneNumber(String email, String phoneNumber);
 }

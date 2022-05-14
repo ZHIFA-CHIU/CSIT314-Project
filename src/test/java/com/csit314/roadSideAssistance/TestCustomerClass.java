@@ -7,6 +7,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.security.NoSuchAlgorithmException;
 import java.time.LocalDate;
 import java.time.Month;
 
@@ -24,7 +25,7 @@ class TestCustomerClass {
     //customer tests
     @Test
     @DisplayName("Simple Test of Customer Creation")
-    void testCreateCustomer() throws CustomException {
+    void testCreateCustomer() throws CustomException, NoSuchAlgorithmException {
         Customer c = new Customer("Bob", "Jones", "bobsemail@gmail.com", LocalDate.of(2001, Month.JANUARY, 8)
                 , "0451872930", "password");
 
@@ -44,7 +45,7 @@ class TestCustomerClass {
 
     @Test
     @DisplayName("Testing customer password authentication")
-    void testCustomerPassword() throws CustomException {
+    void testCustomerPassword() throws CustomException, NoSuchAlgorithmException {
         Customer c = new Customer("Bob", "Jones", "bobsemail@gmail.com", LocalDate.of(2001, Month.JANUARY, 8)
                 , "0451872930", "password");
 
@@ -53,12 +54,15 @@ class TestCustomerClass {
 
     @Test
     @DisplayName("Testing customer update password authentication")
-    void updateCustomerPassword() throws CustomException {
+    void updateCustomerPassword() throws CustomException, NoSuchAlgorithmException {
         Customer c = new Customer("Bob", "Jones", "bobsemail@gmail.com", LocalDate.of(2001, Month.JANUARY, 8)
                 , "0451872930", "password");
-
+        //Customer new_c = new Customer();
+        //new_c.setPassword("password");
         assertTrue(c.checkPassword("password"));
         c.setPassword("bail7198kxvckn");
+        //new_c.setPassword("bail7198kxvckn");
+        //System.out.println("c pass: " + c.getPassword() + " new_c pass: "+  new_c.getPassword());
         assertTrue(c.checkPassword("bail7198kxvckn"));
     }
 
