@@ -1,14 +1,13 @@
 package com.csit314.roadSideAssistance.Customer;
 
+import com.csit314.roadSideAssistance.Job.Job;
 import com.csit314.roadSideAssistance.User.User;
-import org.hibernate.annotations.GenericGenerator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
-import java.security.SecureRandom;
 import java.time.LocalDate;
-import java.time.Month;
-import java.time.Period;
-import java.util.UUID;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 @Entity
 @Table
@@ -22,13 +21,17 @@ public class Customer extends User {
         super(firstName, lastName, email, dob, phoneNumber, password);
 
         if(getAge() < 16) {
-            //System.out.println("Error age < 16");
             throw new CustomException("Error age < 16");
-        } if(!validateUser()) {
+        }
+        if(!validateUser()) {
             throw new CustomException("Customer fails to meet consistency constraints");
         }
         
     }
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "customer")
+    private Set<Job> job = new LinkedHashSet<>();
 
     @Override
     public String toString() {
