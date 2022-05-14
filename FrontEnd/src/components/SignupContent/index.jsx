@@ -162,7 +162,7 @@ const CreateAccountCustomer = () => {
                     onChange={e => setCNum(e.target.value)}
                 /><br />
 
-                <p>Expiry date (dd/mm):</p>
+                <p>Expiry date (mm/yy):</p>
                 <TextField
                     variant="outlined"
                     style={{ width: "100%" }}

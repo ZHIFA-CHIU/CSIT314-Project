@@ -1,0 +1,9 @@
+#container{
+    width: 80%;
+    height: 90vh;
+    margin: 0 auto;
+    margin-top: 40px;
+
+    display: flex;
+    flex-direction: column;
+}
