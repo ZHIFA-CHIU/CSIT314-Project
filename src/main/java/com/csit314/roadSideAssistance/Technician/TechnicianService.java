@@ -109,13 +109,13 @@ public class TechnicianService {
         if(t.isPresent() && t.get().checkPassword(technician.getPassword())) {
             json = "{" +
                     "\"login\": true," +
-                    "\"customer-id: \"" + t.get().getId() +
+                    "\"customer-id\": \"" + t.get().getId() + "\"" +
                     "}";
         }
         else {
             json = "{" +
                     "\"login\": false," +
-                    "\"customer-id: \"" + -1 +
+                    "\"customer-id\": \"" + -1 + "\"" +
                     "}";
         }
         return json;
