@@ -19,8 +19,12 @@ public class Customer extends User {
         super();
     }
 
-    public Customer(String firstName, String lastName, String email, LocalDate dob, String phoneNumber, String password) throws CustomException, NoSuchAlgorithmException {
-        super(firstName, lastName, email, dob, phoneNumber, password);
+    public Customer(String firstName, String lastName, String email, LocalDate dob,
+                    String phoneNumber, String password, String streetAddress,
+                    String suburb, String postCode, String state) throws CustomException, NoSuchAlgorithmException {
+        super(firstName, lastName, email, dob, phoneNumber, password, streetAddress, suburb, postCode, state);
+
+        this.hasMembership = false;
 
         if(getAge() < 16) {
             throw new CustomException("Error age < 16");

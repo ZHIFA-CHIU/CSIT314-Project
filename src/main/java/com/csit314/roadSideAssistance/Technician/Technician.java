@@ -11,6 +11,7 @@ import com.csit314.roadSideAssistance.Customer.CustomException;
 import com.csit314.roadSideAssistance.Job.Job;
 import com.csit314.roadSideAssistance.User.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -48,7 +49,8 @@ public class Technician extends User {
     private double avgRating;
 
 
-    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @JoinColumn(name = "BankAccount_id")
     private BankAccount bankAccount;
 
@@ -64,16 +66,18 @@ public class Technician extends User {
 //        bankAccount = new BankAccount();
     }
 
-    public Technician(String firstName, String lastName, String email, LocalDate dob, String phoneNumber, String password) throws TechnicianException, NoSuchAlgorithmException {
-        super(firstName, lastName, email, dob, phoneNumber, password);
+    public Technician(String firstName, String lastName, String email, LocalDate dob,
+                      String phoneNumber, String password, String streetAddress,
+                      String suburb, String postCode, String state, boolean heavyVehicleQualification,
+                      boolean lightVehicleQualification) throws TechnicianException, NoSuchAlgorithmException {
+        super(firstName, lastName, email, dob, phoneNumber, password, streetAddress, suburb, postCode, state);
+
+        this.heavyVehicleQualification = heavyVehicleQualification;
+        this.lightVehicleQualification = lightVehicleQualification;
 
         if (!validateUser()) {
             throw new TechnicianException("Technician fails to meet consistency constraints");
         }
-    }
-
-    public Technician(String firstName, String lastName, String email, LocalDate dob, String phoneNumber) {
-        super(firstName, lastName, email, dob, phoneNumber);
     }
 
 /*    public Technician(String UUID, String email, String mobileNumber,

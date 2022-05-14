@@ -26,8 +26,10 @@ class TestCustomerClass {
     @Test
     @DisplayName("Simple Test of Customer Creation")
     void testCreateCustomer() throws CustomException, NoSuchAlgorithmException {
-        Customer c = new Customer("Bob", "Jones", "bobsemail@gmail.com", LocalDate.of(2001, Month.JANUARY, 8)
-                , "0451872930", "password");
+        Customer c = new Customer("Jay", "Smith", "jaysmith@mail.com",
+                LocalDate.of(1990, Month.FEBRUARY, 12), "01234567890",
+                "password", "1 main street", "Wollongong",
+                "2500", "NSW");
 
         assertEquals(c.getFirstName(), "Bob", "Checking name");
         assertEquals(c.getEmail(), "bobsemail@gmail.com", "Checking email");
@@ -38,16 +40,20 @@ class TestCustomerClass {
     void testConsistencyConstraints() throws CustomException {
         CustomException thrown = Assertions.assertThrows(CustomException.class, () -> {
             //Code under test
-            Customer c = new Customer("Bob", "Jones", "bobsemail@gmail.com", LocalDate.now().minusYears(15)
-                    , "0451872930", "password");
+            Customer c = new Customer("Jay", "Smith", "jaysmith@mail.com",
+                    LocalDate.of(1990, Month.FEBRUARY, 12), "01234567890",
+                    "password", "1 main street", "Wollongong",
+                    "2500", "NSW");
         });
     }
 
     @Test
     @DisplayName("Testing customer password authentication")
     void testCustomerPassword() throws CustomException, NoSuchAlgorithmException {
-        Customer c = new Customer("Bob", "Jones", "bobsemail@gmail.com", LocalDate.of(2001, Month.JANUARY, 8)
-                , "0451872930", "password");
+        Customer c = new Customer("Jay", "Smith", "jaysmith@mail.com",
+                LocalDate.of(1990, Month.FEBRUARY, 12), "01234567890",
+                "password", "1 main street", "Wollongong",
+                "2500", "NSW");
 
         assertTrue(c.checkPassword("password"));
     }
@@ -55,8 +61,10 @@ class TestCustomerClass {
     @Test
     @DisplayName("Testing customer update password authentication")
     void updateCustomerPassword() throws CustomException, NoSuchAlgorithmException {
-        Customer c = new Customer("Bob", "Jones", "bobsemail@gmail.com", LocalDate.of(2001, Month.JANUARY, 8)
-                , "0451872930", "password");
+        Customer c = new Customer("Jay", "Smith", "jaysmith@mail.com",
+                LocalDate.of(1990, Month.FEBRUARY, 12), "01234567890",
+                "password", "1 main street", "Wollongong",
+                "2500", "NSW");
         //Customer new_c = new Customer();
         //new_c.setPassword("password");
         assertTrue(c.checkPassword("password"));
