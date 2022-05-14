@@ -16,6 +16,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import java.security.NoSuchAlgorithmException;
 import java.time.LocalDate;
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -39,7 +40,7 @@ public class Technician extends User {
     private double avgRating;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "technician")
+    @OneToMany(mappedBy = "technician", cascade = CascadeType.ALL)
     private Set<Job> jobs = new LinkedHashSet<>();
 
 //    private BankAccount bankAccount;
@@ -50,7 +51,7 @@ public class Technician extends User {
 //        bankAccount = new BankAccount();
     }
 
-    public Technician(String firstName, String lastName, String email, LocalDate dob, String phoneNumber, String password) throws TechnicianException {
+    public Technician(String firstName, String lastName, String email, LocalDate dob, String phoneNumber, String password) throws TechnicianException, NoSuchAlgorithmException {
         super(firstName, lastName, email, dob, phoneNumber, password);
 
         if (!validateUser()) {

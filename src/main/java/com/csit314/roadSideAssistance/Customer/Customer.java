@@ -5,6 +5,7 @@ import com.csit314.roadSideAssistance.User.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.security.NoSuchAlgorithmException;
 import java.time.LocalDate;
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -17,7 +18,7 @@ public class Customer extends User {
         super();
     }
 
-    public Customer(String firstName, String lastName, String email, LocalDate dob, String phoneNumber, String password) throws CustomException {
+    public Customer(String firstName, String lastName, String email, LocalDate dob, String phoneNumber, String password) throws CustomException, NoSuchAlgorithmException {
         super(firstName, lastName, email, dob, phoneNumber, password);
 
         if(getAge() < 16) {
@@ -30,7 +31,7 @@ public class Customer extends User {
     }
 
     @JsonIgnore
-    @OneToMany(mappedBy = "customer")
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
     private Set<Job> job = new LinkedHashSet<>();
 
     @Override

@@ -39,7 +39,7 @@ public class TechnicianService {
         technicianRepository.save(technician);
     }
 
-    public void deleteTechnician(UUID technicianId) throws TechnicianException {
+    public void deleteTechnician(Long technicianId) throws TechnicianException {
         boolean exists = technicianRepository.existsById(technicianId);
 
         if(!exists) {
@@ -63,7 +63,7 @@ public class TechnicianService {
         technicianRepository.save(technician);
     }
 
-    public Technician getById(UUID technicianId){
+    public Technician getById(Long technicianId){
         Optional<Technician> technician = technicianRepository.findById(technicianId);
         if(technician.isPresent()){
             return technician.get();

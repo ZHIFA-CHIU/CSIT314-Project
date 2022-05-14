@@ -41,7 +41,7 @@ public class TechnicianController {
     }
 
     @DeleteMapping(path = "{technicianId}")
-    public void deleteTechnician(@PathVariable("technicianId") UUID technicianId) throws TechnicianException {
+    public void deleteTechnician(@PathVariable("technicianId") Long technicianId) throws TechnicianException {
         technicianService.deleteTechnician(technicianId);
     }
 

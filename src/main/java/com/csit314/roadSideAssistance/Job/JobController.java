@@ -28,13 +28,13 @@ public class JobController {
     }
 
     @GetMapping(path = "/getJob/{customerId}/{startTime}")
-    public Job getJob(@PathVariable("customerId") UUID customerId, @PathVariable("startTime") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)  LocalDateTime startTime) {
+    public Job getJob(@PathVariable("customerId") Long customerId, @PathVariable("startTime") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)  LocalDateTime startTime) {
         return jobService.getJob(customerId, startTime);
     }
 
     @PostMapping(path = "/{customerId}")
-    public void registerJob(@RequestBody Job job, @PathVariable("customerId") UUID customerId) {
-        jobService.requestJob(job, customerId);
+    public void registerJob(@RequestBody Job job, @PathVariable("customerId") Long customerId) {
+        jobService.registerJob(job, customerId);
     }
 
     @PutMapping
@@ -43,12 +43,12 @@ public class JobController {
     }
 
     @PostMapping(path = "/addTechnician/{jobId}/{technicianId}")
-    public void addTechnician(@PathVariable("jobId") UUID jobId, @PathVariable("technicianId") UUID technicianId) {
+    public void addTechnician(@PathVariable("jobId") Long jobId, @PathVariable("technicianId") Long technicianId) {
         jobService.addTechnician(jobId, technicianId);
     }
 
     @DeleteMapping
-    public void deleteJob(UUID jobId) {
+    public void deleteJob(Long jobId) {
         jobService.deleteJob(jobId);
     }
 

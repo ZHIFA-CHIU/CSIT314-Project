@@ -23,13 +23,18 @@ public class CustomerController {
         return customerService.getCustomer();
     }
 
+    @PostMapping(path = "/login")
+    public boolean loginCustomer(@RequestBody Customer customer) {
+        return customerService.checkPassword(customer);
+    }
+
     @PostMapping
     public void registerCustomer(@RequestBody Customer customer) {
         customerService.registerCustomer(customer);
     }
 
     @DeleteMapping(path = "{customerId}")
-    public void deleteCustomer(@PathVariable("customerId") UUID customerId){
+    public void deleteCustomer(@PathVariable("customerId") Long customerId){
         customerService.deleteCustomer(customerId);
     }
 
