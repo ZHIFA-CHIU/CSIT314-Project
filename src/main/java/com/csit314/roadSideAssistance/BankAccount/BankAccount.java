@@ -16,7 +16,6 @@ import java.util.UUID;
  * @since       0.1
  */
 @Getter
-@Setter
 @Entity
 @Table(name = "BankAccount")
 public class BankAccount {
@@ -25,15 +24,15 @@ public class BankAccount {
     @Column(name = "id", updatable = false, nullable = false)
     private Long id;
 
-    private String accountName,
-                   BSB,
-                   accountNumber;
+    private String accountName;
+    private String bsb;
+    private String accountNumber;
 
     public BankAccount() {}
 
-    public BankAccount(String accountName, String BSB, String accountNumber) {
+    public BankAccount(String accountName, String bsb, String accountNumber) {
         this.accountName = accountName;
-        this.BSB = BSB;
+        this.bsb = bsb;
         this.accountNumber = accountNumber;
     }
 
@@ -41,7 +40,7 @@ public class BankAccount {
     public String toString() {
         return "BankAccount{" +
                 "accountName='" + accountName + '\'' +
-                ", BSB='" + BSB + '\'' +
+                ", BSB='" + bsb + '\'' +
                 ", accountNumber='" + accountNumber + '\'' +
                 '}';
     }

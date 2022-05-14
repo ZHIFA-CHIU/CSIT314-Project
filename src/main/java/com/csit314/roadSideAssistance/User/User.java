@@ -38,12 +38,27 @@ abstract public class User implements Password {
     private String streetAddress;
     private String suburb;
     private String postCode;
-    private String State;
+    private String state;
 
     @Column(name = "Password")
     private String password; //SHA-512 encrypted password
 
 
+
+    public User(String firstName, String lastName, String email, LocalDate dob,
+                String phoneNumber, String password, String streetAddress,
+                String suburb, String postCode, String state) throws NoSuchAlgorithmException {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.dob = dob;
+        this.phoneNumber = phoneNumber;
+        this.streetAddress = streetAddress;
+        this.suburb = suburb;
+        this.postCode = postCode;
+        this.state = state;
+        setPassword(password);
+    }
     public User(String firstName, String lastName, String email, LocalDate dob, String phoneNumber, String password) throws NoSuchAlgorithmException {
         this.firstName = firstName;
         this.lastName = lastName;

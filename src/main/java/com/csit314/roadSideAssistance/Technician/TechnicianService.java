@@ -69,7 +69,7 @@ public class TechnicianService {
     }
     // -- Bank Account services --
 
-    public void addBankAccount(Long technicianId, BankAccount bankAccount) throws TechnicianException {
+    public boolean addBankAccount(Long technicianId, BankAccount bankAccount) throws TechnicianException {
         Optional<Technician> technicianOptional = technicianRepository.findById(technicianId);
         if (!technicianOptional.isPresent()) {
             throw new TechnicianException("Technician with id " + technicianId + " does not exist");
@@ -78,6 +78,7 @@ public class TechnicianService {
 
         technicianOptional.get().setBankAccount(bankAccount);
         technicianRepository.save(technicianOptional.get());
+        return true;
     }
 
 

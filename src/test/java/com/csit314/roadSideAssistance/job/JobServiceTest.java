@@ -16,6 +16,7 @@ import org.mockito.MockitoAnnotations;
 import java.security.NoSuchAlgorithmException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.Month;
 import java.util.UUID;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
@@ -64,7 +65,10 @@ class JobServiceTest {
     void canRequestJob() throws CustomException, NoSuchAlgorithmException {
         //given
         Job job = new Job(RepairCategory.OTHER, "testing information", 45.0, 95.0);
-        Customer customer = new Customer("pedro", "o", "email", LocalDate.of(2001, 12, 17), "04566871234", "password");
+        Customer customer = new Customer("Jay", "Smith", "jaysmith@mail.com",
+                LocalDate.of(1990, Month.FEBRUARY, 12), "01234567890",
+                "password", "1 main street", "Wollongong",
+                "2500", "NSW");
 
         //when
         jobService.registerJob(job, customer.getId());
