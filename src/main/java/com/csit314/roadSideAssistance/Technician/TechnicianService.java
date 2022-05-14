@@ -87,7 +87,7 @@ public class TechnicianService {
 
         technicianOptional.get().setBankAccount(null);
         technicianRepository.save(technicianOptional.get());
-      
+    }
     public Technician getById(UUID technicianId){
         Optional<Technician> technician = technicianRepository.findById(technicianId);
         if(technician.isPresent()){
