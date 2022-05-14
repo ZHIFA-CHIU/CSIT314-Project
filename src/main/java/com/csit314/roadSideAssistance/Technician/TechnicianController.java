@@ -38,7 +38,7 @@ public class TechnicianController {
     }
 
     @PostMapping(path = "/login")
-    public boolean loginTechnician(@RequestBody Technician technician) {
+    public String loginTechnician(@RequestBody Technician technician) {
         return technicianService.checkPassword(technician);
     }
 

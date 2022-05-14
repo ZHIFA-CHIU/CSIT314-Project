@@ -103,8 +103,21 @@ public class TechnicianService {
 
     }
 
-    public boolean checkPassword(Technician technician) {
-        Optional<Technician> c = technicianRepository.findTechnicianByEmail(technician.getEmail());
-        return c.get().checkPassword(technician.getPassword());
+    public String checkPassword(Technician technician) {
+        Optional<Technician> t = technicianRepository.findTechnicianByEmail(technician.getEmail());
+        String json;
+        if(t.isPresent() && t.get().checkPassword(technician.getPassword())) {
+            json = "{" +
+                    "login: true," +
+                    "customer-id:" + t.get().getId() +
+                    "}";
+        }
+        else {
+            json = "{" +
+                    "login: false," +
+                    "customer-id:" + -1 +
+                    "}";
+        }
+        return json;
     }
 }

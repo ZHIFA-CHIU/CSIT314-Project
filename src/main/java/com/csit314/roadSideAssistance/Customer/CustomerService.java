@@ -55,6 +55,16 @@ public class CustomerService {
         customerRepository.save(customer);
     }
 
+    public Customer getById(Long customerID){
+        Optional<Customer> customer = customerRepository.findById(customerID);
+        if(customer.isPresent()){
+            return customer.get();
+        }
+        else{
+            throw new IllegalStateException(String.format("Customer with id %s does not exist", customerID));
+        }
+    }
+
     public String checkPassword(Customer customer) {
         Optional<Customer> c = customerRepository.findCustomerByEmail(customer.getEmail());
 
@@ -72,15 +82,5 @@ public class CustomerService {
                     "}";
         }
         return json;
-    }
-
-    public Customer getById(Long customerID){
-        Optional<Customer> customer = customerRepository.findById(customerID);
-        if(customer.isPresent()){
-            return customer.get();
-        }
-        else{
-            throw new IllegalStateException(String.format("Customer with id %s does not exist", customerID));
-        }
     }
 }
