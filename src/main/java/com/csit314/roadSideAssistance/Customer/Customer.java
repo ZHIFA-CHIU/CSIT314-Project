@@ -1,8 +1,13 @@
 package com.csit314.roadSideAssistance.Customer;
 
 import com.csit314.roadSideAssistance.Job.Job;
+import com.csit314.roadSideAssistance.Technician.Technician;
 import com.csit314.roadSideAssistance.User.User;
+import com.csit314.roadSideAssistance.Vehicle.Vehicle;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.security.NoSuchAlgorithmException;
@@ -10,11 +15,22 @@ import java.time.LocalDate;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
+@Getter
+@Setter
 @Entity
 @Table
 public class Customer extends User {
 
     boolean hasMembership;
+
+    @JsonIgnore
+    @OneToMany(mappedBy="customer", cascade = CascadeType.ALL)
+    private Set<Vehicle> vehicleList;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
+    private Set<Job> job = new LinkedHashSet<>();
+
     public Customer() {
         super();
     }
@@ -43,9 +59,7 @@ public class Customer extends User {
         return hasMembership;
     }
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
-    private Set<Job> job = new LinkedHashSet<>();
+
 
     @Override
     public String toString() {

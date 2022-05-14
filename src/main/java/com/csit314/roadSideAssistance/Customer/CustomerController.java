@@ -1,5 +1,8 @@
 package com.csit314.roadSideAssistance.Customer;
 
+import com.csit314.roadSideAssistance.BankAccount.BankAccount;
+import com.csit314.roadSideAssistance.Technician.TechnicianException;
+import com.csit314.roadSideAssistance.Vehicle.Vehicle;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -42,5 +45,17 @@ public class CustomerController {
     public void updateCustomer(@RequestBody Customer customer){
         customerService.updateCustomer(customer);
     }
+
+    // -- Vehicle endpoints --
+
+    @PutMapping(path = "/addVehicle/{customerId}")
+    public boolean addVehicle(@PathVariable("customerId") Long customerId, @RequestBody Vehicle vehicle) throws CustomException {
+        return customerService.addVehicle(customerId, vehicle);
+    }
+
+//    @DeleteMapping(path = "/deleteVehicle/")
+//    public void deleteVehicle(@PathVariable("vehicleId") Long vehicleId) throws CustomException {
+//        customerService.deleteVehicle(vehicleId);
+//    }
 
 }

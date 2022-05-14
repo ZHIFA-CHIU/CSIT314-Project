@@ -24,11 +24,6 @@ public class VehicleController {
         return vehicleService.getVehicle();
     }
 
-    @PostMapping
-    public void registerVehicle(@RequestBody Vehicle vehicle) {
-        vehicleService.registerVehicle(vehicle);
-    }
-
     @DeleteMapping(path = "{vehicleRego}")
     @Transactional
     public void deleteVehicle(@PathVariable("vehicleRego") String registeredState, String registeredPlate){

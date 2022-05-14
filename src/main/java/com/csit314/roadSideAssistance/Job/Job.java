@@ -45,8 +45,7 @@ public class Job {
     @Enumerated(EnumType.STRING)
     private Status status = Status.WAITING;
 
-    @Enumerated(EnumType.STRING)
-    private RepairCategory repairCategory;
+    private String repairCategory;
 
     private String additionalInfo;
     private Double jobPrice;
@@ -56,7 +55,7 @@ public class Job {
     @Column(nullable = false)
     private Double customerLongitude;
 
-    public Job(RepairCategory repairCategory, String additionalInfo, Double customerLatitude, Double customerLongitude) {
+    public Job(String repairCategory, String additionalInfo, Double customerLatitude, Double customerLongitude) {
         this.repairCategory = repairCategory;
         this.additionalInfo = additionalInfo;
         this.customerLatitude = customerLatitude;

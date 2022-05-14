@@ -1,5 +1,6 @@
 package com.csit314.roadSideAssistance.Vehicle;
 
+import com.csit314.roadSideAssistance.Customer.Customer;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -16,12 +17,18 @@ import java.time.Year;
 @Getter
 @Entity
 @Data
-@Table
-@IdClass(VehicleIDUsingEmbeddable.class)
+@Table(uniqueConstraints = { @UniqueConstraint(columnNames = { "registrationPlate", "registeredState" }) })
 public class Vehicle {
     @Id
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
+    @Column(name = "id", updatable = false, nullable = false)
+    private Long id;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="customer_id", referencedColumnName="id")
+    private Customer customer;
+
     private String registrationPlate;
-    @Id
     private String registeredState;
     private Year manufacturedYear;
     private String manufacturer;
