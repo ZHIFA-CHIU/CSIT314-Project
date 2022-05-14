@@ -1,6 +1,7 @@
 package com.csit314.roadSideAssistance.Technician;
 
 import com.csit314.roadSideAssistance.BankAccount.BankAccount;
+import com.csit314.roadSideAssistance.Customer.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -34,6 +35,11 @@ public class TechnicianController {
     @GetMapping
     public List<Technician> getTechnicians() {
         return technicianService.getTechnician();
+    }
+
+    @PostMapping(path = "/login")
+    public boolean loginTechnician(@RequestBody Technician technician) {
+        return technicianService.checkPassword(technician);
     }
 
     @PostMapping

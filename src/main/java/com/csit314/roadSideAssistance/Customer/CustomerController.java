@@ -24,7 +24,7 @@ public class CustomerController {
     }
 
     @PostMapping(path = "/login")
-    public boolean loginCustomer(@RequestBody Customer customer) {
+    public String loginCustomer(@RequestBody Customer customer) {
         return customerService.checkPassword(customer);
     }
 

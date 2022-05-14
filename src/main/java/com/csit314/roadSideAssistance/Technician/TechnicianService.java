@@ -2,6 +2,7 @@ package com.csit314.roadSideAssistance.Technician;
 
 import com.csit314.roadSideAssistance.BankAccount.BankAccount;
 import com.csit314.roadSideAssistance.BankAccount.BankAccountRepository;
+import com.csit314.roadSideAssistance.Customer.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -100,5 +101,10 @@ public class TechnicianService {
             throw new IllegalStateException(String.format("Technician with id %s does not exist", technicianId));
         }
 
+    }
+
+    public boolean checkPassword(Technician technician) {
+        Optional<Technician> c = technicianRepository.findTechnicianByEmail(technician.getEmail());
+        return c.get().checkPassword(technician.getPassword());
     }
 }

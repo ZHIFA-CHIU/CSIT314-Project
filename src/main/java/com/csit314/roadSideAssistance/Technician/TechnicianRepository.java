@@ -18,4 +18,6 @@ import java.util.UUID;
 public interface TechnicianRepository extends JpaRepository<Technician, Long> {
     // Used to check whether a technician exists either by email or phone
     Optional<Technician> findTechnicianByEmailOrPhoneNumber(String email, String phoneNumber);
+
+    Optional<Technician> findTechnicianByEmail(String email);
 }
