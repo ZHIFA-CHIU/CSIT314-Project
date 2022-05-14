@@ -4,6 +4,7 @@ import Login from "../pages/Login";
 import Signup from "../pages/Signup";
 import CreateAccountTechnician from "../pages/CreateAccountTechnician/CreateAccountTechnician";
 import CustomerDashboard from "../pages/CustomerDashboard";
+import TechnicianDashboard from "../pages/TechnicianDashboard";
 
 export default [
     {
@@ -25,6 +26,10 @@ export default [
     {
         path: "/CustomerDashboard",
         element: <CustomerDashboard />
+    },
+    {
+        path: "TechnicianDashboard",
+        element: <TechnicianDashboard />
     },
     {
         path: "/",
