@@ -22,12 +22,12 @@ public class JobController {
         this.jobService = jobService;
     }
 
-    @GetMapping(path = "/getAll")
+    @GetMapping
     public List<Job> getJobs() {
         return jobService.findAllJobs();
     }
 
-    @GetMapping(path = "/getJob/{customerId}/{startTime}")
+    @GetMapping(path = "/{customerId}/{startTime}")
     public Job getJob(@PathVariable("customerId") Long customerId, @PathVariable("startTime") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)  LocalDateTime startTime) {
         return jobService.getJob(customerId, startTime);
     }
