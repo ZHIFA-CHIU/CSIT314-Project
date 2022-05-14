@@ -71,14 +71,14 @@ public class CustomerService {
         String json;
         if(c.isPresent() && c.get().checkPassword(customer.getPassword())) {
             json = "{" +
-                    "login: true," +
-                    "customer-id:" + c.get().getId() +
+                    "\"login\": true," +
+                    "\"customer-id: \"" + c.get().getId() +
                     "}";
         }
         else {
             json = "{" +
-                    "login: false," +
-                    "customer-id:" + -1 +
+                    "\"login\": false," +
+                    "\"customer-id: \"" + -1 +
                     "}";
         }
         return json;

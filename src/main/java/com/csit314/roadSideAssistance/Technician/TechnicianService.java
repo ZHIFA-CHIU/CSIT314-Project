@@ -108,14 +108,14 @@ public class TechnicianService {
         String json;
         if(t.isPresent() && t.get().checkPassword(technician.getPassword())) {
             json = "{" +
-                    "login: true," +
-                    "customer-id:" + t.get().getId() +
+                    "\"login\": true," +
+                    "\"customer-id: \"" + t.get().getId() +
                     "}";
         }
         else {
             json = "{" +
-                    "login: false," +
-                    "customer-id:" + -1 +
+                    "\"login\": false," +
+                    "\"customer-id: \"" + -1 +
                     "}";
         }
         return json;
