@@ -67,12 +67,12 @@ public class TechnicianService {
     }
     // -- Bank Account services --
 
-    public void addBankAccount(UUID technicianId, BankAccount bankAccount) throws TechnicianException {
+    public void addBankAccount(Long technicianId, BankAccount bankAccount) throws TechnicianException {
         Optional<Technician> technicianOptional = technicianRepository.findById(technicianId);
         if (!technicianOptional.isPresent()) {
             throw new TechnicianException("Technician with id " + technicianId + " does not exist");
         }
-        bankAccountRepository.save(bankAccount);
+//        bankAccountRepository.save(bankAccount);
 
         technicianOptional.get().setBankAccount(bankAccount);
         technicianRepository.save(technicianOptional.get());
@@ -81,7 +81,7 @@ public class TechnicianService {
 
     //public Technician getById(Long technicianId){
 
-    public void deleteBankAccount(UUID technicianId) throws TechnicianException {
+    public void deleteBankAccount(Long technicianId) throws TechnicianException {
         Optional<Technician> technicianOptional = technicianRepository.findById(technicianId);
         if (!technicianOptional.isPresent()) {
             throw new TechnicianException("Technician with id " + technicianId + " does not exist");
@@ -91,7 +91,7 @@ public class TechnicianService {
         technicianOptional.get().setBankAccount(null);
         technicianRepository.save(technicianOptional.get());
     }
-    public Technician getById(UUID technicianId){
+    public Technician getById(Long technicianId){
         Optional<Technician> technician = technicianRepository.findById(technicianId);
         if(technician.isPresent()){
             return technician.get();

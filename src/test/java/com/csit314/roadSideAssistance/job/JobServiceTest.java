@@ -1,4 +1,4 @@
-package job;
+package com.csit314.roadSideAssistance;
 
 import com.csit314.roadSideAssistance.Customer.CustomException;
 import com.csit314.roadSideAssistance.Customer.Customer;
@@ -89,6 +89,6 @@ class JobServiceTest {
         Long customerID = new Long(9274972);
 
         //when
-        assertThatThrownBy(() -> jobService.getJob(customerID, startTime)).hasMessageContaining("Job could not be found with customerID 'a418e91e-eee2-4d0f-9628-88d1f458f518' and start time '2022-05-10T21:44:43.402945700'");
+        assertThatThrownBy(() -> jobService.getJob(customerID, startTime)).hasMessageContaining("Job could not be found with customerID '9274972' and start time '2022-05-10T21:44:43.402945700'");
     }
 }
