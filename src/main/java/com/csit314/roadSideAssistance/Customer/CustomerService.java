@@ -30,7 +30,7 @@ public class CustomerService {
         customerRepository.save(customer);
     }
 
-    public void deleteCustomer(UUID customerId){
+    public void deleteCustomer(Long customerId){
         boolean customerExists = customerRepository.existsById(customerId);
         if(!customerExists) {
             throw new IllegalStateException("customer with id " + customerId + " does not exist");
@@ -55,7 +55,12 @@ public class CustomerService {
         customerRepository.save(customer);
     }
 
-    public Customer getById(UUID customerID){
+    public boolean checkPassword(Customer customer) {
+        Optional<Customer> c = customerRepository.findCustomerByEmail(customer.getEmail());
+        return c.get().checkPassword(customer.getPassword());
+    }
+
+    public Customer getById(Long customerID){
         Optional<Customer> customer = customerRepository.findById(customerID);
         if(customer.isPresent()){
             return customer.get();

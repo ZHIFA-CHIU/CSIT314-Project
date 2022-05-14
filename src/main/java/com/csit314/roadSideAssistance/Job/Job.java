@@ -26,21 +26,16 @@ import static java.time.temporal.ChronoUnit.MINUTES;
 @Table
 public class Job {
     @Id
-    @GeneratedValue(generator = "uuidGen")
-    @GenericGenerator(
-            name = "uuidGen",
-            strategy = "org.hibernate.id.UUIDGenerator"
-    )
-    @Type(type = "uuid-char")
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     @Column(name = "id", updatable = false, nullable = false)
-    private UUID id;
+    private Long id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "customer_id", referencedColumnName = "id")
     private Customer customer;
 
-    @ManyToOne
-    @JoinColumn(name = "technician_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="technician_id", referencedColumnName="id")
     private Technician technician;
 
     @Column(nullable = false)
@@ -72,4 +67,11 @@ public class Job {
         return customerLatitude >= -90 && customerLatitude <= 90 && customerLongitude >= -180 && customerLongitude <= 180;
     }
 
+    /*public void setCustomer(Customer byId) {
+
+    }
+
+    public void setTechnician(Technician technician) {
+
+    }*/
 }

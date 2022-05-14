@@ -43,7 +43,7 @@ public class TechnicianService {
         technicianRepository.save(technician);
     }
 
-    public void deleteTechnician(UUID technicianId) throws TechnicianException {
+    public void deleteTechnician(Long technicianId) throws TechnicianException {
         boolean exists = technicianRepository.existsById(technicianId);
         if(!exists) {
             throw new TechnicianException("Technician with id " + technicianId + " does not exist");
@@ -77,6 +77,9 @@ public class TechnicianService {
         technicianOptional.get().setBankAccount(bankAccount);
         technicianRepository.save(technicianOptional.get());
     }
+
+
+    //public Technician getById(Long technicianId){
 
     public void deleteBankAccount(UUID technicianId) throws TechnicianException {
         Optional<Technician> technicianOptional = technicianRepository.findById(technicianId);
