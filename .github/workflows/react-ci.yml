@@ -2,9 +2,6 @@ name: 'React CI'
 on:
   push:
   pull_request:
-defaults:
-  run:
-    working-directory: FrontEnd
 jobs:
   build-test:
     runs-on: ubuntu-latest
