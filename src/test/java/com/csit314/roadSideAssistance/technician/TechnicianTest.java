@@ -44,7 +44,7 @@ class TechnicianTest {
     @DisplayName("Simple Test of Valid User Constraint")
     void testValidUser() throws TechnicianException {
         TechnicianException thrown = Assertions.assertThrows(TechnicianException.class, () -> {
-            Technician technician = new Technician("Jay", "Smith", "jaysmith@mail.com",
+            Technician technician = new Technician("", "Smith", "jaysmith@mail.com",
                     LocalDate.of(1990, Month.FEBRUARY, 12), "01234567890",
                     "password", "1 main street", "Wollongong",
                     "2500", "NSW",  true, true);
