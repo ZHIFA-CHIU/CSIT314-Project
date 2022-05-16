@@ -2,7 +2,8 @@ import { Navigate } from "react-router-dom";
 import Home from "../pages/Home/Home"
 import Login from "../pages/Login";
 import Signup from "../pages/Signup";
-import CreateAccountTechnician from "../pages/CreateAccountTechnician";
+import TechnicianLogin from "../pages/TechnicianLogin";
+import TechnicianSignup from "../pages/TechnicianSignup";
 import ServiceRequest from "../pages/ServiceRequest";
 import CustomerDashboard from "../pages/CustomerDashboard";
 import TechnicianDashboard from "../pages/TechnicianDashboard";
@@ -21,8 +22,12 @@ export default [
         element: <Signup />
     },
     {
-        path: "CreateAccountTechnician",
-        element: <CreateAccountTechnician />
+        path: "TechnicianSignup",
+        element: <TechnicianSignup />
+    },
+    {
+        path: "TechnicianLogin",
+        element: <TechnicianLogin />
     },
     {
         path: "ServiceRequest",

@@ -5,7 +5,7 @@ import { technicianSignupRequest } from '../../api';
 import { useNavigate } from 'react-router-dom';
 
 
-const CreateTechnicianCustomer = () => {
+const CreateAccountTechnician = () => {
     const navigate = useNavigate();
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
@@ -20,13 +20,13 @@ const CreateTechnicianCustomer = () => {
     const [heavyVehicleQualification, setHeavyVehicleQualification] = useState("");
     const [lightVehicleQualification, setLightVehicleQualification] = useState("");
 
-    const onfirstNameChange = e => setFirstName(e.target.value);
+    const onFirstNameChange = e => setFirstName(e.target.value);
     const onLastNameChange = e => setLastName(e.target.value);
     const onEmailChange = e => setEmail(e.target.value);
     const onDobChange = e => setDob(e.target.value);
     const onPhoneNumberChange = e => setPhoneNumber(e.target.value);
     const onPasswordChange = e => setPassword(e.target.value);
-    const onStreetAdressChange = e => setStreetAddress(e.target.value);
+    const onStreetAddressChange = e => setStreetAddress(e.target.value);
     const onSuburbChange = e => setSuburb(e.target.value);
     const onPostCodeChange = e => setPostCode(e.target.value);
     const onStateChange = e => setState(e.target.value);
@@ -45,13 +45,13 @@ const CreateTechnicianCustomer = () => {
                 // console.log(response.data);
                 let obj = JSON.parse(JSON.stringify(response.data));
                 if (obj)
-                    navigate("/login")
+                    navigate("/technicianLogin")
             }
 
         ).catch(
             error => {
                 alert("Account already exists test");
-                //navigate("/technicianSignup");
+                navigate("/technicianSignup");
             }
         );
     }
@@ -64,13 +64,13 @@ const CreateTechnicianCustomer = () => {
         <div className='technicianSignup'>
             <h1>TechnicianSignup</h1>
             <form className='technicianSignup-form' onSubmit={handleSubmit}>
-                <TextField onChange={onfirstNameChange} id="firstName" label="First Name" variant="outlined" fullWidth margin='normal' />
+                <TextField onChange={onFirstNameChange} id="firstName" label="First Name" variant="outlined" fullWidth margin='normal' />
                 <TextField onChange={onLastNameChange} id="lastName" label="Last Name" variant="outlined" fullWidth margin='normal' />
                 <TextField onChange={onEmailChange} id="email" label="Email" variant="outlined" fullWidth margin='normal' />
                 <TextField onChange={onPasswordChange} id="password" label="Password" type={"password"} variant="outlined" fullWidth margin='normal' />
                 <TextField onChange={onPhoneNumberChange} id="phoneNumber" label="Phone" variant="outlined" fullWidth margin='normal' />
                 <TextField onChange={onDobChange} id="dob" label="Date of Birth(yyyy-mm-dd)" variant="outlined" fullWidth margin='normal' />
-                <TextField onChange={onStreetAdressChange} id="streetAddress" label="Street" variant="outlined" fullWidth margin='normal' />
+                <TextField onChange={onStreetAddressChange} id="streetAddress" label="Street" variant="outlined" fullWidth margin='normal' />
                 <TextField onChange={onSuburbChange} id="suburb" label="Suburb" variant="outlined" fullWidth margin='normal' />
                 <TextField onChange={onPostCodeChange} id="postCode" label="Post Code" variant="outlined" fullWidth margin='normal' />
                 <TextField onChange={onStateChange} id="state" label="State" variant="outlined" fullWidth margin='normal' />
@@ -81,7 +81,7 @@ const CreateTechnicianCustomer = () => {
                 >
                     TechnicianSignup
                 </Button>
-                <Link variant={"body2"} underline={"hover"} href={"/login"}>
+                <Link variant={"body2"} underline={"hover"} href={"/TechnicianLogin"}>
                     {"Already a member? Login"}
                 </Link>
             </form>
@@ -89,4 +89,4 @@ const CreateTechnicianCustomer = () => {
     )
 }
 
-export default CreateTechnicianCustomer;
+export default CreateAccountTechnician;

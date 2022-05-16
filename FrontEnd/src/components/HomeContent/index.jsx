@@ -16,7 +16,10 @@ export default function HomeContent() {
                     <Button onClick={() => navigate("/signup")} variant={"outlined"}>Sign Up</Button>
                 </div>
                 <div className='technician signup'>
-                    <Button onClick={() => navigate("/createAccountTechnician")} variant={"outlined"}>Sign Up Technician</Button>
+                    <Button onClick={() => navigate("/technicianSignup")} variant={"outlined"}>Sign Up Technician</Button>
+                </div>
+                <div className='technician login'>
+                    <Button onClick={() => navigate("/technicianLogin")} variant={"outlined"}>Login Technician</Button>
                 </div>
             </div>
         </div>
