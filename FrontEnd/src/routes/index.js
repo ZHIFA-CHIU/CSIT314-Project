@@ -2,7 +2,7 @@ import { Navigate } from "react-router-dom";
 import Home from "../pages/Home/Home"
 import Login from "../pages/Login";
 import Signup from "../pages/Signup";
-import CreateAccountTechnician from "../pages/CreateAccountTechnician/CreateAccountTechnician";
+import CreateAccountTechnician from "../pages/CreateAccountTechnician";
 import ServiceRequest from "../pages/ServiceRequest";
 import CustomerDashboard from "../pages/CustomerDashboard";
 import TechnicianDashboard from "../pages/TechnicianDashboard";
