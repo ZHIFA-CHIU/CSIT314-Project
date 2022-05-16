@@ -58,12 +58,8 @@ public class Technician extends User {
     @OneToMany(mappedBy = "technician", cascade = CascadeType.ALL)
     private Set<Job> jobs = new LinkedHashSet<>();
 
-//    private BankAccount bankAccount;
-
     public Technician() {
         super();
-//        Maybe no initl of vars below?
-//        bankAccount = new BankAccount();
     }
 
     public Technician(String firstName, String lastName, String email, LocalDate dob,
@@ -79,16 +75,6 @@ public class Technician extends User {
             throw new TechnicianException("Technician fails to meet consistency constraints");
         }
     }
-
-/*    public Technician(String UUID, String email, String mobileNumber,
-                      String passwordHash, String firstName, String lastName,
-                      String dateOfBirth, String address, String suburb,
-                      String postcode, String state) {
-//        super(UUID, email, mobileNumber,
-//              passwordHash, firstName, lastName,
-//              dateOfBirth, address, suburb,
-//              postcode, state);
-    }*/
 
     public void addToAvgRating(double rating) {
         avgRating += rating;
