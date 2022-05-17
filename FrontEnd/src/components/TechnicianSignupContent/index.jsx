@@ -35,11 +35,8 @@ const CreateAccountTechnician = () => {
 
     const handleSubmit = e => {
         e.preventDefault();
-//        technicianSignupRequest(
-//            firstName, lastName, email, dob, phoneNumber, password, streetAddress, suburb, postCode, state, false, false
-//        ).then(
         technicianSignupRequest(
-            "firstName", "lastName", "email@email.com", "2000-01-01", "0412345678", "password", "streetAddress", "suburb", "postCode", "state", false, false
+            firstName, lastName, email, dob, phoneNumber, password, streetAddress, suburb, postCode, state, false, false
         ).then(
             response => {
                 // console.log(response.data);
@@ -62,7 +59,7 @@ const CreateAccountTechnician = () => {
 
     return (
         <div className='technicianSignup'>
-            <h1>TechnicianSignup</h1>
+            <h1>Technician Signup</h1>
             <form className='technicianSignup-form' onSubmit={handleSubmit}>
                 <TextField onChange={onFirstNameChange} id="firstName" label="First Name" variant="outlined" fullWidth margin='normal' />
                 <TextField onChange={onLastNameChange} id="lastName" label="Last Name" variant="outlined" fullWidth margin='normal' />
@@ -79,7 +76,7 @@ const CreateAccountTechnician = () => {
                     fullWidth
                     variant="contained"
                 >
-                    TechnicianSignup
+                    Signup
                 </Button>
                 <Link variant={"body2"} underline={"hover"} href={"/TechnicianLogin"}>
                     {"Already a member? Login"}
