@@ -1,10 +1,8 @@
 import React from 'react'
-import { Box, Button, Link, TextField, Typography } from '@mui/material'
-import { loginRequest } from '../../api';
+import { Box, Button, Link, TextField, Typography,  } from '@mui/material'
+import { technicianLoginRequest } from '../../api';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
-
 
 
 export default function TechnicianLoginContent() {
@@ -17,7 +15,6 @@ export default function TechnicianLoginContent() {
     // const [userError, setUserError] = useState([false, ""]);
     // pwd error
     // const [pwdErr, setPwdErr] = useState([false, ""]);
-
 
     /**
      * when username change update username state
@@ -71,16 +68,16 @@ export default function TechnicianLoginContent() {
         // console.log(username, password);
         // send log in request
         // if (validateUsername() && validatePwd())
-        loginRequest(email, password).then(
+        technicianLoginRequest(email, password).then(
             response => {
                 // console.log(response.data);
                 // let obj = JSON.parse(response.data);
                 // console.log(obj);
                 let tmp = JSON.stringify(response.data);
                 let obj = JSON.parse(tmp);
-                // console.log(obj["customer-id"]);
+                // console.log(obj["technicianId"]);
                 if (obj.login)
-                    navigate("/CustomerDashboard", { state: { id: obj["customer-id"] } })
+                    navigate("/TechnicianDashboard", { state: { id: obj["technicianId"] } })
                 else
                     alert("Login failed")
             }
@@ -136,13 +133,12 @@ export default function TechnicianLoginContent() {
                 // error={userError[0]}
                 // helperText={userError[1]}
                 />
-
                 <Button
                     type="submit"
                     fullWidth
                     variant="contained"
                     sx={{ mt: 3, mb: 2 }}
-                >
+                    >
                     Log In
                 </Button>
 
@@ -152,12 +148,14 @@ export default function TechnicianLoginContent() {
                         justifyContent: "center"
                     }}
                 >
-                    <Link variant={"body2"} underline={"hover"} href={"/signup"}>
+                    <Link variant={"body2"} underline={"hover"} href={"/TechnicianSignup"}>
                         {"Don't have an account? Sign Up"}
                     </Link>
                 </Box>
-
+                
             </form>
         </Box>
+
+
     )
 }
