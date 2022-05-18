@@ -6,6 +6,8 @@ import CreateAccountTechnician from "../pages/CreateAccountTechnician/CreateAcco
 import ServiceRequest from "../pages/ServiceRequest";
 import CustomerDashboard from "../pages/CustomerDashboard";
 import TechnicianDashboard from "../pages/TechnicianDashboard";
+import VehList from "../pages/Vehicle/";
+import AddVehicle from "../components/VehicleContent/AddVehicle";
 
 export default [
     {
@@ -35,6 +37,14 @@ export default [
     {
         path: "TechnicianDashboard",
         element: <TechnicianDashboard />
+    },
+    {
+        path: "VehList",
+        element: <VehList />
+    },
+    {
+        path: "AddVehicle",
+        element: <AddVehicle />
     },
     {
         path: "/",

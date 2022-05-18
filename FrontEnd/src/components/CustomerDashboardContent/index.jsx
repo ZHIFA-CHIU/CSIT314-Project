@@ -24,7 +24,7 @@ const CustomerDashboard = () => {
    }
 
    const navMyVehicles = (e) => {
-      //navigate('/');
+      navigate('/VehList');
    }
 
    const navServiceHistory = (e) => {
