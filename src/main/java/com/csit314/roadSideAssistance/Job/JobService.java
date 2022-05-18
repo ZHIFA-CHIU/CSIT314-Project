@@ -67,6 +67,11 @@ public class JobService {
         return job.get();
     }
 
+    public Job get(Long jobId) {
+
+        return jobRepository.findById(jobId).get();
+    }
+
     public void addTechnician(Long jobId, Long technicianId) {
         Technician technician = technicianService.getById(technicianId);
         Optional<Job> job = jobRepository.findById(jobId);

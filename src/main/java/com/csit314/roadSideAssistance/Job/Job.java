@@ -30,11 +30,11 @@ public class Job {
     @Column(name = "id", updatable = false, nullable = false)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "customer_id", referencedColumnName = "id")
     private Customer customer;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="technician_id", referencedColumnName="id")
     private Technician technician;
 
