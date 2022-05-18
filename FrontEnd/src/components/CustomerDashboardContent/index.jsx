@@ -7,14 +7,13 @@ const CustomerDashboard = () => {
     // getting customer ID
     let history = useLocation();
     let [id, _] = useState(history.state.id);
-
     // test function is to see if we get customer id successfully
     const test = () => console.log(id);
 
     const navigate = useNavigate();
 
     const navRequestRepair = (e) => {
-        navigate('/ServiceRequest');
+        navigate('/ServiceRequest', {state: {"customerId": id}});
     }
 
     const navManageSubcript = (e) => {
