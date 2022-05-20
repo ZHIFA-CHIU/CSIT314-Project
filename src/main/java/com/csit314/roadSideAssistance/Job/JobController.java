@@ -40,12 +40,12 @@ public class JobController {
     @PostMapping(path = "/{customerId}")
     public Job registerJob(@RequestBody Job job, @PathVariable("customerId") Long customerId) {
         jobService.registerJob(job, customerId);
+        return jobService.get(job.getId());
     }
 
     @PutMapping
     public void updateJob(@RequestBody Job job) {
         jobService.updateJob(job);
-        return jobService.get(job.getId());
     }
 
     @PostMapping(path = "/addTechnician/{jobId}/{technicianId}")
