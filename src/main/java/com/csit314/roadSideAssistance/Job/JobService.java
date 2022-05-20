@@ -32,6 +32,11 @@ public class JobService {
     public List<Job> findAllJobs() {
         return jobRepository.findAll();
     }
+    
+    public Job get(Long jobId) {
+
+        return jobRepository.findById(jobId).get();
+    }
 
     public void registerJob(Job job, Long customerID) {
         job.setCustomer(customerService.getById(customerID));
