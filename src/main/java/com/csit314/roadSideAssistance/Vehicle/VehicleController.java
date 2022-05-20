@@ -10,7 +10,7 @@ import java.util.List;
  */
 @CrossOrigin(origins = "http://localhost:3000/")
 @RestController
-@RequestMapping(path = "api/v1/Vehicle")
+@RequestMapping(path = "api/v1/vehicle")
 public class VehicleController {
 
     private final VehicleService vehicleService;
@@ -23,6 +23,7 @@ public class VehicleController {
     public List<Vehicle> getVehicles() {
         return vehicleService.getVehicle();
     }
+
 
     @DeleteMapping(path = "{vehicleRego}")
     @Transactional
