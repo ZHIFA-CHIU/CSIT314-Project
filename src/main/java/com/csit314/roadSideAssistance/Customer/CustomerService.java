@@ -101,8 +101,18 @@ public class CustomerService {
         }
 
         vehicle.setCustomer(customerOptional.get());
+        vehicle.setCustomerID(customerId);
         vehicleRepository.save(vehicle);
 
         return true;
+    }
+
+    public List<Vehicle> getVehicle(Long customerId) throws CustomException{
+        List<Vehicle> vehicleOptional = vehicleRepository.findVehicleByCustomerIDEquals(customerId);
+        if(vehicleOptional.isEmpty())
+        {
+            throw new CustomException("Vehicle with id " + customerId + " does not exist");
+        }
+        return vehicleOptional;
     }
 }
