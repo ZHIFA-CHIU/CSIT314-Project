@@ -1,12 +1,10 @@
 package com.csit314.roadSideAssistance.Technician;
 
 import com.csit314.roadSideAssistance.BankAccount.BankAccount;
-import com.csit314.roadSideAssistance.Customer.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.UUID;
 
 /**
  * Technician Controller
@@ -35,6 +33,11 @@ public class TechnicianController {
     @GetMapping
     public List<Technician> getTechnicians() {
         return technicianService.getTechnician();
+    }
+
+    @GetMapping(path = "/get/{technicianId}")
+    public Technician getTechnicianByID(@PathVariable("technicianId") Long technicianId) {
+        return technicianService.getById(technicianId);
     }
 
     @PostMapping(path = "/login")
