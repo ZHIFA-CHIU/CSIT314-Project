@@ -34,7 +34,7 @@ public class Job {
     @JoinColumn(name = "customer_id", referencedColumnName = "id")
     private Customer customer;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="technician_id", referencedColumnName="id")
     private Technician technician;
 
