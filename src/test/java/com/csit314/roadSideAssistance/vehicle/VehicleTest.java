@@ -1,23 +1,15 @@
 package com.csit314.roadSideAssistance.Vehicle;
 
-import com.csit314.roadSideAssistance.Vehicle.Vehicle;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.util.Assert;
 
 import java.time.Year;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.springframework.util.Assert.doesNotContain;
 
-@SpringBootTest
+@SpringBootTest(classes = VehicleTest.class)
 class VehicleTest {
-
-    @Test
-    void contextLoads() {
-    }
-
 
     @Test
     @DisplayName("Simple test of vehicle get rego plate")

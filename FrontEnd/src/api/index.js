@@ -27,7 +27,7 @@ export const technicianSignupRequest = (firstName, lastName, email,
 
 
 // service request
-export const serviceRequest = (location, data) =>
-    ajax("http://localhost:3000/api1/api/v1/job/1",{
-        location, data
+export const serviceRequest = (customerId,location, data) =>
+    ajax(`http://localhost:3000/api1/api/v1/job/${customerId}`,{
+        ...location, ...data
     }, "POST")

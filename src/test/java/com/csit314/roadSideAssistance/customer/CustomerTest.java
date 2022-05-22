@@ -1,4 +1,4 @@
-package com.csit314.roadSideAssistance;
+package customer;
 
 import com.csit314.roadSideAssistance.Customer.CustomException;
 import com.csit314.roadSideAssistance.Customer.Customer;
@@ -14,25 +14,19 @@ import java.time.Month;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-@SpringBootTest
-class TestCustomerClass {
+@SpringBootTest(classes = CustomerTest.class)
+class CustomerTest {
 
-    public TestCustomerClass() {}
-    //@Test
-    //void contextLoads() {
-    //}
-
-    //customer tests
     @Test
     @DisplayName("Simple Test of Customer Creation")
     void testCreateCustomer() throws CustomException, NoSuchAlgorithmException {
-        Customer c = new Customer("Jay", "Smith", "jaysmith@mail.com",
+        Customer c = new Customer("Jay", "Smith", "jaysmith@gmail.com",
                 LocalDate.of(1990, Month.FEBRUARY, 12), "01234567890",
                 "password", "1 main street", "Wollongong",
                 "2500", "NSW");
 
-        assertEquals(c.getFirstName(), "Bob", "Checking name");
-        assertEquals(c.getEmail(), "bobsemail@gmail.com", "Checking email");
+        assertEquals(c.getFirstName(), "Jay", "Checking name");
+        assertEquals(c.getEmail(), "jaysmith@gmail.com", "Checking email");
     }
 
     @Test
@@ -41,7 +35,7 @@ class TestCustomerClass {
         CustomException thrown = Assertions.assertThrows(CustomException.class, () -> {
             //Code under test
             Customer c = new Customer("Jay", "Smith", "jaysmith@mail.com",
-                    LocalDate.of(1990, Month.FEBRUARY, 12), "01234567890",
+                    LocalDate.of(1900, Month.FEBRUARY, 12), "01234567890",
                     "password", "1 main street", "Wollongong",
                     "2500", "NSW");
         });
@@ -65,12 +59,8 @@ class TestCustomerClass {
                 LocalDate.of(1990, Month.FEBRUARY, 12), "01234567890",
                 "password", "1 main street", "Wollongong",
                 "2500", "NSW");
-        //Customer new_c = new Customer();
-        //new_c.setPassword("password");
         assertTrue(c.checkPassword("password"));
         c.setPassword("bail7198kxvckn");
-        //new_c.setPassword("bail7198kxvckn");
-        //System.out.println("c pass: " + c.getPassword() + " new_c pass: "+  new_c.getPassword());
         assertTrue(c.checkPassword("bail7198kxvckn"));
     }
 

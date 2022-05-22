@@ -27,14 +27,18 @@ public class JobController {
         return jobService.findAllJobs();
     }
 
+    @GetMapping(path = "{jobId}")
+    public Job get(@PathVariable("jobId") Long jobId ) { return jobService.get(jobId); }
+
     @GetMapping(path = "/{customerId}/{startTime}")
     public Job getJob(@PathVariable("customerId") Long customerId, @PathVariable("startTime") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)  LocalDateTime startTime) {
         return jobService.getJob(customerId, startTime);
     }
 
     @PostMapping(path = "/{customerId}")
-    public void registerJob(@RequestBody Job job, @PathVariable("customerId") Long customerId) {
+    public Job registerJob(@RequestBody Job job, @PathVariable("customerId") Long customerId) {
         jobService.registerJob(job, customerId);
+        return jobService.get(job.getId());
     }
 
     @PutMapping

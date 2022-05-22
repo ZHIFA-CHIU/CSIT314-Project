@@ -6,14 +6,12 @@ import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.Month;
 import java.util.UUID;
 
 /**
  * BankAccount model
- *
- * @author      Jack_Is_2048
- * @version     0.1
- * @since       0.1
  */
 @Getter
 @Entity
@@ -30,10 +28,18 @@ public class BankAccount {
 
     public BankAccount() {}
 
-    public BankAccount(String accountName, String bsb, String accountNumber) {
+    public BankAccount(String accountName, String bsb, String accountNumber) throws BankAccountException {
         this.accountName = accountName;
         this.bsb = bsb;
         this.accountNumber = accountNumber;
+
+        if (!validateBankAccount()) {
+            throw new BankAccountException("Bank Account fails to meet consistency constraints");
+        }
+    }
+
+    public boolean validateBankAccount() {
+        return !accountName.equals("") && !bsb.equals("") && !accountNumber.equals("");
     }
 
     @Override
