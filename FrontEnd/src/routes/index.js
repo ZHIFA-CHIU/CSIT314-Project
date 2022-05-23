@@ -42,6 +42,14 @@ export default [
         element: <TechnicianDashboard />
     },
     {
+        path: "/AcceptJob",
+        element: <AcceptJob />
+    },
+    {
+        path: "/ListJobs",
+        element: <ListJobs />
+    },
+    {
         path: "/",
         element: <Navigate to="/home" />
     }
