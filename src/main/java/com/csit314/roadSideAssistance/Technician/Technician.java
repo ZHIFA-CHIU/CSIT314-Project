@@ -7,8 +7,8 @@ package com.csit314.roadSideAssistance.Technician;
  * */
 
 import com.csit314.roadSideAssistance.BankAccount.BankAccount;
-import com.csit314.roadSideAssistance.Customer.CustomException;
 import com.csit314.roadSideAssistance.Job.Job;
+import com.csit314.roadSideAssistance.Review.Review;
 import com.csit314.roadSideAssistance.User.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -58,6 +58,10 @@ public class Technician extends User {
     @OneToMany(mappedBy = "technician", cascade = CascadeType.ALL)
     private Set<Job> jobs = new LinkedHashSet<>();
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "technician", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Review> reviews = new LinkedHashSet<>();
+
     public Technician() {
         super();
     }
@@ -74,11 +78,6 @@ public class Technician extends User {
         if (!validateUser()) {
             throw new TechnicianException("Technician fails to meet consistency constraints");
         }
-    }
-
-    public void addToAvgRating(double rating) {
-        avgRating += rating;
-        setAvgRating(avgRating / 2);
     }
 
     @Override

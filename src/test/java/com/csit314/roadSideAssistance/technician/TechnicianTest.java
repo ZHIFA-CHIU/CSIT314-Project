@@ -52,22 +52,6 @@ class TechnicianTest {
     }
 
     @Test
-    @DisplayName("Testing Technician adding to Avg Rating")
-    void addToAvgRating() throws TechnicianException, NoSuchAlgorithmException {
-        Technician technician = new Technician("Jay", "Smith", "jaysmith@mail.com",
-                LocalDate.of(1990, Month.FEBRUARY, 12), "01234567890",
-                "password", "1 main street", "Wollongong",
-                "2500", "NSW",  true, true);
-
-        technician.setAvgRating(3.5);
-
-        // Add a rating of 4
-        technician.addToAvgRating(4);
-
-        assertEquals(technician.getAvgRating(), 3.75, "Checking Avg Rating");
-    }
-
-    @Test
     @DisplayName("Testing technician password authentication")
     void testCustomerPassword() throws TechnicianException, NoSuchAlgorithmException {
         Technician t = new Technician("Jay", "Smith", "jaysmith@mail.com",
