@@ -32,11 +32,6 @@ public class JobService {
     public List<Job> findAllJobs() {
         return jobRepository.findAll();
     }
-    
-    public Job get(Long jobId) {
-
-        return jobRepository.findById(jobId).get();
-    }
 
     public void registerJob(Job job, Long customerID) {
         job.setCustomer(customerService.getById(customerID));
@@ -100,7 +95,7 @@ public class JobService {
             dist = Math.acos(dist);
             dist = rad2deg(dist);
             dist = dist * 60 * 1.85315962;
-            if (dist < 50){
+            if (dist < 50 && j.getStatus() == Status.WAITING){
                 nearby.add(j);
             }
         }
