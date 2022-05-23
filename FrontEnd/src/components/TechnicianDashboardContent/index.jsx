@@ -8,7 +8,7 @@ const TechnicianDashboard = () => {
     const navigate = useNavigate();
 
     const navLookForRepair = (e) => {
-        //navigate('/');
+       navigate('/ListJobs');
     }
 
     const navRepairHistory = (e) => {
