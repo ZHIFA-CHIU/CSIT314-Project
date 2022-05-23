@@ -1,13 +1,15 @@
 package com.csit314.roadSideAssistance.Password;
 
+import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 
 public interface Password {
-    public void generateSalt();
 
-    public void setPassword(String password);
+    public void setPassword(String password) throws NoSuchAlgorithmException;
 
     public boolean checkPassword(String password);
 
-    public String hashPassword(String password, byte[] salt);
+    public String getPassword();
+
+    public String hashPassword(String password, byte[] salt) throws NoSuchAlgorithmException;
 }
