@@ -15,10 +15,6 @@ import java.util.UUID;
  *      Post
  *      Delete
  *      Put
- *
- * @author      Jack_Is_2048
- * @version     0.1
- * @since       0.1
  */
 @CrossOrigin(origins = "http://localhost:3000/")
 @RestController

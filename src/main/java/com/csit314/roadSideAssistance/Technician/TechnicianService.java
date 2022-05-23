@@ -13,10 +13,6 @@ import java.util.UUID;
 /**
  * Technician Service
  * Handles business logic for the Technician Controller
- *
- * @author      Jack_Is_2048
- * @version     0.1
- * @since       0.1
  */
 @Service
 public class TechnicianService {

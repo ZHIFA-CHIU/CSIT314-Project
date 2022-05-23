@@ -9,10 +9,6 @@ import java.util.UUID;
 /**
  * Technician Repository
  * Contains method to find technician(s) by email or phone number
- *
- * @author      Jack_Is_2048
- * @version     0.1
- * @since       0.1
  */
 @Repository
 public interface TechnicianRepository extends JpaRepository<Technician, Long> {

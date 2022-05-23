@@ -46,6 +46,8 @@ public class CustomerConfig implements CommandLineRunner {
                     faker.address().state()
             );
 
+            customer.setHasMembership(faker.bool().bool());
+
             customerList.add(customer);
         }
         repository.saveAll(customerList);
