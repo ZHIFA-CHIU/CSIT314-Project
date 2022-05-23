@@ -7,6 +7,8 @@ import TechnicianSignup from "../pages/TechnicianSignup";
 import ServiceRequest from "../pages/ServiceRequest";
 import CustomerDashboard from "../pages/CustomerDashboard";
 import TechnicianDashboard from "../pages/TechnicianDashboard";
+import AcceptJob from "../pages/AcceptJob";
+import ListJobs from "../pages/ListJobs";
 
 export default [
     {
