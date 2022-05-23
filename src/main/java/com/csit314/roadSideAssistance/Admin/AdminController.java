@@ -29,7 +29,7 @@ public class AdminController {
     }
 
     @DeleteMapping(path = "{adminId}")
-    public void deleteAdmin(@PathVariable("adminId") UUID adminId) {
+    public void deleteAdmin(@PathVariable("adminId") Long adminId) {
         adminService.deleteAdmin(adminId);
     }
 

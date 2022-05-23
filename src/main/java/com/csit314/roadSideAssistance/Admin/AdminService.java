@@ -28,7 +28,7 @@ public class AdminService {
         adminRepository.save(admin);
     }
 
-    public void deleteAdmin(UUID adminId){
+    public void deleteAdmin(Long adminId){
         boolean exists = adminRepository.existsById(adminId);
 
         if(!exists){
