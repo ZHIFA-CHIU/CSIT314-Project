@@ -9,5 +9,5 @@ public interface Password {
 
     public boolean checkPassword(String password);
 
-    public String hashPassword(String password);
+    public String hashPassword(String password, byte[] salt);
 }
