@@ -7,6 +7,7 @@ import TechnicianSignup from "../pages/TechnicianSignup";
 import ServiceRequest from "../pages/ServiceRequest";
 import CustomerDashboard from "../pages/CustomerDashboard";
 import TechnicianDashboard from "../pages/TechnicianDashboard";
+import Payment from "../pages/Payment";
 
 export default [
     {
@@ -44,5 +45,9 @@ export default [
     {
         path: "/",
         element: <Navigate to="/home" />
+    },
+    {
+        path: "/payment",
+        element: <Payment />
     }
 ];
