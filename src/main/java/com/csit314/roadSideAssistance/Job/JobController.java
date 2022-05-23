@@ -56,4 +56,8 @@ public class JobController {
         jobService.deleteJob(jobId);
     }
 
+    @PutMapping(path = "/closeJob/{jobId}")
+    public void closeJob(@PathVariable("jobId") Long jobId) {
+        jobService.closeJob(jobId);
+    }
 }

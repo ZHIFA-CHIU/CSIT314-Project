@@ -6,6 +6,7 @@ import com.csit314.roadSideAssistance.Customer.CustomerService;
 import com.csit314.roadSideAssistance.Job.Job;
 import com.csit314.roadSideAssistance.Job.JobRepository;
 import com.csit314.roadSideAssistance.Job.JobService;
+import com.csit314.roadSideAssistance.Job.Status;
 import com.csit314.roadSideAssistance.Technician.TechnicianService;
 import org.junit.jupiter.api.*;
 import org.mockito.ArgumentCaptor;
@@ -93,5 +94,12 @@ class JobServiceTest {
 
         //when
         assertThatThrownBy(() -> jobService.getJob(customerID, startTime)).hasMessageContaining("Job could not be found with customerID '9274972' and start time '2022-05-10T21:44:43.402945700'");
+    }
+
+    @Test
+    @DisplayName("Can close a job by JobID")
+    void canCloseJobById() {
+        Long jobID = 9274972L;
+        assertThatThrownBy(() -> jobService.closeJob(jobID)).hasMessageContaining("Job with ID 9274972 does not exist");
     }
 }
