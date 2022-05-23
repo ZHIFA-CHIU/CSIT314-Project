@@ -19,15 +19,11 @@ import java.security.SecureRandom;
 @Getter
 @Data
 @Table
-public class Admin {
+public class Admin implements Password{
     @Id
-    @GeneratedValue(generator = "uuidGen")
-    @GenericGenerator(
-            name = "uuidGen",
-            strategy = "org.hibernate.id.UUIDGenerator"
-    )
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     @Column(name = "id", updatable = false, nullable = false)
-    private UUID id;
+    private Long id;
     @Column(unique=true)
     private String email;
     private String mobileNumber;
