@@ -95,7 +95,7 @@ public class TechnicianService {
         technicianRepository.save(technicianOptional.get());
     }
     public Technician getById(Long technicianId){
-        Optional<Technician> technician = technicianRepository.findTechnicianByIdEquals(technicianId);
+        Optional<Technician> technician = technicianRepository.findById(technicianId);
         if(technician.isPresent()){
             return technician.get();
         }
@@ -103,6 +103,16 @@ public class TechnicianService {
             throw new IllegalStateException(String.format("Technician with id %s does not exist", technicianId));
         }
 
+    }
+
+    public void setAvgRating(Long technicianId, Double avgRating) throws TechnicianException {
+        Optional<Technician> technician = technicianRepository.findById(technicianId);
+        if(!technician.isPresent()) {
+            throw new TechnicianException("Technician with id " + technicianId + " does not exist");
+        }
+
+        technician.get().setAvgRating(avgRating);
+        technicianRepository.save(technician.get());
     }
 
     public String checkPassword(Technician technician) {

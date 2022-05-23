@@ -19,7 +19,7 @@ public interface TechnicianRepository extends JpaRepository<Technician, Long> {
     // Used to check whether a technician exists either by email or phone
     Optional<Technician> findTechnicianByEmailOrPhoneNumber(String email, String phoneNumber);
 
-    Optional<Technician> findTechnicianByIdEquals(Long id);
-
     Optional<Technician> findTechnicianByEmail(String email);
+
+    Optional<Technician> findTechnicianByIdEquals(Long id);
 }
