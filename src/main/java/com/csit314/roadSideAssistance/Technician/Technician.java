@@ -88,6 +88,6 @@ public class Technician extends User {
                 ", heavyVehicleQualification=" + heavyVehicleQualification +
                 ", avgRating=" + avgRating +
                 ", bankAccount=" + bankAccount +
-                "} " + super.toString();
+                "} ";
     }
 }
