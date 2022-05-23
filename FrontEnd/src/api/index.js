@@ -31,3 +31,7 @@ export const serviceRequest = (customerId,location, data) =>
     ajax(`http://localhost:3000/api1/api/v1/job/${customerId}`,{
         ...location, ...data
     }, "POST")
+
+//close job
+export const closeJob = (jobId) =>
+    ajax(`http://localhost:3000/api1/api/v1/job/closeJob/${jobId}`, {}, "PUT")
