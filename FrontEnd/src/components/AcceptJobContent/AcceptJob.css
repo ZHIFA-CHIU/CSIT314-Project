@@ -1,0 +1,23 @@
+h3{
+    font-size: 42px;
+    text-align: center;
+}
+
+.infoLabel{
+    margin-left: 10%;
+}
+
+.serviceInfo{
+    border: 1px solid black;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#buttons{
+    width: 50%;
+    margin: 0 auto;
+
+    display: flex;
+    flex-direction: row;
+}
