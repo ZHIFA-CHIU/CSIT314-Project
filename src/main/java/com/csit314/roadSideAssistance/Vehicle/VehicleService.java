@@ -26,8 +26,6 @@ public class VehicleService {
         return vehicleRepository.findAll();
     }
 
-
-
     public void registerVehicle(Vehicle vehicle, Long customerID) {
         Optional<Vehicle> foundVehicle = vehicleRepository.findVehicleByRego(vehicle.getRego());
 
