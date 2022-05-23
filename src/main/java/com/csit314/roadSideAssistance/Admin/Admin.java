@@ -19,7 +19,7 @@ import java.security.SecureRandom;
 @Getter
 @Data
 @Table
-public class Admin implements Password{
+public class Admin{
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     @Column(name = "id", updatable = false, nullable = false)
