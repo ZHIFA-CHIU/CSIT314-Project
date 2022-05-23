@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 @CrossOrigin(origins = "http://localhost:3000/")
@@ -28,8 +27,8 @@ public class CustomerController {
     }
 
     @GetMapping(path = "/get/{customerId}")
-    public Optional<Customer> getCustomerByID(@PathVariable("customerId") Long customerId) {
-        return Optional.ofNullable(customerService.getById(customerId));
+    public Customer getCustomerByID(@PathVariable("customerId") Long customerId) {
+        return customerService.getById(customerId);
     }
 
     @PostMapping(path = "/login")
@@ -54,14 +53,9 @@ public class CustomerController {
 
     // -- Vehicle endpoints --
 
-    @PostMapping(path = "/addVehicle/{customerId}")
+    @PutMapping(path = "/addVehicle/{customerId}")
     public boolean addVehicle(@PathVariable("customerId") Long customerId, @RequestBody Vehicle vehicle) throws CustomException {
         return customerService.addVehicle(customerId, vehicle);
-    }
-
-    @GetMapping(path = "/getVehicle/{customerId}")
-    public List<Vehicle> getVehicles(@PathVariable("customerId") Long customerId) throws CustomException {
-        return customerService.getVehicle(customerId);
     }
 
 //    @DeleteMapping(path = "/deleteVehicle/")

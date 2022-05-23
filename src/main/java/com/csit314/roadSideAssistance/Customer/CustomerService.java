@@ -104,7 +104,6 @@ public class CustomerService {
 
         return true;
     }
-
     public List<Vehicle> getVehicle(Long customerId) throws CustomException{
         List<Vehicle> vehicleOptional = vehicleRepository.findVehicleByCustomerIDEquals(customerId);
         if(vehicleOptional.isEmpty())
