@@ -1,0 +1,18 @@
+.customer-content-detail {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.customer-content-detail-form {
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.customer-content-detail-form button {
+    max-height: 20px;
+}

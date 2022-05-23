@@ -15,9 +15,11 @@ const ajax = (url, data = {}, method = "GET") => {
         return axios.get(url, {
             params: data
         })
-    } else {
+    } else if (method.toUpperCase() === "POST") {
         // sending post request
         return axios.post(url, data)
+    } else if (method.toUpperCase() === "PUT") {
+        return axios.put(url, data);
     }
 }
 

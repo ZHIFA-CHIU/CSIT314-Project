@@ -7,6 +7,8 @@ import TechnicianSignup from "../pages/TechnicianSignup";
 import ServiceRequest from "../pages/ServiceRequest";
 import CustomerDashboard from "../pages/CustomerDashboard";
 import TechnicianDashboard from "../pages/TechnicianDashboard";
+import CustomerDetail from "../pages/CustomerDetail";
+import TechnicianDetail from "../pages/TechnicianDetail";
 
 export default [
     {
@@ -40,6 +42,14 @@ export default [
     {
         path: "TechnicianDashboard",
         element: <TechnicianDashboard />
+    },
+    {
+        path: "CustomerDetail",
+        element: <CustomerDetail />
+    },
+    {
+        path: "TechnicianDetail",
+        element: <TechnicianDetail />
     },
     {
         path: "/",

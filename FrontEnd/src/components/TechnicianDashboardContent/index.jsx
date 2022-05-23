@@ -1,10 +1,14 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, {useState} from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { Button } from '@mui/material'
 import "./TechnicianDashboard.css";
 
 
 const TechnicianDashboard = () => {
+    const history = useLocation();
+    let [id, _] = useState(history.state.id);
+    console.log(id);
+
     const navigate = useNavigate();
 
     const navLookForRepair = (e) => {
@@ -16,7 +20,7 @@ const TechnicianDashboard = () => {
     }
 
     const navUpdateDetails = (e) => {
-        //navigate('/');
+        navigate("/TechnicianDetail", {state: {id}});
     }
 
     const navUpdatePayDetails = (e) => {
