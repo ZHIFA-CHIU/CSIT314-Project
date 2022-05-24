@@ -18,6 +18,7 @@ export default function CustomerDetailContent({ id }) {
     const [suburb, setSuburb] = useState("");
     const [postCode, setPostCode] = useState("");
     const [state, setState] = useState("");
+    const [hasMembership, setHasMembership] = useState("")
 
     const onEmailChange = e => setEmail(e.target.value);
     const onPasswordChange = e => setPassword(e.target.value);
@@ -49,6 +50,7 @@ export default function CustomerDetailContent({ id }) {
                 setFirstName(response.data.firstName);
                 setLastName(response.data.lastName);
                 setDob(response.data.dob);
+                setHasMembership(response.data.hasMembership);
             }
         ).catch(
             err => alert(err)
@@ -56,27 +58,26 @@ export default function CustomerDetailContent({ id }) {
         , []);
 
 
-    // const handleSubmit = e => {
-    //     e.preventDefault();
-    //     console.log(customerId);
-    //     updateCustomerDetailsRequest(
-    //        customerId, firstName, lastName, email, password, dob, phoneNumber, age, streetAddress, suburb, postCode, state, false
-    //     ).then(
-    //         response => {
-    //             // console.log(response.data);
-    //             let obj = JSON.parse(JSON.stringify(response.data));
-    //             if (obj)
-    //                 navigate("/CustomerDashboard", { state: { customerId } })
-    //         }
+    const handleSubmit = e => {
+        e.preventDefault();
+        updateCustomerDetailsRequest(
+            id, firstName, lastName, email, password, dob, phoneNumber, age, streetAddress, suburb, postCode, state, hasMembership
+        ).then(
+            response => {
+                console.log(response.data);
+                let obj = JSON.parse(JSON.stringify(response.data));
+                if (obj)
+                    navigate("/CustomerDashboard", { state: { id } })
+            }
 
-    //     ).catch(
-    //         (error) => {
-    //             alert(error);
-    //             // alert("Failed to update details");
-    //             navigate("/CustomerDetail");
-    //         }
-    //     )
-    // }
+        ).catch(
+            (error) => {
+                alert(error);
+                // alert("Failed to update details");
+                navigate("/CustomerDetail");
+            }
+        )
+    }
 
     /**
      * This is a test function 
@@ -91,7 +92,7 @@ export default function CustomerDetailContent({ id }) {
         <div className='customer-content-detail'>
             {/* <Button onClick={test}>Click Me</Button> */}
             <h1>{firstName} Details</h1>
-            <form className='customer-content-detail-form'>
+            <form className='customer-content-detail-form' onSubmit={handleSubmit}>
                 <TextField id="email" label="Email" variant="outlined" fullWidth margin='normal' value={email} onChange={onEmailChange} />
                 <TextField id="firstName" label="First Name" variant="outlined" fullWidth margin='normal' value={firstName} inputProps={{ readOnly: true, }} />
                 <TextField id="lastName" label="Last Name" variant="outlined" fullWidth margin='normal' value={lastName} inputProps={{ readOnly: true, }} />
