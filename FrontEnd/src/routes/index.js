@@ -8,6 +8,8 @@ import ServiceRequest from "../pages/ServiceRequest";
 import CustomerDashboard from "../pages/CustomerDashboard";
 import TechnicianDashboard from "../pages/TechnicianDashboard";
 import Payment from "../pages/Payment";
+import CustomerDetail from "../pages/CustomerDetail";
+import TechnicianDetail from "../pages/TechnicianDetail";
 
 export default [
     {
@@ -49,5 +51,13 @@ export default [
     {
         path: "/payment",
         element: <Payment />
+    },
+    {
+        path: "/CustomerDetail",
+        element: <CustomerDetail />
+    }, 
+    {
+        path: "/TechnicianDetail",
+        element: <TechnicianDetail />
     }
 ];

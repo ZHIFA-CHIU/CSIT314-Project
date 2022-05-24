@@ -45,3 +45,11 @@ export const updateCustomerDetailsRequest = (id, firstName, lastName, email,
 
 // get customer details
 export const getTechnicianDetailsRequest = id => ajax(`http://localhost:3000/api1/api/v1/technician/get/${id}`, { id }, "GET");
+
+// update technician details
+export const updateTechnicianDetailsRequest = (id, age, availableStatus, avgRating, bankAccount, dob, email,
+    firstName, heavyVehicleQualification, lastName, lightVehicleQualification, password, phoneNumber, postCode, state, streetAddress, suburb
+) => ajax("http://localhost:3000/api1/api/v1/technician", {
+    id, age, availableStatus, avgRating, bankAccount, dob, email,
+    firstName, heavyVehicleQualification, lastName, lightVehicleQualification, password, phoneNumber, postCode, state, streetAddress, suburb
+}, "PUT");
