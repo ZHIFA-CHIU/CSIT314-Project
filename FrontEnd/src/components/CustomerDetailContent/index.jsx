@@ -38,7 +38,7 @@ export default function CustomerDetailContent({ id }) {
     useEffect(
         () => getCustomerDetailsRequest(id).then(
             response => {
-                console.log(response.data);
+                // console.log(response.data);
                 // setDetails(response.data);
                 setEmail(response.data.email);
                 setPhoneNumber(response.data.phoneNumber);
@@ -56,28 +56,27 @@ export default function CustomerDetailContent({ id }) {
         , []);
 
 
-    const handleSubmit = e => {
-        e.preventDefault();
-        // console.log(id);
-        let hasMembership = false;
-        updateCustomerDetailsRequest(
-           id, firstName, lastName, email, password, dob, phoneNumber, age, streetAddress, suburb, postCode, state, hasMembership
-        ).then(
-            response => {
-                console.log(response.data);
-                let obj = JSON.parse(JSON.stringify(response.data));
-                if (obj)
-                    navigate("/CustomerDashboard", { state: { id} })
-            }
+    // const handleSubmit = e => {
+    //     e.preventDefault();
+    //     console.log(customerId);
+    //     updateCustomerDetailsRequest(
+    //        customerId, firstName, lastName, email, password, dob, phoneNumber, age, streetAddress, suburb, postCode, state, false
+    //     ).then(
+    //         response => {
+    //             // console.log(response.data);
+    //             let obj = JSON.parse(JSON.stringify(response.data));
+    //             if (obj)
+    //                 navigate("/CustomerDashboard", { state: { customerId } })
+    //         }
 
-        ).catch(
-            (error) => {
-                alert(error);
-                // alert("Failed to update details");
-                navigate("/CustomerDetail");
-            }
-        )
-    }
+    //     ).catch(
+    //         (error) => {
+    //             alert(error);
+    //             // alert("Failed to update details");
+    //             navigate("/CustomerDetail");
+    //         }
+    //     )
+    // }
 
     /**
      * This is a test function 
@@ -92,7 +91,7 @@ export default function CustomerDetailContent({ id }) {
         <div className='customer-content-detail'>
             {/* <Button onClick={test}>Click Me</Button> */}
             <h1>{firstName} Details</h1>
-            <form className='customer-content-detail-form' onSubmit={handleSubmit}>
+            <form className='customer-content-detail-form'>
                 <TextField id="email" label="Email" variant="outlined" fullWidth margin='normal' value={email} onChange={onEmailChange} />
                 <TextField id="firstName" label="First Name" variant="outlined" fullWidth margin='normal' value={firstName} inputProps={{ readOnly: true, }} />
                 <TextField id="lastName" label="Last Name" variant="outlined" fullWidth margin='normal' value={lastName} inputProps={{ readOnly: true, }} />

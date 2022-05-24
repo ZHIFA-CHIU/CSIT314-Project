@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @CrossOrigin(origins = "http://localhost:3000/")
@@ -26,6 +27,11 @@ public class CustomerController {
         return customerService.getCustomer();
     }
 
+    @GetMapping(path = "/get/{customerId}")
+    public Optional<Customer> getCustomerByID(@PathVariable("customerId") Long customerId) {
+        return Optional.ofNullable(customerService.getById(customerId));
+    }
+
     @PostMapping(path = "/login")
     public String loginCustomer(@RequestBody Customer customer) {
         return customerService.checkPassword(customer);
@@ -42,20 +48,20 @@ public class CustomerController {
     }
 
     @PutMapping
-    public Customer updateCustomer(@RequestBody Customer customer){
-        return customerService.updateCustomer(customer);
+    public void updateCustomer(@RequestBody Customer customer){
+        customerService.updateCustomer(customer);
     }
 
     // -- Vehicle endpoints --
 
-    @PutMapping(path = "/addVehicle/{customerId}")
+    @PostMapping(path = "/addVehicle/{customerId}")
     public boolean addVehicle(@PathVariable("customerId") Long customerId, @RequestBody Vehicle vehicle) throws CustomException {
         return customerService.addVehicle(customerId, vehicle);
     }
 
-    @GetMapping(path = "/get/{customerId}")
-    public Customer getCustomerByID(@PathVariable("customerId") Long customerId) {
-        return customerService.getById(customerId);
+    @GetMapping(path = "/getVehicle/{customerId}")
+    public List<Vehicle> getVehicles(@PathVariable("customerId") Long customerId) throws CustomException {
+        return customerService.getVehicle(customerId);
     }
 
 //    @DeleteMapping(path = "/deleteVehicle/")

@@ -7,7 +7,8 @@ import TechnicianSignup from "../pages/TechnicianSignup";
 import ServiceRequest from "../pages/ServiceRequest";
 import CustomerDashboard from "../pages/CustomerDashboard";
 import TechnicianDashboard from "../pages/TechnicianDashboard";
-import Payment from "../pages/Payment";
+import CustomerDetail from "../pages/CustomerDetail";
+import TechnicianDetail from "../pages/TechnicianDetail";
 
 export default [
     {
@@ -43,11 +44,15 @@ export default [
         element: <TechnicianDashboard />
     },
     {
-        path: "/",
-        element: <Navigate to="/home" />
+        path: "CustomerDetail",
+        element: <CustomerDetail />
     },
     {
-        path: "/payment",
-        element: <Payment />
+        path: "TechnicianDetail",
+        element: <TechnicianDetail />
+    },
+    {
+        path: "/",
+        element: <Navigate to="/home" />
     }
 ];

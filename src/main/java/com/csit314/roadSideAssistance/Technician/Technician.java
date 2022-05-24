@@ -7,8 +7,8 @@ package com.csit314.roadSideAssistance.Technician;
  * */
 
 import com.csit314.roadSideAssistance.BankAccount.BankAccount;
+import com.csit314.roadSideAssistance.Customer.CustomException;
 import com.csit314.roadSideAssistance.Job.Job;
-import com.csit314.roadSideAssistance.Review.Review;
 import com.csit314.roadSideAssistance.User.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -58,12 +58,12 @@ public class Technician extends User {
     @OneToMany(mappedBy = "technician", cascade = CascadeType.ALL)
     private Set<Job> jobs = new LinkedHashSet<>();
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "technician", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Review> reviews = new LinkedHashSet<>();
+//    private BankAccount bankAccount;
 
     public Technician() {
         super();
+//        Maybe no initl of vars below?
+//        bankAccount = new BankAccount();
     }
 
     public Technician(String firstName, String lastName, String email, LocalDate dob,
@@ -78,6 +78,21 @@ public class Technician extends User {
         if (!validateUser()) {
             throw new TechnicianException("Technician fails to meet consistency constraints");
         }
+    }
+
+/*    public Technician(String UUID, String email, String mobileNumber,
+                      String passwordHash, String firstName, String lastName,
+                      String dateOfBirth, String address, String suburb,
+                      String postcode, String state) {
+//        super(UUID, email, mobileNumber,
+//              passwordHash, firstName, lastName,
+//              dateOfBirth, address, suburb,
+//              postcode, state);
+    }*/
+
+    public void addToAvgRating(double rating) {
+        avgRating += rating;
+        setAvgRating(avgRating / 2);
     }
 
     @Override
