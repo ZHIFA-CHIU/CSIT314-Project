@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -30,6 +31,11 @@ public class JobService {
 
     public List<Job> findAllJobs() {
         return jobRepository.findAll();
+    }
+    
+    public Job get(Long jobId) {
+
+        return jobRepository.findById(jobId).get();
     }
 
     public void registerJob(Job job, Long customerID) {
@@ -67,11 +73,6 @@ public class JobService {
         return job.get();
     }
 
-    public Job get(Long jobId) {
-
-        return jobRepository.findById(jobId).get();
-    }
-
     public void addTechnician(Long jobId, Long technicianId) {
         Technician technician = technicianService.getById(technicianId);
         Optional<Job> job = jobRepository.findById(jobId);
@@ -82,4 +83,28 @@ public class JobService {
             throw new IllegalStateException(String.format("Job with id %s does not exist", jobId));
         }
     }
+    private double rad2deg(double rad) {
+        return (rad * 180.0 / Math.PI);
+    }
+    private double deg2rad(double deg) {
+        return (deg * Math.PI / 180.0);
+    }
+    public List<Job> findAllJobsNearby(double technicianLat, double TechnicianLong) {
+        List<Job> nearby = new ArrayList<>();
+        for(Job j: jobRepository.findAll())
+        {
+            double customerLat = j.getCustomerLatitude();
+            double customerLong = j.getCustomerLongitude();
+            double theta = customerLong - TechnicianLong;
+            double dist = Math.sin(deg2rad(customerLat)) * Math.sin(deg2rad(technicianLat)) + Math.cos(deg2rad(customerLat)) * Math.cos(deg2rad(technicianLat)) * Math.cos(deg2rad(theta));
+            dist = Math.acos(dist);
+            dist = rad2deg(dist);
+            dist = dist * 60 * 1.85315962;
+            if (dist < 50){
+                nearby.add(j);
+            }
+        }
+        return nearby;
+    }
+
 }

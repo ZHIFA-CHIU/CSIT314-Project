@@ -9,6 +9,9 @@ import CustomerDashboard from "../pages/CustomerDashboard";
 import TechnicianDashboard from "../pages/TechnicianDashboard";
 import VehList from "../pages/Vehicle/";
 import AddVehicle from "../pages/AddVehicle";
+import Payment from "../pages/Payment";
+import CustomerDetail from "../pages/CustomerDetail";
+import TechnicianDetail from "../pages/TechnicianDetail";
 
 export default [
     {
@@ -54,5 +57,17 @@ export default [
     {
         path: "/",
         element: <Navigate to="/home" />
+    },
+    {
+        path: "/payment",
+        element: <Payment />
+    },
+    {
+        path: "/CustomerDetail",
+        element: <CustomerDetail />
+    },
+    {
+        path: "/TechnicianDetail",
+        element: <TechnicianDetail />
     }
 ];

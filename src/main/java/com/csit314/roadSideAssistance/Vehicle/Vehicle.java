@@ -1,6 +1,7 @@
 package com.csit314.roadSideAssistance.Vehicle;
 
 import com.csit314.roadSideAssistance.Customer.Customer;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -15,6 +16,7 @@ import java.time.Year;
  */
 @Setter
 @Getter
+@JsonIgnoreProperties({"hibernateLazyInitializer"})
 @Entity
 @Data
 @Table(uniqueConstraints = { @UniqueConstraint(columnNames = { "registrationPlate", "registeredState" }) })
@@ -24,10 +26,11 @@ public class Vehicle {
     @Column(name = "id", updatable = false, nullable = false)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="customer_id", referencedColumnName="id")
     private Customer customer;
 
+    private Long customerID;
     private String registrationPlate;
     private String registeredState;
     private Year manufacturedYear;

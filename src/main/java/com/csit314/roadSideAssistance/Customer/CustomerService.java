@@ -46,7 +46,7 @@ public class CustomerService {
         customerRepository.deleteById(customerId);
     }
 
-    public void updateCustomer(Customer customer){
+    public Customer updateCustomer(Customer customer){
         //checking customer exists
         boolean customerExists = customerRepository.existsById(customer.getId());
         if(!customerExists) {
@@ -61,6 +61,8 @@ public class CustomerService {
 
         //updating customer
         customerRepository.save(customer);
+
+        return customer;
     }
 
     public Customer getById(Long customerID){
@@ -99,8 +101,18 @@ public class CustomerService {
         }
 
         vehicle.setCustomer(customerOptional.get());
+        vehicle.setCustomerID(customerId);
         vehicleRepository.save(vehicle);
 
         return true;
+    }
+
+    public List<Vehicle> getVehicle(Long customerId) throws CustomException{
+        List<Vehicle> vehicleOptional = vehicleRepository.findVehicleByCustomerIDEquals(customerId);
+        if(vehicleOptional.isEmpty())
+        {
+            throw new CustomException("Vehicle with id " + customerId + " does not exist");
+        }
+        return vehicleOptional;
     }
 }

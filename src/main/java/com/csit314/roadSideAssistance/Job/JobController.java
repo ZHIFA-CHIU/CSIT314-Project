@@ -27,8 +27,10 @@ public class JobController {
         return jobService.findAllJobs();
     }
 
-    @GetMapping(path = "{jobId}")
-    public Job get(@PathVariable("jobId") Long jobId ) { return jobService.get(jobId); }
+    @GetMapping(path = "/getNearby/{technicianLat}/{technicianLon}")
+    public List<Job> getJobsNearby(@PathVariable("technicianLat") double technicianLat, @PathVariable("technicianLon") double technicianLong) {
+        return jobService.findAllJobsNearby(technicianLat, technicianLong);
+    }
 
     @GetMapping(path = "/{customerId}/{startTime}")
     public Job getJob(@PathVariable("customerId") Long customerId, @PathVariable("startTime") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)  LocalDateTime startTime) {

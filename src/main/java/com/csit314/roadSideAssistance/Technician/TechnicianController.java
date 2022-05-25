@@ -1,12 +1,10 @@
 package com.csit314.roadSideAssistance.Technician;
 
 import com.csit314.roadSideAssistance.BankAccount.BankAccount;
-import com.csit314.roadSideAssistance.Customer.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.UUID;
 
 /**
  * Technician Controller
@@ -37,6 +35,11 @@ public class TechnicianController {
         return technicianService.getTechnician();
     }
 
+    @GetMapping(path = "/get/{technicianId}")
+    public Technician getTechnicianByID(@PathVariable("technicianId") Long technicianId) {
+        return technicianService.getById(technicianId);
+    }
+
     @PostMapping(path = "/login")
     public String loginTechnician(@RequestBody Technician technician) {
         return technicianService.checkPassword(technician);
@@ -53,8 +56,8 @@ public class TechnicianController {
     }
 
     @PutMapping
-    public void updateTechnician(@RequestBody Technician technician) throws TechnicianException {
-        technicianService.updateTechnician(technician);
+    public Technician updateTechnician(@RequestBody Technician technician) throws TechnicianException {
+        return technicianService.updateTechnician(technician);
     }
 
     // -- Bank Account endpoints --
