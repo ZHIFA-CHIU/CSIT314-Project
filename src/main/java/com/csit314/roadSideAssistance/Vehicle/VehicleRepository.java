@@ -15,11 +15,9 @@ public interface VehicleRepository extends JpaRepository<Vehicle, VehicleIDUsing
 
     Optional<Vehicle> findVehicleByRego(String registeredStateAndPlate);
 
-    List<Vehicle> findVehicleByCustomerIDEquals(Long customerID);
-
     Boolean existsByRego(String registeredStateAndPlate);
 
-
-
     void deleteByRego(String registeredStateAndPlate);
+
+    List<Vehicle> findVehicleByCustomerIDEquals(Long customerID);
 }

@@ -97,7 +97,7 @@ public class TechnicianService {
         technicianRepository.save(technicianOptional.get());
     }
     public Technician getById(Long technicianId){
-        Optional<Technician> technician = technicianRepository.findTechnicianByIdEquals(technicianId);
+        Optional<Technician> technician = technicianRepository.findById(technicianId);
         if(technician.isPresent()){
             return technician.get();
         }

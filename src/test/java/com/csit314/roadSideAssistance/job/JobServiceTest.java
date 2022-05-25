@@ -11,11 +11,14 @@ import org.junit.jupiter.api.*;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import static org.hamcrest.CoreMatchers.*;
+import org.hamcrest.core.IsNull;
 
 import java.security.NoSuchAlgorithmException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Month;
+import java.util.Collection;
 import java.util.UUID;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
@@ -94,4 +97,21 @@ class JobServiceTest {
         //when
         assertThatThrownBy(() -> jobService.getJob(customerID, startTime)).hasMessageContaining("Job could not be found with customerID '9274972' and start time '2022-05-10T21:44:43.402945700'");
     }
+
+    @Test
+    @DisplayName("Can get nearby jobs")
+    void canGetNearbyJobs() throws CustomException, NoSuchAlgorithmException {
+        //given
+        Job job = new Job("OTHER", "testing information", 45.0, 95.0);
+        Customer customer = new Customer("Jay", "Smith", "jaysmith@mail.com",
+                LocalDate.of(1990, Month.FEBRUARY, 12), "01234567890",
+                "password", "1 main street", "Wollongong",
+                "2500", "NSW");
+
+        //when
+        jobService.registerJob(job, customer.getId());
+        job.setCustomer(customer);
+        assertThat(jobService.findAllJobsNearby(45.0, 95.0).contains(job));
+    }
+
 }

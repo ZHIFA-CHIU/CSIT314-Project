@@ -57,10 +57,4 @@ public class CustomerController {
     public Customer getCustomerByID(@PathVariable("customerId") Long customerId) {
         return customerService.getById(customerId);
     }
-
-//    @DeleteMapping(path = "/deleteVehicle/")
-//    public void deleteVehicle(@PathVariable("vehicleId") Long vehicleId) throws CustomException {
-//        customerService.deleteVehicle(vehicleId);
-//    }
-
 }
