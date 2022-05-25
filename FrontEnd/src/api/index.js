@@ -37,7 +37,6 @@ export const addVehicle = (customerId, data) =>
     ajax(`http://localhost:3000/api1/api/v1/customer/addVehicle/${customerId}`,{
         data
     }, "POST");
-    }, "POST")
 
 // get customer details
 export const getCustomerDetailsRequest = id => ajax(`http://localhost:3000/api1/api/v1/customer/get/${id}`, { id }, "GET");
