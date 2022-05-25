@@ -56,8 +56,8 @@ public class TechnicianController {
     }
 
     @PutMapping
-    public void updateTechnician(@RequestBody Technician technician) throws TechnicianException {
-        technicianService.updateTechnician(technician);
+    public Technician updateTechnician(@RequestBody Technician technician) throws TechnicianException {
+        return technicianService.updateTechnician(technician);
     }
 
     // -- Bank Account endpoints --
