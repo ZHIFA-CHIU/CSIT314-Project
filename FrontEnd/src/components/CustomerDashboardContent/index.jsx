@@ -21,7 +21,7 @@ const CustomerDashboard = () => {
     }
 
     const navMyVehicles = (e) => {
-        //navigate('/');
+        navigate('/VehList', {state: {"customerId": id}});
     }
 
     const navServiceHistory = (e) => {
