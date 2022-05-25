@@ -26,11 +26,6 @@ public class CustomerController {
         return customerService.getCustomer();
     }
 
-    @GetMapping(path = "/get/{customerId}")
-    public Customer getCustomerByID(@PathVariable("customerId") Long customerId) {
-        return customerService.getById(customerId);
-    }
-
     @PostMapping(path = "/login")
     public String loginCustomer(@RequestBody Customer customer) {
         return customerService.checkPassword(customer);
