@@ -30,7 +30,13 @@ export const technicianSignupRequest = (firstName, lastName, email,
 export const serviceRequest = (customerId, location, data) =>
     ajax(`http://localhost:3000/api1/api/v1/job/${customerId}`, {
         ...location, ...data
-    }, "POST")
+    }, "POST");
+
+// add vehicle
+export const addVehicle = (customerId, data) =>
+    ajax(`http://localhost:3000/api1/api/v1/customer/addVehicle/${customerId}`,{
+        data
+    }, "POST");
 
 // get customer details
 export const getCustomerDetailsRequest = id => ajax(`http://localhost:3000/api1/api/v1/customer/get/${id}`, { id }, "GET");

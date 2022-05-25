@@ -48,7 +48,7 @@ public class CustomerController {
 
     // -- Vehicle endpoints --
 
-    @PutMapping(path = "/addVehicle/{customerId}")
+    @PostMapping(path = "/addVehicle/{customerId}")
     public boolean addVehicle(@PathVariable("customerId") Long customerId, @RequestBody Vehicle vehicle) throws CustomException {
         return customerService.addVehicle(customerId, vehicle);
     }
@@ -57,10 +57,4 @@ public class CustomerController {
     public Customer getCustomerByID(@PathVariable("customerId") Long customerId) {
         return customerService.getById(customerId);
     }
-
-//    @DeleteMapping(path = "/deleteVehicle/")
-//    public void deleteVehicle(@PathVariable("vehicleId") Long vehicleId) throws CustomException {
-//        customerService.deleteVehicle(vehicleId);
-//    }
-
 }

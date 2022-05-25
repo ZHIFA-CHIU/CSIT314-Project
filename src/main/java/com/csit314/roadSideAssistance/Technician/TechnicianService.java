@@ -54,7 +54,7 @@ public class TechnicianService {
         technicianRepository.deleteById(technicianId);
     }
 
-    public void updateTechnician(Technician technician) throws TechnicianException {
+    public Technician updateTechnician(Technician technician) throws TechnicianException {
         boolean exists = technicianRepository.existsById(technician.getId());
         if(!exists) {
             throw new TechnicianException("Technician with id " + technician.getId() + " does not exist");
@@ -66,6 +66,8 @@ public class TechnicianService {
         }
 
         technicianRepository.save(technician);
+
+        return technician;
     }
     // -- Bank Account services --
 
@@ -95,7 +97,7 @@ public class TechnicianService {
         technicianRepository.save(technicianOptional.get());
     }
     public Technician getById(Long technicianId){
-        Optional<Technician> technician = technicianRepository.findTechnicianByIdEquals(technicianId);
+        Optional<Technician> technician = technicianRepository.findById(technicianId);
         if(technician.isPresent()){
             return technician.get();
         }

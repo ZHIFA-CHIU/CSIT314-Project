@@ -35,11 +35,6 @@ public class TechnicianController {
         return technicianService.getTechnician();
     }
 
-    @GetMapping(path = "/get/{technicianId}")
-    public Technician getTechnicianByID(@PathVariable("technicianId") Long technicianId) {
-        return technicianService.getById(technicianId);
-    }
-
     @PostMapping(path = "/login")
     public String loginTechnician(@RequestBody Technician technician) {
         return technicianService.checkPassword(technician);
@@ -56,8 +51,13 @@ public class TechnicianController {
     }
 
     @PutMapping
-    public void updateTechnician(@RequestBody Technician technician) throws TechnicianException {
-        technicianService.updateTechnician(technician);
+    public Technician updateTechnician(@RequestBody Technician technician) throws TechnicianException {
+        return technicianService.updateTechnician(technician);
+    }
+
+    @GetMapping(path = "/get/{technicianId}")
+    public Technician getTechnicianByID(@PathVariable("technicianId") Long technicianId) {
+        return technicianService.getById(technicianId);
     }
 
     // -- Bank Account endpoints --
@@ -72,4 +72,5 @@ public class TechnicianController {
     public void deleteBankAccount(@PathVariable("technicianId") Long technicianId) throws TechnicianException {
         technicianService.deleteBankAccount(technicianId);
     }
+
 }
