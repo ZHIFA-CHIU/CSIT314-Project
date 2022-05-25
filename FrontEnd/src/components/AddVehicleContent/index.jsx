@@ -3,7 +3,9 @@ import { AppBar, Toolbar, Typography } from '@mui/material'
 import {useForm} from 'react-hook-form'
 
 import  "./vehicle.css"
-export default function AddVehicle() {
+import {addVehicle} from '../../api'
+import {useNavigate} from "react-router-dom";
+export default function AddVehicle({customerId}) {
     const {
         register,
         handleSubmit,
@@ -15,9 +17,17 @@ export default function AddVehicle() {
         window.history.back()
     }
 
+    const navigate = useNavigate();
+
     const onSubmit = (data) => {
-        alert(JSON.stringify(data));
-        console.log(data);
+        addVehicle(customerId, data).then(
+            response => {
+                alert("Vehicle has been successfully added");
+                navigate("/VehList", {state: {id: customerId}});
+            }
+        ).catch(
+            error => alert(error)
+        )
     };
 
     //console.log(watch("example"));
@@ -107,7 +117,7 @@ export default function AddVehicle() {
                 {errors?.Rego?.type === "maxLength" && (
                     <p>Rego cannot exceed 7 characters</p>
                 )}
-                <select {...register("Registered State", { required: true })}>
+                <select {...register("Registered_State", { required: true })}>
                     <option value="New South Wales">New South Wales</option>
                     <option value="Queensland">Queensland</option>
                     <option value="Northern Territory">Northern Territory</option>

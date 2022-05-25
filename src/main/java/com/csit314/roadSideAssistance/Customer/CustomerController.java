@@ -48,7 +48,7 @@ public class CustomerController {
 
     // -- Vehicle endpoints --
 
-    @PutMapping(path = "/addVehicle/{customerId}")
+    @PostMapping(path = "/addVehicle/{customerId}")
     public boolean addVehicle(@PathVariable("customerId") Long customerId, @RequestBody Vehicle vehicle) throws CustomException {
         return customerService.addVehicle(customerId, vehicle);
     }

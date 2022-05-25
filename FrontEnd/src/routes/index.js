@@ -8,7 +8,7 @@ import ServiceRequest from "../pages/ServiceRequest";
 import CustomerDashboard from "../pages/CustomerDashboard";
 import TechnicianDashboard from "../pages/TechnicianDashboard";
 import VehList from "../pages/Vehicle/";
-import AddVehicle from "../components/VehicleContent/AddVehicle";
+import AddVehicle from "../pages/AddVehicle";
 
 export default [
     {

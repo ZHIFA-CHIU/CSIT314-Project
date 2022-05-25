@@ -1,10 +1,12 @@
-import React from 'react'
+import React, {useState} from 'react'
 import VehicleContent from '../../components/VehicleContent/VehList'
-import {useNavigate} from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 import {AppBar, Toolbar, Typography} from "@mui/material";
 
 export default function ServiceRequest() {
     const navigate = useNavigate();
+    let history = useLocation()
+    let [id] = useState(history.state.customerId)
     return (
         <div className='vehicle'>
             <AppBar position='static' >
@@ -15,7 +17,7 @@ export default function ServiceRequest() {
                     <Typography align='center' sx={{ flexGrow: 1 }}>
                         Roadside Assistant Service
                     </Typography>
-                    <button className='medium ui primary button' onClick={() => navigate("/AddVehicle")}>
+                    <button className='medium ui primary button' onClick={() => navigate('/AddVehicle', {state: {"customerId": id}})}>
                         Add
                     </button>
                 </Toolbar>
