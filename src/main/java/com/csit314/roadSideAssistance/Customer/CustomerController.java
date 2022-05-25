@@ -42,8 +42,8 @@ public class CustomerController {
     }
 
     @PutMapping
-    public void updateCustomer(@RequestBody Customer customer){
-        customerService.updateCustomer(customer);
+    public Customer updateCustomer(@RequestBody Customer customer){
+        return customerService.updateCustomer(customer);
     }
 
     // -- Vehicle endpoints --
@@ -53,5 +53,8 @@ public class CustomerController {
         return customerService.addVehicle(customerId, vehicle);
     }
 
-
+    @GetMapping(path = "/get/{customerId}")
+    public Customer getCustomerByID(@PathVariable("customerId") Long customerId) {
+        return customerService.getById(customerId);
+    }
 }
