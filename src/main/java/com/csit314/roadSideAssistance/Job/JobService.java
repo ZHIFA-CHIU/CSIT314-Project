@@ -133,5 +133,27 @@ public class JobService {
         job.get().setFinishTime(finishTime);
         job.get().setJobPrice((HOURLY_RATE / 60.0) * jobLength);
         job.get().setStatus(Status.COMPLETED);
+        jobRepository.save(job.get());
+    }
+
+    public void updateStatus(Long jobId, String status) {
+        Optional<Job> job = jobRepository.findById(jobId);
+        if(!job.isPresent()) {
+            throw new IllegalStateException(String.format("Job with ID %s does not exist", jobId));
+        }
+
+        boolean validEnum = false;
+        for(Status s : Status.values()) {
+            if (s.name().equalsIgnoreCase(status)) {
+                validEnum = true;
+                break;
+            }
+        }
+        if(!validEnum) {
+            throw new IllegalArgumentException(String.format("Status %s is not a valid status option", status));
+        }
+
+        job.get().setStatus(Status.valueOf(status));
+        jobRepository.save(job.get());
     }
 }
