@@ -23,8 +23,6 @@ public class TechnicianConfig implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        System.out.println("technician");
-
         Faker faker = new Faker(new Locale("en-AU"));
 
         List<Technician> technicianList = new ArrayList<>();

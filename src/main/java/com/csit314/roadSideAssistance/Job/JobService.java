@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -65,6 +66,14 @@ public class JobService {
             throw new IllegalStateException(String.format("Job could not be found with customerID '%s' and start time '%s'", customerId, startTime));
         }
         return job.get();
+    }
+
+    public List<Job> getJobs(Long customerId) {
+        List<Job> jobs = jobRepository.findJobsByCustomerId(customerId);
+        if (jobs.isEmpty()) {
+            throw new IllegalStateException(String.format("Jobs could not be found with customerID '%s'", customerId));
+        }
+        return jobs;
     }
 
     public Job get(Long jobId) {

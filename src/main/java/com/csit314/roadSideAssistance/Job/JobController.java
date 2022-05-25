@@ -35,6 +35,11 @@ public class JobController {
         return jobService.getJob(customerId, startTime);
     }
 
+    @GetMapping(path = "/getall/{customerId}")
+    public List<Job> getJobsCust(@PathVariable("customerId") Long customerId) {
+        return jobService.getJobs(customerId);
+    }
+
     @PostMapping(path = "/{customerId}")
     public Job registerJob(@RequestBody Job job, @PathVariable("customerId") Long customerId) {
         jobService.registerJob(job, customerId);

@@ -30,8 +30,6 @@ public class JobConfig implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        System.out.println("job");
-
         System.out.println(customerRepository.count());
 
         Faker faker = new Faker(new Locale("en-AU"));

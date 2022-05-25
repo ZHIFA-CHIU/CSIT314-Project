@@ -22,8 +22,6 @@ public class CustomerConfig implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        System.out.println("customer");
-
         Faker faker = new Faker(new Locale("en-AU"));
 
         List<Customer> customerList = new ArrayList<>();
