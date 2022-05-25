@@ -7,7 +7,6 @@ test('Check all interaction labels', async () => {
 
     <Router>
         render(<TechnicianSignup />);
-
         expect(screen.getByLabelText('Name')).toBeInTheDocument();
         expect(screen.getByLabelText('Email')).toBeInTheDocument();
         expect(screen.getByLabelText('Address')).toBeInTheDocument();
