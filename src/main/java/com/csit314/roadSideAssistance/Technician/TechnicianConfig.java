@@ -1,5 +1,6 @@
-package com.csit314.roadSideAssistance.Customer;
+package com.csit314.roadSideAssistance.Technician;
 
+import com.csit314.roadSideAssistance.BankAccount.BankAccount;
 import com.github.javafaker.Faker;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.annotation.Order;
@@ -11,12 +12,12 @@ import java.util.List;
 import java.util.Locale;
 
 @Component
-@Order(1)
-public class CustomerConfig implements CommandLineRunner {
+@Order(2)
+public class TechnicianConfig implements CommandLineRunner {
 
-    private final CustomerRepository repository;
+    private final TechnicianRepository repository;
 
-    public CustomerConfig(CustomerRepository repository) {
+    public TechnicianConfig(TechnicianRepository repository) {
         this.repository = repository;
     }
 
@@ -24,14 +25,14 @@ public class CustomerConfig implements CommandLineRunner {
     public void run(String... args) throws Exception {
         Faker faker = new Faker(new Locale("en-AU"));
 
-        List<Customer> customerList = new ArrayList<>();
-        // Randomly generate 20 customers
-        for (int i = 0; i < 20; i++) {
+        List<Technician> technicianList = new ArrayList<>();
+        // Randomly generate 100 technicians
+        for (int i = 0; i < 100; i++) {
             String fname = faker.name().firstName();
             String lname = faker.name().lastName();
             String email = fname + lname + "@mail.com";
 
-            Customer customer = new Customer(
+            Technician technician = new Technician(
                     fname,
                     lname,
                     email,
@@ -41,13 +42,20 @@ public class CustomerConfig implements CommandLineRunner {
                     faker.address().streetAddress(),
                     faker.address().city(),
                     faker.address().zipCode(),
-                    faker.address().state()
+                    faker.address().state(),
+                    faker.bool().bool(),
+                    faker.bool().bool()
             );
 
-            customer.setHasMembership(faker.bool().bool());
+            BankAccount bankAccount = new BankAccount(
+                    fname+"'s account",
+                    faker.regexify("[1-9]{6}"),
+                    faker.regexify("[1-9]{8}")
+            );
 
-            customerList.add(customer);
+            technician.setBankAccount(bankAccount);
+            technicianList.add(technician);
         }
-        repository.saveAll(customerList);
+        repository.saveAll(technicianList);
     }
 }

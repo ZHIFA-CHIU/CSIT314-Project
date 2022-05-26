@@ -27,15 +27,6 @@ import java.util.Set;
 
 /**
  * Technician model
- *
-
- * @author      Jack_Is_2048
- * @version     0.1
- * @since       0.1
- * @author Jack_Is_2048
- * @version 1.1
- * @since 1.1
-
  */
 @Getter
 @Setter
@@ -88,6 +79,6 @@ public class Technician extends User {
                 ", heavyVehicleQualification=" + heavyVehicleQualification +
                 ", avgRating=" + avgRating +
                 ", bankAccount=" + bankAccount +
-                "} " + super.toString();
+                "} ";
     }
 }

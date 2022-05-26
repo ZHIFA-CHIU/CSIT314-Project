@@ -1,4 +1,4 @@
-package com.csit314.roadSideAssistance.technicianTests;
+package technician;
 
 import com.csit314.roadSideAssistance.Customer.CustomException;
 import com.csit314.roadSideAssistance.Customer.Customer;
@@ -20,10 +20,6 @@ import static org.junit.jupiter.api.Assertions.*;
  *      testCreateTechnician
  *      testValidUser
  *      addToAvgRating
- *
- * @author      Jack_Is_2048
- * @version     1.1
- * @since       1.1
  */
 @SpringBootTest(classes = TechnicianTest.class)
 class TechnicianTest {
