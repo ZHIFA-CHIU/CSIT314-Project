@@ -114,4 +114,14 @@ public class CustomerService {
         }
         return vehicleOptional;
     }
+
+    public void updateMembership(Long customerId, Boolean membershipStatus) {
+        Optional<Customer> customerOptional = customerRepository.findById(customerId);
+        if (!customerOptional.isPresent()) {
+            throw new IllegalStateException("Customer with id " + customerId + " does not exist");
+        }
+
+        customerOptional.get().setHasMembership(membershipStatus);
+        customerRepository.save(customerOptional.get());
+    }
 }
