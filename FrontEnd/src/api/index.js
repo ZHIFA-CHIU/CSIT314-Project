@@ -59,3 +59,5 @@ export const updateTechnicianDetailsRequest = (id, age, availableStatus, avgRati
     id, age, availableStatus, avgRating, bankAccount, dob, email,
     firstName, heavyVehicleQualification, lastName, lightVehicleQualification, password, phoneNumber, postCode, state, streetAddress, suburb
 }, "PUT");
+
+export const updateMembership = (customerId, membershipStatus) => ajax(`http://localhost:3000/api1/api/v1/customer//updateMembership/${customerId}/${membershipStatus}`, { customerId, membershipStatus }, "PUT");
