@@ -74,6 +74,8 @@ public class JobConfig implements CommandLineRunner {
 
             job.setJobPrice((double) diff * 40);
 
+            job.setStatus(Status.COMPLETED);
+
             jobList.add(job);
         }
         jobRepository.saveAll(jobList);
