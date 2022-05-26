@@ -57,24 +57,24 @@ export default function AddVehicle({customerId}) {
             <h1>Please Add Vehicle</h1>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <input type="text" placeholder="Manufacture"
-                       {...register("Manufacture", {
+                       {...register("manufacturer", {
                            required: true,
                            maxLength: 30,
                        })} />
-                {errors?.Manufacture?.type === "required" && <p>This field is required</p>}
-                {errors?.Manufacture?.type === "maxLength" && (
+                {errors?.manufacturer?.type === "required" && <p>This field is required</p>}
+                {errors?.Manufacturer?.type === "maxLength" && (
                     <p>Manufacture cannot exceed 30 characters</p>
                 )}
                 <input type="text" placeholder="Model"
-                       {...register("Model", {
+                       {...register("model", {
                            required: true,
                            maxLength: 30,
                        })} />
-                {errors?.Model?.type === "required" && <p>This field is required</p>}
-                {errors?.Model?.type === "maxLength" && (
+                {errors?.model?.type === "required" && <p>This field is required</p>}
+                {errors?.model?.type === "maxLength" && (
                     <p>Model cannot exceed 30 characters</p>
                 )}
-                <select {...register("Year")}>
+                <select {...register("manufacturedYear")}>
                     <option value="2022">2022</option>
                     <option value="2021">2021</option>
                     <option value="2020">2020</option>
@@ -100,24 +100,28 @@ export default function AddVehicle({customerId}) {
                     <option value="2000">2000</option>
                 </select>
                 <input type="text" placeholder="Colour"
-                       {...register("Colour", {
+                       {...register("colour", {
                            required: true,
                            maxLength: 30,
                        })} />
-                {errors?.Colour?.type === "required" && <p>This field is required</p>}
-                {errors?.Colour?.type === "maxLength" && (
+                {errors?.colour?.type === "required" && <p>This field is required</p>}
+                {errors?.colour?.type === "maxLength" && (
                     <p>Colour cannot exceed 30 characters</p>
                 )}
                 <input type="text" placeholder="Rego"
-                       {...register("Rego", {
+                       {...register("registrationPlate", {
                            required: true,
-                           maxLength: 7
+                           maxLength: 6,
+                           minLength: 6
                        })} />
-                {errors?.Rego?.type === "required" && <p>This field is required</p>}
-                {errors?.Rego?.type === "maxLength" && (
-                    <p>Rego cannot exceed 7 characters</p>
+                {errors?.registrationPlate?.type === "required" && <p>This field is required</p>}
+                {errors?.registrationPlate?.type === "maxLength" && (
+                    <p>Rego must be 6 characters</p>
                 )}
-                <select {...register("Registered_State", { required: true })}>
+                {errors?.registrationPlate?.type === "minLength" && (
+                    <p>Rego must be 6 characters</p>
+                )}
+                <select {...register("registeredState", { required: true })}>
                     <option value="New South Wales">New South Wales</option>
                     <option value="Queensland">Queensland</option>
                     <option value="Northern Territory">Northern Territory</option>
@@ -127,13 +131,13 @@ export default function AddVehicle({customerId}) {
                     <option value="Australian Capital Territory">Australian Capital Territory</option>
                     <option value="Tasmania">Tasmania</option>
                 </select>
-                <input type="text" placeholder="Weight"
-                       {...register("Weight", {
+                <input type="number" placeholder="Weight(KG)"
+                       {...register("weight", {
                            required: true,
                            maxLength: 10
                        })} />
-                {errors?.Weight?.type === "required" && <p>This field is required</p>}
-                {errors?.Weight?.type === "maxLength" && (
+                {errors?.weight?.type === "required" && <p>This field is required</p>}
+                {errors?.weight?.type === "maxLength" && (
                     <p>Weight cannot exceed 10 characters</p>
                 )}
                 <input type="submit" />
