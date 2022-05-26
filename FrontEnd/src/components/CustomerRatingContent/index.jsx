@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react"
+import React from "react"
 import {AppBar, Toolbar, Typography, Box} from '@mui/material'
 import {useForm, Controller} from 'react-hook-form'
 import Rating from '@mui/material/Rating';
@@ -26,7 +26,7 @@ export default function CustomerRatingContent({technicianId}) {
 
 
     const onSubmit = (data) => {
-        //console.log(data);
+        console.log(data);
         addReview(technicianId, data).then(
             response => {
                 alert("Review successfully submitted");

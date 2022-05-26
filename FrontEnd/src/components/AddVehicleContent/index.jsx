@@ -35,8 +35,6 @@ export default function AddVehicle({customerId}) {
         )
     };
 
-    //console.log(watch("example"));
-    // console.log(errors);
     return (
         <div>
             <AppBar position='static' >
