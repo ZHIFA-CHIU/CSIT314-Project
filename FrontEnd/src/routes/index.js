@@ -12,6 +12,7 @@ import AddVehicle from "../pages/AddVehicle";
 import Payment from "../pages/Payment";
 import CustomerDetail from "../pages/CustomerDetail";
 import TechnicianDetail from "../pages/TechnicianDetail";
+import VehicleDetail from "../pages/VehicleDetail";
 
 export default [
     {
@@ -69,5 +70,9 @@ export default [
     {
         path: "/TechnicianDetail",
         element: <TechnicianDetail />
+    },
+    {
+        path: "/VehicleDetail",
+        element: <VehicleDetail />
     }
 ];

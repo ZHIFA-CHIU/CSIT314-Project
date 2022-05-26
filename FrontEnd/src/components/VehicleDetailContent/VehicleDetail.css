@@ -1,0 +1,18 @@
+.vehicleDetail {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.vehicleDetail-form {
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.vehicleDetail-form button {
+    max-height: 20px;
+}

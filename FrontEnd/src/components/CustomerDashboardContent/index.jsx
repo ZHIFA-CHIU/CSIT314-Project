@@ -36,6 +36,14 @@ const CustomerDashboard = () => {
         //navigate('/');
     }
 
+    const navAddVehicle = (e) => {
+        navigate('/AddVehicle', {state: {"customerId": id}})
+    }
+
+    const navVehicleDetail = (e) => {
+        navigate('/VehicleDetail', {state: {"customerId": id}});
+    }
+
     return (
         <div id='container'>
             <Button variant="outlined" size='large' style={{height: "13.5%"}} onClick={navRequestRepair}>Request a
@@ -43,6 +51,9 @@ const CustomerDashboard = () => {
 
             <Button variant="outlined" size='large' style={{height: "13.5%"}} onClick={navManageSubcript}>Manage
                 Subscription</Button><br/>
+
+            <Button variant="outlined" size="large" style={{height: "13.5%"}} onClick={navAddVehicle}>Add
+                Vehicles</Button><br/>
 
             <Button variant="outlined" size="large" style={{height: "13.5%"}} onClick={navMyVehicles}>My
                 Vehicles</Button><br/>
@@ -56,7 +67,11 @@ const CustomerDashboard = () => {
             <Button variant="outlined" size='large' style={{height: "13.5%"}} onClick={navUpdatePayDetails}>Update
                 Payment Details</Button><br/>
 
+            <Button variant="outlined" size='large' style={{height: "13.5%"}} onClick={navVehicleDetail}>Update
+                Vehicle Details</Button><br/>
+
             <Button variant="outlined" size='large' style={{height: "13.5%"}} onClick={test}>Test</Button><br/>
+
         </div>
     );
 }
