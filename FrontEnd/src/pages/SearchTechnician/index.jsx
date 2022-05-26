@@ -4,10 +4,10 @@ import {useLocation} from "react-router-dom";
 
 export default function SearchTechnician() {
     let history = useLocation()
-    let [id] = useState(history.state.customerId)
+    let [id] = useState(history.state.jobId)
     return (
         <div className='search-technician-page'>
-            <SearchTechnicianContent customerId={id}/>
+            <SearchTechnicianContent jobId={id}/>
         </div>
     )
 }

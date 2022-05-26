@@ -51,6 +51,10 @@ export const addReview = (technicianId, data) =>
 // get customer details
 export const getCustomerDetailsRequest = id => ajax(`http://localhost:3000/api1/api/v1/customer/get/${id}`, { id }, "GET");
 
+// get job details
+export const getJobDetailsRequest = id => ajax(`http://localhost:3000/api1/api/v1/job/${id}`, { id }, "GET");
+
+
 // update customer details
 export const updateCustomerDetailsRequest = (id, firstName, lastName, email,
     password, dob, phoneNumber, age, streetAddress, suburb, postCode, state, hasMembership) =>
