@@ -2,27 +2,41 @@ import React from "react"
 import {AppBar, Toolbar, Typography, Box} from '@mui/material'
 import {useForm, Controller} from 'react-hook-form'
 import Rating from '@mui/material/Rating';
-
-
 import {useNavigate} from "react-router-dom";
-
 import "./Rating.css"
+import {addReview} from "../../api";
 
-export default function CustomerRatingContent() {
+/**
+ * Content for the review page
+ * @param technicianId technicianId to submit with review
+ * @returns {JSX.Element}
+ */
+export default function CustomerRatingContent({technicianId}) {
     const {
         register,
         control,
         handleSubmit,
-        formState: { errors }
+        formState: {errors}
     } = useForm()
-
     const goBackPage = () => {
         window.history.back()
     }
 
     const navigate = useNavigate();
 
-    const onSubmit = data => console.log(data);
+
+    const onSubmit = (data) => {
+        console.log(data);
+        addReview(technicianId, data).then(
+            response => {
+                alert("Review successfully submitted");
+                navigate("/CustomerDashboard");
+            }
+        ).catch(
+            error => alert(error)
+        )
+    };
+
     return (
         <div>
             <AppBar position='static'>
@@ -30,7 +44,7 @@ export default function CustomerRatingContent() {
                     <button className='medium ui primary button' onClick={() => goBackPage()}>
                         Back
                     </button>
-                    <Typography align='center' sx={{flexGrow: 1}} onClick={() => goBackPage()}>
+                    <Typography align='center' sx={{flexGrow: 1}} onClick={() => navigate("/home")}>
                         Roadside Assistant Service
                     </Typography>
                     <button className='medium ui primary button' onClick={() => goBackPage()}>
@@ -47,24 +61,31 @@ export default function CustomerRatingContent() {
             >
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <Typography component="legend">Rating</Typography>
+                    <br/>
                     <Controller
-                        name="Rating"
+                        name="rating"
                         control={control}
-                        defaultValue={3}
                         rules={{ required: true }}
-                        render={(props) =>
-                            <Rating name="size-large" size="large" onChange={props.onChange}  />}
+                        render={({field}) =>
+                            <Rating name="size-large" size="large" rating={field.value} onChange={field.onChange}  />}
                     />
-                    {/*<input type="range" placeholder="Rating" {...register("Rating", {})} />*/}
+                    {errors?.rating?.type === "required" && <p>This field is required</p>}
+                    <br/>
+                    <br/>
                     <Typography component="legend">Comment</Typography>
-                    <textarea {...register("Review", {required: true})} />
+                    <br/>
+                    <textarea rows="5" placeholder="Please review"
+                              {...register("reviewInformation", {
+                                  required: true,
+                                  maxLength: 200
+                              })} />
+                    {errors?.reviewInformation?.type === "required" && <p>This field is required</p>}
+                    {errors?.reviewInformation?.type === "maxLength" && (
+                        <p>Comment cannot exceed 200 characters</p>
+                    )}
                     <input type="submit" />
                 </form>
             </Box>
-            {/*<div className='ui center aligned container' style={{minWidth: "400px", maxWidth: "684px"}}>*/}
-            {/*    <p>Rating</p>*/}
-
-        {/*    </div>*/}
         </div>
 
     );

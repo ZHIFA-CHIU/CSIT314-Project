@@ -25,11 +25,11 @@ const CustomerDashboard = () => {
     }
 
     const navServiceHistory = (e) => {
-        navigate('/CustomerRating');
+        //navigate('/');
     }
 
     const navUpdateDetails = (e) => {
-        //navigate('/');
+        navigate('/CustomerDetail', {state: {"customerId": id}});
     }
 
     const navUpdatePayDetails = (e) => {
