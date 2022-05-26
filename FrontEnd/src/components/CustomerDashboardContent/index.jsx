@@ -25,7 +25,7 @@ const CustomerDashboard = () => {
     }
 
     const navServiceHistory = (e) => {
-        //navigate('/');
+        navigate('/CustomerRating');
     }
 
     const navUpdateDetails = (e) => {
