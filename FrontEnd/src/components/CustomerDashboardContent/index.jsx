@@ -29,7 +29,7 @@ const CustomerDashboard = () => {
     }
 
     const navUpdateDetails = (e) => {
-        navigate('/CustomerDetail', {state: {"customerId": id}});
+        //navigate('/');
     }
 
     const navUpdatePayDetails = (e) => {
