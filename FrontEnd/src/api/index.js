@@ -38,6 +38,12 @@ export const addVehicle = (customerId, data) =>
         ...data
     }, "POST");
 
+// add review
+export const addReview = (technicianId, data) =>
+    ajax(`http://localhost:3000/api1/api/v1/review/${technicianId}`,{
+        ...data
+    }, "POST");
+
 // get customer details
 export const getCustomerDetailsRequest = id => ajax(`http://localhost:3000/api1/api/v1/customer/get/${id}`, { id }, "GET");
 
