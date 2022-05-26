@@ -20,4 +20,6 @@ public interface VehicleRepository extends JpaRepository<Vehicle, VehicleIDUsing
     void deleteByRego(String registeredStateAndPlate);
 
     List<Vehicle> findVehicleByCustomerIDEquals(Long customerID);
+
+    Optional<Vehicle> findVehicleByIdEquals(Long id);
 }
