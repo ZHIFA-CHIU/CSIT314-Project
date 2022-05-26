@@ -10,10 +10,10 @@ import {useNavigate} from "react-router-dom";
 
 /**
  * Content for the service request page
- * @param customerId customerId to submit with job request
+ * @param jobId jobId to submit with job request
  * @returns {JSX.Element}
  */
-export default function ServiceRequestContent({customerId}) {
+export default function SearchTechnicianContent({jobId}) {
 
     const {
         register,
@@ -27,15 +27,32 @@ export default function ServiceRequestContent({customerId}) {
 
     const navigate = useNavigate();
 
+    let isChanging;
+
+    useEffect(()=>{
+            onSubmit()
+    }, []) // <-- empty dependency array
+
+    const checkStatus = (data) => {
+        if(jobId.status != "WAITING"){
+            clearInterval(isChanging);
+            isChanging = null;
+            navigate("/RepairUnderway", {state: {"jobId": jobId}});
+        }
+    }
+
     const onSubmit = (data) => {
-        serviceRequest(customerId,location, data).then(
-            response => {
-                alert("Service has been requested");
-                navigate("/CustomerDashboard", {state: {id: customerId}});
+        alert("OnSubmit");
+        alert(jobId.status);
+        if(jobId.status != "WAITING"){
+            navigate("/FoundTechnician", {state: {"jobId": jobId}});
+        } else{
+            if(!isChanging){
+                isChanging = setInterval(checkStatus, 10000);
             }
-        ).catch(
-            error => alert(error)
-        )
+
+        }
+
     };
 
     let {getCurrentPosition} = useNavigator();
@@ -76,52 +93,9 @@ export default function ServiceRequestContent({customerId}) {
                 </Toolbar>
             </AppBar>
 
-            <h1>Please enter request details</h1>
+            <h1>Finding a Technician...</h1>
             <div className='ui center aligned container' style={{minWidth: "400px", maxWidth: "684px"}}>
-                <p style={{textAlign: "left"}}>Location</p>
-                <LoadScript
-                    googleMapsApiKey="AIzaSyDc-QRg4oP9XgMlw-PfXo7IDOyXPcwp8js"
-                >
-                    <GoogleMap
-                        mapContainerStyle={containerStyle}
-                        center={center}
-                        zoom={15}
-                    >
-                        { /* Child components, such as markers, info windows, etc. */}
-                        <Marker position={center}/>
-                    </GoogleMap>
-                </LoadScript>
-                <br/>
-
-                <form onSubmit={handleSubmit(onSubmit)}>
-                    <p style={{textAlign: "left"}}>Type of mechanical failure</p>
-                    <select {...register("repairCategory")}>
-                        <option value="Brakes fail">Brakes fail</option>
-                        <option value="Tires">Tires</option>
-                        <option value="Steering">Suspension/ Steering</option>
-                        <option value="Lights">Lights</option>
-                        <option value="Engine_transmission">Engine and Transmission Problems</option>
-                        <option value="Battery">Battery</option>
-                        <option value="Other">Other/ I don't know</option>
-                    </select>
-                    {/* <p style={{textAlign:"left"}}>Select vehicle</p>
-                    <select {...register("vehicle")}>
-                        <option value="nonVehicle">None</option>
-                        <option value="vehicle1">Vehicle 1</option>
-                        <option value="vehicle2">Vehicle 2</option>
-                        <option value="vehicle3">Vehicle 3</option>
-                    </select>*/}
-
-                    <p style={{textAlign: "left"}}>Additional Information</p>
-                    <textarea rows="5" placeholder="Additional Information"
-                              {...register("additionalInfo", {
-                                  maxLength: 200
-                              })} />
-                    {errors?.add_info?.type === "maxLength" && (
-                        <p>Addition information cannot exceed 200 characters</p>
-                    )}
-                    <input type="submit"/>
-                </form>
+                <p>X Technicians within 50Kms</p>
             </div>
         </div>
     )

@@ -4,10 +4,10 @@ import {useLocation} from "react-router-dom";
 
 export default function RepairUnderway() {
     let history = useLocation()
-    let [id] = useState(history.state.customerId)
+    let [id] = useState(history.state.jobId)
     return (
         <div className='repair-underway-page'>
-            <RepairUnderwayContent customerId={id}/>
+            <RepairUnderwayContent jobId={id}/>
         </div>
     )
 }
