@@ -3,6 +3,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
+import java.util.Optional;
+
 /**
  * Contains vehicle controller class
  *
@@ -22,6 +24,11 @@ public class VehicleController {
     @GetMapping
     public List<Vehicle> getVehicles() {
         return vehicleService.getVehicle();
+    }
+
+    @GetMapping(path = "/get/{vehicleID}")
+    public Optional<Vehicle> getVehicleByID(@PathVariable("vehicleID") Long vehicleID) {
+        return vehicleService.getVehicleByID(vehicleID);
     }
 
     @DeleteMapping(path = "{vehicleRego}")

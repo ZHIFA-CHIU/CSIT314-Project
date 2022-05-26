@@ -26,6 +26,14 @@ public class VehicleService {
         return vehicleRepository.findAll();
     }
 
+    public Optional<Vehicle> getVehicleByID(Long vehicleID) {
+        Optional<Vehicle> foundVehicle = vehicleRepository.findVehicleByIdEquals(vehicleID);
+        if (!foundVehicle.isPresent()) {
+            throw new IllegalStateException("Vehicle not found");
+        }
+        return foundVehicle;
+    }
+
     public void registerVehicle(Vehicle vehicle, Long customerID) {
         Optional<Vehicle> foundVehicle = vehicleRepository.findVehicleByRego(vehicle.getRego());
 
