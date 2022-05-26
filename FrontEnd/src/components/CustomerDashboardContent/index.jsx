@@ -17,7 +17,7 @@ const CustomerDashboard = () => {
     }
 
     const navManageSubcript = (e) => {
-        //navigate('/');
+        navigate('/Membership', {state: {"customerId": id}});
     }
 
     const navMyVehicles = (e) => {
