@@ -23,6 +23,11 @@ public class AdminController {
         return adminService.getAdmin();
     }
 
+    @GetMapping(path = "get/{adminId}")
+    public Admin getAdmin(@PathVariable("adminId") Long adminId) {
+        return adminService.getAdminByID(adminId);
+    }
+
     @PostMapping
     public void registerAdmin(@RequestBody Admin admin) {
         adminService.registerAdmin(admin);

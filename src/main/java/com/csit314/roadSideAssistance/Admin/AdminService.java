@@ -1,14 +1,11 @@
 package com.csit314.roadSideAssistance.Admin;
 
 
-import com.csit314.roadSideAssistance.Customer.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 @Service
 public class AdminService {
@@ -35,6 +32,15 @@ public class AdminService {
             throw new IllegalStateException("Admin with ID "+ adminId+ " does not exist");
         }
         adminRepository.deleteById(adminId);
+    }
+
+    public Admin getAdminByID(Long adminId){
+        boolean exists = adminRepository.existsById(adminId);
+
+        if(!exists){
+            throw new IllegalStateException("Admin with ID "+ adminId+ " does not exist");
+        }
+        return adminRepository.getById(adminId);
     }
 
     public void updateAdmin(Admin admin){
