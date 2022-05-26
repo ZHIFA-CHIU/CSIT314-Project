@@ -1,6 +1,16 @@
 import React, { useRef, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+
+let test = {
+  description: "Flat Types Serivce",
+  amount: {
+    currency_code: "AUD",
+    value: 200
+  }
+};
 
 export default function SinglePaypal() {
+  const navigate = useNavigate();
   const paypal = useRef();
 
   useEffect(() => {
@@ -10,19 +20,14 @@ export default function SinglePaypal() {
           return actions.order.create({
             intent: "CAPTURE",
             purchase_units: [
-              {
-                description: "Cool looking table",
-                amount: {
-                  currency_code: "AUD",
-                  value: 650.0,
-                },
-              },
+              test
             ],
           });
         },
         onApprove: async (data, actions) => {
           const order = await actions.order.capture();
           console.log(order);
+          navigate("/Receipt", { state: { order } });
         },
         onError: (err) => {
           console.log(err);
