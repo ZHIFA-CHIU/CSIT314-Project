@@ -22,7 +22,7 @@ export default function VehicleDetail() {
                     </button>
                 </Toolbar>
             </AppBar>
-            <VehicleDetailContent id={id} />
+            <VehicleDetailContent id={id} vehicleID={1}/>
         </div>
     )
 }

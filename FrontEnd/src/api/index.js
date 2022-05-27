@@ -39,7 +39,7 @@ export const addVehicle = (customerId, data) =>
     }, "POST");
 
 // get vehicle details
-export const getVehicle = id => ajax(`http://localhost:3000/api1/api/v1/Vehicle`, { id }, "GET");
+export const getVehicle = vehicleID => ajax(`http://localhost:3000/api1/api/v1/Vehicle/get/${vehicleID}`, { vehicleID }, "GET");
 
 // update vehicle details
 export const updateVehicle = (customerId, colour, manufactured_year, manufacturer, model, registered_state, registration_plate, weight ) =>
