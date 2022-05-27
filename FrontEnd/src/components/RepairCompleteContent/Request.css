@@ -30,6 +30,16 @@ input {
     font-size: 14px;
 }
 
+label {
+    line-height: 2;
+    text-align: left;
+    display: block;
+    margin-bottom: 13px;
+    margin-top: 20px;
+    font-size: 14px;
+    font-weight: 200;
+}
+
 button[type="submit"],
 input[type="submit"] {
     background: #29b0e8;
@@ -41,10 +51,6 @@ input[type="submit"] {
     font-size: 16px;
     font-weight: 100;
     letter-spacing: 10px;
-}
-
-label{
-    color: orange !important;
 }
 
 button[type="submit"]:hover,
@@ -102,6 +108,14 @@ button {
     text-transform: uppercase;
     padding: 10px 20px;
     border-radius: 4px;
+}
+
+.Payment{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 
