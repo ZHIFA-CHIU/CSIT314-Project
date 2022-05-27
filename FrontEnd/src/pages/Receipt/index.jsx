@@ -36,7 +36,6 @@ export default function Receipt() {
                         additionalInfo: response.data[0].additionalInfo
                     }
                 );
-                // console.log(receiptInfo);
             }
         ).catch(
             err => alert(err)

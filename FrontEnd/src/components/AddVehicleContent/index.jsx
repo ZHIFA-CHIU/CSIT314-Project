@@ -12,7 +12,6 @@ export default function AddVehicle({customerId}) {
         formState: { errors }
     } = useForm();
 
-    // const onSubmit = data => console.log(data);
     const goBackPage = () => {
         window.history.back()
     }
@@ -23,15 +22,13 @@ export default function AddVehicle({customerId}) {
         addVehicle(customerId, data).then(
             response => {
                 alert("Vehicle has been successfully added");
-                navigate("/VehList", {state: {id: customerId}});
+                navigate("/VehList", {state: {customerId}});
             }
         ).catch(
             error => alert(error)
         )
     };
 
-    //console.log(watch("example"));
-    // console.log(errors);
     return (
         <div>
             <AppBar position='static' >
@@ -47,11 +44,6 @@ export default function AddVehicle({customerId}) {
                     </button>
                 </Toolbar>
             </AppBar>
-            {/*<div className='header' style={{background:"white"}}>*/}
-            {/*    <button className='medium ui primary button' onClick={() => goBackPage()}>*/}
-            {/*        Back*/}
-            {/*    </button>*/}
-            {/*</div>*/}
 
 
             <h1>Please Add Vehicle</h1>

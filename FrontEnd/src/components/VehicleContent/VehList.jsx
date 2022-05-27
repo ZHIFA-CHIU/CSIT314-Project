@@ -1,39 +1,30 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import VehItem from './VehItem.jsx'
-// import {AppBar, Toolbar, Typography} from "@mui/material";
-// import { useNavigate } from 'react-router-dom'
-// import AddVehicle from './AddVehicle/AddVehicle'
-// import {Link} from 'react-router-dom'
+import {getVehicle} from "../../api";
 
-export default class VehList extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            list: [
-                {vehicle:"Toyota",rego:"12345678",weight:"333kg"},
-                {vehicle:"Mazda",rego:"12345678",weight:"333kg"},
-                {vehicle:"Benz",rego:"12345678",weight:"333kg"},
-            ]
+/**
+ * Gets a list of vehicles to display
+ * @returns {JSX.Element}
+ * @constructor
+ */
+const VehList = ({customerId}) => {
+    const [vehicleList, setVehicleList] = useState([])
+
+    useEffect(() => getVehicle(customerId).then(
+        response => {
+            setVehicleList(response.data)
         }
+    ), [])
 
-    }
+    return (
+        <div>
+            <h1>Vehicle Details</h1>
+            {vehicleList.map((item, key) =>
+                <VehItem key={key} {...item}/>
+            )}
 
-    render() {
-        // const navigate = useNavigate();
-        return <div>
-            <h1>Vehicle List</h1>
-
-            {this.state.list.map((item,i)=>{
-                return <VehItem key={i}{...item}></VehItem>
-            })
-            }
         </div>
-    }
+    );
+};
 
-    loadVeh = key=>{
-        const list = JSON.parse(localStorage.getItem(key) || '[]');
-        this.setState({
-            list
-        })
-    }
-}
+export default VehList;

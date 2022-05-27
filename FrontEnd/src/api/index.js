@@ -38,6 +38,10 @@ export const addVehicle = (customerId, data) =>
         ...data
     }, "POST");
 
+// get vehicle
+export const getVehicle = (customerId) =>
+    ajax(`http://localhost:3000/api1/api/v1/Vehicle/getByCustomer/${customerId}`, {}, "GET")
+
 // get customer details
 export const getCustomerDetailsRequest = id => ajax(`http://localhost:3000/api1/api/v1/customer/get/${id}`, { id }, "GET");
 
