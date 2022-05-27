@@ -6,7 +6,7 @@ export default function CustomerRating() {
     const {state} = useLocation();
     return (
         <div className='rating-page'>
-            <CustomerRatingContent customerId={state.customerId} technicianId={state.technicianId}/>
+            <CustomerRatingContent customerId={2} technicianId={2}/>
         </div>
     )
 }

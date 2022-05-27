@@ -7,8 +7,6 @@ const CustomerDashboard = () => {
     // getting customer ID
     let history = useLocation();
     let [id, _] = useState(history.state.id);
-    // test function is to see if we get customer id successfully
-    const test = () => console.log(id);
 
     const navigate = useNavigate();
 
@@ -32,10 +30,6 @@ const CustomerDashboard = () => {
         navigate('/CustomerDetail', {state: {"customerId": id}});
     }
 
-    const navUpdatePayDetails = (e) => {
-        //navigate('/');
-    }
-
     return (
         <div id='container'>
             <Button variant="outlined" size='large' style={{height: "13.5%"}} onClick={navRequestRepair}>Request a
@@ -52,11 +46,6 @@ const CustomerDashboard = () => {
 
             <Button variant="outlined" size='large' style={{height: "13.5%"}} onClick={navUpdateDetails}>Update My
                 Details</Button><br/>
-
-            <Button variant="outlined" size='large' style={{height: "13.5%"}} onClick={navUpdatePayDetails}>Update
-                Payment Details</Button><br/>
-
-            <Button variant="outlined" size='large' style={{height: "13.5%"}} onClick={test}>Test</Button><br/>
         </div>
     );
 }

@@ -5,6 +5,7 @@ import Rating from '@mui/material/Rating';
 import {useNavigate} from "react-router-dom";
 import "./Rating.css"
 import {addReview} from "../../api";
+import { styled } from '@mui/material/styles';
 
 /**
  * Content for the review page
@@ -22,6 +23,12 @@ export default function CustomerRatingContent({technicianId, customerId}) {
     const goBackPage = () => {
         window.history.back()
     }
+
+    const StyledRating = styled(Rating)({
+        '.MuiRating-iconHover': {
+            color: 'Orange',
+        }
+    });
 
     const navigate = useNavigate();
 
@@ -64,11 +71,12 @@ export default function CustomerRatingContent({technicianId, customerId}) {
                     <Typography component="legend">Rating</Typography>
                     <br/>
                     <Controller
+
                         name="rating"
                         control={control}
                         rules={{ required: true }}
                         render={({field}) =>
-                            <Rating name="size-large" size="large" rating={field.value} onChange={field.onChange}  />}
+                            <StyledRating style={{color: "red !important"}} name="size-large" size="large" rating={field.value} onChange={field.onChange}  />}
                     />
                     {errors?.rating?.type === "required" && <p>This field is required</p>}
                     <br/>

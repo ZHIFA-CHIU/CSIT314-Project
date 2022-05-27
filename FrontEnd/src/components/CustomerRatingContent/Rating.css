@@ -43,8 +43,8 @@ input[type="submit"] {
     letter-spacing: 10px;
 }
 
-label{
-    color: orange !important;
+.label{
+    color: orange
 }
 
 button[type="submit"]:hover,
