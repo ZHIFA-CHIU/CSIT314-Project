@@ -57,4 +57,9 @@ public class CustomerController {
     public Customer getCustomerByID(@PathVariable("customerId") Long customerId) {
         return customerService.getById(customerId);
     }
+
+    @PutMapping(path = "/updateMembership/{customerId}/{membershipStatus}")
+    public void updateMembership(@PathVariable("customerId") Long customerId, @PathVariable("membershipStatus") Boolean membershipStatus) {
+        customerService.updateMembership(customerId, membershipStatus);
+    }
 }

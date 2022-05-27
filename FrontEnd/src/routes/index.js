@@ -14,6 +14,7 @@ import Payment from "../pages/Payment";
 import CustomerDetail from "../pages/CustomerDetail";
 import TechnicianDetail from "../pages/TechnicianDetail";
 import Receipt from "../pages/Receipt";
+import Membership from "../pages/Membership";
 
 export default [
     {
@@ -55,6 +56,10 @@ export default [
     {
         path: "AddVehicle",
         element: <AddVehicle />
+    },
+    {
+        path: "/Membership",
+        element: <Membership />
     },
     {
         path: "CustomerRating",
