@@ -13,6 +13,8 @@ import Payment from "../pages/Payment";
 import CustomerDetail from "../pages/CustomerDetail";
 import TechnicianDetail from "../pages/TechnicianDetail";
 import Receipt from "../pages/Receipt";
+import LookForRepairs from "../pages/LookForRepairs";
+import JobDetails from "../pages/ JobDetails";
 
 export default [
     {
@@ -74,5 +76,13 @@ export default [
     {
         path: "/Receipt",
         element: <Receipt />
+    },
+    {
+        path: "/LookForRepairs",
+        element: <LookForRepairs />
+    },
+    {
+        path: "JobDetails",
+        element: <JobDetails />
     }
 ];

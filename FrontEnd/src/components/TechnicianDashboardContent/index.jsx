@@ -12,7 +12,7 @@ const TechnicianDashboard = () => {
     const navigate = useNavigate();
 
     const navLookForRepair = (e) => {
-        //navigate('/');
+        navigate("/LookForRepairs", {state: {id}});
     }
 
     const navRepairHistory = (e) => {
