@@ -28,7 +28,7 @@ export default function ServiceRequestContent({customerId}) {
     const navigate = useNavigate();
 
     const onSubmit = (data) => {
-        serviceRequest(customerId,location, data).then(
+        serviceRequest(customerId,location,data).then(
             response => {
                 alert("Service has been requested");
                 navigate("/CustomerDashboard", {state: {id: customerId}});

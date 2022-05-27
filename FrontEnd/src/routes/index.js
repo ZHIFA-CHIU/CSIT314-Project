@@ -13,6 +13,7 @@ import AddVehicle from "../pages/AddVehicle";
 import Payment from "../pages/Payment";
 import CustomerDetail from "../pages/CustomerDetail";
 import TechnicianDetail from "../pages/TechnicianDetail";
+import TechnicianRating from "../pages/TechnicianRating";
 
 export default [
     {
@@ -74,5 +75,9 @@ export default [
     {
         path: "/TechnicianDetail",
         element: <TechnicianDetail />
+    },
+    {
+        path: "TechnicianRating",
+        element: <TechnicianRating />
     }
 ];

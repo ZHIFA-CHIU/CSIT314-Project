@@ -55,7 +55,7 @@ export const updateCustomerDetailsRequest = (id, firstName, lastName, email,
         password, dob, phoneNumber, age, streetAddress, suburb, postCode, state, hasMembership
     }, "PUT");
 
-// get customer details
+// get technician details
 export const getTechnicianDetailsRequest = id => ajax(`http://localhost:3000/api1/api/v1/technician/get/${id}`, { id }, "GET");
 
 // update technician details
@@ -65,3 +65,7 @@ export const updateTechnicianDetailsRequest = (id, age, availableStatus, avgRati
     id, age, availableStatus, avgRating, bankAccount, dob, email,
     firstName, heavyVehicleQualification, lastName, lightVehicleQualification, password, phoneNumber, postCode, state, streetAddress, suburb
 }, "PUT");
+
+// get all review
+export const getAllReview = technicianId => ajax(`http://localhost:3000/api1/api/v1/review/${technicianId}`, { technicianId }, "GET");
+

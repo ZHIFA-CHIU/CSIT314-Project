@@ -1,8 +1,8 @@
-import React from "react"
+import React, {useState} from "react"
 import {AppBar, Toolbar, Typography, Box} from '@mui/material'
 import {useForm, Controller} from 'react-hook-form'
 import Rating from '@mui/material/Rating';
-import {useNavigate} from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 import "./Rating.css"
 import {addReview} from "../../api";
 
@@ -24,13 +24,14 @@ export default function CustomerRatingContent({technicianId}) {
 
     const navigate = useNavigate();
 
-
+    let history = useLocation();
+    let [id, _] = useState(history.state.id);
     const onSubmit = (data) => {
         console.log(data);
         addReview(technicianId, data).then(
             response => {
                 alert("Review successfully submitted");
-                navigate("/CustomerDashboard");
+                navigate("/CustomerDashboard", {state: {"customerId": id}});
             }
         ).catch(
             error => alert(error)

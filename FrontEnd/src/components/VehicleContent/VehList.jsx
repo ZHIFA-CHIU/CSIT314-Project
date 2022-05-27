@@ -13,6 +13,7 @@ export default class VehList extends React.Component {
                 {vehicle:"Toyota",rego:"12345678",weight:"333kg"},
                 {vehicle:"Mazda",rego:"12345678",weight:"333kg"},
                 {vehicle:"Benz",rego:"12345678",weight:"333kg"},
+                {vehicle:"Benz",rego:"12345678",weight:"333kg"},
             ]
         }
 
