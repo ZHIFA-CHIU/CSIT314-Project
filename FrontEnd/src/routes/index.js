@@ -18,6 +18,9 @@ import RepairUnderway from "../pages/RepairUnderway";
 import RepairComplete from "../pages/RepairComplete";
 import SearchTechnician from "../pages/SearchTechnician";
 
+import LookForRepairs from "../pages/LookForRepairs";
+import JobDetails from "../pages/ JobDetails";
+import TechnicianJobHistory from "../pages/TechnicianJobHistory/TechnicianJobHistory";
 
 export default [
     {
@@ -95,5 +98,17 @@ export default [
     {
         path: "/Receipt",
         element: <Receipt />
+    },
+    {
+        path: "/LookForRepairs",
+        element: <LookForRepairs />
+    },
+    {
+        path: "JobDetails",
+        element: <JobDetails />
+    },
+    {
+        path: "/technicianJobs",
+        element: <TechnicianJobHistory />
     }
 ];

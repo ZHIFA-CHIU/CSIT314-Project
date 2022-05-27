@@ -1,0 +1,15 @@
+.look-for-repairs {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.input-field {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.input-field * {
+    margin: 20px;
+}

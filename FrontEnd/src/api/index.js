@@ -77,6 +77,18 @@ export const updateTechnicianDetailsRequest = (id, age, availableStatus, avgRati
 // get all jobs request, this one is for receipt page test purpose
 export const getAllJobsRequest = id => ajax(`http://localhost:3000/api1/api/v1/job/getall/${id}`, { id }, "GET");
 
+export const getAllTechnicianJobsRequest = techId => ajax(`http://localhost:3000/api1/api/v1/job/getall/technician/${techId}`, {} , "GET");
+
+// technician accepts a job
+export const technicianAcceptJobRequest = (jobId, technicianId) => ajax(`http://localhost:3000/api1/api/v1/job/addTechnician/${jobId}/${technicianId}`,
+    { jobId, technicianId }, "POST");
+
+// technician gets nearby job request
+export const technicianGetNearbyJobsRequest = (technicianLat, technicianLon) => ajax(`http://localhost:3000/api1/api/v1/job/getNearby/${technicianLat}/${technicianLon}`,
+    { technicianLat, technicianLon }, "GET");
+
+export const closeJob = (jobId) => ajax(`http://localhost:3000/api1/api/v1/job/closeJob/${jobId}`,{}, "PUT");
+
 // get job based on ID
 export const getJob = id => ajax(`http://localhost:3000/api1/api/v1/job/${id}`, { id }, "GET");
 

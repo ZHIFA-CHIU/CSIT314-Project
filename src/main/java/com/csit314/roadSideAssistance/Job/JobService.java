@@ -77,6 +77,14 @@ public class JobService {
         return jobs;
     }
 
+    public List<Job> getTechnicianJobs(Long techId) {
+        List<Job> jobs = jobRepository.findJobsByTechnicianId(techId);
+        if (jobs.isEmpty()) {
+            throw new IllegalStateException(String.format("Jobs could not be found with customerID '%s'", techId));
+        }
+        return jobs;
+    }
+
     public Job get(Long jobId) {
 
         return jobRepository.findById(jobId).get();
@@ -87,6 +95,7 @@ public class JobService {
         Optional<Job> job = jobRepository.findById(jobId);
         if (job.isPresent()) {
             job.get().setTechnician(technician);
+            job.get().setStatus(Status.INPROGRESS);
             jobRepository.save(job.get());
         } else {
             throw new IllegalStateException(String.format("Job with id %s does not exist", jobId));
