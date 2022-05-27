@@ -76,6 +76,14 @@ public class JobService {
         return jobs;
     }
 
+    public List<Job> getJobsNull() {
+        List<Job> jobs = jobRepository.findJobsByTechnicianIsNull();
+        if (jobs.isEmpty()) {
+            throw new IllegalStateException(String.format("No unassigned jobs"));
+        }
+        return jobs;
+    }
+
     public Job get(Long jobId) {
 
         return jobRepository.findById(jobId).get();
@@ -86,6 +94,7 @@ public class JobService {
         Optional<Job> job = jobRepository.findById(jobId);
         if (job.isPresent()) {
             job.get().setTechnician(technician);
+            job.get().setStatus(Status.INPROGRESS);
             jobRepository.save(job.get());
         } else {
             throw new IllegalStateException(String.format("Job with id %s does not exist", jobId));

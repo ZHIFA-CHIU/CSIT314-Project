@@ -40,6 +40,11 @@ public class JobController {
         return jobService.getJobs(customerId);
     }
 
+    @GetMapping(path = "/getnull")
+    public List<Job> getJobsNull() {
+        return jobService.getJobsNull();
+    }
+
     @PostMapping(path = "/{customerId}")
     public Job registerJob(@RequestBody Job job, @PathVariable("customerId") Long customerId) {
         jobService.registerJob(job, customerId);
