@@ -66,4 +66,13 @@ public class JobController {
         return jobService.findAllJobsNearby(technicianLat, technicianLong);
     }
 
+    @PutMapping(path = "/closeJob/{jobId}")
+    public void closeJob(@PathVariable("jobId") Long jobId) {
+        jobService.closeJob(jobId);
+    }
+
+    @PutMapping(path = "/updateStatus/{jobId}/{status}")
+    public void updateStatus(@PathVariable("jobId") Long jobId, @PathVariable("status") String status) {
+        jobService.updateStatus(jobId, status);
+    }
 }

@@ -6,6 +6,7 @@ import com.csit314.roadSideAssistance.Customer.CustomerService;
 import com.csit314.roadSideAssistance.Job.Job;
 import com.csit314.roadSideAssistance.Job.JobRepository;
 import com.csit314.roadSideAssistance.Job.JobService;
+import com.csit314.roadSideAssistance.Job.Status;
 import com.csit314.roadSideAssistance.Technician.TechnicianService;
 import org.junit.jupiter.api.*;
 import org.mockito.ArgumentCaptor;
@@ -114,4 +115,11 @@ class JobServiceTest {
         assertThat(jobService.findAllJobsNearby(45.0, 95.0).contains(job));
     }
 
+
+    @Test
+    @DisplayName("Can close a job by JobID")
+    void canCloseJobById() {
+        Long jobID = 9274972L;
+        assertThatThrownBy(() -> jobService.closeJob(jobID)).hasMessageContaining("Job with ID 9274972 does not exist");
+    }
 }
