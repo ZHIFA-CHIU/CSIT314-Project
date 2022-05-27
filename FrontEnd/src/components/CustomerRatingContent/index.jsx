@@ -1,4 +1,4 @@
-import React from "react"
+import React, {useEffect} from "react"
 import {AppBar, Toolbar, Typography, Box} from '@mui/material'
 import {useForm, Controller} from 'react-hook-form'
 import Rating from '@mui/material/Rating';
@@ -9,9 +9,10 @@ import {addReview} from "../../api";
 /**
  * Content for the review page
  * @param technicianId technicianId to submit with review
+ * @param customerId CustomerId to navigate around
  * @returns {JSX.Element}
  */
-export default function CustomerRatingContent({technicianId}) {
+export default function CustomerRatingContent({technicianId, customerId}) {
     const {
         register,
         control,
@@ -30,7 +31,7 @@ export default function CustomerRatingContent({technicianId}) {
         addReview(technicianId, data).then(
             response => {
                 alert("Review successfully submitted");
-                navigate("/CustomerDashboard");
+                navigate("/CustomerDashboard", {state: {"id": customerId}});
             }
         ).catch(
             error => alert(error)

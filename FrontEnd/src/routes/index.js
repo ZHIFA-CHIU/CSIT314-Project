@@ -14,7 +14,6 @@ import Payment from "../pages/Payment";
 import CustomerDetail from "../pages/CustomerDetail";
 import TechnicianDetail from "../pages/TechnicianDetail";
 import Receipt from "../pages/Receipt";
-import CustomerRating from "../pages/CustomerRating";
 
 export default [
     {
@@ -48,10 +47,6 @@ export default [
     {
         path: "TechnicianDashboard",
         element: <TechnicianDashboard />
-    },
-    {
-        path: "CustomerRating",
-        element: <CustomerRating />
     },
     {
         path: "VehList",
