@@ -56,14 +56,14 @@ export default function AddVehicle({customerId}) {
 
             <h1>Please Add Vehicle</h1>
             <form onSubmit={handleSubmit(onSubmit)}>
-                <input type="text" placeholder="Manufacturer"
+                <input type="text" placeholder="Manufacture"
                        {...register("manufacturer", {
                            required: true,
                            maxLength: 30,
                        })} />
                 {errors?.manufacturer?.type === "required" && <p>This field is required</p>}
-                {errors?.manufacturer?.type === "maxLength" && (
-                    <p>Manufacturer cannot exceed 30 characters</p>
+                {errors?.Manufacturer?.type === "maxLength" && (
+                    <p>Manufacture cannot exceed 30 characters</p>
                 )}
                 <input type="text" placeholder="Model"
                        {...register("model", {
@@ -108,11 +108,11 @@ export default function AddVehicle({customerId}) {
                 {errors?.colour?.type === "maxLength" && (
                     <p>Colour cannot exceed 30 characters</p>
                 )}
-                <input type="text" placeholder="Registration_Plate"
+                <input type="text" placeholder="Rego"
                        {...register("registrationPlate", {
                            required: true,
-                           minLength: 6,
-                           maxLength: 6
+                           maxLength: 6,
+                           minLength: 6
                        })} />
                 {errors?.registrationPlate?.type === "required" && <p>This field is required</p>}
                 {errors?.registrationPlate?.type === "maxLength" && (
@@ -131,7 +131,7 @@ export default function AddVehicle({customerId}) {
                     <option value="Australian Capital Territory">Australian Capital Territory</option>
                     <option value="Tasmania">Tasmania</option>
                 </select>
-                <input type="text" placeholder="Weight"
+                <input type="number" placeholder="Weight(KG)"
                        {...register("weight", {
                            required: true,
                            maxLength: 10
