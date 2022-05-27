@@ -1,10 +1,15 @@
 import React from 'react'
 import { AppBar, Toolbar, Typography } from '@mui/material'
 import {useForm} from 'react-hook-form'
-
 import  "./vehicle.css"
 import {addVehicle} from '../../api'
 import {useNavigate} from "react-router-dom";
+
+/**
+ * Content for the add vehicle page
+ * @param customerId customerId to submit with add vehicle
+ * @returns {JSX.Element}
+ */
 export default function AddVehicle({customerId}) {
     const {
         register,
@@ -36,7 +41,7 @@ export default function AddVehicle({customerId}) {
                     <button className='medium ui primary button' onClick={() => goBackPage()}>
                         Back
                     </button>
-                    <Typography align='center' sx={{ flexGrow: 1 }}>
+                    <Typography align='center' sx={{ flexGrow: 1 }} onClick={() => goBackPage()}>
                         Roadside Assistant Service
                     </Typography>
                     <button className='medium ui primary button' onClick={() => goBackPage()}>
