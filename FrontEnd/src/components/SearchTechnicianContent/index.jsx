@@ -1,12 +1,11 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 import {AppBar, Toolbar, Typography} from '@mui/material'
-import {useForm} from 'react-hook-form'
 import useNavigator from 'react-browser-navigator'
-import {GoogleMap, LoadScript, Marker} from '@react-google-maps/api'
-import {serviceRequest} from '../../api'
+import {getJobDetailsRequest, serviceRequest} from '../../api'
 
 import "./Request.css"
 import {useNavigate} from "react-router-dom";
+import Banner from "../Banner";
 
 /**
  * Content for the service request page
@@ -14,88 +13,50 @@ import {useNavigate} from "react-router-dom";
  * @returns {JSX.Element}
  */
 export default function SearchTechnicianContent({jobId}) {
+    const fetchJobStatus = () => {
+        getJobDetailsRequest(jobId).then(
+            response => {
+                if (response.data.status === "COMPLETED") {
+                    clearInterval(isChanging);
+                    isChanging = null;
+                    navigate("/RepairComplete", {state: {"jobId": jobId}});
+                } else if (response.data.status === "INPROGRESS") {
+                    clearInterval(isChanging);
+                    isChanging = null;
+                    navigate("/RepairUnderway", {state: {"jobId": jobId}});
 
-    const {
-        register,
-        handleSubmit,
-        formState: {errors}
-    } = useForm();
-
-    const goBackPage = () => {
-        window.history.back()
+                }
+            }
+        )
     }
 
     const navigate = useNavigate();
-
     let isChanging;
 
-    useEffect(()=>{
-            onSubmit()
-    }, []) // <-- empty dependency array
-
-    const checkStatus = (data) => {
-        if(jobId.status != "WAITING"){
-            clearInterval(isChanging);
-            isChanging = null;
-            navigate("/RepairUnderway", {state: {"jobId": jobId}});
+    useEffect(() => {
+        if (!isChanging) {
+            isChanging = setInterval(fetchJobStatus, 1000);
         }
-    }
-
-    const onSubmit = (data) => {
-        alert("OnSubmit");
-        alert(jobId.status);
-        if(jobId.status != "WAITING"){
-            navigate("/FoundTechnician", {state: {"jobId": jobId}});
-        } else{
-            if(!isChanging){
-                isChanging = setInterval(checkStatus, 10000);
-            }
-
-        }
-
-    };
+    }, [])
 
     let {getCurrentPosition} = useNavigator();
+
     let location = {
         customerLatitude: getCurrentPosition?.coords.latitude,
         customerLongitude: getCurrentPosition?.coords.longitude
     }
+
     useEffect(() => {
         if (getCurrentPosition !== undefined && getCurrentPosition !== null) {
         }
     }, [getCurrentPosition]);
 
-    const containerStyle = {
-        marginLeft: 'auto',
-        marginRight: 'auto',
-        // width: '500px',
-        height: '500px'
-    };
-
-    const center = {
-        lat: getCurrentPosition?.coords.latitude,
-        lng: getCurrentPosition?.coords.longitude
-    };
-
     return (
         <div>
-            <AppBar position='static'>
-                <Toolbar>
-                    <button className='medium ui primary button' onClick={() => goBackPage()}>
-                        Back
-                    </button>
-                    <Typography align='center' sx={{flexGrow: 1}} onClick={() => goBackPage()}>
-                        Roadside Assistant Service
-                    </Typography>
-                    <button className='medium ui primary button' onClick={() => goBackPage()}>
-                        Next
-                    </button>
-                </Toolbar>
-            </AppBar>
-
+            <Banner />
             <h1>Finding a Technician...</h1>
             <div className='ui center aligned container' style={{minWidth: "400px", maxWidth: "684px"}}>
-                <p>X Technicians within 50Kms</p>
+                <p>6 Technicians within 50Kms</p>
             </div>
         </div>
     )

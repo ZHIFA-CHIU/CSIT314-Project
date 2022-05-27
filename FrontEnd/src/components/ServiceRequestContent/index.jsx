@@ -31,7 +31,7 @@ export default function ServiceRequestContent({customerId}) {
         serviceRequest(customerId,location, data).then(
             response => {
                 alert("Service has been requested");
-                navigate("/SearchTechnician", {state: {"jobId": response.data}});
+                navigate("/SearchTechnician", {state: {"jobId": response.data.id}});
             }
         ).catch(
             error => alert(error)

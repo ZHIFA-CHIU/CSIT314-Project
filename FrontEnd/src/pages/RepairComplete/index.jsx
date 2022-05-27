@@ -1,13 +1,13 @@
-import React, {useState} from 'react'
+import React from 'react'
 import RepairCompleteContent from '../../components/RepairCompleteContent'
 import {useLocation} from "react-router-dom";
 
 export default function RepairComplete() {
-    let history = useLocation()
-    let [id] = useState(history.state.jobId)
+    const {state} = useLocation();
+
     return (
         <div className='repair-complete-page'>
-            <RepairCompleteContent jobId={id}/>
+            <RepairCompleteContent jobId={state.jobId}/>
         </div>
     )
 }

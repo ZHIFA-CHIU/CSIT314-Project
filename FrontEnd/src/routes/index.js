@@ -10,7 +10,6 @@ import TechnicianDashboard from "../pages/TechnicianDashboard";
 import CustomerRating from "../pages/CustomerRating";
 import VehList from "../pages/Vehicle/";
 import AddVehicle from "../pages/AddVehicle";
-import Payment from "../pages/Payment";
 import CustomerDetail from "../pages/CustomerDetail";
 import TechnicianDetail from "../pages/TechnicianDetail";
 import Receipt from "../pages/Receipt";
@@ -18,7 +17,6 @@ import Membership from "../pages/Membership";
 import RepairUnderway from "../pages/RepairUnderway";
 import RepairComplete from "../pages/RepairComplete";
 import SearchTechnician from "../pages/SearchTechnician";
-import FoundTechnician from "../pages/FoundTechnician";
 
 
 export default [
@@ -59,10 +57,6 @@ export default [
         element: <SearchTechnician />
     },
     {
-        path: "FoundTechnician",
-        element: <FoundTechnician />
-    },
-    {
         path: "/CustomerDashboard",
         element: <CustomerDashboard />
     },
@@ -89,10 +83,6 @@ export default [
     {
         path: "/",
         element: <Navigate to="/home" />
-    },
-    {
-        path: "/payment",
-        element: <Payment />
     },
     {
         path: "/CustomerDetail",

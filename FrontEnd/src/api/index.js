@@ -75,6 +75,9 @@ export const updateTechnicianDetailsRequest = (id, age, availableStatus, avgRati
 }, "PUT");
 
 // get all jobs request, this one is for receipt page test purpose
-export const getAllJobsRequest = id => ajax(`http://localhost:3000/api1/api/v1/job/getall/${id}`, { id }, "GET")
+export const getAllJobsRequest = id => ajax(`http://localhost:3000/api1/api/v1/job/getall/${id}`, { id }, "GET");
+
+// get job based on ID
+export const getJob = id => ajax(`http://localhost:3000/api1/api/v1/job/${id}`, { id }, "GET");
 
 export const updateMembership = (customerId, membershipStatus) => ajax(`http://localhost:3000/api1/api/v1/customer//updateMembership/${customerId}/${membershipStatus}`, { customerId, membershipStatus }, "PUT");
