@@ -1,9 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React, {useEffect, useState} from 'react'
 import Banner from "../../components/Banner"
 import {getJob} from "../../api";
-import { Table, TableCell, TableContainer, Paper,
-    TableHead, TableRow, TableBody,  } from '@mui/material';
-import {useLocation} from "react-router-dom";
+import {
+    Table, TableCell, TableContainer, Paper,
+    TableHead, TableRow, TableBody, Button, Box,
+} from '@mui/material';
+import {useLocation, useNavigate} from "react-router-dom";
+
 /**
  * payer
  * amount
@@ -14,8 +17,15 @@ import {useLocation} from "react-router-dom";
  */
 export default function Receipt() {
     const {state} = useLocation();
-
     const [receiptInfo, setReceiptInfo] = useState({});
+    const [custId, setCustId] = useState();
+    const [techId, setTechId] = useState();
+
+    const navigate = useNavigate();
+
+    const reviewPage = () => {
+        navigate("/CustomerRating", {state: {customerId: custId, technicianId: techId}})
+    }
 
     useEffect(
         () => getJob(state.jobId).then(
@@ -30,6 +40,8 @@ export default function Receipt() {
                         additionalInfo: response.data.additionalInfo || '-'
                     }
                 );
+                setCustId(response.data.customer.id);
+                setTechId(response.data.technician.id);
             }
         ).catch(
             err => alert(err)
@@ -38,9 +50,9 @@ export default function Receipt() {
 
     return (
         <div className='Receipt'>
-            <Banner />
+            <Banner/>
             <TableContainer component={Paper}>
-                <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                <Table sx={{minWidth: 650}} aria-label="simple table">
                     <TableHead>
                         <TableRow>
                             <TableCell>Receipt ID</TableCell>
@@ -54,7 +66,7 @@ export default function Receipt() {
                     <TableBody>
                         {
                             <TableRow
-                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                sx={{'&:last-child td, &:last-child th': {border: 0}}}
                             >
                                 <TableCell component="th" scope="row">
                                     {receiptInfo.orderId}
@@ -69,6 +81,7 @@ export default function Receipt() {
                     </TableBody>
                 </Table>
             </TableContainer>
+                <Button onClick={reviewPage}>Review</Button>
         </div>
     )
 }
