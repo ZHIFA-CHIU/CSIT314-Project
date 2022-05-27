@@ -34,7 +34,7 @@ export const serviceRequest = (customerId, location, data) =>
 
 // add vehicle
 export const addVehicle = (customerId, data) =>
-    ajax(`http://localhost:3000/api1/api/v1/customer/addVehicle/${customerId}`,{
+    ajax(`http://localhost:3000/api1/api/v1/customer/addVehicle/${customerId}`, {
         ...data
     }, "POST");
 
@@ -59,3 +59,6 @@ export const updateTechnicianDetailsRequest = (id, age, availableStatus, avgRati
     id, age, availableStatus, avgRating, bankAccount, dob, email,
     firstName, heavyVehicleQualification, lastName, lightVehicleQualification, password, phoneNumber, postCode, state, streetAddress, suburb
 }, "PUT");
+
+// get all jobs request, this one is for receipt page test purpose
+export const getAllJobsRequest = id => ajax(`http://localhost:3000/api1/api/v1/job/getall/${id}`, { id }, "GET")
