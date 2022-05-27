@@ -62,7 +62,7 @@ public class JobConfig implements CommandLineRunner {
 
             job.setCustomer(customerRepository.findAll().get(faker.number().numberBetween(0, (int)customerRepository.count())));
 
-            if (faker.number().numberBetween(1, 101) >= 80) {
+            if (faker.number().numberBetween(1, 101) <= 80) {
                 job.setTechnician(technicianRepository.findAll().get(faker.number().numberBetween(0, (int) technicianRepository.count())));
 
                 job.setFinishTime(faker.date().future(8, TimeUnit.HOURS).toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime());
