@@ -25,7 +25,7 @@ const CustomerDashboard = () => {
     }
 
     const navServiceHistory = (e) => {
-        navigate('/customerRating');
+        navigate('/customerRating', {state: {"customerId": id}});
     }
 
     const navUpdateDetails = (e) => {
