@@ -30,8 +30,6 @@ public class JobConfig implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        System.out.println(customerRepository.count());
-
         Faker faker = new Faker(new Locale("en-AU"));
 
         List<Job> jobList = new ArrayList<>();
@@ -63,18 +61,21 @@ public class JobConfig implements CommandLineRunner {
             );
 
             job.setCustomer(customerRepository.findAll().get(faker.number().numberBetween(0, (int)customerRepository.count())));
-            job.setTechnician(technicianRepository.findAll().get(faker.number().numberBetween(0, (int)technicianRepository.count())));
 
-            job.setFinishTime(faker.date().future(8, TimeUnit.HOURS).toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime());
+            if (faker.number().numberBetween(1, 101) >= 80) {
+                job.setTechnician(technicianRepository.findAll().get(faker.number().numberBetween(0, (int) technicianRepository.count())));
 
-            long diff = Duration.between(job.getStartTime(), job.getFinishTime()).toHours();
+                job.setFinishTime(faker.date().future(8, TimeUnit.HOURS).toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime());
 
-            if (diff == 0)
-                diff = 1;
+                long diff = Duration.between(job.getStartTime(), job.getFinishTime()).toHours();
 
-            job.setJobPrice((double) diff * 40);
+                if (diff == 0)
+                    diff = 1;
 
-            job.setStatus(Status.COMPLETED);
+                job.setJobPrice((double) diff * 40);
+
+                job.setStatus(Status.COMPLETED);
+            }
 
             jobList.add(job);
         }
