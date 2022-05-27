@@ -78,8 +78,10 @@ export default function LoginContent({ id }) {
                             return actions.order.capture().then(function(details) {
                                 updateMembership(
                                     id, true
-                                ).then(
-                                    navigate("/CustomerDashboard", { state: { id } })
+                                ).then(() => {
+                                    alert("Payment has been successful");
+                                    navigate("/CustomerDashboard", { state: { id } });
+                                }
                                 )
                             });
                         }}
