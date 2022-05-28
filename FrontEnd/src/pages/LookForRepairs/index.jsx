@@ -27,6 +27,7 @@ export default function LookForRepairs() {
     const submitLocation = () => {
         technicianGetNearbyJobsRequest(lat, lon).then(
             response => {
+                console.log(response.data);
                 setJobs(response.data);
                 setFlag(true);
             }
@@ -38,7 +39,7 @@ export default function LookForRepairs() {
     const jobContent = () => {
         return (
             <div>
-                {(jobs.size > 1) ?
+                {flag ?
                     jobs.map(job => {
                         return <Card sx={{minWidth: 500}} key={job.id}>
                             <CardContent>
