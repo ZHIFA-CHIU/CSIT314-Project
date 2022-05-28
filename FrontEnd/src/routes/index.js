@@ -19,7 +19,7 @@ import RepairComplete from "../pages/RepairComplete";
 import SearchTechnician from "../pages/SearchTechnician";
 
 import LookForRepairs from "../pages/LookForRepairs";
-import JobDetails from "../pages/ JobDetails";
+import JobDetails from "../pages/JobDetails";
 import TechnicianJobHistory from "../pages/TechnicianJobHistory/TechnicianJobHistory";
 
 export default [
