@@ -57,9 +57,6 @@ export default function TechnicianJobHistory() {
                                 <Typography variant="body1">
                                     Category: {job.repairCategory}
                                 </Typography>
-                                <Typography variant="body2">
-                                    Distance: 2km
-                                </Typography>
                             </CardContent>
                         </Card>
                     })

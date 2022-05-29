@@ -41,8 +41,8 @@ const CustomerDashboard = () => {
             <Button variant="outlined" size="large" style={{height: "13.5%"}} onClick={navMyVehicles}>My
                 Vehicles</Button><br/>
 
-            <Button variant="outlined" size='large' style={{height: "13.5%"}} onClick={navServiceHistory}>Service
-                History</Button><br/>
+{/*             <Button variant="outlined" size='large' style={{height: "13.5%"}} onClick={navServiceHistory}>Service */}
+{/*                 History</Button><br/> */}
 
             <Button variant="outlined" size='large' style={{height: "13.5%"}} onClick={navUpdateDetails}>Update My
                 Details</Button><br/>
