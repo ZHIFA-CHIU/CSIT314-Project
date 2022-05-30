@@ -6,7 +6,6 @@ import { useNavigate } from 'react-router-dom';
 
 export default function CustomerDetailContent({ id }) {
     let navigate = useNavigate();
-    // let [details, setDetails] = useState({});
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
@@ -39,8 +38,6 @@ export default function CustomerDetailContent({ id }) {
     useEffect(
         () => getCustomerDetailsRequest(id).then(
             response => {
-                // console.log(response.data);
-                // setDetails(response.data);
                 setEmail(response.data.email);
                 setPhoneNumber(response.data.phoneNumber);
                 setPostCode(response.data.postCode);

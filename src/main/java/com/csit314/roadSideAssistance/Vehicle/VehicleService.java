@@ -72,4 +72,7 @@ public class VehicleService {
         vehicleRepository.save(vehicle);
     }
 
+    public List<Vehicle> getVehicleByCustomerId(Long customerId) {
+        return vehicleRepository.findVehicleByCustomerIDEquals(customerId);
+    }
 }

@@ -40,6 +40,11 @@ public class JobController {
         return jobService.getJobs(customerId);
     }
 
+    @GetMapping(path = "/getall/technician/{techId}")
+    public List<Job> getJobsTechnician(@PathVariable("techId") Long techId) {
+        return jobService.getTechnicianJobs(techId);
+    }
+
     @PostMapping(path = "/{customerId}")
     public Job registerJob(@RequestBody Job job, @PathVariable("customerId") Long customerId) {
         jobService.registerJob(job, customerId);
@@ -66,4 +71,13 @@ public class JobController {
         return jobService.findAllJobsNearby(technicianLat, technicianLong);
     }
 
+    @PutMapping(path = "/closeJob/{jobId}")
+    public void closeJob(@PathVariable("jobId") Long jobId) {
+        jobService.closeJob(jobId);
+    }
+
+    @PutMapping(path = "/updateStatus/{jobId}/{status}")
+    public void updateStatus(@PathVariable("jobId") Long jobId, @PathVariable("status") String status) {
+        jobService.updateStatus(jobId, status);
+    }
 }

@@ -22,7 +22,7 @@ export default function ServiceRequest() {
                     </button>
                 </Toolbar>
             </AppBar>
-            <VehicleContent />
+            <VehicleContent customerId={id}/>
         </div>
     )
 }

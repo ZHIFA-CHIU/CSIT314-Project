@@ -31,6 +31,11 @@ public class VehicleController {
         return vehicleService.getVehicleByID(vehicleID);
     }
 
+    @GetMapping(path= "/getByCustomer/{customerId}")
+    public List<Vehicle> getVehicleByCustomerId(@PathVariable("customerId") Long customerId) {
+        return vehicleService.getVehicleByCustomerId(customerId);
+    }
+
     @DeleteMapping(path = "{vehicleRego}")
     @Transactional
     public void deleteVehicle(@PathVariable("vehicleRego") String registeredState, String registeredPlate){

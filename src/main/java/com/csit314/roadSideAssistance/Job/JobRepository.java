@@ -20,4 +20,5 @@ public interface JobRepository extends JpaRepository<Job, Long> {
     Optional<Job> findJobByCustomerIdAndStartTime(@Param("customerId") Long customerID, @Param("startTime") LocalDateTime startTime);
 
     List<Job> findJobsByCustomerId(@Param("customerId") Long customerID);
+    List<Job> findJobsByTechnicianId(@Param("technicianId") Long technicianID);
 }

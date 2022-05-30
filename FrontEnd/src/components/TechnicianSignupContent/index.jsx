@@ -47,7 +47,7 @@ const CreateAccountTechnician = () => {
 
         ).catch(
             error => {
-                alert("Account already exists test");
+                alert("Account already exists");
                 navigate("/technicianSignup");
             }
         );

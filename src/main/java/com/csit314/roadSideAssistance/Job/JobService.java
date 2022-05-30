@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -76,6 +77,14 @@ public class JobService {
         return jobs;
     }
 
+    public List<Job> getTechnicianJobs(Long techId) {
+        List<Job> jobs = jobRepository.findJobsByTechnicianId(techId);
+        if (jobs.isEmpty()) {
+            throw new IllegalStateException(String.format("Jobs could not be found with customerID '%s'", techId));
+        }
+        return jobs;
+    }
+
     public Job get(Long jobId) {
 
         return jobRepository.findById(jobId).get();
@@ -86,6 +95,7 @@ public class JobService {
         Optional<Job> job = jobRepository.findById(jobId);
         if (job.isPresent()) {
             job.get().setTechnician(technician);
+            job.get().setStatus(Status.INPROGRESS);
             jobRepository.save(job.get());
         } else {
             throw new IllegalStateException(String.format("Job with id %s does not exist", jobId));
@@ -113,5 +123,46 @@ public class JobService {
             }
         }
         return nearby;
+    }
+
+    public void closeJob(Long jobId) {
+        Optional<Job> job = jobRepository.findById(jobId);
+        if(!job.isPresent()) {
+            throw new IllegalStateException(String.format("Job with ID %s does not exist", jobId));
+        }
+        if(!job.get().getStatus().equals(Status.INPROGRESS)) {
+            throw new IllegalStateException(String.format("Job currently has %s status, only INPROGRESS jobs can be closed", job.get().getStatus()));
+        }
+        final double HOURLY_RATE = 40.0;
+        LocalDateTime finishTime = LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES);
+        long jobLength = ChronoUnit.MINUTES.between(job.get().getStartTime(), finishTime);
+        if(jobLength <= 0) {
+            throw new IllegalStateException(String.format("Job Finish time (%s) is earlier or equal to the job start time (%s)", finishTime.toString(), job.get().getStartTime().toString()));
+        }
+        job.get().setFinishTime(finishTime);
+        job.get().setJobPrice((HOURLY_RATE / 60.0) * jobLength);
+        job.get().setStatus(Status.COMPLETED);
+        jobRepository.save(job.get());
+    }
+
+    public void updateStatus(Long jobId, String status) {
+        Optional<Job> job = jobRepository.findById(jobId);
+        if(!job.isPresent()) {
+            throw new IllegalStateException(String.format("Job with ID %s does not exist", jobId));
+        }
+
+        boolean validEnum = false;
+        for(Status s : Status.values()) {
+            if (s.name().equalsIgnoreCase(status)) {
+                validEnum = true;
+                break;
+            }
+        }
+        if(!validEnum) {
+            throw new IllegalArgumentException(String.format("Status %s is not a valid status option", status));
+        }
+
+        job.get().setStatus(Status.valueOf(status));
+        jobRepository.save(job.get());
     }
 }

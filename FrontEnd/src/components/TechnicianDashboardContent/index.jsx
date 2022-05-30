@@ -12,19 +12,15 @@ const TechnicianDashboard = () => {
     const navigate = useNavigate();
 
     const navLookForRepair = (e) => {
-        //navigate('/');
+        navigate("/LookForRepairs", {state: {id}});
     }
 
     const navRepairHistory = (e) => {
-        //navigate('/');
+        navigate('/technicianJobs', {state: {id}});
     }
 
     const navUpdateDetails = (e) => {
         navigate("/TechnicianDetail", {state: {id}});
-    }
-
-    const navUpdatePayDetails = (e) => {
-        //navigate('/');
     }
 
     return (
@@ -35,7 +31,6 @@ const TechnicianDashboard = () => {
 
             <Button variant="outlined" size='large' style={{ height: "20.25%"}} onClick={navUpdateDetails}>Update My Details</Button><br />
 
-            <Button variant="outlined" size='large' style={{ height: "20.25%"}} onClick={navUpdatePayDetails}>Update Payment Details</Button><br />
         </div>
     );
 }

@@ -7,11 +7,20 @@ import TechnicianSignup from "../pages/TechnicianSignup";
 import ServiceRequest from "../pages/ServiceRequest";
 import CustomerDashboard from "../pages/CustomerDashboard";
 import TechnicianDashboard from "../pages/TechnicianDashboard";
+import CustomerRating from "../pages/CustomerRating";
 import VehList from "../pages/Vehicle/";
 import AddVehicle from "../pages/AddVehicle";
-import Payment from "../pages/Payment";
 import CustomerDetail from "../pages/CustomerDetail";
 import TechnicianDetail from "../pages/TechnicianDetail";
+import Receipt from "../pages/Receipt";
+import Membership from "../pages/Membership";
+import RepairUnderway from "../pages/RepairUnderway";
+import RepairComplete from "../pages/RepairComplete";
+import SearchTechnician from "../pages/SearchTechnician";
+
+import LookForRepairs from "../pages/LookForRepairs";
+import JobDetails from "../pages/JobDetails";
+import TechnicianJobHistory from "../pages/TechnicianJobHistory/TechnicianJobHistory";
 
 export default [
     {
@@ -39,6 +48,18 @@ export default [
         element: <ServiceRequest />
     },
     {
+        path: "RepairComplete",
+        element: <RepairComplete />
+    },
+    {
+        path: "RepairUnderway",
+        element: <RepairUnderway />
+    },
+    {
+        path: "SearchTechnician",
+        element: <SearchTechnician />
+    },
+    {
         path: "/CustomerDashboard",
         element: <CustomerDashboard />
     },
@@ -55,12 +76,16 @@ export default [
         element: <AddVehicle />
     },
     {
-        path: "/",
-        element: <Navigate to="/home" />
+        path: "/Membership",
+        element: <Membership />
     },
     {
-        path: "/payment",
-        element: <Payment />
+        path: "CustomerRating",
+        element: <CustomerRating />
+    },
+    {
+        path: "/",
+        element: <Navigate to="/home" />
     },
     {
         path: "/CustomerDetail",
@@ -69,5 +94,21 @@ export default [
     {
         path: "/TechnicianDetail",
         element: <TechnicianDetail />
+    },
+    {
+        path: "/Receipt",
+        element: <Receipt />
+    },
+    {
+        path: "/LookForRepairs",
+        element: <LookForRepairs />
+    },
+    {
+        path: "JobDetails",
+        element: <JobDetails />
+    },
+    {
+        path: "/technicianJobs",
+        element: <TechnicianJobHistory />
     }
 ];
