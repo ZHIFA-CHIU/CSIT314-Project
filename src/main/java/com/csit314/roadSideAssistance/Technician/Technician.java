@@ -38,7 +38,8 @@ public class Technician extends User {
             heavyVehicleQualification;
 
     private double avgRating;
-
+    private double latitude;
+    private double longitude;
 
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
@@ -65,6 +66,8 @@ public class Technician extends User {
 
         this.heavyVehicleQualification = heavyVehicleQualification;
         this.lightVehicleQualification = lightVehicleQualification;
+        this.latitude = 0;
+        this.longitude = 0;
 
         if (!validateUser()) {
             throw new TechnicianException("Technician fails to meet consistency constraints");
