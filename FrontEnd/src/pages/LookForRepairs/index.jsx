@@ -59,7 +59,6 @@ export default function LookForRepairs() {
                             const results = await directionsService.route({
                                 origin: currentLocation,
                                 destination: customerLocation,
-                                // eslint-disable-next-line no-undef
                                 travelMode: google.maps.TravelMode.DRIVING,
                             })
                             setDirectionsResponse(results)
@@ -118,7 +117,6 @@ export default function LookForRepairs() {
         lat: getCurrentPosition?.coords.latitude,
         lng: getCurrentPosition?.coords.longitude
     };
-
 
     return (
         <div className='look-for-repairs'>
