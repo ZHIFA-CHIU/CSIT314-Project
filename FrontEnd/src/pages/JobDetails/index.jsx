@@ -69,7 +69,7 @@ export default function JobDetails() {
                         <CardActions>
                             <Button size="small" onClick={() => acceptJob(job.id, id)}>Accept</Button>
                             {"    "}
-                            <Button size="small" color='error' onClick={() => declineJob}>Decline</Button>
+                            <Button size="small" color='error' onClick={() => declineJob(id)}>Decline</Button>
                         </CardActions>
                 }
             </Card>

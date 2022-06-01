@@ -51,7 +51,6 @@ export default function ServiceRequestContent({customerId}) {
     const containerStyle = {
         marginLeft: 'auto',
         marginRight: 'auto',
-        // width: '500px',
         height: '500px'
     };
 
