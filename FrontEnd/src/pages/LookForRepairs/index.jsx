@@ -4,7 +4,7 @@ import{Card, CardActions, CardContent, Button, Typography, Stack} from '@mui/mat
 import "./LookForRepairs.css"
 import {useLocation, useNavigate} from 'react-router-dom';
 import useNavigator from 'react-browser-navigator'
-import {GoogleMap, LoadScript, Marker, DirectionsRenderer} from '@react-google-maps/api'
+import {GoogleMap, Marker, DirectionsRenderer, useJsApiLoader} from '@react-google-maps/api'
 import {TextField} from '@mui/material';
 import Banner from "../../components/Banner";
 
@@ -19,6 +19,10 @@ export default function LookForRepairs() {
     const [directionsResponse, setDirectionsResponse] = useState(null)
     const [distance, setDistance] = useState('')
     const [duration, setDuration] = useState('')
+
+    const { isLoaded } = useJsApiLoader({
+        googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY
+    })
 
     const onLatChange = e => setLat(e.target.value)
     const onLonChange = e => setLon(e.target.value)
@@ -118,26 +122,21 @@ export default function LookForRepairs() {
         lng: getCurrentPosition?.coords.longitude
     };
 
-    return (
+    return isLoaded? (
         <div className='look-for-repairs'>
             <Banner to={"TechnicianDashboard"} dashboard={true} id={id}/>
             <div className='ui center aligned container' style={{minWidth: "400px", maxWidth: "400px"}}>
                 <h1>Current Location</h1>
-                <LoadScript
-                    googleMapsApiKey="AIzaSyDc-QRg4oP9XgMlw-PfXo7IDOyXPcwp8js"
+                <GoogleMap
+                    mapContainerStyle={containerStyle}
+                    center={center}
+                    zoom={15}
                 >
-                    <GoogleMap
-                        mapContainerStyle={containerStyle}
-                        center={center}
-                        zoom={15}
-                    >
-                        { /* Child components, such as markers, info windows, etc. */}
-                        <Marker position={center}/>
-                        {directionsResponse && (
-                            <DirectionsRenderer directions={directionsResponse} />
-                        )}
-                    </GoogleMap>
-                </LoadScript>
+                    <Marker position={center}/>
+                    {directionsResponse && (
+                        <DirectionsRenderer directions={directionsResponse} />
+                    )}
+                </GoogleMap>
             </div>
             {flag ?
                 jobContent()
@@ -153,5 +152,5 @@ export default function LookForRepairs() {
                 </div>
             }
         </div>
-    )
+    ) : <></>
 }

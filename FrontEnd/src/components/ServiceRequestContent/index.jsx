@@ -2,7 +2,7 @@ import React, {useEffect} from 'react'
 import {AppBar, Toolbar, Typography} from '@mui/material'
 import {useForm} from 'react-hook-form'
 import useNavigator from 'react-browser-navigator'
-import {GoogleMap, LoadScript, Marker} from '@react-google-maps/api'
+import {GoogleMap, useJsApiLoader, Marker} from '@react-google-maps/api'
 import {serviceRequest} from '../../api'
 
 import "./Request.css"
@@ -24,6 +24,9 @@ export default function ServiceRequestContent({customerId}) {
     const goBackPage = () => {
         window.history.back()
     }
+    const { isLoaded } = useJsApiLoader({
+        googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY
+    })
 
     const navigate = useNavigate();
 
@@ -59,7 +62,7 @@ export default function ServiceRequestContent({customerId}) {
         lng: getCurrentPosition?.coords.longitude
     };
 
-    return (
+    return isLoaded? (
         <div>
             <AppBar position='static'>
                 <Toolbar>
@@ -78,18 +81,13 @@ export default function ServiceRequestContent({customerId}) {
             <h1>Please enter request details</h1>
             <div className='ui center aligned container' style={{minWidth: "400px", maxWidth: "684px"}}>
                 <p style={{textAlign: "left"}}>Location</p>
-                <LoadScript
-                    googleMapsApiKey="AIzaSyDc-QRg4oP9XgMlw-PfXo7IDOyXPcwp8js"
+                <GoogleMap
+                    mapContainerStyle={containerStyle}
+                    center={center}
+                    zoom={15}
                 >
-                    <GoogleMap
-                        mapContainerStyle={containerStyle}
-                        center={center}
-                        zoom={15}
-                    >
-                        { /* Child components, such as markers, info windows, etc. */}
-                        <Marker position={center}/>
-                    </GoogleMap>
-                </LoadScript>
+                    <Marker position={center}/>
+                </GoogleMap>
                 <br/>
 
                 <form onSubmit={handleSubmit(onSubmit)}>
@@ -123,5 +121,5 @@ export default function ServiceRequestContent({customerId}) {
                 </form>
             </div>
         </div>
-    )
+    ) : <></>
 }

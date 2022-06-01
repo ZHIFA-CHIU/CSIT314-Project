@@ -4,7 +4,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import{Card, CardActions, CardContent, Button, Typography, Stack} from '@mui/material';
 import {closeJob, technicianAcceptJobRequest} from '../../api';
 import useNavigator from 'react-browser-navigator'
-import {GoogleMap, LoadScript, Marker, DirectionsRenderer} from '@react-google-maps/api'
+import {GoogleMap, Marker, DirectionsRenderer, useJsApiLoader} from '@react-google-maps/api'
 
 export default function JobDetails() {
     const history = useLocation();
@@ -18,6 +18,10 @@ export default function JobDetails() {
     const [directionsResponse, setDirectionsResponse] = useState(null)
     const [distance, setDistance] = useState('')
     const [duration, setDuration] = useState('')
+
+    const { isLoaded } = useJsApiLoader({
+        googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY
+    })
 
     const acceptJob = (jobId, technicianId) => technicianAcceptJobRequest(jobId, technicianId).then(
         response => {
@@ -84,7 +88,7 @@ export default function JobDetails() {
     }, );
 
 
-    return (
+    return isLoaded?(
         <div>
             <Banner to={"TechnicianDashboard"} dashboard={true} id={id}/>
             <Card sx={{ minWidth: 275, display: "flex", flexDirection: "column", alignItems: "center" }}>
@@ -118,7 +122,7 @@ export default function JobDetails() {
             </Card>
             <div className='ui center aligned container' style={{minWidth: "400px", maxWidth: "400px"}}>
                 <Stack direction="row" spacing={4}  justifyContent="center">
-                    <Button size="small" variant='outlined' onClick={calculateRoute}>Calculate Route</Button>
+                    {/*<Button size="small" variant='outlined' onClick={calculateRoute}>Calculate Route</Button>*/}
                     <Typography variant="h4">
                         Distance:  {distance}
                     </Typography>
@@ -126,22 +130,17 @@ export default function JobDetails() {
                         Duration:  {duration}
                     </Typography>
                 </Stack>
-                <LoadScript
-                    googleMapsApiKey="AIzaSyDc-QRg4oP9XgMlw-PfXo7IDOyXPcwp8js"
+                <GoogleMap
+                    mapContainerStyle={containerStyle}
+                    center={center}
+                    zoom={15}
                 >
-                    <GoogleMap
-                        mapContainerStyle={containerStyle}
-                        center={center}
-                        zoom={15}
-                    >
-                        { /* Child components, such as markers, info windows, etc. */}
-                        <Marker position={center}/>
-                        {directionsResponse && (
-                            <DirectionsRenderer directions={directionsResponse} />
-                        )}
-                    </GoogleMap>
-                </LoadScript>
+                    <Marker position={center}/>
+                    {directionsResponse && (
+                        <DirectionsRenderer directions={directionsResponse} />
+                    )}
+                </GoogleMap>
             </div>
         </div>
-    )
+    ) : <></>
 }
