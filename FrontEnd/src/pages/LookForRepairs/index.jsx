@@ -1,14 +1,10 @@
 import React, {useState, useEffect} from 'react'
 import { technicianGetNearbyJobsRequest} from '../../api';
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
+import{Card, CardActions, CardContent, Button, Typography, Stack} from '@mui/material';
 import "./LookForRepairs.css"
 import {useLocation, useNavigate} from 'react-router-dom';
 import useNavigator from 'react-browser-navigator'
-import {GoogleMap, LoadScript, Marker} from '@react-google-maps/api'
+import {GoogleMap, LoadScript, Marker, DirectionsRenderer} from '@react-google-maps/api'
 import {TextField} from '@mui/material';
 import Banner from "../../components/Banner";
 
@@ -20,6 +16,9 @@ export default function LookForRepairs() {
     const [lat, setLat] = useState("");
     const [lon, setLon] = useState("");
     const [flag, setFlag] = useState(false);
+    const [directionsResponse, setDirectionsResponse] = useState(null)
+    const [distance, setDistance] = useState('')
+    const [duration, setDuration] = useState('')
 
     const onLatChange = e => setLat(e.target.value)
     const onLonChange = e => setLon(e.target.value)
@@ -41,8 +40,37 @@ export default function LookForRepairs() {
     const jobContent = () => {
         return (
             <div>
+                <br/>
+                <Stack direction="row" spacing={4}  justifyContent="center">
+                    <Typography variant="h4">
+                        Distance:  {distance}
+                    </Typography>
+                    <Typography variant="h4">
+                        Duration:  {duration}
+                    </Typography>
+                </Stack>
+                <br/>
                 {flag ?
                     jobs.map(job => {
+                        async function calculateRoute() {
+                            const currentLocation = `${location.lat}, ${location.lon}`
+                            const customerLocation = `${job.customerLatitude}, ${job.customerLongitude}`
+                            const directionsService = new google.maps.DirectionsService()
+                            const results = await directionsService.route({
+                                origin: currentLocation,
+                                destination: customerLocation,
+                                // eslint-disable-next-line no-undef
+                                travelMode: google.maps.TravelMode.DRIVING,
+                            })
+                            setDirectionsResponse(results)
+                            setDistance(results.routes[0].legs[0].distance.text)
+                            setDuration(results.routes[0].legs[0].duration.text)
+                        }
+                        function clearRoute() {
+                            setDirectionsResponse(null)
+                            setDistance('')
+                            setDuration('')
+                        }
                         return <Card sx={{minWidth: 500}} key={job.id}>
                             <CardContent>
                                 <Typography variant="h5" component="div">
@@ -54,12 +82,11 @@ export default function LookForRepairs() {
                                 <Typography variant="body1">
                                     Category: {job.repairCategory}
                                 </Typography>
-                                <Typography variant="body2">
-                                    Distance: 2km
-                                </Typography>
                             </CardContent>
                             <CardActions>
                                 <Button size="small" variant='outlined' onClick={toJobDetails(id, job)}>Detail</Button>
+                                <Button size="small" variant='outlined' onClick={calculateRoute}>Calculate Route</Button>
+                                <Button size="small" variant='outlined' onClick={clearRoute}>Clear Route</Button>
                             </CardActions>
                         </Card>
                     })
@@ -73,7 +100,6 @@ export default function LookForRepairs() {
         lat: getCurrentPosition?.coords.latitude,
         lon: getCurrentPosition?.coords.longitude
     }
-    const locationButton = document.createElement("updateLocation");
     useEffect(() => {
         if (getCurrentPosition !== undefined && getCurrentPosition !== null) {
             console.log(location)
@@ -93,35 +119,39 @@ export default function LookForRepairs() {
         lng: getCurrentPosition?.coords.longitude
     };
 
+
     return (
         <div className='look-for-repairs'>
             <Banner to={"TechnicianDashboard"} dashboard={true} id={id}/>
+            <div className='ui center aligned container' style={{minWidth: "400px", maxWidth: "400px"}}>
+                <h1>Current Location</h1>
+                <LoadScript
+                    googleMapsApiKey="AIzaSyDc-QRg4oP9XgMlw-PfXo7IDOyXPcwp8js"
+                >
+                    <GoogleMap
+                        mapContainerStyle={containerStyle}
+                        center={center}
+                        zoom={15}
+                    >
+                        { /* Child components, such as markers, info windows, etc. */}
+                        <Marker position={center}/>
+                        {directionsResponse && (
+                            <DirectionsRenderer directions={directionsResponse} />
+                        )}
+                    </GoogleMap>
+                </LoadScript>
+            </div>
             {flag ?
                 jobContent()
                 :
-                <div className='ui center aligned container' style={{minWidth: "400px", maxWidth: "400px"}}>
-                    <h1>Current Location</h1>
-                    <LoadScript
-                        googleMapsApiKey="AIzaSyDc-QRg4oP9XgMlw-PfXo7IDOyXPcwp8js"
-                    >
-                        <GoogleMap
-                            mapContainerStyle={containerStyle}
-                            center={center}
-                            zoom={15}
-                        >
-                            { /* Child components, such as markers, info windows, etc. */}
-                            <Marker position={center}/>
-                        </GoogleMap>
-                    </LoadScript>
 
-                    <div className='input-field'>
-                        <TextField id="lat" label="Latitude" variant="outlined" sx={{minWidth: 500}}
-                                   value={lat} onChange={onLatChange} />
-                        <TextField id="lon" label="Longitude" variant="outlined" sx={{minWidth: 500}}
-                                   value={lon} onChange={onLonChange} />
+                <div className='input-field'>
+                    <TextField id="lat" label="Latitude" variant="outlined" sx={{minWidth: 500}}
+                               value={lat} onChange={onLatChange} />
+                    <TextField id="lon" label="Longitude" variant="outlined" sx={{minWidth: 500}}
+                               value={lon} onChange={onLonChange} />
 
-                        <Button sx={{minWidth: 300}} variant="contained" onClick={submitLocation}>Submit</Button>
-                    </div>
+                    <Button sx={{minWidth: 300}} variant="contained" onClick={submitLocation}>Submit</Button>
                 </div>
             }
         </div>

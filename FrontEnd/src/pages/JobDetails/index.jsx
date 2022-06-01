@@ -43,7 +43,7 @@ export default function JobDetails() {
 
     return (
         <div>
-            <Banner />
+            <Banner to={"TechnicianDashboard"} dashboard={true} id={id}/>
             <Card sx={{ minWidth: 275, display: "flex", flexDirection: "column", alignItems: "center" }}>
                 <CardContent>
                     <Typography variant="h4" component="div">
