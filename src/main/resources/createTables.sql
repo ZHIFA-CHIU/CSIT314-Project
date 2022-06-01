@@ -32,6 +32,8 @@ CREATE TABLE technician
 (
     uuid             binary(16) NOT NULL,
     available_status boolean NOT NULL,
+    technician_latitude    decimal    NOT NULL,
+    technician_longitude   decimal    NOT NULL,
     CONSTRAINT PK_uuid PRIMARY KEY (uuid),
     CONSTRAINT FK_uuid_technician FOREIGN KEY (uuid)
         REFERENCES user (uuid)
