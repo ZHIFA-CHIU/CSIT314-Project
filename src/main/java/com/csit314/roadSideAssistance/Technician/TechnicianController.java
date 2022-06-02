@@ -69,4 +69,20 @@ public class TechnicianController {
         technicianService.deleteBankAccount(technicianId);
     }
 
+    @PostMapping(path = "/setLocation/{techId}/{technicianLat}/{technicianLon}")
+    public void setTechnicianLatLong(@PathVariable("techId") long techId, @PathVariable("technicianLat")
+            double technicianLat, @PathVariable("technicianLon") double technicianLong) throws TechnicianException {
+        technicianService.setLocation(technicianLat,technicianLong, techId);
+    }
+
+    @PutMapping(path = "/setLocation/{techId}/{technicianLat}/{technicianLon}")
+    public void updateTechnicianLatLong(@PathVariable("techId") long techId, @PathVariable("technicianLat")
+            double technicianLat, @PathVariable("technicianLon") double technicianLong) throws TechnicianException {
+        technicianService.setLocation(technicianLat,technicianLong, techId);
+    }
+
+    @GetMapping(path = "/getLocation/{techId}")
+    public double[] updateTechnicianLatLong(@PathVariable("techId") long techId) throws TechnicianException {
+        return technicianService.getLocation(techId);
+    }
 }

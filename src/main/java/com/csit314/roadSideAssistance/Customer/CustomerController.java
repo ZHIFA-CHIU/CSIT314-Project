@@ -62,4 +62,11 @@ public class CustomerController {
     public void updateMembership(@PathVariable("customerId") Long customerId, @PathVariable("membershipStatus") Boolean membershipStatus) {
         customerService.updateMembership(customerId, membershipStatus);
     }
+
+    @GetMapping(path = "/getNearbyTechs/{lat}/{lon}")
+    public int getNearbyTechs(@PathVariable("lat") double lat, @PathVariable("lon") double lon)
+    {
+        return customerService.findAllTechsNearby(lat, lon);
+    }
+
 }

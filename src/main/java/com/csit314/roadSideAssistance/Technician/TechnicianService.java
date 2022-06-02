@@ -2,13 +2,11 @@ package com.csit314.roadSideAssistance.Technician;
 
 import com.csit314.roadSideAssistance.BankAccount.BankAccount;
 import com.csit314.roadSideAssistance.BankAccount.BankAccountRepository;
-import com.csit314.roadSideAssistance.Customer.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 /**
  * Technician Service
@@ -130,4 +128,25 @@ public class TechnicianService {
         }
         return json;
     }
+
+    public void setLocation(double lat, double lon, long technicianId)throws TechnicianException {
+        Optional<Technician> technician = technicianRepository.findById(technicianId);
+        if(!technician.isPresent()) {
+            throw new TechnicianException("Technician with id " + technicianId + " does not exist");
+        }
+        technician.get().setLatitude(lat);
+        technician.get().setLongitude(lon);
+        technicianRepository.save(technician.get());
+    }
+
+    public double[] getLocation(long technicianId)throws TechnicianException {
+        Optional<Technician> technician = technicianRepository.findById(technicianId);
+        if (!technician.isPresent()) {
+            throw new TechnicianException("Technician with id " + technicianId + " does not exist");
+        }
+        double lat = technician.get().getLatitude();
+        double lon = technician.get().getLongitude();
+        return new double[] {lat, lon};
+    }
+
 }
