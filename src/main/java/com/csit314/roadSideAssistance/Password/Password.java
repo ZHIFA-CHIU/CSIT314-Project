@@ -7,9 +7,9 @@ public interface Password {
 
     public void setPassword(String password) throws NoSuchAlgorithmException;
 
-    public boolean checkPassword(String password);
+    public boolean checkPassword(String password) throws NoSuchAlgorithmException;
 
     public String getPassword();
 
-    public String hashPassword(String password) throws NoSuchAlgorithmException;
+    public String hashPassword(String password, byte[] salt) throws NoSuchAlgorithmException;
 }
