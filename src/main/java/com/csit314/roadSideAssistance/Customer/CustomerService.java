@@ -10,6 +10,7 @@ import com.csit314.roadSideAssistance.Vehicle.VehicleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -83,7 +84,7 @@ public class CustomerService {
         }
     }
 
-    public String checkPassword(Customer customer) {
+    public String checkPassword(Customer customer) throws NoSuchAlgorithmException {
         Optional<Customer> c = customerRepository.findCustomerByEmail(customer.getEmail());
 
         String json;
