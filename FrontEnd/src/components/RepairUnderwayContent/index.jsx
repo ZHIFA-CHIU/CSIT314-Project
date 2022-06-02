@@ -1,9 +1,9 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 import {AppBar, Toolbar, Typography, Button} from '@mui/material'
 import {useForm} from 'react-hook-form'
 import useNavigator from 'react-browser-navigator'
 import {GoogleMap, LoadScript, Marker} from '@react-google-maps/api'
-import {getJobDetailsRequest, serviceRequest} from '../../api'
+import {getJobDetailsRequest, serviceRequest, getTechnicianDetailsRequest} from '../../api'
 
 import "./Request.css"
 import {useNavigate} from "react-router-dom";
@@ -14,7 +14,10 @@ import Banner from "../Banner";
  * @param jobId customerId to submit with job request
  * @returns {JSX.Element}
  */
+
 export default function RepairUnderwayContent({jobId}) {
+    const [technicianFirstName, setTechnicianFirstName] = useState("");
+    const [technicianLastName, setTechnicianLastName] = useState("");
     const fetchJobStatus = () => {
         getJobDetailsRequest(jobId).then(
             response => {
@@ -27,10 +30,24 @@ export default function RepairUnderwayContent({jobId}) {
         )
     }
 
+    const getTechnicianDetails = () => {
+        getJobDetailsRequest(jobId).then(
+            response => {
+                getTechnicianDetailsRequest(response.data.id).then(
+                    newResponse => {
+                        setTechnicianFirstName(newResponse.data.firstName)
+                        setTechnicianLastName(newResponse.data.lastName)
+                    }
+                )
+            }
+        )
+    }
+
     const navigate = useNavigate();
     let isChanging;
 
     useEffect(() => {
+        getTechnicianDetails()
         if (!isChanging) {
             isChanging = setInterval(fetchJobStatus, 1000);
         }
@@ -41,6 +58,11 @@ export default function RepairUnderwayContent({jobId}) {
             <Banner />
             <h1>Repair Underway</h1>
             <div className='ui center aligned container' style={{minWidth: "400px", maxWidth: "684px"}}>
+            <div>
+                <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                    Technician: {`${technicianFirstName} ${technicianLastName}`}
+                </Typography>
+            </div   >
                 <Button
                     type="submit"
                     onClick={() => alert("Call 000")}
