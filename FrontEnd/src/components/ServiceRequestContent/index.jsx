@@ -1,5 +1,4 @@
 import React, {useEffect} from 'react'
-import {AppBar, Toolbar, Typography} from '@mui/material'
 import {useForm} from 'react-hook-form'
 import useNavigator from 'react-browser-navigator'
 import {GoogleMap, useJsApiLoader, Marker} from '@react-google-maps/api'
@@ -21,9 +20,6 @@ export default function ServiceRequestContent({customerId}) {
         formState: {errors}
     } = useForm();
 
-    const goBackPage = () => {
-        window.history.back()
-    }
     const { isLoaded } = useJsApiLoader({
         googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY
     })
@@ -64,20 +60,6 @@ export default function ServiceRequestContent({customerId}) {
 
     return isLoaded? (
         <div>
-            <AppBar position='static'>
-                <Toolbar>
-                    <button className='medium ui primary button' onClick={() => goBackPage()}>
-                        Back
-                    </button>
-                    <Typography align='center' sx={{flexGrow: 1}} onClick={() => goBackPage()}>
-                        Roadside Assistant Service
-                    </Typography>
-                    <button className='medium ui primary button' onClick={() => goBackPage()}>
-                        Next
-                    </button>
-                </Toolbar>
-            </AppBar>
-
             <h1>Please enter request details</h1>
             <div className='ui center aligned container' style={{minWidth: "400px", maxWidth: "684px"}}>
                 <p style={{textAlign: "left"}}>Location</p>
