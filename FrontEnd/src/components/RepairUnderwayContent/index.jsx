@@ -18,6 +18,7 @@ import Banner from "../Banner";
 export default function RepairUnderwayContent({jobId}) {
     const [technicianFirstName, setTechnicianFirstName] = useState("");
     const [technicianLastName, setTechnicianLastName] = useState("");
+    const [technicianRating, setTechnicianRating] = useState("");
     const fetchJobStatus = () => {
         getJobDetailsRequest(jobId).then(
             response => {
@@ -33,12 +34,9 @@ export default function RepairUnderwayContent({jobId}) {
     const getTechnicianDetails = () => {
         getJobDetailsRequest(jobId).then(
             response => {
-                getTechnicianDetailsRequest(response.data.id).then(
-                    newResponse => {
-                        setTechnicianFirstName(newResponse.data.firstName)
-                        setTechnicianLastName(newResponse.data.lastName)
-                    }
-                )
+               setTechnicianFirstName(response.data.technician.firstName)
+               setTechnicianLastName(response.data.technician.lastName)
+               setTechnicianRating(response.data.technician.avgRating)
             }
         )
     }
@@ -59,9 +57,8 @@ export default function RepairUnderwayContent({jobId}) {
             <h1>Repair Underway</h1>
             <div className='ui center aligned container' style={{minWidth: "400px", maxWidth: "684px"}}>
             <div>
-                <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                    Technician: {`${technicianFirstName} ${technicianLastName}`}
-                </Typography>
+                Technician {`${technicianFirstName} ${technicianLastName}`} is on their way <br />
+                Rating: {technicianRating} / 5
             </div   >
                 <Button
                     type="submit"
