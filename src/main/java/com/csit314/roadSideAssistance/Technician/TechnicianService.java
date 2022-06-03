@@ -114,11 +114,11 @@ public class TechnicianService {
 
         try {
             JSONObject json = new JSONObject();
-            json.put("login", "true");
-
             if (t.isPresent() && t.get().checkPassword(technician.getPassword())) {
+                json.put("login", "true");
                 json.put("customer-id", t.get().getId());
             } else {
+                json.put("login", "false");
                 json.put("customer-id", -1);
             }
             return json.toString();
