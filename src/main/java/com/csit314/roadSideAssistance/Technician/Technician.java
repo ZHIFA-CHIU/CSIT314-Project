@@ -1,11 +1,5 @@
 package com.csit314.roadSideAssistance.Technician;
 
-
-/*
- * Most comments to be removed once User class exists
- * Other comments require other classes such as Job and BankAccount
- * */
-
 import com.csit314.roadSideAssistance.BankAccount.BankAccount;
 import com.csit314.roadSideAssistance.Job.Job;
 import com.csit314.roadSideAssistance.Review.Review;
@@ -33,9 +27,9 @@ import java.util.Set;
 @Entity
 @Table(name = "Technician")
 public class Technician extends User {
-    private boolean availableStatus,
-            lightVehicleQualification,
-            heavyVehicleQualification;
+    private boolean availableStatus;
+    private boolean lightVehicleQualification;
+    private boolean heavyVehicleQualification;
 
     private double avgRating;
     private double latitude;

@@ -1,27 +1,24 @@
 package com.csit314.roadSideAssistance.User;
 
 import com.csit314.roadSideAssistance.Password.Password;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
-import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
-import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.time.LocalDate;
 import java.time.Month;
 import java.time.Period;
-import java.util.UUID;
 
+/**
+ * Abstract user class for customer and technician
+ */
 @MappedSuperclass
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
-abstract public class User implements Password {
+public abstract class User implements Password {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     @Column(name = "id", updatable = false, nullable = false)
@@ -45,7 +42,7 @@ abstract public class User implements Password {
     private byte[] salt;
 
 
-    public User(String firstName, String lastName, String email, LocalDate dob,
+    protected User(String firstName, String lastName, String email, LocalDate dob,
                 String phoneNumber, String password, String streetAddress,
                 String suburb, String postCode, String state) throws NoSuchAlgorithmException {
         this.firstName = firstName;
@@ -58,22 +55,6 @@ abstract public class User implements Password {
         this.postCode = postCode;
         this.state = state;
         setPassword(password);
-    }
-    public User(String firstName, String lastName, String email, LocalDate dob, String phoneNumber, String password) throws NoSuchAlgorithmException {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.dob = dob;
-        this.phoneNumber = phoneNumber;
-        setPassword(password);
-    }
-
-    public User(String firstName, String lastName, String email, LocalDate dob, String phoneNumber) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.dob = dob;
-        this.phoneNumber = phoneNumber;
     }
 
     public int getAge() {
@@ -106,8 +87,8 @@ abstract public class User implements Password {
             messageDigest.update(salt);
             byte[] bytes = messageDigest.digest(password.getBytes());
             StringBuilder stringBuilder = new StringBuilder();
-            for (int i = 0; i < bytes.length; i++) {
-                stringBuilder.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
+            for (byte aByte : bytes) {
+                stringBuilder.append(Integer.toString((aByte & 0xff) + 0x100, 16).substring(1));
             }
             password = stringBuilder.toString();
         } catch (NoSuchAlgorithmException error) {
@@ -123,11 +104,6 @@ abstract public class User implements Password {
     }
 
     public boolean checkPassword(String password) throws NoSuchAlgorithmException {
-        if(hashPassword(password, salt).equals(this.password)) {
-            return true;
-        }
-        return false;
+        return hashPassword(password, salt).equals(this.password);
     }
-
-
 }

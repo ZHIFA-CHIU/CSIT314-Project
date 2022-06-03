@@ -7,6 +7,9 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Service for admin
+ */
 @Service
 public class AdminService {
 
@@ -29,7 +32,7 @@ public class AdminService {
         boolean exists = adminRepository.existsById(adminId);
 
         if(!exists){
-            throw new IllegalStateException("Admin with ID "+ adminId+ " does not exist");
+            throw new IllegalStateException(String.format("Admin with ID %s does not exist",adminId));
         }
         adminRepository.deleteById(adminId);
     }
@@ -38,7 +41,7 @@ public class AdminService {
         boolean exists = adminRepository.existsById(adminId);
 
         if(!exists){
-            throw new IllegalStateException("Admin with ID "+ adminId+ " does not exist");
+            throw new IllegalStateException(String.format("Admin with ID %s does not exist",adminId));
         }
         return adminRepository.getById(adminId);
     }
@@ -46,10 +49,10 @@ public class AdminService {
     public void updateAdmin(Admin admin){
         boolean exists = adminRepository.existsById(admin.getId());
         if(!exists){
-            throw new IllegalStateException("Admin with ID "+ admin.getId()+ " does not exist");
+            throw new IllegalStateException(String.format("Admin with ID %s does not exist",admin.getId()));
+
         }
-        boolean isValid = admin.validateAdmin();
-        if(!isValid){
+        if(!admin.validateAdmin()){
             throw new IllegalStateException("Admin is invalid");
         }
         adminRepository.save(admin);

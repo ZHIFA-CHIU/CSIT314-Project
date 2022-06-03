@@ -8,12 +8,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 /**
- * Technician Controller
- * Controlling:
- *      Get
- *      Post
- *      Delete
- *      Put
+ * Controller for technician
  */
 @CrossOrigin(origins = "http://localhost:3000/")
 @RestController
@@ -57,19 +52,6 @@ public class TechnicianController {
         return technicianService.getById(technicianId);
     }
 
-    // -- Bank Account endpoints --
-
-    @PutMapping(path = "/addBankAccount/{technicianId}")
-    public boolean addBankAccount(@PathVariable("technicianId") Long technicianId, @RequestBody BankAccount bankAccount) throws TechnicianException {
-        return technicianService.addBankAccount(technicianId, bankAccount);
-
-    }
-
-    @DeleteMapping(path = "/deleteBankAccount")
-    public void deleteBankAccount(@PathVariable("technicianId") Long technicianId) throws TechnicianException {
-        technicianService.deleteBankAccount(technicianId);
-    }
-
     @PostMapping(path = "/setLocation/{techId}/{technicianLat}/{technicianLon}")
     public void setTechnicianLatLong(@PathVariable("techId") long techId, @PathVariable("technicianLat")
             double technicianLat, @PathVariable("technicianLon") double technicianLong) throws TechnicianException {
@@ -85,5 +67,18 @@ public class TechnicianController {
     @GetMapping(path = "/getLocation/{techId}")
     public double[] updateTechnicianLatLong(@PathVariable("techId") long techId) throws TechnicianException {
         return technicianService.getLocation(techId);
+    }
+
+    // -- Bank Account endpoints --
+
+    @PutMapping(path = "/addBankAccount/{technicianId}")
+    public boolean addBankAccount(@PathVariable("technicianId") Long technicianId, @RequestBody BankAccount bankAccount) throws TechnicianException {
+        return technicianService.addBankAccount(technicianId, bankAccount);
+
+    }
+
+    @DeleteMapping(path = "/deleteBankAccount")
+    public void deleteBankAccount(@PathVariable("technicianId") Long technicianId) throws TechnicianException {
+        technicianService.deleteBankAccount(technicianId);
     }
 }

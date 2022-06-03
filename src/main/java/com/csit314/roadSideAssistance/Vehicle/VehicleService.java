@@ -1,13 +1,13 @@
 package com.csit314.roadSideAssistance.Vehicle;
+
 import com.csit314.roadSideAssistance.Customer.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
+
 /**
  * Contains vehicle service class
- *
- *
  */
 @Service
 public class VehicleService {
@@ -46,29 +46,23 @@ public class VehicleService {
     }
 
     public void deleteVehicle(String registeredState, String registeredPlate){
-        String registeredStateAndPlate;
-        registeredStateAndPlate = registeredState + " " + registeredPlate;
-        boolean vehicleExists = vehicleRepository.existsByRego(registeredStateAndPlate);
+        boolean vehicleExists = vehicleRepository.existsByRego(registeredState + " " + registeredPlate);
         if(!vehicleExists) {
-            throw new IllegalStateException("Vehicle with registration " + registeredPlate + " does not exist in " + registeredState);
+            throw new IllegalStateException(String.format("Vehicle with registration %s does not exist in %s", registeredPlate, registeredState));
         }
-        vehicleRepository.deleteByRego(registeredStateAndPlate);
+        vehicleRepository.deleteByRego(registeredState + " " + registeredPlate);
     }
 
     public void updateVehicle(Vehicle vehicle){
-        //checking vehicle exists
         boolean vehicleExists = vehicleRepository.existsByRego(vehicle.getRego());
         if(!vehicleExists) {
-            throw new IllegalStateException("vehicle with registration " + vehicle.getRego() + " does not exist");
+            throw new IllegalStateException(String.format("Vehicle with registration %s does not exist", vehicle.getRego()));
         }
 
-        //checking rego is valid
-        boolean validRego = vehicle.validateVehicle();
-        if(!validRego) {
+        if(!vehicle.validateVehicle()) {
             throw new IllegalStateException("Vehicle information is invalid");
         }
 
-        //updating customer
         vehicleRepository.save(vehicle);
     }
 

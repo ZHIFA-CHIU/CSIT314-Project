@@ -9,9 +9,7 @@ import javax.persistence.*;
 /**
  * Review entity for technician account
  */
-@Getter
-@Setter
-@ToString
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -42,5 +40,4 @@ public class Review {
     public boolean validateReview() {
         return rating >= 0 && rating <= 10;
     }
-
 }

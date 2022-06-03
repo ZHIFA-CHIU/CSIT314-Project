@@ -10,6 +10,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+/**
+ * Creates example customer data
+ */
 @Component
 @Order(1)
 public class CustomerConfig implements CommandLineRunner {

@@ -2,6 +2,7 @@ package com.csit314.roadSideAssistance.Technician;
 
 import com.csit314.roadSideAssistance.BankAccount.BankAccount;
 import com.csit314.roadSideAssistance.BankAccount.BankAccountRepository;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -43,7 +44,7 @@ public class TechnicianService {
     public void deleteTechnician(Long technicianId) throws TechnicianException {
         boolean exists = technicianRepository.existsById(technicianId);
         if(!exists) {
-            throw new TechnicianException("Technician with id " + technicianId + " does not exist");
+            throw new TechnicianException(String.format("Technician with id: %s doesn't exist", technicianId));
         }
 
         technicianRepository.deleteById(technicianId);
@@ -52,7 +53,7 @@ public class TechnicianService {
     public Technician updateTechnician(Technician technician) throws TechnicianException {
         boolean exists = technicianRepository.existsById(technician.getId());
         if(!exists) {
-            throw new TechnicianException("Technician with id " + technician.getId() + " does not exist");
+            throw new TechnicianException(String.format("Technician with id: %s doesn't exist", technician.getId()));
         }
 
         boolean isValid = technician.validateUser();
@@ -64,33 +65,30 @@ public class TechnicianService {
 
         return technician;
     }
+
     // -- Bank Account services --
 
     public boolean addBankAccount(Long technicianId, BankAccount bankAccount) throws TechnicianException {
         Optional<Technician> technicianOptional = technicianRepository.findById(technicianId);
         if (!technicianOptional.isPresent()) {
-            throw new TechnicianException("Technician with id " + technicianId + " does not exist");
+            throw new TechnicianException(String.format("Technician with id: %s doesn't exist", technicianId));
         }
-//        bankAccountRepository.save(bankAccount);
-
         technicianOptional.get().setBankAccount(bankAccount);
         technicianRepository.save(technicianOptional.get());
         return true;
     }
 
-
-    //public Technician getById(Long technicianId){
-
     public void deleteBankAccount(Long technicianId) throws TechnicianException {
         Optional<Technician> technicianOptional = technicianRepository.findById(technicianId);
         if (!technicianOptional.isPresent()) {
-            throw new TechnicianException("Technician with id " + technicianId + " does not exist");
+            throw new TechnicianException(String.format("Technician with id: %s doesn't exist", technicianId));
         }
         bankAccountRepository.deleteById(technicianOptional.get().getBankAccount().getId());
 
         technicianOptional.get().setBankAccount(null);
         technicianRepository.save(technicianOptional.get());
     }
+
     public Technician getById(Long technicianId){
         Optional<Technician> technician = technicianRepository.findById(technicianId);
         if(technician.isPresent()){
@@ -105,7 +103,7 @@ public class TechnicianService {
     public void setAvgRating(Long technicianId, Double avgRating) throws TechnicianException {
         Optional<Technician> technician = technicianRepository.findById(technicianId);
         if(!technician.isPresent()) {
-            throw new TechnicianException("Technician with id " + technicianId + " does not exist");
+            throw new TechnicianException(String.format("Technician with id: %s doesn't exist", technicianId));
         }
 
         technician.get().setAvgRating(avgRating);
@@ -114,26 +112,22 @@ public class TechnicianService {
 
     public String checkPassword(Technician technician) throws NoSuchAlgorithmException {
         Optional<Technician> t = technicianRepository.findTechnicianByEmail(technician.getEmail());
-        String json;
+
+        JSONObject json = new JSONObject();
+        json.put("login", "true");
+
         if(t.isPresent() && t.get().checkPassword(technician.getPassword())) {
-            json = "{" +
-                    "\"login\": true," +
-                    "\"customer-id\": \"" + t.get().getId() + "\"" +
-                    "}";
+            json.put("customer-id", t.get().getId());
+        } else {
+            json.put("customer-id", -1);
         }
-        else {
-            json = "{" +
-                    "\"login\": false," +
-                    "\"customer-id\": \"" + -1 + "\"" +
-                    "}";
-        }
-        return json;
+        return json.toString();
     }
 
     public void setLocation(double lat, double lon, long technicianId)throws TechnicianException {
         Optional<Technician> technician = technicianRepository.findById(technicianId);
         if(!technician.isPresent()) {
-            throw new TechnicianException("Technician with id " + technicianId + " does not exist");
+            throw new TechnicianException(String.format("Technician with id: %s doesn't exist", technicianId));
         }
         technician.get().setLatitude(lat);
         technician.get().setLongitude(lon);
@@ -143,7 +137,7 @@ public class TechnicianService {
     public double[] getLocation(long technicianId)throws TechnicianException {
         Optional<Technician> technician = technicianRepository.findById(technicianId);
         if (!technician.isPresent()) {
-            throw new TechnicianException("Technician with id " + technicianId + " does not exist");
+            throw new TechnicianException(String.format("Technician with id: %s doesn't exist", technicianId));
         }
         double lat = technician.get().getLatitude();
         double lon = technician.get().getLongitude();

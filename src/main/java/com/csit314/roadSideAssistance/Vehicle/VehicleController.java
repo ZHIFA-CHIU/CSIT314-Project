@@ -1,14 +1,11 @@
 package com.csit314.roadSideAssistance.Vehicle;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
 /**
  * Contains vehicle controller class
- *
- *
  */
 @CrossOrigin(origins = "http://localhost:3000/")
 @RestController
@@ -37,7 +34,6 @@ public class VehicleController {
     }
 
     @DeleteMapping(path = "{vehicleRego}")
-    @Transactional
     public void deleteVehicle(@PathVariable("vehicleRego") String registeredState, String registeredPlate){
         vehicleService.deleteVehicle(registeredPlate, registeredState);
     }

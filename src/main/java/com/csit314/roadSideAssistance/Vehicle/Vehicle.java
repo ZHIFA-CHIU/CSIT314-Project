@@ -2,21 +2,17 @@ package com.csit314.roadSideAssistance.Vehicle;
 
 import com.csit314.roadSideAssistance.Customer.Customer;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.time.Year;
+
 /**
  * Contains vehicle backend class
- *
- *
  */
-@Setter
-@Getter
-@Entity
 @Data
+@NoArgsConstructor
+@Entity
 @Table(uniqueConstraints = { @UniqueConstraint(columnNames = { "registrationPlate", "registeredState" }) })
 public class Vehicle {
     @Id
@@ -37,8 +33,6 @@ public class Vehicle {
     private double weight;
     private String rego; //Combines plate and state - exists because repo class was throwing errors when I tried to send it 2 strings at once
 
-    public Vehicle() {
-    }
     //Constructor
     public Vehicle(String registrationPlate, String registeredState, Year manufacturedYear,
                    String manufacturer, String model, String colour, double weight) {
@@ -52,22 +46,6 @@ public class Vehicle {
         rego = registeredState + " " + registrationPlate;
     }
 
-    public String getRego() { //Lombak getter was returning null so I added this method
-        return (registeredState + " " + registrationPlate);
-    }
-
-    @Override
-    public String toString() {
-        return "Vehicle{" +
-                "registrationPlate='" + registrationPlate + '\'' +
-                ", registeredState='" + registeredState + '\'' +
-                ", manufacturedYear=" + manufacturedYear +
-                ", manufacturer='" + manufacturer + '\'' +
-                ", model='" + model + '\'' +
-                ", colour='" + colour + '\'' +
-                ", weight=" + weight +
-                '}';
-    }
     //Validates Vehicle to ensure rego is not null
     public boolean validateVehicle() {
         String state =  getRegisteredState();
@@ -80,8 +58,8 @@ public class Vehicle {
             return false;
         if(plate.contains("[!@#$%&*()_+=|<>?{}\\\\[\\\\]~-]"))
             return false;
-        if(plate.toUpperCase() != plate)
+        if(!plate.toUpperCase().equals(plate))
             return false;
-        else return true;
+        return true;
     }
 }

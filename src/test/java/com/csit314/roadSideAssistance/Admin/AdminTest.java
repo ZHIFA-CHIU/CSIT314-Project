@@ -33,7 +33,7 @@ class AdminTest {
     @Test
     @DisplayName("Simple Test of admin set password")
     void ensureHashed() {
-       assertNotEquals("password", adminTest.getPasswordHash(), "Ensuring password is not plaintext");
+       assertNotEquals("password", adminTest.getPassword(), "Ensuring password is not plaintext");
     }
 
 }

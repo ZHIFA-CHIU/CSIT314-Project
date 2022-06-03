@@ -1,19 +1,15 @@
 package com.csit314.roadSideAssistance.BankAccount;
 
-import lombok.Getter;
-import lombok.Setter;
-import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.Type;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.time.LocalDate;
-import java.time.Month;
-import java.util.UUID;
 
 /**
  * BankAccount model
  */
-@Getter
+@Data
+@NoArgsConstructor
 @Entity
 @Table(name = "BankAccount")
 public class BankAccount {
@@ -25,8 +21,6 @@ public class BankAccount {
     private String accountName;
     private String bsb;
     private String accountNumber;
-
-    public BankAccount() {}
 
     public BankAccount(String accountName, String bsb, String accountNumber) throws BankAccountException {
         this.accountName = accountName;
@@ -40,14 +34,5 @@ public class BankAccount {
 
     public boolean validateBankAccount() {
         return !accountName.equals("") && !bsb.equals("") && !accountNumber.equals("");
-    }
-
-    @Override
-    public String toString() {
-        return "BankAccount{" +
-                "accountName='" + accountName + '\'' +
-                ", BSB='" + bsb + '\'' +
-                ", accountNumber='" + accountNumber + '\'' +
-                '}';
     }
 }
