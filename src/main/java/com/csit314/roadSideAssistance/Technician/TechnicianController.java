@@ -4,6 +4,7 @@ import com.csit314.roadSideAssistance.BankAccount.BankAccount;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 /**
@@ -32,7 +33,7 @@ public class TechnicianController {
     }
 
     @PostMapping(path = "/login")
-    public String loginTechnician(@RequestBody Technician technician) {
+    public String loginTechnician(@RequestBody Technician technician) throws NoSuchAlgorithmException {
         return technicianService.checkPassword(technician);
     }
 

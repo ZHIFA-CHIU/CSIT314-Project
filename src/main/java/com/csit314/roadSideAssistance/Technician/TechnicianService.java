@@ -5,6 +5,7 @@ import com.csit314.roadSideAssistance.BankAccount.BankAccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 import java.util.Optional;
 
@@ -111,7 +112,7 @@ public class TechnicianService {
         technicianRepository.save(technician.get());
     }
 
-    public String checkPassword(Technician technician) {
+    public String checkPassword(Technician technician) throws NoSuchAlgorithmException {
         Optional<Technician> t = technicianRepository.findTechnicianByEmail(technician.getEmail());
         String json;
         if(t.isPresent() && t.get().checkPassword(technician.getPassword())) {

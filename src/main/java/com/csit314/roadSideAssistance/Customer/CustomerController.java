@@ -6,6 +6,7 @@ import com.csit314.roadSideAssistance.Vehicle.Vehicle;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 import java.util.UUID;
 
@@ -27,7 +28,7 @@ public class CustomerController {
     }
 
     @PostMapping(path = "/login")
-    public String loginCustomer(@RequestBody Customer customer) {
+    public String loginCustomer(@RequestBody Customer customer) throws NoSuchAlgorithmException {
         return customerService.checkPassword(customer);
     }
 

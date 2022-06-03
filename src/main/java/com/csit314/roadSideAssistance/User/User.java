@@ -42,7 +42,7 @@ abstract public class User implements Password {
 
     @Column(name = "Password")
     private String password; //SHA-512 encrypted password
-
+    private byte[] salt;
 
 
     public User(String firstName, String lastName, String email, LocalDate dob,
@@ -92,20 +92,38 @@ abstract public class User implements Password {
         }
         return true;
     }
+    public void generateSalt() {
+        //generate random salt
+        SecureRandom random = new SecureRandom();
+        byte[] salt = new byte[16];
+        random.nextBytes(salt);
+        this.salt = salt;
+    }
 
-    public String hashPassword(String password) throws NoSuchAlgorithmException {
-        //hashed password to be implemented here
+    public String hashPassword(String password, byte[] salt) throws NoSuchAlgorithmException {
+        try {
+            MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
+            messageDigest.update(salt);
+            byte[] bytes = messageDigest.digest(password.getBytes());
+            StringBuilder stringBuilder = new StringBuilder();
+            for (int i = 0; i < bytes.length; i++) {
+                stringBuilder.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
+            }
+            password = stringBuilder.toString();
+        } catch (NoSuchAlgorithmException error) {
+            error.printStackTrace();
+        }
         return password;
     }
 
     public void setPassword(String password) throws NoSuchAlgorithmException {
-        this.password = hashPassword(password);
+        generateSalt();
+        this.password = hashPassword(password, salt);
         assert (this.password != null);
     }
 
-    public boolean checkPassword(String password) {
-//        System.out.println("Input password: " + password + " salt: " + salt + " hashedPassword: " + hashPassword(salt + password) + " stored password: " + this.password);
-        if (password.equals(this.password)) {
+    public boolean checkPassword(String password) throws NoSuchAlgorithmException {
+        if(hashPassword(password, salt).equals(this.password)) {
             return true;
         }
         return false;
