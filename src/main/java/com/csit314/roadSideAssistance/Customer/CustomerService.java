@@ -4,6 +4,7 @@ import com.csit314.roadSideAssistance.Technician.Technician;
 import com.csit314.roadSideAssistance.Technician.TechnicianRepository;
 import com.csit314.roadSideAssistance.Vehicle.Vehicle;
 import com.csit314.roadSideAssistance.Vehicle.VehicleRepository;
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -47,7 +48,7 @@ public class CustomerService {
     public void deleteCustomer(Long customerId) {
         boolean customerExists = customerRepository.existsById(customerId);
         if (!customerExists) {
-            throw new IllegalStateException(String.format("customer with ID %s does not exist", customerId));
+            throw new CustomerNotFoundException(customerId);
         }
         customerRepository.deleteById(customerId);
     }
@@ -56,7 +57,7 @@ public class CustomerService {
         //checking customer exists
         boolean customerExists = customerRepository.existsById(customer.getId());
         if (!customerExists) {
-            throw new IllegalStateException(String.format("customer with ID %s does not exist", customer.getId()));
+            throw new CustomerNotFoundException(customer.getId());
         }
 
         //checking customer is valid
@@ -75,29 +76,35 @@ public class CustomerService {
         if (customer.isPresent()) {
             return customer.get();
         } else {
-            throw new IllegalStateException(String.format("Customer with id %s does not exist", customerId));
+            throw new CustomerNotFoundException(customerId);
         }
     }
 
-    public String checkPassword(Customer customer) throws NoSuchAlgorithmException {
+    public String checkPassword(Customer customer) {
         Optional<Customer> c = customerRepository.findCustomerByEmail(customer.getEmail());
 
-        JSONObject json = new JSONObject();
-        json.put("login", "true");
+        try {
+            JSONObject json = new JSONObject();
+            json.put("login", "true");
 
-        if(c.isPresent() && c.get().checkPassword(customer.getPassword())) {
-            json.put("customer-id", c.get().getId());
-        } else {
-            json.put("customer-id", -1);
+            if (c.isPresent() && c.get().checkPassword(customer.getPassword())) {
+                json.put("customer-id", c.get().getId());
+            } else {
+                json.put("customer-id", -1);
+            }
+            return json.toString();
+        }
+        catch(JSONException e){
+            throw new IllegalStateException("Failed to check password");
         }
 
-        return json.toString();
+
     }
 
-    public boolean addVehicle(Long customerId, Vehicle vehicle) throws CustomException {
+    public boolean addVehicle(Long customerId, Vehicle vehicle) {
         Optional<Customer> customerOptional = customerRepository.findById(customerId);
         if (!customerOptional.isPresent()) {
-            throw new CustomException(String.format("Customer with id %s does not exist", customerId));
+            throw new CustomerNotFoundException(customerId);
         }
 
         vehicle.setCustomer(customerOptional.get());
@@ -107,10 +114,10 @@ public class CustomerService {
         return true;
     }
 
-    public List<Vehicle> getVehicle(Long customerId) throws CustomException {
+    public List<Vehicle> getVehicle(Long customerId) {
         List<Vehicle> vehicleOptional = vehicleRepository.findVehicleByCustomerIDEquals(customerId);
         if (vehicleOptional.isEmpty()) {
-            throw new CustomException(String.format("Vehicles for customer with id %s does not exist", customerId));
+            throw new CustomerNotFoundException(customerId);
         }
         return vehicleOptional;
     }
@@ -118,7 +125,7 @@ public class CustomerService {
     public void updateMembership(Long customerId, Boolean membershipStatus) {
         Optional<Customer> customerOptional = customerRepository.findById(customerId);
         if (!customerOptional.isPresent()) {
-            throw new IllegalStateException(String.format("Customer with id %s does not exist", customerId));
+            throw new CustomerNotFoundException(customerId);
         }
 
         customerOptional.get().setHasMembership(membershipStatus);

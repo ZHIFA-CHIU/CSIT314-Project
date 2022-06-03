@@ -38,11 +38,11 @@ public class Customer extends User {
 
     public Customer(String firstName, String lastName, String email, LocalDate dob,
                     String phoneNumber, String password, String streetAddress,
-                    String suburb, String postCode, String state) throws CustomException, NoSuchAlgorithmException {
+                    String suburb, String postCode, String state){
         super(firstName, lastName, email, dob, phoneNumber, password, streetAddress, suburb, postCode, state);
 
         if(!validateUser()) {
-            throw new CustomException("Customer fails to meet consistency constraints");
+            throw new IllegalStateException("Customer fails to meet consistency constraints");
         }
     }
 

@@ -1,5 +1,6 @@
 package com.csit314.roadSideAssistance.User;
 
+import com.csit314.roadSideAssistance.Customer.CustomerNotFoundException;
 import com.csit314.roadSideAssistance.Password.Password;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -44,7 +45,7 @@ public abstract class User implements Password {
 
     protected User(String firstName, String lastName, String email, LocalDate dob,
                 String phoneNumber, String password, String streetAddress,
-                String suburb, String postCode, String state) throws NoSuchAlgorithmException {
+                String suburb, String postCode, String state){
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -81,7 +82,7 @@ public abstract class User implements Password {
         this.salt = salt;
     }
 
-    public String hashPassword(String password, byte[] salt) throws NoSuchAlgorithmException {
+    public String hashPassword(String password, byte[] salt) {
         try {
             MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
             messageDigest.update(salt);
@@ -92,18 +93,18 @@ public abstract class User implements Password {
             }
             password = stringBuilder.toString();
         } catch (NoSuchAlgorithmException error) {
-            error.printStackTrace();
+            throw new IllegalStateException(error);
         }
         return password;
     }
 
-    public void setPassword(String password) throws NoSuchAlgorithmException {
+    public void setPassword(String password) {
         generateSalt();
         this.password = hashPassword(password, salt);
         assert (this.password != null);
     }
 
-    public boolean checkPassword(String password) throws NoSuchAlgorithmException {
+    public boolean checkPassword(String password) {
         return hashPassword(password, salt).equals(this.password);
     }
 }

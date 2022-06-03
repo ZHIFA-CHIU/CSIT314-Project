@@ -28,22 +28,22 @@ public class TechnicianController {
     }
 
     @PostMapping(path = "/login")
-    public String loginTechnician(@RequestBody Technician technician) throws NoSuchAlgorithmException {
+    public String loginTechnician(@RequestBody Technician technician){
         return technicianService.checkPassword(technician);
     }
 
     @PostMapping
-    public boolean registerTechnician(@RequestBody Technician technician) throws TechnicianException {
+    public boolean registerTechnician(@RequestBody Technician technician){
         return technicianService.registerTechnician(technician);
     }
 
     @DeleteMapping(path = "{technicianId}")
-    public void deleteTechnician(@PathVariable("technicianId") Long technicianId) throws TechnicianException {
+    public void deleteTechnician(@PathVariable("technicianId") Long technicianId){
         technicianService.deleteTechnician(technicianId);
     }
 
     @PutMapping
-    public Technician updateTechnician(@RequestBody Technician technician) throws TechnicianException {
+    public Technician updateTechnician(@RequestBody Technician technician){
         return technicianService.updateTechnician(technician);
     }
 
@@ -54,31 +54,31 @@ public class TechnicianController {
 
     @PostMapping(path = "/setLocation/{techId}/{technicianLat}/{technicianLon}")
     public void setTechnicianLatLong(@PathVariable("techId") long techId, @PathVariable("technicianLat")
-            double technicianLat, @PathVariable("technicianLon") double technicianLong) throws TechnicianException {
-        technicianService.setLocation(technicianLat,technicianLong, techId);
+            double technicianLat, @PathVariable("technicianLon") double technicianLong) {
+        technicianService.setLocation(technicianLat, technicianLong, techId);
     }
 
     @PutMapping(path = "/setLocation/{techId}/{technicianLat}/{technicianLon}")
     public void updateTechnicianLatLong(@PathVariable("techId") long techId, @PathVariable("technicianLat")
-            double technicianLat, @PathVariable("technicianLon") double technicianLong) throws TechnicianException {
-        technicianService.setLocation(technicianLat,technicianLong, techId);
+            double technicianLat, @PathVariable("technicianLon") double technicianLong) {
+        technicianService.setLocation(technicianLat, technicianLong, techId);
     }
 
     @GetMapping(path = "/getLocation/{techId}")
-    public double[] updateTechnicianLatLong(@PathVariable("techId") long techId) throws TechnicianException {
+    public double[] updateTechnicianLatLong(@PathVariable("techId") long techId) {
         return technicianService.getLocation(techId);
     }
 
     // -- Bank Account endpoints --
 
     @PutMapping(path = "/addBankAccount/{technicianId}")
-    public boolean addBankAccount(@PathVariable("technicianId") Long technicianId, @RequestBody BankAccount bankAccount) throws TechnicianException {
+    public boolean addBankAccount(@PathVariable("technicianId") Long technicianId, @RequestBody BankAccount bankAccount) {
         return technicianService.addBankAccount(technicianId, bankAccount);
 
     }
 
     @DeleteMapping(path = "/deleteBankAccount")
-    public void deleteBankAccount(@PathVariable("technicianId") Long technicianId) throws TechnicianException {
+    public void deleteBankAccount(@PathVariable("technicianId") Long technicianId) {
         technicianService.deleteBankAccount(technicianId);
     }
 }

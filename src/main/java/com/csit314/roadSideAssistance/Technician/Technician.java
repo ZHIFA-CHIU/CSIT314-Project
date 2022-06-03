@@ -55,7 +55,7 @@ public class Technician extends User {
     public Technician(String firstName, String lastName, String email, LocalDate dob,
                       String phoneNumber, String password, String streetAddress,
                       String suburb, String postCode, String state, boolean heavyVehicleQualification,
-                      boolean lightVehicleQualification) throws TechnicianException, NoSuchAlgorithmException {
+                      boolean lightVehicleQualification) {
         super(firstName, lastName, email, dob, phoneNumber, password, streetAddress, suburb, postCode, state);
 
         this.heavyVehicleQualification = heavyVehicleQualification;
@@ -64,7 +64,7 @@ public class Technician extends User {
         this.longitude = 0;
 
         if (!validateUser()) {
-            throw new TechnicianException("Technician fails to meet consistency constraints");
+            throw new IllegalStateException("Technician fails to meet consistency constraints");
         }
     }
 

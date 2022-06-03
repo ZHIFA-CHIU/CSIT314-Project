@@ -22,7 +22,7 @@ public class BankAccount {
     private String bsb;
     private String accountNumber;
 
-    public BankAccount(String accountName, String bsb, String accountNumber) throws BankAccountException {
+    public BankAccount(String accountName, String bsb, String accountNumber) {
         this.accountName = accountName;
         this.bsb = bsb;
         this.accountNumber = accountNumber;

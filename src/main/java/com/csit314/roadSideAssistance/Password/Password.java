@@ -7,11 +7,11 @@ import java.security.NoSuchAlgorithmException;
  */
 public interface Password {
 
-    void setPassword(String password) throws NoSuchAlgorithmException;
+    void setPassword(String password);
 
-    boolean checkPassword(String password) throws NoSuchAlgorithmException;
+    boolean checkPassword(String password);
 
     String getPassword();
 
-    String hashPassword(String password, byte[] salt) throws NoSuchAlgorithmException;
+    String hashPassword(String password, byte[] salt);
 }

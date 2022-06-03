@@ -28,7 +28,7 @@ public class CustomerController {
     }
 
     @PostMapping(path = "/login")
-    public String loginCustomer(@RequestBody Customer customer) throws NoSuchAlgorithmException {
+    public String loginCustomer(@RequestBody Customer customer) {
         return customerService.checkPassword(customer);
     }
 
@@ -50,7 +50,7 @@ public class CustomerController {
     // -- Vehicle endpoints --
 
     @PostMapping(path = "/addVehicle/{customerId}")
-    public boolean addVehicle(@PathVariable("customerId") Long customerId, @RequestBody Vehicle vehicle) throws CustomException {
+    public boolean addVehicle(@PathVariable("customerId") Long customerId, @RequestBody Vehicle vehicle) {
         return customerService.addVehicle(customerId, vehicle);
     }
 
