@@ -53,6 +53,9 @@ export default function CustomerServiceHistory() {
                                 <Typography variant="body2">
                                     Finish Time: {job.finishTime}
                                 </Typography>
+                                <Typography variant="body2">
+                                    Price: {job.jobPrice}
+                                </Typography>
                             </CardContent>
                         </Card>
                     })

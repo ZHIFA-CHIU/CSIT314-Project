@@ -22,6 +22,8 @@ import LookForRepairs from "../pages/LookForRepairs";
 import JobDetails from "../pages/JobDetails";
 import TechnicianJobHistory from "../pages/TechnicianJobHistory/TechnicianJobHistory";
 import CustomerServiceHistory from "../pages/CustomerServiceHistory";
+import TechReceipt from "../pages/TechReceipt";
+
 
 export default [
     {
@@ -119,5 +121,9 @@ export default [
     {
         path: "/addBank",
         element: <AddBank />
-    }
+    },
+    {
+        path: "/TechReceipt",
+        element: <TechReceipt />
+    },
 ];

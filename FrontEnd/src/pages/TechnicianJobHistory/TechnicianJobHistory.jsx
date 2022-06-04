@@ -3,7 +3,7 @@ import { getAllTechnicianJobsRequest } from '../../api';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import Banner from "../../components/Banner";
 
 export default function TechnicianJobHistory() {
@@ -47,6 +47,18 @@ export default function TechnicianJobHistory() {
                                 </Typography>
                                 <Typography variant="body1">
                                     Category: {job.repairCategory}
+                                </Typography>
+                                <Typography variant="body2">
+                                    Status: {job.status}
+                                </Typography>
+                                <Typography variant="body2">
+                                    Start Time: {job.startTime}
+                                </Typography>
+                                <Typography variant="body2">
+                                    Finish Time: {job.finishTime}
+                                </Typography>
+                                <Typography variant="body2">
+                                    Price: {job.jobPrice}
                                 </Typography>
                             </CardContent>
                         </Card>

@@ -41,7 +41,7 @@ export default function JobDetails() {
         closeJob(jobId).then((
             response => {
                 alert("Job closed");
-                navigate("/TechnicianDashboard", { state: { id } })
+                navigate("/TechReceipt", { state: { "jobId": jobId } });
             }
         ))
     }
