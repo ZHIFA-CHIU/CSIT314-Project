@@ -9,5 +9,4 @@ public class RoadSideAssistanceApplication {
     public static void main(String[] args) {
         SpringApplication.run(RoadSideAssistanceApplication.class, args);
     }
-
 }

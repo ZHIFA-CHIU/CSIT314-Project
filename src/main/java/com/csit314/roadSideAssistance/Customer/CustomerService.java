@@ -5,6 +5,8 @@ import com.csit314.roadSideAssistance.Technician.TechnicianRepository;
 import com.csit314.roadSideAssistance.User.UserInfo;
 import com.csit314.roadSideAssistance.Vehicle.Vehicle;
 import com.csit314.roadSideAssistance.Vehicle.VehicleRepository;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -44,66 +46,67 @@ public class CustomerService {
         return true;
     }
 
-    public void deleteCustomer(Long customerId){
+    public void deleteCustomer(Long customerId) {
         boolean customerExists = customerRepository.existsById(customerId);
-        if(!customerExists) {
-            throw new IllegalStateException("customer with id " + customerId + " does not exist");
+        if (!customerExists) {
+            throw new CustomerNotFoundException(customerId);
         }
         customerRepository.deleteById(customerId);
     }
 
-    public Customer updateCustomer(Customer customer){
+    public Customer updateCustomer(Customer customer) {
         //checking customer exists
         boolean customerExists = customerRepository.existsById(customer.getId());
-        if(!customerExists) {
-            throw new IllegalStateException("customer with id " + customer.getId() + " does not exist");
+        if (!customerExists) {
+            throw new CustomerNotFoundException(customer.getId());
         }
 
         //checking customer is valid
         boolean validCustomer = customer.validateUser();
-        if(!validCustomer) {
+        if (!validCustomer) {
             throw new IllegalStateException("Customer is invalid");
         }
 
         //updating customer
         customerRepository.save(customer);
-
         return customer;
     }
 
-    public Customer getById(Long customerID){
-        Optional<Customer> customer = customerRepository.findById(customerID);
-        if(customer.isPresent()){
+    public Customer getById(Long customerId) {
+        Optional<Customer> customer = customerRepository.findById(customerId);
+        if (customer.isPresent()) {
             return customer.get();
-        }
-        else{
-            throw new IllegalStateException(String.format("Customer with id %s does not exist", customerID));
+        } else {
+            throw new CustomerNotFoundException(customerId);
         }
     }
+
 
     public String checkPassword(UserInfo customer) throws NoSuchAlgorithmException {
         Optional<Customer> c = customerRepository.findCustomerByEmail(customer.getEmail());
 
-        String json;
-        if(c.isPresent() && c.get().checkPassword(customer.getPassword())) {
-            json = "{" +
-                    "\"login\": true," +
-                    "\"customer-id\": \"" + c.get().getId() + "\"" +
-                    "}";
+        try {
+            JSONObject json = new JSONObject();
+            if (c.isPresent() && c.get().checkPassword(customer.getPassword())) {
+                json.put("login", "true");
+                json.put("customer-id", c.get().getId());
+            } else {
+                json.put("login", "false");
+                json.put("customer-id", -1);
+            }
+            return json.toString();
         }
-        else {
-            json = "{" +
-                    "\"login\": false," +
-                    "\"customer-id\": \"" + -1 + "\"" +
-                    "}";
+        catch(JSONException e){
+            throw new IllegalStateException("Failed to check password");
         }
-        return json;
+
+
     }
 
-    public boolean addVehicle(Long customerId, Vehicle vehicle) throws CustomException {
+    public boolean addVehicle(Long customerId, Vehicle vehicle) {
         Optional<Customer> customerOptional = customerRepository.findById(customerId);
         if (!customerOptional.isPresent()) {
-            throw new CustomException("Customer with id " + customerId + " does not exist");
+            throw new CustomerNotFoundException(customerId);
         }
 
         vehicle.setCustomer(customerOptional.get());
@@ -112,11 +115,11 @@ public class CustomerService {
 
         return true;
     }
-    public List<Vehicle> getVehicle(Long customerId) throws CustomException{
+
+    public List<Vehicle> getVehicle(Long customerId) {
         List<Vehicle> vehicleOptional = vehicleRepository.findVehicleByCustomerIDEquals(customerId);
-        if(vehicleOptional.isEmpty())
-        {
-            throw new CustomException("Vehicle with id " + customerId + " does not exist");
+        if (vehicleOptional.isEmpty()) {
+            throw new CustomerNotFoundException(customerId);
         }
         return vehicleOptional;
     }
@@ -124,7 +127,7 @@ public class CustomerService {
     public void updateMembership(Long customerId, Boolean membershipStatus) {
         Optional<Customer> customerOptional = customerRepository.findById(customerId);
         if (!customerOptional.isPresent()) {
-            throw new IllegalStateException("Customer with id " + customerId + " does not exist");
+            throw new CustomerNotFoundException(customerId);
         }
 
         customerOptional.get().setHasMembership(membershipStatus);
@@ -134,21 +137,22 @@ public class CustomerService {
     private double rad2deg(double rad) {
         return (rad * 180.0 / Math.PI);
     }
+
     private double deg2rad(double deg) {
         return (deg * Math.PI / 180.0);
     }
-    public int findAllTechsNearby(double technicianLat, double TechnicianLong) {
+
+    public int findAllTechsNearby(double technicianLat, double technicianLong) {
         List<Technician> nearby = new ArrayList<>();
-        for(Technician t: technicianRepository.findAll())
-        {
+        for (Technician t : technicianRepository.findAll()) {
             double customerLat = t.getLatitude();
             double customerLong = t.getLongitude();
-            double theta = customerLong - TechnicianLong;
+            double theta = customerLong - technicianLong;
             double dist = Math.sin(deg2rad(customerLat)) * Math.sin(deg2rad(technicianLat)) + Math.cos(deg2rad(customerLat)) * Math.cos(deg2rad(technicianLat)) * Math.cos(deg2rad(theta));
             dist = Math.acos(dist);
             dist = rad2deg(dist);
             dist = dist * 60 * 1.85315962;
-            if (dist < 50 ){
+            if (dist < 50) {
                 nearby.add(t);
             }
         }

@@ -1,15 +1,11 @@
 package technician;
 
-import com.csit314.roadSideAssistance.Customer.CustomException;
-import com.csit314.roadSideAssistance.Customer.Customer;
 import com.csit314.roadSideAssistance.Technician.Technician;
-import com.csit314.roadSideAssistance.Technician.TechnicianException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.security.NoSuchAlgorithmException;
 import java.time.LocalDate;
 import java.time.Month;
 
@@ -26,7 +22,7 @@ class TechnicianTest {
 
     @Test
     @DisplayName("Simple Test of Technician Creation")
-    void testCreateTechnician() throws TechnicianException, NoSuchAlgorithmException {
+    void testCreateTechnician(){
         Technician technician = new Technician("Jay", "Smith", "jaysmith@mail.com",
                 LocalDate.of(1990, Month.FEBRUARY, 12), "01234567890",
                 "password", "1 main street", "Wollongong",
@@ -38,8 +34,8 @@ class TechnicianTest {
 
     @Test
     @DisplayName("Simple Test of Valid User Constraint")
-    void testValidUser() throws TechnicianException {
-        TechnicianException thrown = Assertions.assertThrows(TechnicianException.class, () -> {
+    void testValidUser(){
+        IllegalStateException thrown = Assertions.assertThrows(IllegalStateException.class, () -> {
             Technician technician = new Technician("", "Smith", "jaysmith@mail.com",
                     LocalDate.of(1990, Month.FEBRUARY, 12), "01234567890",
                     "password", "1 main street", "Wollongong",
@@ -49,7 +45,7 @@ class TechnicianTest {
 
     @Test
     @DisplayName("Testing technician password authentication")
-    void testCustomerPassword() throws TechnicianException, NoSuchAlgorithmException {
+    void testCustomerPassword(){
         Technician t = new Technician("Jay", "Smith", "jaysmith@mail.com",
                 LocalDate.of(1990, Month.FEBRUARY, 12), "01234567890",
                 "password", "1 main street", "Wollongong",
@@ -60,7 +56,7 @@ class TechnicianTest {
 
     @Test
     @DisplayName("Testing technician update password authentication")
-    void updateCustomerPassword() throws TechnicianException, NoSuchAlgorithmException {
+    void updateCustomerPassword(){
         Technician t = new Technician("Jay", "Smith", "jaysmith@mail.com",
                 LocalDate.of(1990, Month.FEBRUARY, 12), "01234567890",
                 "password", "1 main street", "Wollongong",

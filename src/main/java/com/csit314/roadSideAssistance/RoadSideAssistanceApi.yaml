@@ -1,0 +1,659 @@
+openapi: "3.0.3"
+info:
+  title: "CSIT314_Project API"
+  description: "CSIT314_Project API"
+  version: "1.0.0"
+servers:
+  - url: "https://CSIT314_Project"
+paths:
+  /api/v1/Vehicle:
+    get:
+      summary: "GET api/v1/Vehicle"
+      tags:
+        - vehicle
+      operationId: "getVehicles"
+      responses:
+        "200":
+          description: "OK"
+    put:
+      summary: "PUT api/v1/Vehicle"
+      operationId: "updateVehicle"
+      responses:
+        "200":
+          description: "OK"
+  /api/v1/Vehicle/get/{vehicleID}:
+    get:
+      summary: "GET api/v1/Vehicle/get/{vehicleID}"
+      tags:
+        - vehicle
+      operationId: "getVehicleByID"
+      parameters:
+        - name: "vehicleID"
+          in: "path"
+          required: true
+          schema:
+            type: "number"
+            format: "int64"
+      responses:
+        "200":
+          description: "OK"
+  /api/v1/Vehicle/getByCustomer/{customerId}:
+    get:
+      summary: "GET api/v1/Vehicle/getByCustomer/{customerId}"
+      tags:
+        - vehicle
+      operationId: "getVehicleByCustomerId"
+      parameters:
+        - name: "customerId"
+          in: "path"
+          required: true
+          schema:
+            type: "number"
+            format: "int64"
+      responses:
+        "200":
+          description: "OK"
+  /api/v1/Vehicle/{vehicleRego}:
+    delete:
+      summary: "DELETE api/v1/Vehicle/{vehicleRego}"
+      tags:
+        - vehicle
+      operationId: "deleteVehicle"
+      parameters:
+        - name: "vehicleRego"
+          in: "path"
+          required: true
+          schema:
+            type: "string"
+      responses:
+        "200":
+          description: "OK"
+  /api/v1/admin:
+    get:
+      summary: "GET api/v1/admin"
+      tags:
+        - admin
+      operationId: "getAdmins"
+      responses:
+        "200":
+          description: "OK"
+    put:
+      summary: "PUT api/v1/admin"
+      tags:
+        - admin
+      operationId: "updateAdmin"
+      responses:
+        "200":
+          description: "OK"
+    post:
+      summary: "POST api/v1/admin"
+      tags:
+        - admin
+      operationId: "registerAdmin"
+      responses:
+        "200":
+          description: "OK"
+  /api/v1/admin/get/{adminId}:
+    get:
+      summary: "GET api/v1/admin/get/{adminId}"
+      tags:
+        - admin
+      operationId: "getAdmin"
+      parameters:
+        - name: "adminId"
+          in: "path"
+          required: true
+          schema:
+            type: "number"
+            format: "int64"
+      responses:
+        "200":
+          description: "OK"
+  /api/v1/admin/{adminId}:
+    delete:
+      summary: "DELETE api/v1/admin/{adminId}"
+      tags:
+        - admin
+      operationId: "deleteAdmin"
+      parameters:
+        - name: "adminId"
+          in: "path"
+          required: true
+          schema:
+            type: "number"
+            format: "int64"
+      responses:
+        "200":
+          description: "OK"
+  /api/v1/customer:
+    get:
+      summary: "GET api/v1/customer"
+      tags:
+        - customer
+      operationId: "getCustomers"
+      responses:
+        "200":
+          description: "OK"
+    put:
+      summary: "PUT api/v1/customer"
+      tags:
+        - customer
+      operationId: "updateCustomer"
+      responses:
+        "200":
+          description: "OK"
+    post:
+      summary: "POST api/v1/customer"
+      tags:
+        - customer
+      operationId: "registerCustomer"
+      responses:
+        "200":
+          description: "OK"
+  /api/v1/customer/addVehicle/{customerId}:
+    post:
+      summary: "POST api/v1/customer/addVehicle/{customerId}"
+      tags:
+        - customer
+      operationId: "addVehicle"
+      parameters:
+        - name: "customerId"
+          in: "path"
+          required: true
+          schema:
+            type: "number"
+            format: "int64"
+      responses:
+        "200":
+          description: "OK"
+  /api/v1/customer/get/{customerId}:
+    get:
+      summary: "GET api/v1/customer/get/{customerId}"
+      tags:
+        - customer
+      operationId: "getCustomerByID"
+      parameters:
+        - name: "customerId"
+          in: "path"
+          required: true
+          schema:
+            type: "number"
+            format: "int64"
+      responses:
+        "200":
+          description: "OK"
+  /api/v1/customer/getNearbyTechs/{lat}/{lon}:
+    get:
+      summary: "GET api/v1/customer/getNearbyTechs/{lat}/{lon}"
+      tags:
+        - customer
+      operationId: "getNearbyTechs"
+      parameters:
+        - name: "lat"
+          in: "path"
+          required: true
+          schema:
+            type: "number"
+            format: "double"
+        - name: "lon"
+          in: "path"
+          required: true
+          schema:
+            type: "number"
+            format: "double"
+      responses:
+        "200":
+          description: "OK"
+  /api/v1/customer/login:
+    post:
+      summary: "POST api/v1/customer/login"
+      tags:
+        - customer
+      operationId: "loginCustomer"
+      responses:
+        "200":
+          description: "OK"
+  /api/v1/customer/updateMembership/{customerId}/{membershipStatus}:
+    put:
+      summary: "PUT api/v1/customer/updateMembership/{customerId}/{membershipStatus}"
+      tags:
+        - customer
+      operationId: "updateMembership"
+      parameters:
+        - name: "customerId"
+          in: "path"
+          required: true
+          schema:
+            type: "number"
+            format: "int64"
+        - name: "membershipStatus"
+          in: "path"
+          required: true
+          schema:
+            type: "boolean"
+      responses:
+        "200":
+          description: "OK"
+  /api/v1/customer/{customerId}:
+    delete:
+      summary: "DELETE api/v1/customer/{customerId}"
+      tags:
+        - customer
+      operationId: "deleteCustomer"
+      parameters:
+        - name: "customerId"
+          in: "path"
+          required: true
+          schema:
+            type: "number"
+            format: "int64"
+      responses:
+        "200":
+          description: "OK"
+  /api/v1/job:
+    get:
+      summary: "GET api/v1/job"
+      tags:
+        - job
+      operationId: "getJobs"
+      responses:
+        "200":
+          description: "OK"
+    put:
+      summary: "PUT api/v1/job"
+      tags:
+        - job
+      operationId: "updateJob"
+      responses:
+        "200":
+          description: "OK"
+    delete:
+      summary: "DELETE api/v1/job"
+      tags:
+        - job
+      operationId: "deleteJob"
+      responses:
+        "200":
+          description: "OK"
+  /api/v1/job/addTechnician/{jobId}/{technicianId}:
+    post:
+      summary: "POST api/v1/job/addTechnician/{jobId}/{technicianId}"
+      tags:
+        - job
+      operationId: "addTechnician"
+      parameters:
+        - name: "jobId"
+          in: "path"
+          required: true
+          schema:
+            type: "number"
+            format: "int64"
+        - name: "technicianId"
+          in: "path"
+          required: true
+          schema:
+            type: "number"
+            format: "int64"
+      responses:
+        "200":
+          description: "OK"
+  /api/v1/job/closeJob/{jobId}:
+    put:
+      summary: "PUT api/v1/job/closeJob/{jobId}"
+      tags:
+        - job
+      operationId: "closeJob"
+      parameters:
+        - name: "jobId"
+          in: "path"
+          required: true
+          schema:
+            type: "number"
+            format: "int64"
+      responses:
+        "200":
+          description: "OK"
+  /api/v1/job/getNearby/{technicianLat}/{technicianLon}:
+    get:
+      summary: "GET api/v1/job/getNearby/{technicianLat}/{technicianLon}"
+      tags:
+        - job
+      operationId: "getJobsNearby"
+      parameters:
+        - name: "technicianLat"
+          in: "path"
+          required: true
+          schema:
+            type: "number"
+            format: "double"
+        - name: "technicianLon"
+          in: "path"
+          required: true
+          schema:
+            type: "number"
+            format: "double"
+      responses:
+        "200":
+          description: "OK"
+  /api/v1/job/getall/technician/{techId}:
+    get:
+      summary: "GET api/v1/job/getall/technician/{techId}"
+      tags:
+        - job
+      operationId: "getJobsTechnician"
+      parameters:
+        - name: "techId"
+          in: "path"
+          required: true
+          schema:
+            type: "number"
+            format: "int64"
+      responses:
+        "200":
+          description: "OK"
+  /api/v1/job/getall/{customerId}:
+    get:
+      summary: "GET api/v1/job/getall/{customerId}"
+      tags:
+        - job
+      operationId: "getJobsCust"
+      parameters:
+        - name: "customerId"
+          in: "path"
+          required: true
+          schema:
+            type: "number"
+            format: "int64"
+      responses:
+        "200":
+          description: "OK"
+  /api/v1/job/updateStatus/{jobId}/{status}:
+    put:
+      summary: "PUT api/v1/job/updateStatus/{jobId}/{status}"
+      tags:
+        - job
+      operationId: "updateStatus"
+      parameters:
+        - name: "jobId"
+          in: "path"
+          required: true
+          schema:
+            type: "number"
+            format: "int64"
+        - name: "status"
+          in: "path"
+          required: true
+          schema:
+            type: "string"
+      responses:
+        "200":
+          description: "OK"
+  /api/v1/job/{customerId}:
+    post:
+      summary: "POST api/v1/job/{customerId}"
+      tags:
+        - job
+      operationId: "registerJob"
+      parameters:
+        - name: "customerId"
+          in: "path"
+          required: true
+          schema:
+            type: "number"
+            format: "int64"
+      responses:
+        "200":
+          description: "OK"
+  /api/v1/job/{customerId}/{startTime}:
+    get:
+      summary: "GET api/v1/job/{customerId}/{startTime}"
+      tags:
+        - job
+      operationId: "getJob"
+      parameters:
+        - name: "customerId"
+          in: "path"
+          required: true
+          schema:
+            type: "number"
+            format: "int64"
+        - name: "startTime"
+          in: "path"
+          required: true
+      responses:
+        "200":
+          description: "OK"
+  /api/v1/job/{jobId}:
+    get:
+      summary: "GET api/v1/job/{jobId}"
+      tags:
+        - job
+      operationId: "get"
+      parameters:
+        - name: "jobId"
+          in: "path"
+          required: true
+          schema:
+            type: "number"
+            format: "int64"
+      responses:
+        "200":
+          description: "OK"
+  /api/v1/review:
+    put:
+      summary: "PUT api/v1/review"
+      tags:
+        - review
+      operationId: "addReview"
+      responses:
+        "200":
+          description: "OK"
+  /api/v1/review/{reviewId}:
+    delete:
+      summary: "DELETE api/v1/review/{reviewId}"
+      tags:
+        - review
+      operationId: "deleteReview"
+      parameters:
+        - name: "reviewId"
+          in: "path"
+          required: true
+          schema:
+            type: "number"
+            format: "int64"
+      responses:
+        "200":
+          description: "OK"
+  /api/v1/review/{technicianId}:
+    get:
+      summary: "GET api/v1/review/{technicianId}"
+      tags:
+        - review
+      operationId: "getReviews"
+      parameters:
+        - name: "technicianId"
+          in: "path"
+          required: true
+          schema:
+            type: "number"
+            format: "int64"
+      responses:
+        "200":
+          description: "OK"
+    post:
+      summary: "POST api/v1/review/{technicianId}"
+      tags:
+        - review
+      operationId: "addReview"
+      parameters:
+        - name: "technicianId"
+          in: "path"
+          required: true
+          schema:
+            type: "number"
+            format: "int64"
+      responses:
+        "200":
+          description: "OK"
+  /api/v1/technician:
+    get:
+      summary: "GET api/v1/technician"
+      tags:
+        - technician
+      operationId: "getTechnicians"
+      responses:
+        "200":
+          description: "OK"
+    put:
+      summary: "PUT api/v1/technician"
+      tags:
+        - technician
+      operationId: "updateTechnician"
+      responses:
+        "200":
+          description: "OK"
+    post:
+      summary: "POST api/v1/technician"
+      tags:
+        - technician
+      operationId: "registerTechnician"
+      responses:
+        "200":
+          description: "OK"
+  /api/v1/technician/addBankAccount/{technicianId}:
+    put:
+      summary: "PUT api/v1/technician/addBankAccount/{technicianId}"
+      tags:
+        - technician
+      operationId: "addBankAccount"
+      parameters:
+        - name: "technicianId"
+          in: "path"
+          required: true
+          schema:
+            type: "number"
+            format: "int64"
+      responses:
+        "200":
+          description: "OK"
+  /api/v1/technician/deleteBankAccount:
+    delete:
+      summary: "DELETE api/v1/technician/deleteBankAccount"
+      tags:
+        - technician
+      operationId: "deleteBankAccount"
+      responses:
+        "200":
+          description: "OK"
+  /api/v1/technician/get/{technicianId}:
+    get:
+      summary: "GET api/v1/technician/get/{technicianId}"
+      tags:
+        - technician
+      operationId: "getTechnicianByID"
+      parameters:
+        - name: "technicianId"
+          in: "path"
+          required: true
+          schema:
+            type: "number"
+            format: "int64"
+      responses:
+        "200":
+          description: "OK"
+  /api/v1/technician/getLocation/{techId}:
+    get:
+      summary: "GET api/v1/technician/getLocation/{techId}"
+      tags:
+        - technician
+      operationId: "updateTechnicianLatLong"
+      parameters:
+        - name: "techId"
+          in: "path"
+          required: true
+          schema:
+            type: "number"
+            format: "int64"
+      responses:
+        "200":
+          description: "OK"
+  /api/v1/technician/login:
+    post:
+      summary: "POST api/v1/technician/login"
+      tags:
+        - technician
+      operationId: "loginTechnician"
+      responses:
+        "200":
+          description: "OK"
+  /api/v1/technician/setLocation/{techId}/{technicianLat}/{technicianLon}:
+    put:
+      summary: "PUT api/v1/technician/setLocation/{techId}/{technicianLat}/{technicianLon}"
+      tags:
+        - technician
+      operationId: "updateTechnicianLatLong"
+      parameters:
+        - name: "techId"
+          in: "path"
+          required: true
+          schema:
+            type: "number"
+            format: "int64"
+        - name: "technicianLat"
+          in: "path"
+          required: true
+          schema:
+            type: "number"
+            format: "double"
+        - name: "technicianLon"
+          in: "path"
+          required: true
+          schema:
+            type: "number"
+            format: "double"
+      responses:
+        "200":
+          description: "OK"
+    post:
+      summary: "POST api/v1/technician/setLocation/{techId}/{technicianLat}/{technicianLon}"
+      tags:
+        - technician
+      operationId: "setTechnicianLatLong"
+      parameters:
+        - name: "techId"
+          in: "path"
+          required: true
+          schema:
+            type: "number"
+            format: "int64"
+        - name: "technicianLat"
+          in: "path"
+          required: true
+          schema:
+            type: "number"
+            format: "double"
+        - name: "technicianLon"
+          in: "path"
+          required: true
+          schema:
+            type: "number"
+            format: "double"
+      responses:
+        "200":
+          description: "OK"
+  /api/v1/technician/{technicianId}:
+    delete:
+      summary: "DELETE api/v1/technician/{technicianId}"
+      tags:
+        - technician
+      operationId: "deleteTechnician"
+      parameters:
+        - name: "technicianId"
+          in: "path"
+          required: true
+          schema:
+            type: "number"
+            format: "int64"
+      responses:
+        "200":
+          description: "OK"

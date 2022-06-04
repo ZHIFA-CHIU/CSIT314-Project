@@ -1,26 +1,19 @@
 package com.csit314.roadSideAssistance;
 
-import com.csit314.roadSideAssistance.Customer.CustomException;
 import com.csit314.roadSideAssistance.Customer.Customer;
 import com.csit314.roadSideAssistance.Customer.CustomerService;
 import com.csit314.roadSideAssistance.Job.Job;
 import com.csit314.roadSideAssistance.Job.JobRepository;
 import com.csit314.roadSideAssistance.Job.JobService;
-import com.csit314.roadSideAssistance.Job.Status;
 import com.csit314.roadSideAssistance.Technician.TechnicianService;
 import org.junit.jupiter.api.*;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import static org.hamcrest.CoreMatchers.*;
-import org.hamcrest.core.IsNull;
 
-import java.security.NoSuchAlgorithmException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Month;
-import java.util.Collection;
-import java.util.UUID;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
@@ -65,7 +58,7 @@ class JobServiceTest {
 
     @Test
     @DisplayName("Can request a job")
-    void canRequestJob() throws CustomException, NoSuchAlgorithmException {
+    void canRequestJob(){
         //given
         Job job = new Job("OTHER", "testing information", 45.0, 95.0);
         Customer customer = new Customer("Jay", "Smith", "jaysmith@mail.com",
@@ -90,10 +83,10 @@ class JobServiceTest {
 
     @Test
     @DisplayName("Can get a job by id and time")
-    void canGetJobByIdAndTime() throws CustomException {
+    void canGetJobByIdAndTime(){
         //given
         LocalDateTime startTime = LocalDateTime.parse("2022-05-10T21:44:43.402945700");
-        Long customerID = new Long(9274972);
+        Long customerID = 9274972L;
 
         //when
         assertThatThrownBy(() -> jobService.getJob(customerID, startTime)).hasMessageContaining("Job could not be found with customerID '9274972' and start time '2022-05-10T21:44:43.402945700'");
@@ -101,7 +94,7 @@ class JobServiceTest {
 
     @Test
     @DisplayName("Can get nearby jobs")
-    void canGetNearbyJobs() throws CustomException, NoSuchAlgorithmException {
+    void canGetNearbyJobs(){
         //given
         Job job = new Job("OTHER", "testing information", 45.0, 95.0);
         Customer customer = new Customer("Jay", "Smith", "jaysmith@mail.com",

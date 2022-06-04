@@ -2,26 +2,19 @@ package com.csit314.roadSideAssistance.Job;
 
 import com.csit314.roadSideAssistance.Customer.Customer;
 import com.csit314.roadSideAssistance.Technician.Technician;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
-import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 import static java.time.temporal.ChronoUnit.MINUTES;
 
 /**
  * Job Model, storing the details of a user requested maintenance job
  */
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
-@ToString
 @Entity
 @Table
 public class Job {
@@ -65,12 +58,4 @@ public class Job {
     public boolean validateJob() {
         return customerLatitude >= -90 && customerLatitude <= 90 && customerLongitude >= -180 && customerLongitude <= 180;
     }
-
-    /*public void setCustomer(Customer byId) {
-
-    }
-
-    public void setTechnician(Technician technician) {
-
-    }*/
 }

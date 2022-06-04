@@ -8,6 +8,9 @@ import org.springframework.web.bind.annotation.*;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
+/**
+ * Controller for customer
+ */
 @CrossOrigin(origins = "http://localhost:3000/")
 @RestController
 @RequestMapping(path = "api/v1/customer")
@@ -48,7 +51,7 @@ public class CustomerController {
     // -- Vehicle endpoints --
 
     @PostMapping(path = "/addVehicle/{customerId}")
-    public boolean addVehicle(@PathVariable("customerId") Long customerId, @RequestBody Vehicle vehicle) throws CustomException {
+    public boolean addVehicle(@PathVariable("customerId") Long customerId, @RequestBody Vehicle vehicle) {
         return customerService.addVehicle(customerId, vehicle);
     }
 

@@ -1,6 +1,5 @@
 package com.csit314.roadSideAssistance.Review;
 
-import com.csit314.roadSideAssistance.Technician.TechnicianException;
 import com.csit314.roadSideAssistance.Technician.TechnicianService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,7 +22,7 @@ public class ReviewService {
         this.technicianService = technicianService;
     }
 
-    public void addReview(Long technicianId, Review review) throws TechnicianException {
+    public void addReview(Long technicianId, Review review) {
         review.setTechnician(technicianService.getById(technicianId));
         if (!review.validateReview()) {
             throw new IllegalStateException("Review is invalid");
@@ -43,7 +42,7 @@ public class ReviewService {
         reviewRepository.deleteById(reviewId);
     }
 
-    public void updateReview(Review review) throws TechnicianException {
+    public void updateReview(Review review){
         if (!review.validateReview()) {
             throw new IllegalStateException("Review is invalid");
         }
@@ -62,7 +61,7 @@ public class ReviewService {
         updateAvgRating(newReview.getTechnician().getId());
     }
 
-    private void updateAvgRating(Long technicianId) throws TechnicianException {
+    private void updateAvgRating(Long technicianId) {
         Set<Review> reviews = getAllReviews(technicianId);
         Double average = 0.0;
         for (Review rev : reviews) {

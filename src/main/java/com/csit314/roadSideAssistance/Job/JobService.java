@@ -86,8 +86,11 @@ public class JobService {
     }
 
     public Job get(Long jobId) {
-
-        return jobRepository.findById(jobId).get();
+        Optional<Job> job =  jobRepository.findById(jobId);
+        if (!job.isPresent()) {
+            throw new IllegalStateException(String.format("Job could not be found with jobId: %s", jobId));
+        }
+        return job.get();
     }
 
     public void addTechnician(Long jobId, Long technicianId) {
@@ -107,13 +110,13 @@ public class JobService {
     private double deg2rad(double deg) {
         return (deg * Math.PI / 180.0);
     }
-    public List<Job> findAllJobsNearby(double technicianLat, double TechnicianLong) {
+    public List<Job> findAllJobsNearby(double technicianLat, double technicianLong) {
         List<Job> nearby = new ArrayList<>();
         for(Job j: jobRepository.findAll())
         {
             double customerLat = j.getCustomerLatitude();
             double customerLong = j.getCustomerLongitude();
-            double theta = customerLong - TechnicianLong;
+            double theta = customerLong - technicianLong;
             double dist = Math.sin(deg2rad(customerLat)) * Math.sin(deg2rad(technicianLat)) + Math.cos(deg2rad(customerLat)) * Math.cos(deg2rad(technicianLat)) * Math.cos(deg2rad(theta));
             dist = Math.acos(dist);
             dist = rad2deg(dist);
@@ -135,12 +138,12 @@ public class JobService {
         }
         final double HOURLY_RATE = 40.0;
         LocalDateTime finishTime = LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES);
-        long jobLength = ChronoUnit.MINUTES.between(job.get().getStartTime(), finishTime);
-        if(jobLength <= 0) {
-            throw new IllegalStateException(String.format("Job Finish time (%s) is earlier or equal to the job start time (%s)", finishTime.toString(), job.get().getStartTime().toString()));
-        }
+        long jobLength = Math.max(ChronoUnit.MINUTES.between(job.get().getStartTime(), finishTime), 1);
+//        if(jobLength <= 0) {
+//            throw new IllegalStateException(String.format("Job Finish time (%s) is earlier or equal to the job start time (%s)", finishTime.toString(), job.get().getStartTime().toString()));
+//        }
         job.get().setFinishTime(finishTime);
-        job.get().setJobPrice((HOURLY_RATE / 60.0) * jobLength);
+        job.get().setJobPrice(Math.max(((HOURLY_RATE / 60.0) * jobLength), 100.00));
         job.get().setStatus(Status.COMPLETED);
         jobRepository.save(job.get());
     }
