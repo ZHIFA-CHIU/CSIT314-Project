@@ -103,3 +103,15 @@ export const addBank = (technicianId, data) =>
     ajax(`http://localhost:3000/api1/api/v1/technician/addBankAccount/${technicianId}`, {
         ...data
     }, "PUT");
+
+// set technician location
+export const setLocation = (techId, technicianLat, technicianLon) =>
+    ajax(`http://localhost:3000/api1/api/v1/technician/setLocation/${techId}/${technicianLat}/${technicianLon}`, {
+        technicianLat, technicianLon
+    }, "PUT");
+
+// get nearby technician
+export const getNearbyTechnician = (lat, lon) =>
+    ajax(`http://localhost:3000/api1/api/v1/customer/getNearbyTechs/${lat}/${lon}`,{
+        lat, lon
+    }, "GET");

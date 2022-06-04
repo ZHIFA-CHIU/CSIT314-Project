@@ -44,6 +44,15 @@ export default function CustomerServiceHistory() {
                                 <Typography variant="body1">
                                     Category: {job.repairCategory}
                                 </Typography>
+                                <Typography variant="body2">
+                                    Status: {job.status}
+                                </Typography>
+                                <Typography variant="body2">
+                                    Start Time: {job.startTime}
+                                </Typography>
+                                <Typography variant="body2">
+                                    Finish Time: {job.finishTime}
+                                </Typography>
                             </CardContent>
                         </Card>
                     })

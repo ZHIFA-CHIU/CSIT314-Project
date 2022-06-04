@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { technicianGetNearbyJobsRequest } from '../../api';
+import {setLocation, technicianGetNearbyJobsRequest} from '../../api';
 import { Card, CardActions, CardContent, Button, Typography, Stack } from '@mui/material';
 import "./LookForRepairs.css"
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -32,9 +32,19 @@ export default function LookForRepairs() {
     const submitLocation = () => {
         technicianGetNearbyJobsRequest(lat, lon).then(
             response => {
-                console.log(response.data);
-                setJobs(response.data);
-                setFlag(true);
+                if (response.data[0]!= null) {
+                    setJobs(response.data);
+                    setFlag(true);
+                }
+                else
+                    alert("No jobs found")
+            }
+        ).catch(
+            err => alert(err)
+        );
+        setLocation(id, lat, lon).then(
+            response => {
+                console.log("Location updated successfully")
             }
         ).catch(
             err => alert(err)
@@ -105,7 +115,6 @@ export default function LookForRepairs() {
     }
     useEffect(() => {
         if (getCurrentPosition !== undefined && getCurrentPosition !== null) {
-            console.log(location)
             setLat(location.lat)
             setLon(location.lon)
         }
@@ -148,7 +157,7 @@ export default function LookForRepairs() {
                     <TextField id="lon" label="Longitude" variant="outlined" sx={{ minWidth: 500 }}
                         value={lon} onChange={onLonChange} />
 
-                    <Button sx={{ minWidth: 300 }} variant="contained" onClick={submitLocation}>Submit</Button>
+                    <Button sx={{ minWidth: 300 }} variant="contained" onClick={submitLocation}>Update location</Button>
                 </div>
             }
         </div>
