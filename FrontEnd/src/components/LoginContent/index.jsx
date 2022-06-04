@@ -39,7 +39,6 @@ export default function LoginContent() {
             response => {
                 let tmp = JSON.stringify(response.data);
                 let obj = JSON.parse(tmp);
-                console.log(typeof obj.login)
                 if (obj.login === "true")
                     navigate("/CustomerDashboard", { state: { id: obj["customer-id"] } })
                 else
