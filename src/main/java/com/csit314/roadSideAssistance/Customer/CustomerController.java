@@ -2,10 +2,12 @@ package com.csit314.roadSideAssistance.Customer;
 
 import com.csit314.roadSideAssistance.BankAccount.BankAccount;
 import com.csit314.roadSideAssistance.Technician.TechnicianException;
+import com.csit314.roadSideAssistance.User.User2;
 import com.csit314.roadSideAssistance.Vehicle.Vehicle;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 import java.util.UUID;
 
@@ -27,7 +29,7 @@ public class CustomerController {
     }
 
     @PostMapping(path = "/login")
-    public String loginCustomer(@RequestBody Customer customer) {
+    public String loginCustomer2(@RequestBody User2 customer) throws NoSuchAlgorithmException {
         return customerService.checkPassword(customer);
     }
 
@@ -62,4 +64,11 @@ public class CustomerController {
     public void updateMembership(@PathVariable("customerId") Long customerId, @PathVariable("membershipStatus") Boolean membershipStatus) {
         customerService.updateMembership(customerId, membershipStatus);
     }
+
+    @GetMapping(path = "/getNearbyTechs/{lat}/{lon}")
+    public int getNearbyTechs(@PathVariable("lat") double lat, @PathVariable("lon") double lon)
+    {
+        return customerService.findAllTechsNearby(lat, lon);
+    }
+
 }
