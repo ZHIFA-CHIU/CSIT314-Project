@@ -1,15 +1,12 @@
 package com.csit314.roadSideAssistance.Customer;
 
-import com.csit314.roadSideAssistance.BankAccount.BankAccount;
-import com.csit314.roadSideAssistance.Technician.TechnicianException;
-import com.csit314.roadSideAssistance.User.User2;
+import com.csit314.roadSideAssistance.User.UserInfo;
 import com.csit314.roadSideAssistance.Vehicle.Vehicle;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
-import java.util.UUID;
 
 @CrossOrigin(origins = "http://localhost:3000/")
 @RestController
@@ -29,7 +26,7 @@ public class CustomerController {
     }
 
     @PostMapping(path = "/login")
-    public String loginCustomer(@RequestBody User2 customer) throws NoSuchAlgorithmException {
+    public String loginCustomer(@RequestBody UserInfo customer) throws NoSuchAlgorithmException {
         return customerService.checkPassword(customer);
     }
 

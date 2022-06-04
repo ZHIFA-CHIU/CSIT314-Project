@@ -1,11 +1,8 @@
 package com.csit314.roadSideAssistance.Customer;
 
-import com.csit314.roadSideAssistance.Job.Job;
-import com.csit314.roadSideAssistance.Job.Status;
 import com.csit314.roadSideAssistance.Technician.Technician;
-import com.csit314.roadSideAssistance.Technician.TechnicianException;
 import com.csit314.roadSideAssistance.Technician.TechnicianRepository;
-import com.csit314.roadSideAssistance.User.User2;
+import com.csit314.roadSideAssistance.User.UserInfo;
 import com.csit314.roadSideAssistance.Vehicle.Vehicle;
 import com.csit314.roadSideAssistance.Vehicle.VehicleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +12,6 @@ import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 @Service
 public class CustomerService {
@@ -85,7 +81,7 @@ public class CustomerService {
         }
     }
 
-    public String checkPassword(User2 customer) throws NoSuchAlgorithmException {
+    public String checkPassword(UserInfo customer) throws NoSuchAlgorithmException {
         Optional<Customer> c = customerRepository.findCustomerByEmail(customer.getEmail());
 
         String json;
