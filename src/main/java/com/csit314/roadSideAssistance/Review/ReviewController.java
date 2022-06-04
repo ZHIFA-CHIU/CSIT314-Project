@@ -1,6 +1,5 @@
 package com.csit314.roadSideAssistance.Review;
 
-import com.csit314.roadSideAssistance.Technician.TechnicianException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,7 +21,7 @@ public class ReviewController {
     }
 
     @PostMapping(path = "/{technicianId}")
-    public void addReview(@PathVariable("technicianId") Long technicianId, @RequestBody Review review) throws TechnicianException {
+    public void addReview(@PathVariable("technicianId") Long technicianId, @RequestBody Review review) {
         reviewService.addReview(technicianId, review);
     }
 
@@ -37,7 +36,7 @@ public class ReviewController {
     }
 
     @PutMapping()
-    public void addReview(@RequestBody Review review) throws TechnicianException {
+    public void addReview(@RequestBody Review review) {
         reviewService.updateReview(review);
     }
 }

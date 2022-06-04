@@ -11,6 +11,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+/**
+ * Creates example technician data
+ */
 @Component
 @Order(2)
 public class TechnicianConfig implements CommandLineRunner {

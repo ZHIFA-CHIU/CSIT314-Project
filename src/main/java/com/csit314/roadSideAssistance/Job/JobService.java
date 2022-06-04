@@ -86,8 +86,11 @@ public class JobService {
     }
 
     public Job get(Long jobId) {
-
-        return jobRepository.findById(jobId).get();
+        Optional<Job> job =  jobRepository.findById(jobId);
+        if (!job.isPresent()) {
+            throw new IllegalStateException(String.format("Job could not be found with jobId: %s", jobId));
+        }
+        return job.get();
     }
 
     public void addTechnician(Long jobId, Long technicianId) {
@@ -107,13 +110,13 @@ public class JobService {
     private double deg2rad(double deg) {
         return (deg * Math.PI / 180.0);
     }
-    public List<Job> findAllJobsNearby(double technicianLat, double TechnicianLong) {
+    public List<Job> findAllJobsNearby(double technicianLat, double technicianLong) {
         List<Job> nearby = new ArrayList<>();
         for(Job j: jobRepository.findAll())
         {
             double customerLat = j.getCustomerLatitude();
             double customerLong = j.getCustomerLongitude();
-            double theta = customerLong - TechnicianLong;
+            double theta = customerLong - technicianLong;
             double dist = Math.sin(deg2rad(customerLat)) * Math.sin(deg2rad(technicianLat)) + Math.cos(deg2rad(customerLat)) * Math.cos(deg2rad(technicianLat)) * Math.cos(deg2rad(theta));
             dist = Math.acos(dist);
             dist = rad2deg(dist);

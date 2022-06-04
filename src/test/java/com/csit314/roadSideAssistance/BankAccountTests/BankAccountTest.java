@@ -19,7 +19,7 @@ class BankAccountTest {
 
     @Test
     @DisplayName("Simple Test of Bank Account Creation")
-    void testCreateBankAccount() throws BankAccountException {
+    void testCreateBankAccount(){
         BankAccount bankAccount = new BankAccount("Jay's Account",
                 "000-001", "10002000");
 
@@ -30,7 +30,7 @@ class BankAccountTest {
 
     @Test
     @DisplayName("Simple Test of Bank Account Constraint")
-    void testValidateBankAccount() throws BankAccountException {
+    void testValidateBankAccount(){
         BankAccountException thrown = Assertions.assertThrows(BankAccountException.class, () -> {
             BankAccount bankAccount = new BankAccount("Jay's Account",
                     "000-001", "");

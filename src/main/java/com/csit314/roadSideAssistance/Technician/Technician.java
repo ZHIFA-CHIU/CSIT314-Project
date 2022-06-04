@@ -1,11 +1,5 @@
 package com.csit314.roadSideAssistance.Technician;
 
-
-/*
- * Most comments to be removed once User class exists
- * Other comments require other classes such as Job and BankAccount
- * */
-
 import com.csit314.roadSideAssistance.BankAccount.BankAccount;
 import com.csit314.roadSideAssistance.Job.Job;
 import com.csit314.roadSideAssistance.Review.Review;
@@ -33,9 +27,9 @@ import java.util.Set;
 @Entity
 @Table(name = "Technician")
 public class Technician extends User {
-    private boolean availableStatus,
-            lightVehicleQualification,
-            heavyVehicleQualification;
+    private boolean availableStatus;
+    private boolean lightVehicleQualification;
+    private boolean heavyVehicleQualification;
 
     private double avgRating;
     private double latitude;
@@ -61,7 +55,7 @@ public class Technician extends User {
     public Technician(String firstName, String lastName, String email, LocalDate dob,
                       String phoneNumber, String password, String streetAddress,
                       String suburb, String postCode, String state, boolean heavyVehicleQualification,
-                      boolean lightVehicleQualification) throws TechnicianException, NoSuchAlgorithmException {
+                      boolean lightVehicleQualification) {
         super(firstName, lastName, email, dob, phoneNumber, password, streetAddress, suburb, postCode, state);
 
         this.heavyVehicleQualification = heavyVehicleQualification;
@@ -70,7 +64,7 @@ public class Technician extends User {
         this.longitude = 0;
 
         if (!validateUser()) {
-            throw new TechnicianException("Technician fails to meet consistency constraints");
+            throw new IllegalStateException("Technician fails to meet consistency constraints");
         }
     }
 

@@ -4,7 +4,6 @@ import com.csit314.roadSideAssistance.Review.Review;
 import com.csit314.roadSideAssistance.Review.ReviewRepository;
 import com.csit314.roadSideAssistance.Review.ReviewService;
 import com.csit314.roadSideAssistance.Technician.Technician;
-import com.csit314.roadSideAssistance.Technician.TechnicianException;
 import com.csit314.roadSideAssistance.Technician.TechnicianService;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -14,7 +13,6 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import java.security.NoSuchAlgorithmException;
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.Optional;
@@ -50,7 +48,7 @@ class ReviewServiceTest {
 
     @Test
     @DisplayName("Can get all reviews relating to technician")
-    void canGetAllReviews() throws TechnicianException, NoSuchAlgorithmException {
+    void canGetAllReviews(){
         //given
         Technician technician = new Technician("Jay", "Smith", "jaysmith@mail.com",
                 LocalDate.of(1990, Month.FEBRUARY, 12), "01234567890",
@@ -66,7 +64,7 @@ class ReviewServiceTest {
 
     @Test
     @DisplayName("Can submit a review relating to technician")
-    void canSubmitReview() throws TechnicianException, NoSuchAlgorithmException {
+    void canSubmitReview(){
         //given
         Review review = new Review("I am cool", 5);
 
@@ -77,7 +75,6 @@ class ReviewServiceTest {
 
         verify(technicianService, times(2)).getById(1L);
         verify(reviewRepository).save(reviewArgumentCaptor.capture());
-        // I couldn't figure out how to test setting the avg rating :(
 
         //and
         Review reviewCaptured = reviewArgumentCaptor.getValue();
@@ -103,7 +100,7 @@ class ReviewServiceTest {
 
     @Test
     @DisplayName("Can update review")
-    void canUpdateReview() throws TechnicianException, NoSuchAlgorithmException {
+    void canUpdateReview(){
         Technician technician = new Technician("Jay", "Smith", "jaysmith@mail.com",
                 LocalDate.of(1990, Month.FEBRUARY, 12), "01234567890",
                 "password", "1 main street", "Wollongong",

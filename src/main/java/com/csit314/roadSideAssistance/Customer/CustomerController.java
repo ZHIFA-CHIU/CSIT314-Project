@@ -1,15 +1,15 @@
 package com.csit314.roadSideAssistance.Customer;
 
-import com.csit314.roadSideAssistance.BankAccount.BankAccount;
-import com.csit314.roadSideAssistance.Technician.TechnicianException;
 import com.csit314.roadSideAssistance.Vehicle.Vehicle;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
-import java.util.UUID;
 
+/**
+ * Controller for customer
+ */
 @CrossOrigin(origins = "http://localhost:3000/")
 @RestController
 @RequestMapping(path = "api/v1/customer")
@@ -28,7 +28,7 @@ public class CustomerController {
     }
 
     @PostMapping(path = "/login")
-    public String loginCustomer(@RequestBody Customer customer) throws NoSuchAlgorithmException {
+    public String loginCustomer(@RequestBody Customer customer) {
         return customerService.checkPassword(customer);
     }
 
@@ -50,7 +50,7 @@ public class CustomerController {
     // -- Vehicle endpoints --
 
     @PostMapping(path = "/addVehicle/{customerId}")
-    public boolean addVehicle(@PathVariable("customerId") Long customerId, @RequestBody Vehicle vehicle) throws CustomException {
+    public boolean addVehicle(@PathVariable("customerId") Long customerId, @RequestBody Vehicle vehicle) {
         return customerService.addVehicle(customerId, vehicle);
     }
 
