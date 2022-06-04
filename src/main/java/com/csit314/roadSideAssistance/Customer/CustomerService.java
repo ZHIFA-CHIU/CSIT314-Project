@@ -1,9 +1,6 @@
 package com.csit314.roadSideAssistance.Customer;
 
-import com.csit314.roadSideAssistance.Job.Job;
-import com.csit314.roadSideAssistance.Job.Status;
 import com.csit314.roadSideAssistance.Technician.Technician;
-import com.csit314.roadSideAssistance.Technician.TechnicianException;
 import com.csit314.roadSideAssistance.Technician.TechnicianRepository;
 import com.csit314.roadSideAssistance.Vehicle.Vehicle;
 import com.csit314.roadSideAssistance.Vehicle.VehicleRepository;
@@ -14,7 +11,6 @@ import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 @Service
 public class CustomerService {
@@ -84,11 +80,11 @@ public class CustomerService {
         }
     }
 
-    public String checkPassword(Customer customer) throws NoSuchAlgorithmException {
-        Optional<Customer> c = customerRepository.findCustomerByEmail(customer.getEmail());
+    public String checkPassword(String email,String password) throws NoSuchAlgorithmException {
+        Optional<Customer> c = customerRepository.findCustomerByEmail(email);
 
         String json;
-        if(c.isPresent() && c.get().checkPassword(customer.getPassword())) {
+        if(c.isPresent() && c.get().checkPassword(password)) {
             json = "{" +
                     "\"login\": true," +
                     "\"customer-id\": \"" + c.get().getId() + "\"" +
