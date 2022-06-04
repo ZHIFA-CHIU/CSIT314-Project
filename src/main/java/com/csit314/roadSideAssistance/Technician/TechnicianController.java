@@ -32,9 +32,10 @@ public class TechnicianController {
         return technicianService.getTechnician();
     }
 
-    @PostMapping(path = "/login")
-    public String loginTechnician(@RequestBody Technician technician) throws NoSuchAlgorithmException {
-        return technicianService.checkPassword(technician);
+    @PostMapping(path = "/login/{email}/{password}")
+    public String loginTechnician(@PathVariable("email") String email, @PathVariable("password") String password)
+            throws NoSuchAlgorithmException {
+        return technicianService.checkPassword(email, password);
     }
 
     @PostMapping

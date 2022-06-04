@@ -112,10 +112,10 @@ public class TechnicianService {
         technicianRepository.save(technician.get());
     }
 
-    public String checkPassword(Technician technician) throws NoSuchAlgorithmException {
-        Optional<Technician> t = technicianRepository.findTechnicianByEmail(technician.getEmail());
+    public String checkPassword(String email, String password) throws NoSuchAlgorithmException {
+        Optional<Technician> t = technicianRepository.findTechnicianByEmail(email);
         String json;
-        if(t.isPresent() && t.get().checkPassword(technician.getPassword())) {
+        if(t.isPresent() && t.get().checkPassword(password)) {
             json = "{" +
                     "\"login\": true," +
                     "\"customer-id\": \"" + t.get().getId() + "\"" +
