@@ -1,8 +1,10 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import "./Request.css"
 import {Navbar} from "react-bootstrap";
 import Payment from "../../pages/Payment";
-import {useLocation} from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
+import {getJob} from "../../api";
+import {Box, Button, Typography} from "@mui/material";
 
 /**
  * Content for the service request page
@@ -11,24 +13,72 @@ import {useLocation} from "react-router-dom";
 
 
 export default function ServiceRequestContent({jobId}) {
+    const navigate = useNavigate();
 
-    //TODO WE NEED TO RETURN Payment INFO
+    const [hasMembership, setHasMembership] = useState("");
+    const [jobPrice, setJobPrice] = useState("");
 
-    const payment = {
-        description: "Flat Types Serivce",
-        amount: {
-            currency_code: "AUD",
-            value: 200
-        }
+    useEffect(
+        () => {
+            getJob(jobId).then(
+                response => {
+                    setHasMembership(response.data.customer.hasMembership)
+                    setJobPrice(parseFloat(response.data.jobPrice).toFixed(2))
+                }
+            ).catch(
+                err => alert(err)
+            )
+        }, []);
+
+    const navReceipt = () => {
+        navigate("/Receipt", {state: {"jobId": jobId}});
     };
 
     return (
-        <div>
+        <Box
+            sx={{
+                marginTop: 8,
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+            }}>
             <Navbar/>
-            <h1>Repair Payment</h1>
-            <div className='payment'>
-                <Payment paymentInfo={payment} jobId={jobId}/>
-            </div>
-        </div>
+            <Typography component="h1" variant="h2">
+                Repair Payment
+            </Typography><br/>
+
+            {hasMembership === false &&
+                <p>Order total is ${jobPrice}, click below to pay</p>
+            }
+
+            {hasMembership === false &&
+                <div className='payment'>
+                    <Payment
+                        paymentInfo={
+                            {
+                                description: "Payment for Repair Service",
+                                amount: {
+                                    currency_code: "AUD",
+                                    value: "20.00" //TODO: Somehow place jobPrice here, I'm to stupid to figure it out
+                                }
+                            }
+                        }
+                        jobId={jobId}/>
+                </div>
+            }
+
+            {hasMembership === true &&
+                <p>You are a member, no payment required</p>
+            }
+            {hasMembership === true &&
+                <Button
+                    variant="contained"
+                    onClick={navReceipt}
+                >
+                    View Receipt
+                </Button>
+            }
+
+        </Box>
     )
 }

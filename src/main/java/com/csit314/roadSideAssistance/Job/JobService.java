@@ -135,12 +135,12 @@ public class JobService {
         }
         final double HOURLY_RATE = 40.0;
         LocalDateTime finishTime = LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES);
-        long jobLength = ChronoUnit.MINUTES.between(job.get().getStartTime(), finishTime);
-        if(jobLength <= 0) {
-            throw new IllegalStateException(String.format("Job Finish time (%s) is earlier or equal to the job start time (%s)", finishTime.toString(), job.get().getStartTime().toString()));
-        }
+        long jobLength = Math.max(ChronoUnit.MINUTES.between(job.get().getStartTime(), finishTime), 1);
+//        if(jobLength <= 0) {
+//            throw new IllegalStateException(String.format("Job Finish time (%s) is earlier or equal to the job start time (%s)", finishTime.toString(), job.get().getStartTime().toString()));
+//        }
         job.get().setFinishTime(finishTime);
-        job.get().setJobPrice((HOURLY_RATE / 60.0) * jobLength);
+        job.get().setJobPrice(Math.max(((HOURLY_RATE / 60.0) * jobLength), 100.00));
         job.get().setStatus(Status.COMPLETED);
         jobRepository.save(job.get());
     }
