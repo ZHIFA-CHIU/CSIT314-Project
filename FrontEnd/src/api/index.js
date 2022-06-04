@@ -94,5 +94,12 @@ export const getJob = id => ajax(`http://localhost:3000/api1/api/v1/job/${id}`, 
 
 export const updateMembership = (customerId, membershipStatus) => ajax(`http://localhost:3000/api1/api/v1/customer//updateMembership/${customerId}/${membershipStatus}`, { customerId, membershipStatus }, "PUT");
 
+
 // get customer service history
 export const getCustomerServiceHsitory = customerId => ajax(`http://localhost:3000/api1/api/v1/job/getall/${customerId}`, { customerId }, "GET");
+
+// add bank detail
+export const addBank = (technicianId, data) =>
+    ajax(`http://localhost:3000/api1/api/v1/technician/addBankAccount/${technicianId}`, {
+        ...data
+    }, "POST");

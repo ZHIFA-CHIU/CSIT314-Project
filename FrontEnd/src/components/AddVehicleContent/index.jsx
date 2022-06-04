@@ -1,5 +1,4 @@
 import React from 'react'
-import { AppBar, Toolbar, Typography } from '@mui/material'
 import { useForm } from 'react-hook-form'
 import "./vehicle.css"
 import { addVehicle } from '../../api'
@@ -17,10 +16,6 @@ export default function AddVehicle({ customerId }) {
         formState: { errors }
     } = useForm();
 
-    const goBackPage = () => {
-        window.history.back()
-    }
-
     const navigate = useNavigate();
 
     const onSubmit = (data) => {
@@ -36,21 +31,6 @@ export default function AddVehicle({ customerId }) {
 
     return (
         <div>
-            <AppBar position='static' >
-                <Toolbar>
-                    <button className='medium ui primary button' onClick={() => goBackPage()}>
-                        Back
-                    </button>
-                    <Typography align='center' sx={{ flexGrow: 1 }} onClick={() => goBackPage()}>
-                        Roadside Assistant Service
-                    </Typography>
-                    <button className='medium ui primary button' onClick={() => goBackPage()}>
-                        Done
-                    </button>
-                </Toolbar>
-            </AppBar>
-
-
             <h1>Please Add Vehicle</h1>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <input type="text" placeholder="Manufacture"

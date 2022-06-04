@@ -72,13 +72,13 @@ public class TechnicianController {
 
     // -- Bank Account endpoints --
 
-    @PutMapping(path = "/addBankAccount/{technicianId}")
+    @PostMapping(path = "/addBankAccount/{technicianId}")
     public boolean addBankAccount(@PathVariable("technicianId") Long technicianId, @RequestBody BankAccount bankAccount) {
         return technicianService.addBankAccount(technicianId, bankAccount);
 
     }
 
-    @DeleteMapping(path = "/deleteBankAccount")
+    @DeleteMapping(path = "/deleteBankAccount/{technicianId}")
     public void deleteBankAccount(@PathVariable("technicianId") Long technicianId) {
         technicianService.deleteBankAccount(technicianId);
     }
