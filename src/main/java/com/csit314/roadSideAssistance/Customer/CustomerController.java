@@ -2,6 +2,7 @@ package com.csit314.roadSideAssistance.Customer;
 
 import com.csit314.roadSideAssistance.BankAccount.BankAccount;
 import com.csit314.roadSideAssistance.Technician.TechnicianException;
+import com.csit314.roadSideAssistance.User.User2;
 import com.csit314.roadSideAssistance.Vehicle.Vehicle;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -28,7 +29,7 @@ public class CustomerController {
     }
 
     @PostMapping(path = "/login")
-    public String loginCustomer(@RequestBody Customer customer) throws NoSuchAlgorithmException {
+    public String loginCustomer2(@RequestBody User2 customer) throws NoSuchAlgorithmException {
         return customerService.checkPassword(customer);
     }
 
