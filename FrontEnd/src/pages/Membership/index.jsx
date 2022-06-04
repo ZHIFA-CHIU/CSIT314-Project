@@ -1,7 +1,7 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import Banner from '../../components/Banner'
 import MembershipContent from '../../components/MembershipContent'
-import {useLocation} from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 export default function Membership() {
     let history = useLocation();

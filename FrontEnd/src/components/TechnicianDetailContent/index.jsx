@@ -41,8 +41,6 @@ export default function TechnicianDetailContent({ id }) {
     useEffect(
         () => getTechnicianDetailsRequest(id).then(
             response => {
-                console.log(response.data);
-                // setDetails(response.data);
                 setEmail(response.data.email);
                 setPhoneNumber(response.data.phoneNumber);
                 setPostCode(response.data.postCode);
@@ -87,7 +85,6 @@ export default function TechnicianDetailContent({ id }) {
                 <TextField id="firstName" label="First Name" variant="outlined" fullWidth margin='normal' value={firstName} inputProps={{ readOnly: true, }} />
                 <TextField id="lastName" label="Last Name" variant="outlined" fullWidth margin='normal' value={lastName} inputProps={{ readOnly: true, }} />
                 <TextField id="email" label="Email" variant="outlined" fullWidth margin='normal' value={email} onChange={onEmailChange} />
-                {/* <TextField id="password" label="Password" type={"password"} variant="outlined" fullWidth margin='normal' /> */}
                 <TextField id="phoneNumber" label="Phone" variant="outlined" fullWidth margin='normal' value={phoneNumber} onChange={onPhoneNumberChange} />
                 <TextField id="dob" label="Date of Birth(yyyy-mm-dd)" variant="outlined" fullWidth margin='normal' value={dob} inputProps={{ readOnly: true, }} />
                 <TextField id="streetAddress" label="Street" variant="outlined" fullWidth margin='normal' value={streetAddress} onChange={onStreetAddressChange} />
