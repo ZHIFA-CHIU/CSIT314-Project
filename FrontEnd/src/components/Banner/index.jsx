@@ -3,7 +3,7 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import DashboardIcon from '@mui/icons-material/Dashboard';
 
-export default function Banner({ dashboard = false, id = null, to=null }) {
+export default function Banner({ dashboard = false, id = null, to = null }) {
   const navigate = useNavigate();
 
   const toDashBoard = () => {

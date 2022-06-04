@@ -44,7 +44,7 @@ export const getVehicle = (customerId) =>
 
 // add review
 export const addReview = (technicianId, data) =>
-    ajax(`http://localhost:3000/api1/api/v1/review/${technicianId}`,{
+    ajax(`http://localhost:3000/api1/api/v1/review/${technicianId}`, {
         ...data
     }, "POST");
 
@@ -77,7 +77,7 @@ export const updateTechnicianDetailsRequest = (id, age, availableStatus, avgRati
 // get all jobs request, this one is for receipt page test purpose
 export const getAllJobsRequest = id => ajax(`http://localhost:3000/api1/api/v1/job/getall/${id}`, { id }, "GET");
 
-export const getAllTechnicianJobsRequest = techId => ajax(`http://localhost:3000/api1/api/v1/job/getall/technician/${techId}`, {} , "GET");
+export const getAllTechnicianJobsRequest = techId => ajax(`http://localhost:3000/api1/api/v1/job/getall/technician/${techId}`, {}, "GET");
 
 // technician accepts a job
 export const technicianAcceptJobRequest = (jobId, technicianId) => ajax(`http://localhost:3000/api1/api/v1/job/addTechnician/${jobId}/${technicianId}`,
@@ -87,9 +87,12 @@ export const technicianAcceptJobRequest = (jobId, technicianId) => ajax(`http://
 export const technicianGetNearbyJobsRequest = (technicianLat, technicianLon) => ajax(`http://localhost:3000/api1/api/v1/job/getNearby/${technicianLat}/${technicianLon}`,
     { technicianLat, technicianLon }, "GET");
 
-export const closeJob = (jobId) => ajax(`http://localhost:3000/api1/api/v1/job/closeJob/${jobId}`,{}, "PUT");
+export const closeJob = (jobId) => ajax(`http://localhost:3000/api1/api/v1/job/closeJob/${jobId}`, {}, "PUT");
 
 // get job based on ID
 export const getJob = id => ajax(`http://localhost:3000/api1/api/v1/job/${id}`, { id }, "GET");
 
 export const updateMembership = (customerId, membershipStatus) => ajax(`http://localhost:3000/api1/api/v1/customer//updateMembership/${customerId}/${membershipStatus}`, { customerId, membershipStatus }, "PUT");
+
+// get customer service history
+export const getCustomerServiceHsitory = customerId => ajax(`http://localhost:3000/api1/api/v1/job/getall/${customerId}`, { customerId }, "GET");

@@ -1,10 +1,10 @@
-import React, {useEffect, useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import "./Request.css"
-import {Navbar} from "react-bootstrap";
+import { Navbar } from "react-bootstrap";
 import Payment from "../../pages/Payment";
-import {useLocation, useNavigate} from "react-router-dom";
-import {getJob} from "../../api";
-import {Box, Button, Typography} from "@mui/material";
+import { useLocation, useNavigate } from "react-router-dom";
+import { getJob } from "../../api";
+import { Box, Button, Typography } from "@mui/material";
 
 /**
  * Content for the service request page
@@ -12,7 +12,7 @@ import {Box, Button, Typography} from "@mui/material";
  */
 
 
-export default function ServiceRequestContent({jobId}) {
+export default function ServiceRequestContent({ jobId }) {
     const navigate = useNavigate();
 
     const [hasMembership, setHasMembership] = useState("");
@@ -31,7 +31,7 @@ export default function ServiceRequestContent({jobId}) {
         }, []);
 
     const navReceipt = () => {
-        navigate("/Receipt", {state: {"jobId": jobId}});
+        navigate("/Receipt", { state: { "jobId": jobId } });
     };
 
     return (
@@ -42,10 +42,10 @@ export default function ServiceRequestContent({jobId}) {
                 flexDirection: 'column',
                 alignItems: 'center',
             }}>
-            <Navbar/>
+            <Navbar />
             <Typography component="h1" variant="h2">
                 Repair Payment
-            </Typography><br/>
+            </Typography><br />
 
             {hasMembership === false &&
                 <p>Order total is ${jobPrice}, click below to pay</p>
@@ -59,11 +59,11 @@ export default function ServiceRequestContent({jobId}) {
                                 description: "Payment for Repair Service",
                                 amount: {
                                     currency_code: "AUD",
-                                    value: "20.00" //TODO: Somehow place jobPrice here, I'm to stupid to figure it out
+                                    value: "20.00"
                                 }
                             }
                         }
-                        jobId={jobId}/>
+                        jobId={jobId} />
                 </div>
             }
 

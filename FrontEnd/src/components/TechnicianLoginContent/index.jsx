@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Button, Link, TextField, Typography,  } from '@mui/material'
+import { Box, Button, Link, TextField, Typography, } from '@mui/material'
 import { technicianLoginRequest } from '../../api';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -11,19 +11,12 @@ export default function TechnicianLoginContent() {
     const [email, setEmail] = useState("");
     // password
     const [password, setPassword] = useState("");
-    // userError
-    // const [userError, setUserError] = useState([false, ""]);
-    // pwd error
-    // const [pwdErr, setPwdErr] = useState([false, ""]);
 
     /**
      * when username change update username state
      */
     const onEmailChange = e => {
-        // setUserError([false, ""])
         const email = e.target.value;
-        // console.log(usrname);
-
         setEmail(email);
     }
 
@@ -31,33 +24,9 @@ export default function TechnicianLoginContent() {
      * when pwd change update pwd state
      */
     const onPasswordChange = e => {
-        // setPwdErr([false, ""]);
         const pwd = e.target.value;
-        // console.log(pwd);
         setPassword(pwd);
     }
-
-    /**
-     * Username must be at least 4 leters long
-     */
-    // const validateUsername = () => {
-    //     if (username.length < 4) {
-    //         setUserError([true, "Username must be at least 4 letters long"]);
-    //         return false;
-    //     }
-    //     return true;
-    // }
-
-    /**
-     * password must be at least 6 digits long
-     */
-    // const validatePwd = () => {
-    //     if (username.length < 6) {
-    //         setPwdErr([true, "Username must be at least 6 digits long"]);
-    //         return false;
-    //     }
-    //     return true;
-    // }
 
     /**
      * Login page submission handler
@@ -65,19 +34,11 @@ export default function TechnicianLoginContent() {
      */
     const handleSubmit = e => {
         e.preventDefault();
-        // console.log(username, password);
-        // send log in request
-        // if (validateUsername() && validatePwd())
         technicianLoginRequest(email, password).then(
             response => {
-                // console.log(response.data);
-                // let obj = JSON.parse(response.data);
-                // console.log(obj);
                 console.log(response.data);
                 let tmp = JSON.stringify(response.data);
                 let obj = JSON.parse(tmp);
-                // console.log(obj);
-                // console.log(obj["technicianId"]);
                 if (obj.login)
                     navigate("/TechnicianDashboard", { state: { id: obj["customer-id"] } })
                 else
@@ -117,8 +78,6 @@ export default function TechnicianLoginContent() {
                     autoFocus
                     defaultValue={""}
                     onChange={onEmailChange}
-                // error={userError[0]}
-                // helperText={userError[1]}
                 />
 
                 <TextField
@@ -132,15 +91,13 @@ export default function TechnicianLoginContent() {
                     autoComplete="current-password"
                     defaultValue={""}
                     onChange={onPasswordChange}
-                // error={userError[0]}
-                // helperText={userError[1]}
                 />
                 <Button
                     type="submit"
                     fullWidth
                     variant="contained"
                     sx={{ mt: 3, mb: 2 }}
-                    >
+                >
                     Log In
                 </Button>
 
@@ -154,7 +111,7 @@ export default function TechnicianLoginContent() {
                         {"Don't have an account? Sign Up"}
                     </Link>
                 </Box>
-                
+
             </form>
         </Box>
 

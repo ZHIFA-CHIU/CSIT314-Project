@@ -21,6 +21,7 @@ import SearchTechnician from "../pages/SearchTechnician";
 import LookForRepairs from "../pages/LookForRepairs";
 import JobDetails from "../pages/JobDetails";
 import TechnicianJobHistory from "../pages/TechnicianJobHistory/TechnicianJobHistory";
+import CustomerServiceHistory from "../pages/CustomerServiceHistory";
 
 export default [
     {
@@ -110,5 +111,9 @@ export default [
     {
         path: "/technicianJobs",
         element: <TechnicianJobHistory />
+    },
+    {
+        path: "/CustomerServiceHistory",
+        element: <CustomerServiceHistory />
     }
 ];

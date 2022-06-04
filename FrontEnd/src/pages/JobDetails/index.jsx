@@ -1,10 +1,10 @@
-import React, {useEffect, useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import Banner from '../../components/Banner'
 import { useLocation, useNavigate } from 'react-router-dom';
-import{Card, CardActions, CardContent, Button, Typography, Stack} from '@mui/material';
-import {closeJob, technicianAcceptJobRequest} from '../../api';
+import { Card, CardActions, CardContent, Button, Typography, Stack } from '@mui/material';
+import { closeJob, technicianAcceptJobRequest } from '../../api';
 import useNavigator from 'react-browser-navigator'
-import {GoogleMap, Marker, DirectionsRenderer, useJsApiLoader} from '@react-google-maps/api'
+import { GoogleMap, Marker, DirectionsRenderer, useJsApiLoader } from '@react-google-maps/api'
 
 export default function JobDetails() {
     const history = useLocation();
@@ -59,7 +59,7 @@ export default function JobDetails() {
         setDuration(results.routes[0].legs[0].duration.text)
     }
 
-    let {getCurrentPosition} = useNavigator();
+    let { getCurrentPosition } = useNavigator();
 
     let location = {
         lat: getCurrentPosition?.coords.latitude,
@@ -85,12 +85,12 @@ export default function JobDetails() {
     };
     useEffect(() => {
         calculateRoute().then()
-    }, );
+    });
 
 
-    return isLoaded?(
+    return isLoaded ? (
         <div>
-            <Banner to={"TechnicianDashboard"} dashboard={true} id={id}/>
+            <Banner to={"TechnicianDashboard"} dashboard={true} id={id} />
             <Card sx={{ minWidth: 275, display: "flex", flexDirection: "column", alignItems: "center" }}>
                 <CardContent>
                     <Typography variant="h4" component="div">
@@ -120,8 +120,8 @@ export default function JobDetails() {
                         </CardActions>
                 }
             </Card>
-            <div className='ui center aligned container' style={{minWidth: "400px", maxWidth: "400px"}}>
-                <Stack direction="row" spacing={4}  justifyContent="center">
+            <div className='ui center aligned container' style={{ minWidth: "400px", maxWidth: "400px" }}>
+                <Stack direction="row" spacing={4} justifyContent="center">
                     {/*<Button size="small" variant='outlined' onClick={calculateRoute}>Calculate Route</Button>*/}
                     <Typography variant="h4">
                         Distance:  {distance}
@@ -135,7 +135,7 @@ export default function JobDetails() {
                     center={center}
                     zoom={15}
                 >
-                    <Marker position={center}/>
+                    <Marker position={center} />
                     {directionsResponse && (
                         <DirectionsRenderer directions={directionsResponse} />
                     )}

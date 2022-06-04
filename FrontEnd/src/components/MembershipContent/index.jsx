@@ -1,9 +1,9 @@
-import React, {useEffect} from 'react'
-import {Box, Button, Typography} from '@mui/material'
+import React, { useEffect } from 'react'
+import { Box, Button, Typography } from '@mui/material'
 import { PayPalButton } from "react-paypal-button-v2";
 import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import {getCustomerDetailsRequest, updateCustomerDetailsRequest, updateMembership} from '../../api'
+import { getCustomerDetailsRequest, updateCustomerDetailsRequest, updateMembership } from '../../api'
 
 export default function LoginContent({ id }) {
     const navigate = useNavigate();
@@ -22,7 +22,7 @@ export default function LoginContent({ id }) {
         }, []);
 
     let membershipValue;
-    if(hasMembership) {
+    if (hasMembership) {
         membershipValue = "You are a member";
     } else {
         membershipValue = "You are not a member";
@@ -42,7 +42,7 @@ export default function LoginContent({ id }) {
             }}>
             <Typography component="h1" variant="h2">
                 Sign-Up for Membership
-            </Typography><br/>
+            </Typography><br />
 
             <Typography component="h2" variant="h4">
                 Your Membership status:
@@ -52,7 +52,7 @@ export default function LoginContent({ id }) {
                 {membershipValue}
             </Typography>
 
-            <br/>
+            <br />
 
             {hasMembership === false &&
                 <p>
@@ -75,7 +75,7 @@ export default function LoginContent({ id }) {
                         }}
                         onApprove={(data, actions) => {
                             // Capture the funds from the transaction
-                            return actions.order.capture().then(function(details) {
+                            return actions.order.capture().then(function (details) {
                                 updateMembership(
                                     id, true
                                 ).then(() => {

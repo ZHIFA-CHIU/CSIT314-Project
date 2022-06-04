@@ -1,12 +1,11 @@
 .buttons {
     display: flex;
     justify-content: center;
-}
-
-.login {
     margin-right: 5px;
+    margin-left: 5px;
 }
 
-.signup {
+.home-content button {
+    margin-right: 5px;
     margin-left: 5px;
 }

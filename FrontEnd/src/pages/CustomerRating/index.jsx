@@ -1,6 +1,6 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import CustomerRatingContent from '../../components/CustomerRatingContent'
-import {useLocation} from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 export default function CustomerRating() {
     const history = useLocation();
@@ -8,7 +8,7 @@ export default function CustomerRating() {
     let [techId] = useState(history.state.technicianId)
     return (
         <div className='rating-page'>
-            <CustomerRatingContent customerId={custId} technicianId={techId}/>
+            <CustomerRatingContent customerId={custId} technicianId={techId} />
         </div>
     )
 }

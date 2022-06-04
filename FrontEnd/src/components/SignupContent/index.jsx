@@ -37,7 +37,6 @@ const CreateAccountCustomer = () => {
             firstName, lastName, email, password, dob, phoneNumber, age, streetAddress, suburb, postCode, state
         ).then(
             response => {
-                // console.log(response.data);
                 let obj = JSON.parse(JSON.stringify(response.data));
                 if (obj)
                     navigate("/login")
