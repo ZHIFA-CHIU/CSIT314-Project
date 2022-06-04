@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react'
 import useNavigator from 'react-browser-navigator'
 import {getJobDetailsRequest, getNearbyTechnician} from '../../api'
 
-import "./Request.css"
+import "./search.css"
 import { useNavigate } from "react-router-dom";
 import Banner from "../Banner";
 import {Button} from "@mui/material";
