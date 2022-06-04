@@ -2,13 +2,13 @@ package com.csit314.roadSideAssistance.Technician;
 
 import com.csit314.roadSideAssistance.BankAccount.BankAccount;
 import com.csit314.roadSideAssistance.BankAccount.BankAccountRepository;
-import com.csit314.roadSideAssistance.Customer.Customer;
+import com.csit314.roadSideAssistance.User.User2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 /**
  * Technician Service
@@ -113,7 +113,7 @@ public class TechnicianService {
         technicianRepository.save(technician.get());
     }
 
-    public String checkPassword(Technician technician) {
+    public String checkPassword(User2 technician) throws NoSuchAlgorithmException {
         Optional<Technician> t = technicianRepository.findTechnicianByEmail(technician.getEmail());
         String json;
         if(t.isPresent() && t.get().checkPassword(technician.getPassword())) {
@@ -130,4 +130,25 @@ public class TechnicianService {
         }
         return json;
     }
+
+    public void setLocation(double lat, double lon, long technicianId)throws TechnicianException {
+        Optional<Technician> technician = technicianRepository.findById(technicianId);
+        if(!technician.isPresent()) {
+            throw new TechnicianException("Technician with id " + technicianId + " does not exist");
+        }
+        technician.get().setLatitude(lat);
+        technician.get().setLongitude(lon);
+        technicianRepository.save(technician.get());
+    }
+
+    public double[] getLocation(long technicianId)throws TechnicianException {
+        Optional<Technician> technician = technicianRepository.findById(technicianId);
+        if (!technician.isPresent()) {
+            throw new TechnicianException("Technician with id " + technicianId + " does not exist");
+        }
+        double lat = technician.get().getLatitude();
+        double lon = technician.get().getLongitude();
+        return new double[] {lat, lon};
+    }
+
 }

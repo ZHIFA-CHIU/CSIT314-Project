@@ -1,9 +1,11 @@
 package com.csit314.roadSideAssistance.Technician;
 
 import com.csit314.roadSideAssistance.BankAccount.BankAccount;
+import com.csit314.roadSideAssistance.User.User2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 /**
@@ -32,7 +34,7 @@ public class TechnicianController {
     }
 
     @PostMapping(path = "/login")
-    public String loginTechnician(@RequestBody Technician technician) {
+    public String loginTechnician(@RequestBody User2 technician) throws NoSuchAlgorithmException {
         return technicianService.checkPassword(technician);
     }
 
@@ -69,4 +71,20 @@ public class TechnicianController {
         technicianService.deleteBankAccount(technicianId);
     }
 
+    @PostMapping(path = "/setLocation/{techId}/{technicianLat}/{technicianLon}")
+    public void setTechnicianLatLong(@PathVariable("techId") long techId, @PathVariable("technicianLat")
+            double technicianLat, @PathVariable("technicianLon") double technicianLong) throws TechnicianException {
+        technicianService.setLocation(technicianLat,technicianLong, techId);
+    }
+
+    @PutMapping(path = "/setLocation/{techId}/{technicianLat}/{technicianLon}")
+    public void updateTechnicianLatLong(@PathVariable("techId") long techId, @PathVariable("technicianLat")
+            double technicianLat, @PathVariable("technicianLon") double technicianLong) throws TechnicianException {
+        technicianService.setLocation(technicianLat,technicianLong, techId);
+    }
+
+    @GetMapping(path = "/getLocation/{techId}")
+    public double[] updateTechnicianLatLong(@PathVariable("techId") long techId) throws TechnicianException {
+        return technicianService.getLocation(techId);
+    }
 }
