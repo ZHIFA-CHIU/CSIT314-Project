@@ -1,20 +1,20 @@
-import React, { useEffect, useState } from 'react'
-import { getAllTechnicianJobsRequest } from '../../api';
+import React, { useState, useEffect } from 'react'
+import Banner from '../../components/Banner'
+import { useLocation } from 'react-router-dom';
+import { getCustomerServiceHsitory } from '../../api';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
-import { useLocation, useNavigate } from 'react-router-dom';
-import Banner from "../../components/Banner";
+import "./CustomerServiceHistory.css"
 
-export default function TechnicianJobHistory() {
-    const [jobs, setJobs] = useState([]);
+export default function CustomerServiceHistory() {
     const history = useLocation();
-    const [id, setId] = useState(history.state.id);
+    const [id, setId] = useState(history.state.customerId);
     const [flag, setFlag] = useState(false);
+    const [jobs, setJobs] = useState([]);
 
-    //TODO sort this out
     const searchJobs = () => {
-        getAllTechnicianJobsRequest(id)
+        getCustomerServiceHsitory(id)
             .then(data => {
                 setJobs(data.data);
                 setFlag(true);
@@ -28,19 +28,6 @@ export default function TechnicianJobHistory() {
         searchJobs()
     }, [])
 
-    /*    useEffect(() => {
-            console.log(id);
-            getAllTechnicianJobsRequest(id).then(
-                response =>{
-                    setJobs(response.data);
-                }
-            )
-        }, [])*/
-
-    // useEffect(() => {
-    //     console.log(jobs)
-    // }, [])
-
     const jobContent = () => {
         return (
             <div>
@@ -52,7 +39,7 @@ export default function TechnicianJobHistory() {
                                     Job {job.id}
                                 </Typography>
                                 <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                                    Customer: {`${job.customer.firstName} ${job.customer.lastName}`}
+                                    Technician: {`${job.technician.firstName} ${job.technician.lastName}`}
                                 </Typography>
                                 <Typography variant="body1">
                                     Category: {job.repairCategory}
@@ -67,9 +54,11 @@ export default function TechnicianJobHistory() {
     }
 
     return (
-        <div className='look-for-repairs'>
-            <Banner to={"TechnicianDashboard"} dashboard={true} id={id} />
-            {jobContent()}
+        <div>
+            <Banner dashboard={true} id={id} to={"CustomerDashboard"} />
+            <div className='service-history-container'>
+                {jobContent()}
+            </div>
         </div>
     )
 }
