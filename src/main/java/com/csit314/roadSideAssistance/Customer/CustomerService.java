@@ -2,6 +2,7 @@ package com.csit314.roadSideAssistance.Customer;
 
 import com.csit314.roadSideAssistance.Technician.Technician;
 import com.csit314.roadSideAssistance.Technician.TechnicianRepository;
+import com.csit314.roadSideAssistance.User.UserInfo;
 import com.csit314.roadSideAssistance.Vehicle.Vehicle;
 import com.csit314.roadSideAssistance.Vehicle.VehicleRepository;
 import org.json.JSONException;
@@ -80,7 +81,8 @@ public class CustomerService {
         }
     }
 
-    public String checkPassword(Customer customer) {
+
+    public String checkPassword(UserInfo customer) throws NoSuchAlgorithmException {
         Optional<Customer> c = customerRepository.findCustomerByEmail(customer.getEmail());
 
         try {

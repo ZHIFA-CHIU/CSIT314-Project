@@ -1,5 +1,6 @@
 package com.csit314.roadSideAssistance.Customer;
 
+import com.csit314.roadSideAssistance.User.UserInfo;
 import com.csit314.roadSideAssistance.Vehicle.Vehicle;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -28,7 +29,7 @@ public class CustomerController {
     }
 
     @PostMapping(path = "/login")
-    public String loginCustomer(@RequestBody Customer customer) {
+    public String loginCustomer(@RequestBody UserInfo customer) throws NoSuchAlgorithmException {
         return customerService.checkPassword(customer);
     }
 

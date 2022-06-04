@@ -2,6 +2,7 @@ package com.csit314.roadSideAssistance.Technician;
 
 import com.csit314.roadSideAssistance.BankAccount.BankAccount;
 import com.csit314.roadSideAssistance.BankAccount.BankAccountRepository;
+import com.csit314.roadSideAssistance.User.UserInfo;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -109,7 +110,8 @@ public class TechnicianService {
         technicianRepository.save(technician.get());
     }
 
-    public String checkPassword(Technician technician) {
+
+    public String checkPassword(UserInfo technician) throws NoSuchAlgorithmException {
         Optional<Technician> t = technicianRepository.findTechnicianByEmail(technician.getEmail());
 
         try {
