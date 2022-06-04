@@ -72,7 +72,7 @@ public class TechnicianController {
 
     // -- Bank Account endpoints --
 
-    @PostMapping(path = "/addBankAccount/{technicianId}")
+    @PutMapping(path = "/addBankAccount/{technicianId}")
     public boolean addBankAccount(@PathVariable("technicianId") Long technicianId, @RequestBody BankAccount bankAccount) {
         return technicianService.addBankAccount(technicianId, bankAccount);
 

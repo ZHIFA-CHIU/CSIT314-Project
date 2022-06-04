@@ -102,4 +102,4 @@ export const getCustomerServiceHsitory = customerId => ajax(`http://localhost:30
 export const addBank = (technicianId, data) =>
     ajax(`http://localhost:3000/api1/api/v1/technician/addBankAccount/${technicianId}`, {
         ...data
-    }, "POST");
+    }, "PUT");
