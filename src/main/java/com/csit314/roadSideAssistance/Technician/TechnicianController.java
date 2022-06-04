@@ -1,7 +1,7 @@
 package com.csit314.roadSideAssistance.Technician;
 
 import com.csit314.roadSideAssistance.BankAccount.BankAccount;
-import com.csit314.roadSideAssistance.User.User2;
+import com.csit314.roadSideAssistance.User.UserInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -34,7 +34,7 @@ public class TechnicianController {
     }
 
     @PostMapping(path = "/login")
-    public String loginTechnician(@RequestBody User2 technician) throws NoSuchAlgorithmException {
+    public String loginTechnician(@RequestBody UserInfo technician) throws NoSuchAlgorithmException {
         return technicianService.checkPassword(technician);
     }
 
