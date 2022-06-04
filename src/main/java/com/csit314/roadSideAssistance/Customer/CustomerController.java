@@ -29,7 +29,7 @@ public class CustomerController {
     }
 
     @PostMapping(path = "/login")
-    public String loginCustomer2(@RequestBody User2 customer) throws NoSuchAlgorithmException {
+    public String loginCustomer(@RequestBody User2 customer) throws NoSuchAlgorithmException {
         return customerService.checkPassword(customer);
     }
 
