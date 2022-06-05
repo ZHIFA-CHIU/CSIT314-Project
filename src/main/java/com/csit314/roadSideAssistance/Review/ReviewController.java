@@ -8,7 +8,7 @@ import java.util.Set;
 /**
  * Controller for review handling
  */
-@CrossOrigin(origins = "http://localhost:3000/")
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping(path = "api/v1/review")
 public class ReviewController {

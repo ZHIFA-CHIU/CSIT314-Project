@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * Controller for admin
  */
-@CrossOrigin(origins = "http://localhost:3000/")
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping(path = "api/v1/admin")
 public class AdminController {
