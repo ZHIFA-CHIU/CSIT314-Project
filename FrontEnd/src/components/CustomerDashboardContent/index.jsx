@@ -6,7 +6,7 @@ import "./CustomerDashboard.css";
 const CustomerDashboard = () => {
     // getting customer ID
     let history = useLocation();
-    let [id, _] = useState(history.state.id);
+    let [id] = useState(history.state.id);
 
     const navigate = useNavigate();
 

@@ -5,7 +5,7 @@ import { useLocation } from "react-router-dom";
 
 export default function Membership() {
     let history = useLocation();
-    let [id, _] = useState(history.state.customerId);
+    let [id] = useState(history.state.customerId);
 
     return (
         <div className='membership-page'>

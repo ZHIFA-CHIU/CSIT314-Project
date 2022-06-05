@@ -9,7 +9,7 @@ import "./CustomerServiceHistory.css"
 
 export default function CustomerServiceHistory() {
     const history = useLocation();
-    const [id, setId] = useState(history.state.customerId);
+    const [id] = useState(history.state.customerId);
     const [flag, setFlag] = useState(false);
     const [jobs, setJobs] = useState([]);
 

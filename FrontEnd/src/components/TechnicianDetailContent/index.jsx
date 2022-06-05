@@ -24,18 +24,14 @@ export default function TechnicianDetailContent({ id }) {
     const [age, setAge] = useState("");
 
 
-    const onFirstNameChange = e => setFirstName(e.target.value);
-    const onLastNameChange = e => setLastName(e.target.value);
     const onEmailChange = e => setEmail(e.target.value);
-    const onDobChange = e => setDob(e.target.value);
     const onPhoneNumberChange = e => setPhoneNumber(e.target.value);
-    const onPasswordChange = e => setPassword(e.target.value);
     const onStreetAddressChange = e => setStreetAddress(e.target.value);
     const onSuburbChange = e => setSuburb(e.target.value);
     const onPostCodeChange = e => setPostCode(e.target.value);
     const onStateChange = e => setState(e.target.value);
-    const onHeavyVehicleQualificationChange = e => setHeavyVehicleQualification(e.target.value);
-    const onLightVehicleQualificationChange = e => setLightVehicleQualification(e.target.value);
+    // const onHeavyVehicleQualificationChange = e => setHeavyVehicleQualification(e.target.value);
+    // const onLightVehicleQualificationChange = e => setLightVehicleQualification(e.target.value);
 
 
     useEffect(

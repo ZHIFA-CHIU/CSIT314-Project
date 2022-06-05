@@ -2,8 +2,8 @@ import React, { useEffect } from 'react'
 import { Box, Button, Typography } from '@mui/material'
 import { PayPalButton } from "react-paypal-button-v2";
 import { useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { getCustomerDetailsRequest, updateCustomerDetailsRequest, updateMembership } from '../../api'
+import { useNavigate } from 'react-router-dom';
+import { getCustomerDetailsRequest, updateMembership } from '../../api'
 
 export default function LoginContent({ id }) {
     const navigate = useNavigate();

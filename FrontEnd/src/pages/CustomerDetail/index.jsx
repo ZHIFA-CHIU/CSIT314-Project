@@ -5,7 +5,7 @@ import CustomerDetailContent from '../../components/CustomerDetailContent'
 
 export default function CustomerDetail() {
   let history = useLocation();
-  let [id, _] = useState(history.state.customerId);
+  let [id] = useState(history.state.customerId);
   return (
     <div>
       <Banner dashboard={true} id={id} to={"CustomerDashboard"} />

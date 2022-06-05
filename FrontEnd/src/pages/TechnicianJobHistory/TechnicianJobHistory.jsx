@@ -9,7 +9,7 @@ import Banner from "../../components/Banner";
 export default function TechnicianJobHistory() {
     const [jobs, setJobs] = useState([]);
     const history = useLocation();
-    const [id, setId] = useState(history.state.id);
+    const [id] = useState(history.state.id);
     const [flag, setFlag] = useState(false);
 
     //TODO sort this out

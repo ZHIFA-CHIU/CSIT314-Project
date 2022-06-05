@@ -1,3 +1,4 @@
+/*global google*/
 import React, { useState, useEffect } from 'react'
 import {setLocation, technicianGetNearbyJobsRequest} from '../../api';
 import { Card, CardActions, CardContent, Button, Typography, Stack } from '@mui/material';
@@ -13,7 +14,7 @@ export default function LookForRepairs() {
     const [jobs, setJobs] = useState([]);
     const navigate = useNavigate();
     const history = useLocation();
-    const [id, setId] = useState(history.state.id);
+    const [id] = useState(history.state.id);
     const [lat, setLat] = useState("");
     const [lon, setLon] = useState("");
     const [flag, setFlag] = useState(false);

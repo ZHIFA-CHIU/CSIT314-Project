@@ -1,3 +1,4 @@
+/*global google*/
 import React, { useEffect, useState } from 'react'
 import Banner from '../../components/Banner'
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -8,12 +9,9 @@ import { GoogleMap, Marker, DirectionsRenderer, useJsApiLoader } from '@react-go
 
 export default function JobDetails() {
     const history = useLocation();
-    const [lat, setLat] = useState("");
-    const [lon, setLon] = useState("");
-    const [id, setId] = useState(history.state.id);
-    const [job, setJob] = useState(history.state.job);
+    const [id] = useState(history.state.id);
+    const [job] = useState(history.state.job);
     const navigate = useNavigate();
-    const [accepted, setAccepted] = useState(false);
     const [flag, setFlag] = useState(false);
     const [directionsResponse, setDirectionsResponse] = useState(null)
     const [distance, setDistance] = useState('')
@@ -67,9 +65,7 @@ export default function JobDetails() {
     }
     useEffect(() => {
         if (getCurrentPosition !== undefined && getCurrentPosition !== null) {
-            console.log(location)
-            setLat(location.lat)
-            setLon(location.lon)
+
         }
     }, [getCurrentPosition]);
 

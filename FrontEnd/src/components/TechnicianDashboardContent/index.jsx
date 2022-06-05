@@ -6,7 +6,7 @@ import "./TechnicianDashboard.css";
 
 const TechnicianDashboard = () => {
     const history = useLocation();
-    let [id, _] = useState(history.state.id);
+    let [id] = useState(history.state.id);
     console.log(id);
 
     const navigate = useNavigate();

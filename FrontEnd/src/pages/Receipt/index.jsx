@@ -3,7 +3,7 @@ import Banner from "../../components/Banner"
 import {getJob} from "../../api";
 import {
     Table, TableCell, TableContainer, Paper,
-    TableHead, TableRow, TableBody, Button, Box,
+    TableHead, TableRow, TableBody, Button,
 } from '@mui/material';
 import {useLocation, useNavigate} from "react-router-dom";
 

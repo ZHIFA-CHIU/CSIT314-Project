@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React from 'react'
 import SearchTechnicianContent from '../../components/SearchTechnicianContent'
 import {useLocation} from "react-router-dom";
 

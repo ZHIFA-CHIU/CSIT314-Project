@@ -5,7 +5,7 @@ import AddBankContent from '../../components/AddBankContent'
 
 export default function AddBank() {
     const history = useLocation();
-    let [id, _] = useState(history.state.id);
+    let [id] = useState(history.state.id);
     return (
         <div>
             <Banner to={"TechnicianDashboard"} dashboard={true} id={id} />

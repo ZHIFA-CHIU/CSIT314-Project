@@ -9,10 +9,10 @@ export default function CustomerDetailContent({ id }) {
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+    const [password] = useState("");
     const [dob, setDob] = useState("");
     const [phoneNumber, setPhoneNumber] = useState("");
-    const [age, setAge] = useState("");
+    const [age] = useState("");
     const [streetAddress, setStreetAddress] = useState("");
     const [suburb, setSuburb] = useState("");
     const [postCode, setPostCode] = useState("");
@@ -20,7 +20,6 @@ export default function CustomerDetailContent({ id }) {
     const [hasMembership, setHasMembership] = useState("");
 
     const onEmailChange = e => setEmail(e.target.value);
-    const onPasswordChange = e => setPassword(e.target.value);
     const onPhoneNumberChange = e => setPhoneNumber(e.target.value);
     const onStreetAdressChange = e => setStreetAddress(e.target.value);
     const onSuburbChange = e => setSuburb(e.target.value);
