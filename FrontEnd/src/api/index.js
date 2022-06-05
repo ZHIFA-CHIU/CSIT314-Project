@@ -4,7 +4,7 @@
 
 import ajax from "./ajax"
 
-const address = "http://3.26.161.183/"
+const address = "http://3.26.161.183:8080/"
 
 // log in
 export const loginRequest = (email, password) => ajax(address + "api1/api/v1/customer/login", { email, password }, "POST");
