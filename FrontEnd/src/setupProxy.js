@@ -7,7 +7,7 @@ const { createProxyMiddleware } = require("http-proxy-middleware");
 module.exports = app => {
     app.use(
         createProxyMiddleware("/api1", {
-            target: "http://localhost:8080",
+            target: "http://3.26.161.183:8080",
             changeOrigin: true,
             pathRewrite: { "^/api1": "" }
         })
