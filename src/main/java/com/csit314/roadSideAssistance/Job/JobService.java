@@ -71,9 +71,10 @@ public class JobService {
 
     public List<Job> getJobs(Long customerId) {
         List<Job> jobs = jobRepository.findJobsByCustomerId(customerId);
-        if (jobs.isEmpty()) {
-            throw new IllegalStateException(String.format("Jobs could not be found with customerID '%s'", customerId));
-        }
+//        if (jobs.isEmpty()) {
+//            throw new IllegalStateException(String.format("Jobs could not be found with customerID '%s'", customerId));
+//
+//        }
         return jobs;
     }
 
