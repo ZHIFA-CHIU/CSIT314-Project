@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * Controller for technician
  */
-@CrossOrigin(origins = "*")
+@CrossOrigin
 @RestController
 @RequestMapping(path = "api/v1/technician")
 public class TechnicianController {

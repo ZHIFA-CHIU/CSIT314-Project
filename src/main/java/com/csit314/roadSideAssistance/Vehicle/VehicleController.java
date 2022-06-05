@@ -7,7 +7,7 @@ import java.util.Optional;
 /**
  * Contains vehicle controller class
  */
-@CrossOrigin(origins = "*")
+@CrossOrigin
 @RestController
 @RequestMapping(path = "api/v1/Vehicle")
 public class VehicleController {
