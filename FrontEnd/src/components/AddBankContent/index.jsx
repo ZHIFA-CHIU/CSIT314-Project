@@ -8,6 +8,7 @@ import {useNavigate} from "react-router-dom";
  * Content for the add bank account page
  * @param technicianId technicianId to submit with add vehicle
  * @returns {JSX.Element}
+
  */
 export default function AddBank({technicianId}) {
     const {
@@ -17,7 +18,7 @@ export default function AddBank({technicianId}) {
     } = useForm();
 
     const navigate = useNavigate();
-    const [id] = useState(history.state.id);
+    const [id] = useState(window.history.state.id);
 
     const onSubmit = (data) => {
         addBank(technicianId, data).then(

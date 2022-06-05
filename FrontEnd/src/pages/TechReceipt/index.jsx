@@ -6,7 +6,7 @@ import {
 } from '@mui/material';
 import {useLocation, useNavigate} from "react-router-dom";
 
-export default function techReceipt() {
+export default function TechReceipt() {
     const {state} = useLocation();
     const [receiptInfo, setReceiptInfo] = useState({});
     const [techId, setTechId] = useState();
