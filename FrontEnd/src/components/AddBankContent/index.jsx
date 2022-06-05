@@ -24,7 +24,7 @@ export default function AddBank({technicianId}) {
         addBank(technicianId, data).then(
             response => {
                 alert("Bank account has been successfully added");
-                navigate("/TechnicianDashboard", { state: { id } })
+                navigate("/TechnicianDashboard", { state: { "id": technicianId } })
             }
         ).catch(
             error => alert(error)
