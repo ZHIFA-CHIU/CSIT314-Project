@@ -39,7 +39,7 @@ export default function TechnicianLoginContent() {
                 console.log(response.data);
                 let tmp = JSON.stringify(response.data);
                 let obj = JSON.parse(tmp);
-                if (obj.login)
+                if (obj.login === "true")
                     navigate("/TechnicianDashboard", { state: { id: obj["customer-id"] } })
                 else
                     alert("Login failed")
