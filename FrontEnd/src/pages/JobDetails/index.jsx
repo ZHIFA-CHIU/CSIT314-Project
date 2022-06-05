@@ -6,6 +6,8 @@ import {closeJob, technicianAcceptJobRequest} from '../../api';
 import useNavigator from 'react-browser-navigator'
 import {GoogleMap, Marker, DirectionsRenderer, useJsApiLoader} from '@react-google-maps/api'
 
+const google = window.google
+
 export default function JobDetails() {
     const history = useLocation();
     const [lat, setLat] = useState("");

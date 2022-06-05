@@ -8,6 +8,8 @@ import {GoogleMap, Marker, DirectionsRenderer, useJsApiLoader} from '@react-goog
 import {TextField} from '@mui/material';
 import Banner from "../../components/Banner";
 
+const google = window.google
+
 export default function LookForRepairs() {
     const [jobs, setJobs] = useState([]);
     const navigate = useNavigate();
