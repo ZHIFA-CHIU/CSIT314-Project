@@ -23,6 +23,7 @@ import JobDetails from "../pages/JobDetails";
 import TechnicianJobHistory from "../pages/TechnicianJobHistory/TechnicianJobHistory";
 import CustomerServiceHistory from "../pages/CustomerServiceHistory";
 import TechReceipt from "../pages/TechReceipt";
+import TechnicianRating from "../pages/TechnicianRating";
 
 
 export default [
@@ -126,4 +127,8 @@ export default [
         path: "/TechReceipt",
         element: <TechReceipt />
     },
+    {
+        path: "TechnicianRating",
+        element: <TechnicianRating />
+    }
 ];

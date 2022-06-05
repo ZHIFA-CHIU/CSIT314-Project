@@ -115,3 +115,6 @@ export const getNearbyTechnician = (lat, lon) =>
     ajax(`http://localhost:3000/api1/api/v1/customer/getNearbyTechs/${lat}/${lon}`,{
         lat, lon
     }, "GET");
+
+// get all review
+export const getAllReview = technicianId => ajax(`http://localhost:3000/api1/api/v1/review/${technicianId}`, { technicianId }, "GET");

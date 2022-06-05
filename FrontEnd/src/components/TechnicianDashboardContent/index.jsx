@@ -27,6 +27,10 @@ const TechnicianDashboard = () => {
         navigate("/addBank", {state: {id}});
     }
 
+    const navReview = (e) => {
+        navigate('/TechnicianRating', {state: {id}});
+    }
+
     return (
         <div id='container'>
             <Button variant="outlined" size='large' style={{ height: "20.25%" }} onClick={navLookForRepair}>Look for Repairs</Button><br />
@@ -37,6 +41,7 @@ const TechnicianDashboard = () => {
 
             <Button variant="outlined" size='large' style={{ height: "20.25%"}} onClick={navAddBank}>Add bank detail</Button><br />
 
+            <Button variant="outlined" size='large' style={{ height: "20.25%"}} onClick={navReview}>Rating and review</Button><br />
         </div>
     );
 }

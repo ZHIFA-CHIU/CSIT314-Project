@@ -8,7 +8,6 @@ import { GoogleMap, Marker, DirectionsRenderer, useJsApiLoader } from '@react-go
 import { TextField } from '@mui/material';
 import Banner from "../../components/Banner";
 
-const google = window.google
 
 export default function LookForRepairs() {
     const [jobs, setJobs] = useState([]);
