@@ -21,11 +21,7 @@ export default function CustomerDetailContent({ id }) {
 
     const onEmailChange = e => setEmail(e.target.value);
     const onPasswordChange = e => setPassword(e.target.value);
-    // const onfirstNameChange = e => setFirstName(e.target.value);
-    // const onLastNameChange = e => setLastName(e.target.value);
-    // const onDobChange = e => setDob(e.target.value);
     const onPhoneNumberChange = e => setPhoneNumber(e.target.value);
-    // const onAgeChange = e => setAge(e.target.value);
     const onStreetAdressChange = e => setStreetAddress(e.target.value);
     const onSuburbChange = e => setSuburb(e.target.value);
     const onPostCodeChange = e => setPostCode(e.target.value);
@@ -70,24 +66,14 @@ export default function CustomerDetailContent({ id }) {
         ).catch(
             (error) => {
                 alert(error);
-                // alert("Failed to update details");
                 navigate("/CustomerDetail");
             }
         )
     }
 
-    /**
-     * This is a test function 
-     * Only used for testing
-     */
-    // const test = () => {
-    //     console.log(details);
-    //     console.log(typeof details);
-    // }
 
     return (
         <div className='customer-content-detail'>
-            {/* <Button onClick={test}>Click Me</Button> */}
             <h1>{firstName} Details</h1>
             <form className='customer-content-detail-form' onSubmit={handleSubmit}>
                 <TextField id="email" label="Email" variant="outlined" fullWidth margin='normal' value={email} onChange={onEmailChange} />

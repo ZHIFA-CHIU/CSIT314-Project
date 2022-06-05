@@ -9,24 +9,15 @@ import { useNavigate } from 'react-router-dom';
 
 export default function LoginContent() {
     const navigate = useNavigate();
-    // username
     const [email, setEmail] = useState("");
-    // password
     const [password, setPassword] = useState("");
-    // userError
-    // const [userError, setUserError] = useState([false, ""]);
-    // pwd error
-    // const [pwdErr, setPwdErr] = useState([false, ""]);
 
 
     /**
      * when username change update username state
      */
     const onEmailChange = e => {
-        // setUserError([false, ""])
         const email = e.target.value;
-        // console.log(usrname);
-
         setEmail(email);
     }
 
@@ -34,33 +25,9 @@ export default function LoginContent() {
      * when pwd change update pwd state
      */
     const onPasswordChange = e => {
-        // setPwdErr([false, ""]);
         const pwd = e.target.value;
-        // console.log(pwd);
         setPassword(pwd);
     }
-
-    /**
-     * Username must be at least 4 leters long
-     */
-    // const validateUsername = () => {
-    //     if (username.length < 4) {
-    //         setUserError([true, "Username must be at least 4 letters long"]);
-    //         return false;
-    //     }
-    //     return true;
-    // }
-
-    /**
-     * password must be at least 6 digits long
-     */
-    // const validatePwd = () => {
-    //     if (username.length < 6) {
-    //         setPwdErr([true, "Username must be at least 6 digits long"]);
-    //         return false;
-    //     }
-    //     return true;
-    // }
 
     /**
      * Login page submission handler
@@ -68,17 +35,10 @@ export default function LoginContent() {
      */
     const handleSubmit = e => {
         e.preventDefault();
-        // console.log(username, password);
-        // send log in request
-        // if (validateUsername() && validatePwd())
         loginRequest(email, password).then(
             response => {
-                // console.log(response.data);
-                // let obj = JSON.parse(response.data);
-                // console.log(obj);
                 let tmp = JSON.stringify(response.data);
                 let obj = JSON.parse(tmp);
-                // console.log(obj["customer-id"]);
                 if (obj.login)
                     navigate("/CustomerDashboard", { state: { id: obj["customer-id"] } })
                 else
@@ -118,8 +78,6 @@ export default function LoginContent() {
                     autoFocus
                     defaultValue={""}
                     onChange={onEmailChange}
-                // error={userError[0]}
-                // helperText={userError[1]}
                 />
 
                 <TextField
@@ -133,8 +91,6 @@ export default function LoginContent() {
                     autoComplete="current-password"
                     defaultValue={""}
                     onChange={onPasswordChange}
-                // error={userError[0]}
-                // helperText={userError[1]}
                 />
 
                 <Button

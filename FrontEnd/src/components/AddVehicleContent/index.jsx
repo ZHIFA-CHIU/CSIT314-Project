@@ -1,25 +1,20 @@
 import React from 'react'
-import { AppBar, Toolbar, Typography } from '@mui/material'
-import {useForm} from 'react-hook-form'
-import  "./vehicle.css"
-import {addVehicle} from '../../api'
-import {useNavigate} from "react-router-dom";
+import { useForm } from 'react-hook-form'
+import "./vehicle.css"
+import { addVehicle } from '../../api'
+import { useNavigate } from "react-router-dom";
 
 /**
  * Content for the add vehicle page
  * @param customerId customerId to submit with add vehicle
  * @returns {JSX.Element}
  */
-export default function AddVehicle({customerId}) {
+export default function AddVehicle({ customerId }) {
     const {
         register,
         handleSubmit,
         formState: { errors }
     } = useForm();
-
-    const goBackPage = () => {
-        window.history.back()
-    }
 
     const navigate = useNavigate();
 
@@ -27,7 +22,7 @@ export default function AddVehicle({customerId}) {
         addVehicle(customerId, data).then(
             response => {
                 alert("Vehicle has been successfully added");
-                navigate("/VehList", {state: {customerId}});
+                navigate("/VehList", { state: { customerId } });
             }
         ).catch(
             error => alert(error)
@@ -36,37 +31,22 @@ export default function AddVehicle({customerId}) {
 
     return (
         <div>
-            <AppBar position='static' >
-                <Toolbar>
-                    <button className='medium ui primary button' onClick={() => goBackPage()}>
-                        Back
-                    </button>
-                    <Typography align='center' sx={{ flexGrow: 1 }} onClick={() => goBackPage()}>
-                        Roadside Assistant Service
-                    </Typography>
-                    <button className='medium ui primary button' onClick={() => goBackPage()}>
-                        Done
-                    </button>
-                </Toolbar>
-            </AppBar>
-
-
             <h1>Please Add Vehicle</h1>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <input type="text" placeholder="Manufacture"
-                       {...register("manufacturer", {
-                           required: true,
-                           maxLength: 30,
-                       })} />
+                    {...register("manufacturer", {
+                        required: true,
+                        maxLength: 30,
+                    })} />
                 {errors?.manufacturer?.type === "required" && <p>This field is required</p>}
                 {errors?.Manufacturer?.type === "maxLength" && (
                     <p>Manufacture cannot exceed 30 characters</p>
                 )}
                 <input type="text" placeholder="Model"
-                       {...register("model", {
-                           required: true,
-                           maxLength: 30,
-                       })} />
+                    {...register("model", {
+                        required: true,
+                        maxLength: 30,
+                    })} />
                 {errors?.model?.type === "required" && <p>This field is required</p>}
                 {errors?.model?.type === "maxLength" && (
                     <p>Model cannot exceed 30 characters</p>
@@ -97,20 +77,20 @@ export default function AddVehicle({customerId}) {
                     <option value="2000">2000</option>
                 </select>
                 <input type="text" placeholder="Colour"
-                       {...register("colour", {
-                           required: true,
-                           maxLength: 30,
-                       })} />
+                    {...register("colour", {
+                        required: true,
+                        maxLength: 30,
+                    })} />
                 {errors?.colour?.type === "required" && <p>This field is required</p>}
                 {errors?.colour?.type === "maxLength" && (
                     <p>Colour cannot exceed 30 characters</p>
                 )}
                 <input type="text" placeholder="Rego"
-                       {...register("registrationPlate", {
-                           required: true,
-                           maxLength: 6,
-                           minLength: 6
-                       })} />
+                    {...register("registrationPlate", {
+                        required: true,
+                        maxLength: 6,
+                        minLength: 6
+                    })} />
                 {errors?.registrationPlate?.type === "required" && <p>This field is required</p>}
                 {errors?.registrationPlate?.type === "maxLength" && (
                     <p>Rego must be 6 characters</p>
@@ -129,10 +109,10 @@ export default function AddVehicle({customerId}) {
                     <option value="Tasmania">Tasmania</option>
                 </select>
                 <input type="number" placeholder="Weight(KG)"
-                       {...register("weight", {
-                           required: true,
-                           maxLength: 10
-                       })} />
+                    {...register("weight", {
+                        required: true,
+                        maxLength: 10
+                    })} />
                 {errors?.weight?.type === "required" && <p>This field is required</p>}
                 {errors?.weight?.type === "maxLength" && (
                     <p>Weight cannot exceed 10 characters</p>

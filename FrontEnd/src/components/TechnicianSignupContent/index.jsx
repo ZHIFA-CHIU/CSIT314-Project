@@ -53,14 +53,14 @@ const CreateAccountTechnician = () => {
         );
     }
 
-//<TextField onChange={onHeavyVehicleQualificationChange} id="heavyVehicleQualification" label="heavyVehicleQualification" variant="outlined" fullWidth margin='normal' />
-//<TextField onChange={onLightVehicleQualificationChange} id="lightVehicleQualification" label="lightVehicleQualification" variant="outlined" fullWidth margin='normal' />
-                
+    //<TextField onChange={onHeavyVehicleQualificationChange} id="heavyVehicleQualification" label="heavyVehicleQualification" variant="outlined" fullWidth margin='normal' />
+    //<TextField onChange={onLightVehicleQualificationChange} id="lightVehicleQualification" label="lightVehicleQualification" variant="outlined" fullWidth margin='normal' />
+
 
     return (
         <div className='technicianSignup'>
             <h1>Technician Signup</h1>
-            <form className='technicianSignup-form' onSubmit={handleSubmit}>
+            <form className='technician-signup-form' onSubmit={handleSubmit}>
                 <TextField onChange={onFirstNameChange} id="firstName" label="First Name" variant="outlined" fullWidth margin='normal' />
                 <TextField onChange={onLastNameChange} id="lastName" label="Last Name" variant="outlined" fullWidth margin='normal' />
                 <TextField onChange={onEmailChange} id="email" label="Email" variant="outlined" fullWidth margin='normal' />

@@ -1,11 +1,11 @@
-import React, {useState, useEffect} from 'react'
-import { technicianGetNearbyJobsRequest} from '../../api';
-import{Card, CardActions, CardContent, Button, Typography, Stack} from '@mui/material';
+import React, { useState, useEffect } from 'react'
+import {setLocation, technicianGetNearbyJobsRequest} from '../../api';
+import { Card, CardActions, CardContent, Button, Typography, Stack } from '@mui/material';
 import "./LookForRepairs.css"
-import {useLocation, useNavigate} from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import useNavigator from 'react-browser-navigator'
-import {GoogleMap, Marker, DirectionsRenderer, useJsApiLoader} from '@react-google-maps/api'
-import {TextField} from '@mui/material';
+import { GoogleMap, Marker, DirectionsRenderer, useJsApiLoader } from '@react-google-maps/api'
+import { TextField } from '@mui/material';
 import Banner from "../../components/Banner";
 
 const google = window.google
@@ -29,14 +29,24 @@ export default function LookForRepairs() {
     const onLatChange = e => setLat(e.target.value)
     const onLonChange = e => setLon(e.target.value)
 
-    const toJobDetails = (id, job) => () => navigate("/JobDetails", {state: {id, job}});
+    const toJobDetails = (id, job) => () => navigate("/JobDetails", { state: { id, job } });
 
     const submitLocation = () => {
         technicianGetNearbyJobsRequest(lat, lon).then(
             response => {
-                console.log(response.data);
-                setJobs(response.data);
-                setFlag(true);
+                if (response.data[0]!= null) {
+                    setJobs(response.data);
+                    setFlag(true);
+                }
+                else
+                    alert("No jobs found")
+            }
+        ).catch(
+            err => alert(err)
+        );
+        setLocation(id, lat, lon).then(
+            response => {
+                console.log("Location updated successfully")
             }
         ).catch(
             err => alert(err)
@@ -46,8 +56,8 @@ export default function LookForRepairs() {
     const jobContent = () => {
         return (
             <div>
-                <br/>
-                <Stack direction="row" spacing={4}  justifyContent="center">
+                <br />
+                <Stack direction="row" spacing={4} justifyContent="center">
                     <Typography variant="h4">
                         Distance:  {distance}
                     </Typography>
@@ -55,7 +65,7 @@ export default function LookForRepairs() {
                         Duration:  {duration}
                     </Typography>
                 </Stack>
-                <br/>
+                <br />
                 {flag ?
                     jobs.map(job => {
                         async function calculateRoute() {
@@ -76,12 +86,12 @@ export default function LookForRepairs() {
                             setDistance('')
                             setDuration('')
                         }
-                        return <Card sx={{minWidth: 500}} key={job.id}>
+                        return <Card sx={{ minWidth: 500 }} key={job.id}>
                             <CardContent>
                                 <Typography variant="h5" component="div">
                                     Job {job.id}
                                 </Typography>
-                                <Typography sx={{mb: 1.5}} color="text.secondary">
+                                <Typography sx={{ mb: 1.5 }} color="text.secondary">
                                     Customer: {`${job.customer.firstName} ${job.customer.lastName}`}
                                 </Typography>
                                 <Typography variant="body1">
@@ -100,14 +110,13 @@ export default function LookForRepairs() {
             </div>
         )
     }
-    let {getCurrentPosition} = useNavigator();
+    let { getCurrentPosition } = useNavigator();
     let location = {
         lat: getCurrentPosition?.coords.latitude,
         lon: getCurrentPosition?.coords.longitude
     }
     useEffect(() => {
         if (getCurrentPosition !== undefined && getCurrentPosition !== null) {
-            console.log(location)
             setLat(location.lat)
             setLon(location.lon)
         }
@@ -124,17 +133,17 @@ export default function LookForRepairs() {
         lng: getCurrentPosition?.coords.longitude
     };
 
-    return isLoaded? (
+    return isLoaded ? (
         <div className='look-for-repairs'>
-            <Banner to={"TechnicianDashboard"} dashboard={true} id={id}/>
-            <div className='ui center aligned container' style={{minWidth: "400px", maxWidth: "400px"}}>
+            <Banner to={"TechnicianDashboard"} dashboard={true} id={id} />
+            <div className='ui center aligned container' style={{ minWidth: "400px", maxWidth: "400px" }}>
                 <h1>Current Location</h1>
                 <GoogleMap
                     mapContainerStyle={containerStyle}
                     center={center}
                     zoom={15}
                 >
-                    <Marker position={center}/>
+                    <Marker position={center} />
                     {directionsResponse && (
                         <DirectionsRenderer directions={directionsResponse} />
                     )}
@@ -145,12 +154,12 @@ export default function LookForRepairs() {
                 :
 
                 <div className='input-field'>
-                    <TextField id="lat" label="Latitude" variant="outlined" sx={{minWidth: 500}}
-                               value={lat} onChange={onLatChange} />
-                    <TextField id="lon" label="Longitude" variant="outlined" sx={{minWidth: 500}}
-                               value={lon} onChange={onLonChange} />
+                    <TextField id="lat" label="Latitude" variant="outlined" sx={{ minWidth: 500 }}
+                        value={lat} onChange={onLatChange} />
+                    <TextField id="lon" label="Longitude" variant="outlined" sx={{ minWidth: 500 }}
+                        value={lon} onChange={onLonChange} />
 
-                    <Button sx={{minWidth: 300}} variant="contained" onClick={submitLocation}>Submit</Button>
+                    <Button sx={{ minWidth: 300 }} variant="contained" onClick={submitLocation}>Update location</Button>
                 </div>
             }
         </div>

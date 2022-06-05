@@ -78,7 +78,7 @@ public class TechnicianController {
 
     }
 
-    @DeleteMapping(path = "/deleteBankAccount")
+    @DeleteMapping(path = "/deleteBankAccount/{technicianId}")
     public void deleteBankAccount(@PathVariable("technicianId") Long technicianId) {
         technicianService.deleteBankAccount(technicianId);
     }

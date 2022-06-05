@@ -1,10 +1,10 @@
 import React from "react"
-import {AppBar, Toolbar, Typography, Box} from '@mui/material'
-import {useForm, Controller} from 'react-hook-form'
+import { AppBar, Toolbar, Typography, Box } from '@mui/material'
+import { useForm, Controller } from 'react-hook-form'
 import Rating from '@mui/material/Rating';
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./Rating.css"
-import {addReview} from "../../api";
+import { addReview } from "../../api";
 import { styled } from '@mui/material/styles';
 
 /**
@@ -13,12 +13,12 @@ import { styled } from '@mui/material/styles';
  * @param customerId CustomerId to navigate around
  * @returns {JSX.Element}
  */
-export default function CustomerRatingContent({technicianId, customerId}) {
+export default function CustomerRatingContent({ technicianId, customerId }) {
     const {
         register,
         control,
         handleSubmit,
-        formState: {errors}
+        formState: { errors }
     } = useForm()
     const goBackPage = () => {
         window.history.back()
@@ -38,7 +38,7 @@ export default function CustomerRatingContent({technicianId, customerId}) {
         addReview(technicianId, data).then(
             response => {
                 alert("Review successfully submitted");
-                navigate("/CustomerDashboard", {state: {"id": customerId}});
+                navigate("/CustomerDashboard", { state: { "id": customerId } });
             }
         ).catch(
             error => alert(error)
@@ -52,7 +52,7 @@ export default function CustomerRatingContent({technicianId, customerId}) {
                     <button className='medium ui primary button' onClick={() => goBackPage()}>
                         Back
                     </button>
-                    <Typography align='center' sx={{flexGrow: 1}} onClick={() => navigate("/home")}>
+                    <Typography align='center' sx={{ flexGrow: 1 }} onClick={() => navigate("/home")}>
                         Roadside Assistant Service
                     </Typography>
                     <button className='medium ui primary button' onClick={() => goBackPage()}>
@@ -69,25 +69,25 @@ export default function CustomerRatingContent({technicianId, customerId}) {
             >
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <Typography component="legend">Rating</Typography>
-                    <br/>
+                    <br />
                     <Controller
 
                         name="rating"
                         control={control}
                         rules={{ required: true }}
-                        render={({field}) =>
-                            <StyledRating style={{color: "red !important"}} name="size-large" size="large" rating={field.value} onChange={field.onChange}  />}
+                        render={({ field }) =>
+                            <StyledRating style={{ color: "red !important" }} name="size-large" size="large" rating={field.value} onChange={field.onChange} />}
                     />
                     {errors?.rating?.type === "required" && <p>This field is required</p>}
-                    <br/>
-                    <br/>
+                    <br />
+                    <br />
                     <Typography component="legend">Comment</Typography>
-                    <br/>
+                    <br />
                     <textarea rows="5" placeholder="Please review"
-                              {...register("reviewInformation", {
-                                  required: true,
-                                  maxLength: 200
-                              })} />
+                        {...register("reviewInformation", {
+                            required: true,
+                            maxLength: 200
+                        })} />
                     {errors?.reviewInformation?.type === "required" && <p>This field is required</p>}
                     {errors?.reviewInformation?.type === "maxLength" && (
                         <p>Comment cannot exceed 200 characters</p>

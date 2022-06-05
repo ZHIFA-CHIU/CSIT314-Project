@@ -17,10 +17,13 @@ import Membership from "../pages/Membership";
 import RepairUnderway from "../pages/RepairUnderway";
 import RepairComplete from "../pages/RepairComplete";
 import SearchTechnician from "../pages/SearchTechnician";
-
+import AddBank from "../pages/AddBank";
 import LookForRepairs from "../pages/LookForRepairs";
 import JobDetails from "../pages/JobDetails";
 import TechnicianJobHistory from "../pages/TechnicianJobHistory/TechnicianJobHistory";
+import CustomerServiceHistory from "../pages/CustomerServiceHistory";
+import TechReceipt from "../pages/TechReceipt";
+
 
 export default [
     {
@@ -110,5 +113,17 @@ export default [
     {
         path: "/technicianJobs",
         element: <TechnicianJobHistory />
-    }
+    },
+    {
+        path: "/CustomerServiceHistory",
+        element: <CustomerServiceHistory />
+    },
+    {
+        path: "/addBank",
+        element: <AddBank />
+    },
+    {
+        path: "/TechReceipt",
+        element: <TechReceipt />
+    },
 ];
