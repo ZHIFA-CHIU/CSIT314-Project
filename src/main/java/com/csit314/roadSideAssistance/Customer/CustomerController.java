@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * Controller for customer
  */
-@CrossOrigin(origins = "http://localhost:3000/")
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping(path = "api/v1/customer")
 public class CustomerController {

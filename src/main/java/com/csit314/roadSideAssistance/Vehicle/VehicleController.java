@@ -7,7 +7,7 @@ import java.util.Optional;
 /**
  * Contains vehicle controller class
  */
-@CrossOrigin(origins = "http://localhost:3000/")
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping(path = "api/v1/Vehicle")
 public class VehicleController {
